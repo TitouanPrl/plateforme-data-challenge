@@ -23,10 +23,10 @@ function disconnect($conn) {
 
 // On récupère les données d'une catégorie en fonction de l'id
 function getPersonById($conn,$id) {
-    $sql = "SELECT * FROM Produit WHERE idProduit=$id";
+    $sql = "SELECT * FROM Utilisateur WHERE idUser=$id";
     $result = mysqli_query($conn, $sql);
-    $produit = mysqli_fetch_assoc($result);
-    return $produit;
+    $person = mysqli_fetch_assoc($result);
+    return $person;
     
 }
 
