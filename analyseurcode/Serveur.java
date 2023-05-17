@@ -84,6 +84,9 @@ public class Serveur {
                 requestParamValue = handlePostRequest(httpExchange);
             }
             */
+            else {
+                LOGGER.warning("Méthode non gérée");
+            }
             handleResponse(httpExchange,requestParamValue);
 
         }
