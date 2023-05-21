@@ -2,7 +2,7 @@
 session_start();
 
 /* On inclut les fonctions de manipulation de la BDD */
-include("../bdd/fonctionsBDD.php");
+include("../../bdd/fonctionsBDD.php");
 
 /* On écrit dans la session les variables rentrées */
 $_SESSION['login'] = $_POST['login'];
@@ -45,7 +45,7 @@ else {
       $_SESSION['ID'] = $user['idUser'];
 
       /* On redirige vers l'accueil correspondant au type de l'utilisateur */
-      header('Location: redirectionAccueil.php?type=' . $user['type']); 
+      header('Location: ../redirectionAccueil.php?type=' . $user['type']); 
 
       exit();
     }

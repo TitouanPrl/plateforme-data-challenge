@@ -79,8 +79,8 @@
 
         // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
 
-        /* On redirige vers l'acueil avec connexion */
-        header('Location:accueil.php');
+        /* On redirige vers l'accueil avec connexion */
+        header('Location:../User/accueilUser.php');
     }
 
 ?>

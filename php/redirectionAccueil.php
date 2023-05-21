@@ -3,19 +3,19 @@
 /* On redirige vers la page d'accueil correspondant au type de l'utilisateur */
 switch ($_GET['type']) {
     case 'admin':
-        header('Location: accueilAdmin.php');
+        header('Location: Admin/accueilAdmin.php');
       break;
 
     case 'gestion':
-        header('Location: accueilGestion.php');
+        header('Location: Gestion/accueilGestion.php');
       break;
 
     case 'user':
-        header('Location: accueilUser.php');
+        header('Location: User/accueilUser.php');
       break;
 
     default:
-      header('Location: connexionInscription.php?error=3');
+      header('Location: Connexion/connexionInscription.php?error=3');
       break;
   }
 

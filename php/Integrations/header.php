@@ -3,7 +3,7 @@ session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
 if (!isset($_SESSION["login"])) {
-    header('Location:connexionInscription.php?error=1');
+    header('Location:../Connexion/connexionInscription.php?error=1');
     exit();
 }
 
@@ -18,9 +18,9 @@ if (!isset($_SESSION["login"])) {
 
     <title>K-Food</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
-    <link rel="stylesheet" href="../css/style.css" />
-    <link rel="shortcut icon" type="image/png" href="../img/logo_iaPau.png">
-    <script src="../js/script.js"></script>
+    <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
+    <script src="../../js/script.js"></script>
 
 
 </head>
@@ -30,14 +30,14 @@ if (!isset($_SESSION["login"])) {
 
     <header>
 
-        <img id="logo" src="../img/logo_iaPau.png" alt="logo">
+        <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
 
         <nav id="liens">
-            <a href="infoChallenge.php">Informations Challenges</a>
-            <a href="inscriptionChallenge.php">Inscription Challenge</a>
+            <a href="../General/infoChallenge.php">Informations Challenges</a>
+            <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
         </nav>
 
-        <form action="deconnexion.php">
+        <form action="../Connexion/deconnexion.php">
             <input type="submit" id="deco" value="Déconnexion">
         </form>
 

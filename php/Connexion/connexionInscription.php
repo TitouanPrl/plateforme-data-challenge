@@ -11,9 +11,9 @@ session_start();
 
   <title>IA Pau</title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
-  <link rel="stylesheet" href="../css/style.css" />
-  <link rel="shortcut icon" type="image/png" href="../img/logo_iaPau.png">
-  <script src="../js/script.js"></script>
+  <link rel="stylesheet" href="../../css/style.css" />
+  <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
+  <script src="../../js/script.js"></script>
 
 
 </head>
@@ -24,7 +24,7 @@ session_start();
   <header>
     <h1>TITRE INTRO</h1>
 
-    <img id="logo" src="../img/logo_iaPau.png" alt="logo">
+    <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
 
     <?php
     /* Envoie un message correspondant à l'erreur de manipulation */
@@ -140,4 +140,4 @@ session_start();
     </article>
   </main>
 
-  <?php require 'footer.php'; ?>
+  <?php require '../Integrations/footer.php'; ?>
