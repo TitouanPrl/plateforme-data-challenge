@@ -37,6 +37,7 @@ CREATE TABLE Message (
 CREATE TABLE Evenement (
     idEvenement INT PRIMARY KEY,
     libelle VARCHAR(30),
+    /* RAJOUTER DESCRIPTION CHALLENGE */
     dateD DATETIME,
     dateF DATETIME
 );
