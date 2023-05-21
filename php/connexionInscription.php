@@ -31,11 +31,15 @@ session_start();
     if (isset($_GET['error'])) {
       switch ($_GET['error']) {
         case '1':
-          echo "<p id='notif'>Il semblerait que vous n'ayez pas rentré vos identifiants</p>";
+          echo "<p id='notif'>Il semblerait que vous n'ayez pas rentré vos identifiants.</p>";
           break;
 
         case '2':
-          echo "<p id='notif'>Il semblerait qu'il y ait une erreur dans vos identifiants</p>";
+          echo "<p id='notif'>Il semblerait qu'il y ait une erreur dans vos identifiants ou que nous ne trouvions pas votre compte, êtes-vous bien inscrit ?</p>";
+          break;
+
+        case '3':
+          echo "<p id='notif'>Le type d'utilisateur est indéfini, veuillez contacter un administrateur.</p>";
           break;
 
         default:

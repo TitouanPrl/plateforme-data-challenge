@@ -18,7 +18,7 @@ if (!isset($_SESSION["login"])){
 //PARTIE VERIFICATION IDENTITE
 /* On lit la liste des users dans la BDD */
 Connexion();
-recupClient();
+recupUtilisateurs();
 
 /* Si le fichier n'existe pas on renvoit une erreur */
 if ($_SESSION['data']['Utilisateur'] == NULL) {     
@@ -43,21 +43,9 @@ else {
 
       /* On met en session l'id de l'utilisateur */
       $_SESSION['ID'] = $user['idUser'];
-      
-      if ($user['adminID'] == true) {
-        $_SESSION['admin'] = true;
-      }
-      else {
-        $_SESSION['admin'] = false;
-      }
 
-      /* On update l'état des clients dans la BDD */
-      connecter($_SESSION['ID']);
-
-      /* On redirige vers l'accueil */
-      // A MODIFIER EN FONCTION DU TYPE DE USER, LA REDIRECTION N'EST PAS LA MEME
-      //CF redirectionAccueil.php
-      header('Location: accueil.php'); 
+      /* On redirige vers l'accueil correspondant au type de l'utilisateur */
+      header('Location: redirectionAccueil.php?type=' . $user['type']); 
 
       exit();
     }
@@ -66,8 +54,6 @@ else {
 
   /* Si les données de connexions ne correspondent pas on renvoi vers la connexion */
   session_destroy(); 
-  header('Location: connexion.php?error=2');
+  header('Location: connexionInscription.php?error=2');
 
 }
-
-  ?>

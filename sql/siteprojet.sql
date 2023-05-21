@@ -12,6 +12,7 @@ CREATE TABLE Utilisateur(
     numTel VARCHAR(16),
     email VARCHAR(250),
     mdp VARCHAR(256)
+    /* RAJOUTER TYPE : ADMIN/GESTION/USER */
 );
 
 CREATE TABLE Equipe(
