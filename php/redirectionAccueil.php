@@ -1,5 +1,6 @@
 <?php 
 
+/* On redirige vers la page d'accueil correspondant au type de l'utilisateur */
 switch ($_GET['type']) {
     case 'admin':
         header('Location: accueilAdmin.php');

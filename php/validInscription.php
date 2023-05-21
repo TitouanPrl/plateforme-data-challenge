@@ -61,6 +61,7 @@
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
     if ($valide = false) {
         header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
+        exit();
     }
 
     /* Si elles le sont, on envoie un mail avec un récap et on push dans la BDD */
@@ -80,7 +81,6 @@
 
         /* On redirige vers l'acueil avec connexion */
         header('Location:accueil.php');
-
     }
 
 ?>
