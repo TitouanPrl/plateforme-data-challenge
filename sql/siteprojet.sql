@@ -11,7 +11,7 @@ CREATE TABLE Utilisateur(
     entreprise VARCHAR(30),
     numTel VARCHAR(16),
     email VARCHAR(250),
-    mdp VARCHAR(30)
+    mdp VARCHAR(256)
 );
 
 CREATE TABLE Equipe(
