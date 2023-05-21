@@ -1,4 +1,4 @@
-<?php require '../Integrations/header.php'; ?>
+<?php require '../Integrations/headerVanilla.php'; ?>
 
 <!-- MAIN CONTENT -->
 

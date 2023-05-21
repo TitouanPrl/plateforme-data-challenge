@@ -1,12 +1,5 @@
 <?php
 session_start();
-
-/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?error=1');
-    exit();
-}
-
 ?>
 
 <!DOCTYPE html>
@@ -35,7 +28,6 @@ if (!isset($_SESSION["login"])) {
         <nav id="liens">
             <a href="../General/infoChallenge.php">Informations Challenges</a>
             <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
-            <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
         </nav>
 
         <form action="../Connexion/deconnexion.php">

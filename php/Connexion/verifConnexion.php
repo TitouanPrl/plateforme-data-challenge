@@ -2,7 +2,7 @@
 session_start();
 
 /* On inclut les fonctions de manipulation de la BDD */
-include("../../bdd/fonctionsBDD.php");
+require_once("../../bdd/fonctionsBDD.php");
 
 /* On écrit dans la session les variables rentrées */
 $_SESSION['login'] = $_POST['login'];
