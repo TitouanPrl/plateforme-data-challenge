@@ -110,11 +110,12 @@ public class PythonCodeAnalyzer {
             String line;
             String currentFunctionName = null;
             int currentFunctionLines = 0;
+            boolean estDansCommentaire = false;
 
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
-                if ((line.startsWith("def")) && (line.endsWith(":"))) {
+                if ((line.startsWith("def")) && (line.endsWith(":")) && (!estDansCommentaire)) {
 
                     
                     // ajouter la fonction précédente
@@ -123,7 +124,7 @@ public class PythonCodeAnalyzer {
                     }
 
 
-                    // Start data for the new function
+                    // Commencer les données de la nouvelle fonction
                     currentFunctionName = line.substring(4, line.indexOf("("));
                     currentFunctionLines = 0;
                 } else if (!line.isEmpty()) {
@@ -160,10 +161,24 @@ public class PythonCodeAnalyzer {
             totalLines += lines;
             maxLines = Math.max(maxLines, lines);
             minLines = Math.min(minLines, lines);
+            if (maxLines == Integer.MAX_VALUE) {
+                maxLines = 0;
+            }
+            if (minLines == Integer.MIN_VALUE) {
+                minLines = 0;
+            }
         }
 
         int numberOfFunctions = functionDataList.size();
-        double averageLines = (double) totalLines / numberOfFunctions;
+        double averageLines;
+        if (numberOfFunctions == 0) {
+            System.out.println("Aucune fonction trouvée");
+            averageLines = 0;
+
+        } else {
+            averageLines = (double) totalLines / numberOfFunctions;
+        }
+        
 
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
         System.out.println("Nombre de lignes total : " + totalLines);
@@ -184,19 +199,39 @@ public class PythonCodeAnalyzer {
 
     }
 
+    
+    /**
+     * Classe pour stocker les données d'une fonction
+     */
     static class FunctionData {
         private String functionName;
         private int lines;
 
+
+        /**
+         * Constructeur
+         * @param functionName : nom de la fonction
+         * @param lines : nombre de lignes de la fonction
+         */
         public FunctionData(String functionName, int lines) {
             this.functionName = functionName;
             this.lines = lines;
         }
 
+
+        /**
+         * Getters
+         * @return functionName : nom de la fonction
+         */
         public String getFunctionName() {
             return functionName;
         }
 
+
+        /**
+         * Getters
+         * @return lines : nombre de lignes de la fonction
+         */
         public int getLines() {
             return lines;
         }
