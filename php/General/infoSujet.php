@@ -9,12 +9,12 @@ $idSujet = $_GET['sujet'];
 $sujet = getSujetByID($conn, $idSujet);
 
 /* On récupère le podium associé au sujet */
-$podium = getPodiumByID($conn, $idSujet);
+$podium = getPodiumBySujet($conn, $idSujet);
 
 /* On récupère les différentes équipes du podium */
-$team1 = getTeamByID($conn, $podium['idE1']);
-$team2 = getTeamByID($conn, $podium['idE2']);
-$team3 = getTeamByID($conn, $podium['idE3']);
+$team1 = getEquipe($conn, $podium['idE1']);
+$team2 = getEquipe($conn, $podium['idE2']);
+$team3 = getEquipe($conn, $podium['idE3']);
 
 /* On affiche la description du sujet */
 echo('<!-- MAIN CONTENT -->
