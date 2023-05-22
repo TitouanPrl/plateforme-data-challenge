@@ -28,23 +28,21 @@ function request($conn,$sql) {
     return $tableau;
 }
 
-// On récupère les données d'une catégorie en fonction de l'id
-function getPersonById($conn,$id) {
+//RÉCUPÉRATION DES DONNÉES
+function getPersonById($conn,$id) { //récupère toutes les infos d'une personne avec son id
     $sql = "SELECT * FROM Utilisateur WHERE idUser=$id";
     $person = request($conn,$sql);
     return $person;
 }
-
-function getUserByType($conn,$fonction) {
+function getUsersByType($conn,$fonction) { //récupère tous les utilisateurs d'une catégorie
     $sql = "SELECT * FROM Utilisateur WHERE fonction=$fonction";
-    $people = request($conn,$sql);
-    return $people;
+    $users = request($conn,$sql);
+    return $users;
 }
-
-function getAllUsers($conn) {
-    $etudiants = getUserByType($conn,'USER');
-    $gestion = getUserByType($conn,'GESTION');
-    $admin = getUserByType($conn,'ADMIN');
+function getAllUsers($conn) { //récupère tous les utilisateurs
+    $etudiants = getUsersByType($conn,'USER');
+    $gestion = getUsersByType($conn,'GESTION');
+    $admin = getUsersByType($conn,'ADMIN');
     $users = array();
     $users[] = $etudiants;
     $users[] = $gestion;
@@ -52,16 +50,46 @@ function getAllUsers($conn) {
 
     return $users;
 }
-
-function getPodiumByIDSujet($conn, $idSujet) {
+function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
     $sql = "SELECT * FROM Podium WHERE idSujet=$idSujet";
     $podium = request($conn,$sql);
 
     return $podium;
 }
+function getSujetByEvenement($idEvenement) { //récupère touts les sujets d'un évenement 
+    $sql = "SELECT * FROM Sujet WHERE idEvenement=$idEvenement";
+    $sujets = request($conn,$sql);
+
+    return $sujets;
+}
+function getEvenements() { //récupère tous les évenements
+    $sql = "SELECT * FROM Evenement";
+    $evenements = request($conn,$sql);
+
+    return $evenements;
+}
+function getTeamMembers($idEquipe) {  //récupère tous les membres d'une équipe
+    $sql = "SELECT * FROM Equipe WHERE idEquipe = $idEquipe";
+    $membres = request($conn,$sql);
+
+    return $membres;
+}
+function getTeams() {
+    $sql = "SELECT * FROM Equipe";
+    $equipes = request($conn,$sql);
+
+    return $equipes;
+}
+function getTeamsOnSujet($idSujet) { //récupère toutes les équipes ayant un projet proposé pour le sujet
+    $sql = "SELECT idEquipe FROM Projet WHERE idSujet = $idSujet";
+    $equipes = request($conn,$sql);
+
+    return $equipes;
+}
 
 
-//AJOUT D'UTILISATEURS
+
+//AJOUT DE DONNÉES
 function addAdmin($nom,$prenom,$numTel,$email,$mdp) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN')";
     mysqli_connect($conn,$sql);
@@ -97,10 +125,6 @@ function deletePodium($idPodium) {
     $sql = "DELETE FROM Podium WHERE idPodium = $idPodium";
     mysqli_connect($conn,$sql);
 }
-
-
-//recup tous les sujets par challenge
-//recup tous les challenge
 
 
 
