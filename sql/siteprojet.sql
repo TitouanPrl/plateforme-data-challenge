@@ -11,8 +11,8 @@ CREATE TABLE Utilisateur(
     entreprise VARCHAR(30),
     numTel VARCHAR(16),
     email VARCHAR(250),
-    mdp VARCHAR(256)
-    /* RAJOUTER TYPE : ADMIN/GESTION/USER */
+    mdp VARCHAR(256),
+    fonction VARCHAR(16)   /* ADMIN/GESTION/USER */
 );
 
 CREATE TABLE Equipe(
@@ -37,7 +37,7 @@ CREATE TABLE Message (
 CREATE TABLE Evenement (
     idEvenement INT PRIMARY KEY,
     libelle VARCHAR(30),
-    /* RAJOUTER DESCRIPTION CHALLENGE */
+    descrip VARCHAR(1024),
     dateD DATETIME,
     dateF DATETIME
 );
@@ -46,7 +46,7 @@ CREATE TABLE Sujet (
     idSujet INTEGER PRIMARY KEY,
     idEvenement INTEGER,
     libelle VARCHAR(30),
-    descrip VARCHAR(250),
+    descrip VARCHAR(1024),
     img VARCHAR(250),
     telGerant VARCHAR(16),
     emailGerant VARCHAR(250),
