@@ -114,7 +114,7 @@ public class PythonCodeAnalyzer {
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
-                if (line.startsWith("def")) {
+                if ((line.startsWith("def")) && (line.endsWith(":"))) {
 
                     
                     // ajouter la fonction précédente
@@ -126,10 +126,6 @@ public class PythonCodeAnalyzer {
                     // Start data for the new function
                     currentFunctionName = line.substring(4, line.indexOf("("));
                     currentFunctionLines = 0;
-                    // On saute les lignes tant qu'il n'y a pas le ":" de fin de ligne de la fonction dans le cas où les paramètres sont sur plusieurs lignes
-                    while (!line.endsWith(":")) {
-                        line = reader.readLine();
-                    }
                 } else if (!line.isEmpty()) {
                     currentFunctionLines++;
                 }
