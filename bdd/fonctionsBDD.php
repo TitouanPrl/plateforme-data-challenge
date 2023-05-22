@@ -203,6 +203,10 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
     send($conn,$sql);
 }
+function inscription($idUser,$idEvenement) {
+    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idSujet,$idEvenement)";
+    send($conn,$sql);
+}
 
 
 
@@ -237,6 +241,10 @@ function deleteQuestion($conn,$idQuestion) {
 }
 function deleteReponse($conn,$idReponse) {
     $sql = "DELETE FROM Reponse WHERE idReponse = $idReponse";
+    send($conn,$sql);
+}
+function desinscription($idUser,$idEvenement) {
+    $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idSujet,$idEvenement)";
     send($conn,$sql);
 }
 
