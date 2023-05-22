@@ -28,14 +28,14 @@ function request($conn,$sql) {
             $tableau[] = $ligne;
         }
         return $tableau;
-    } catch (Exception $e){
+    } catch (Exception $e) {
         die('Erreur : '.$e->getMessage());
     }
 }
 function send($conn,$sql) {
     try {
         mysqli_query($conn,$sql);
-    } catch (Exception $e){
+    } catch (Exception $e) {
         die('Erreur : '.$e->getMessage());
     }
    
@@ -144,6 +144,12 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
     $reponses = request($conn,$sql);
 
     return $responses;
+}
+function getQuestionnairesOnSujet($idSujet) {
+    $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
+    $questionnaires = request($conn,$sql);
+
+    return $questionnaires;
 }
 function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
     $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
