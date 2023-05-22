@@ -34,7 +34,7 @@ if (!isset($_SESSION["login"])) {
 
         <nav id="liens">
             <a href="../General/infoChallenge.php">Informations Challenges</a>
-            <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
+            <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
             <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
         </nav>
 
