@@ -100,7 +100,7 @@ public class Nombres {
 	}
 	
 	public static void main(String[] args) throws IOException {
-		String chemin = "Fichiers/python/fichier_python.txt";
+		String chemin = "home/Desktop/AnalysePY2JSON/Fichiers/python/fichier_python.txt";
 		String texte=txtToString(chemin);
 
 	    System.out.println(supprimerTriplesQuotes(texte));
