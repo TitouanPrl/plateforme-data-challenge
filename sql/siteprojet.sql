@@ -17,19 +17,15 @@ CREATE TABLE Utilisateur(
     mdp VARCHAR(256),
     dateD DATETIME,
     dateF DATETIME,
-    fonction VARCHAR(16)   /* ADMIN/GESTION/USER */
+    idEquipe INTEGER,
+    fonction VARCHAR(16),   /* ADMIN/GESTION/USER */
+    FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe)
 );
 
 CREATE TABLE Equipe(
     idEquipe INTEGER PRIMARY KEY auto_increment,
-    capitaine INTEGER,
-    m2 INTEGER DEFAULT NULL, -- membre de l'équipe numéro 2
-    m3 INTEGER DEFAULT NULL,
-    m4 INTEGER DEFAULT NULL,
-    m5 INTEGER DEFAULT NULL,
-    m6 INTEGER DEFAULT NULL,
-    m7 INTEGER DEFAULT NULL,
-    m8 INTEGER DEFAULT NULL
+    nom VARCHAR(64),
+    capitaine INTEGER
 );
 
 CREATE TABLE Message (
@@ -79,20 +75,20 @@ CREATE TABLE Podium (
 );
 
 CREATE TABLE Questionnaire (
-    idQuestionnaire INTEGER PRIMARY KEY,
+    idQuestionnaire INTEGER PRIMARY KEY auto_increment,
     idSujet INTEGER,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
 
 CREATE TABLE Question (
-    idQuestion INTEGER PRIMARY KEY,
+    idQuestion INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(250),
     idQuestionnaire INTEGER,
     FOREIGN KEY (idQuestionnaire) REFERENCES Questionnaire (idQuestionnaire) on delete cascade
 );
 
-CREATE TABLE Réponse (
-    idReponse INTEGER PRIMARY KEY,
+CREATE TABLE Reponse (
+    idReponse INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(1024),
     idQuestion INTEGER,
     idEquipe INTEGER,
