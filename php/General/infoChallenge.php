@@ -13,7 +13,6 @@
     <div id="sujets">
         <h3>Sujets</h3>
         <!-- CLASSEMENT -->
-        oui
     </div>
 </main>
 
