@@ -5,6 +5,7 @@ import com.sun.net.httpserver.HttpServer;
 
 import java.io.IOException;
 import java.io.OutputStream;
+import java.io.InputStream;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.Executors;
@@ -46,6 +47,20 @@ public class Serveur {
                     .split("=")[1];
         }
 
+
+        /**
+         * Manage POST request param
+         * @param httpExchange
+         * @return first value
+         */
+        // private String handlePostRequest(HttpExchange httpExchange) {
+        //     try {
+        //         InputStream inputStream = httpExchange.getRequestBody();
+
+        //     }
+        // }
+        
+
         /** 
          * Generate simple response html page
          * @param httpExchange
@@ -77,13 +92,16 @@ public class Serveur {
             LOGGER.info(" Je réponds");
             String requestParamValue=null;
             if("GET".equals(httpExchange.getRequestMethod())) {
+                LOGGER.info("Méthode GET");
                 requestParamValue = handleGetRequest(httpExchange);
             }
-            /* TODO : manage POST REQUEST
-            else if("POST".equals(httpExchange)) {
-                requestParamValue = handlePostRequest(httpExchange);
+            else if ("POST".equals(httpExchange.getRequestMethod())) {
+
+                // Gérer la requête POST (faire la même chose que pour la méthode get mais avec la méthode post)
+
+                LOGGER.info("Méthode POST");
+
             }
-            */
             else {
                 LOGGER.warning("Méthode non gérée");
             }

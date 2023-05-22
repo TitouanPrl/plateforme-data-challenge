@@ -8,10 +8,51 @@ import java.util.List;
 public class PythonCodeAnalyzer {
 
     public static void main(String[] args) {
-        String pythonFilePath = "path_to_python_file.py";
+        String pythonFilePath = "test.py";
         List<FunctionData> functionDataList = analyzePythonCode(pythonFilePath);
         printFunctionStatistics(functionDataList);
     }
+
+
+    /**
+     * Enlève les lignes vides d'un fichier python
+     * @param filePath
+     * @return
+     */
+    public static List<String> removeEmptyLines(String filePath) {
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.strip();
+
+                if (!line.isEmpty()) {
+                    lines.add(line);
+                }
+            }
+
+            return lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // fermeture du reader
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+
+        // si on arrive ici, c'est qu'il y a eu une erreur
+        return null;
+    }
+
 
     public static List<FunctionData> analyzePythonCode(String filePath) {
         List<FunctionData> functionDataList = new ArrayList<>();
