@@ -20,12 +20,9 @@ foreach ($tabSujets as $current) {
              <div id="sujets">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
-        </a>
-             <!-- CLASSEMENT -->
-             <div id="classement">');
+        </a>');
 }
 
-    echo('
-</main>');
+    echo('</main>');
 
 require_once '../Integrations/footer.php';
