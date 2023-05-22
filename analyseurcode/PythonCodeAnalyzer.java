@@ -53,7 +53,7 @@ public class PythonCodeAnalyzer {
     }
 
     /**
-     * Enlève tous les commentaires d'un fichier python
+     * Enlève tous les commentaires d'un fichier python (il faut que les paramètres des fonctions soient sur une seule ligne)
      * @param filePath : chemin du fichier python
      * @return lines : liste de lignes sans commentaires
      */
@@ -98,30 +98,7 @@ public class PythonCodeAnalyzer {
     }
 
 
-    /**
-     * Met tout ce qui peut être écrit sur une ligne sur une ligne
-     * @param filePath : chemin du fichier python
-     * @return lines : liste de lignes sans commentaires
-     */
-    public static List<String> mettreEnForme(String filePath) {
-        List<String> lines = new ArrayList<>();
-        BufferedReader reader = null;
-        boolean estParametreFonction = false;
-
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.strip();
-
-                // à chaque début de fonciton 
-            }
-
-        }
-
-
-    }
+   
 
 
     public static List<FunctionData> analyzePythonCode(String filePath) {
@@ -137,16 +114,23 @@ public class PythonCodeAnalyzer {
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
-                if (line.startsWith("def ") && line.endsWith(":")) {
-                    // Found a new function definition
+                if (line.startsWith("def")) {
+
+                    
+                    // ajouter la fonction précédente
                     if (currentFunctionName != null) {
                         functionDataList.add(new FunctionData(currentFunctionName, currentFunctionLines));
                     }
 
-                    currentFunctionName = line.substring(4, line.indexOf("(")).strip();
+
+                    // Start data for the new function
+                    currentFunctionName = line.substring(4, line.indexOf("("));
                     currentFunctionLines = 0;
+                    // On saute les lignes tant qu'il n'y a pas le ":" de fin de ligne de la fonction dans le cas où les paramètres sont sur plusieurs lignes
+                    while (!line.endsWith(":")) {
+                        line = reader.readLine();
+                    }
                 } else if (!line.isEmpty()) {
-                    // Count non-empty lines inside a function
                     currentFunctionLines++;
                 }
             }
@@ -192,11 +176,11 @@ public class PythonCodeAnalyzer {
         System.out.println("Nombre moyen de lignes par fonction :  " + averageLines);
 
 
-        System.out.println("Statistiques par fonction :");
+        System.out.println("---------------------------\nStatistiques par fonction :\n---------------------------");
         for (FunctionData functionData : functionDataList) {
             System.out.println("Fonction : " + functionData.getFunctionName());
             System.out.println("Nombre de lignes : " + functionData.getLines());
-            System.out.println("------------------------");
+            System.out.println("---------------------------");
         }
 
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
