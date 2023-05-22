@@ -7,23 +7,14 @@ echo('<!-- MAIN CONTENT -->
 /* Affichage des challenges disponibles */
 foreach ($_SESSION["data"]['Evenement'] as $current) {
 
-    echo ('<div class="challenge">
+    echo ('<a href="infoChallenge.php?challenge=' . $current['idEvenement'] . '">
+            <div class="challenge">
                 <span class="titre_challenge"> ' . $current['libelle'] . ' </span>
                 <span class="descript_challenge"> ' . $current['description'] . ' </span>
-            </div>');
+            </div>
+          </a>');
 }
 
-    echo('<!-- CLASSEMENT -->
-    <div id="classement">
-        <h3>Classement</h3>
-        <!-- need un foreach qui met le podium de chaque  -->
-    </div>
-    
-    <!-- SUJETS-->
-    <div id="sujets">
-        <h3>Sujets</h3>
-        <!-- CLASSEMENT -->
-    </div>
-</main>');
+echo('</main>');
 
 require_once '../Integrations/footer.php'; ?>

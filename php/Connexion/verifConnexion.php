@@ -18,7 +18,7 @@ if (!isset($_SESSION["login"])){
 //PARTIE VERIFICATION IDENTITE
 /* On lit la liste des users dans la BDD */
 connect();
-recupUtilisateurs();
+getAllUsers($conn);
 
 /* Si le fichier n'existe pas on renvoit une erreur */
 if ($_SESSION['data']['Utilisateur'] == NULL) {     
