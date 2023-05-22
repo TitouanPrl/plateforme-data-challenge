@@ -22,6 +22,7 @@ CREATE TABLE Utilisateur(
 
 CREATE TABLE Equipe(
     idEquipe INTEGER PRIMARY KEY auto_increment,
+    nom VARCHAR(64),
     capitaine INTEGER,
     m2 INTEGER DEFAULT NULL, -- membre de l'équipe numéro 2
     m3 INTEGER DEFAULT NULL,

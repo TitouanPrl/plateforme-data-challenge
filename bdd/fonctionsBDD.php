@@ -74,7 +74,7 @@ function getEvenements() { //récupère tous les évenements
 
     return $evenements;
 }
-function getEquipeMembers($idEquipe) {  //récupère tous les membres d'une équipe
+function getEquipeMembers($idEquipe) {  //récupère toutes les infos d'une équipe
     $sql = "SELECT * FROM Equipe WHERE idEquipe = $idEquipe";
     $membres = request($conn,$sql);
 
@@ -152,11 +152,14 @@ function addRéponse($idQuestion,$idEquipe,$contenu) {
     $sql = "INSERT INTO Réponse (contenu,idQuestion,idEquipe) VALUES ($contenu,$idQuestion,$idEquipe)";
     send($conn,$sql);
 }
-
+function addMessage($contenu, $idExpediteur, $idDestinataire) {
+    $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
+    send($conn,$sql);
+}
 
 
 //SUPPRESSION DE DONNÉES
-function deleteUser($idUser) { //supprimer un utilisateur
+function deleteUtilisateur($idUser) { //supprimer un utilisateur
     $sql = "DELETE FROM Utilisateur WHERE idUser = $idUser";
     mysqli_connect($conn,$sql);
 }
