@@ -51,7 +51,7 @@ CREATE TABLE Sujet (
     img VARCHAR(250),
     telGerant VARCHAR(16),
     emailGerant VARCHAR(250),
-    lienResources VARCHAR(250),
+    lienRessources VARCHAR(250),
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
@@ -77,6 +77,8 @@ CREATE TABLE Podium (
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,
     idSujet INTEGER,
+    dateD DATETIME,
+    dateF DATETIME,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
 
@@ -92,6 +94,7 @@ CREATE TABLE Reponse (
     contenu VARCHAR(1024),
     idQuestion INTEGER,
     idEquipe INTEGER,
+    note INTEGER DEFAULT NULL,
     FOREIGN KEY (idQuestion) REFERENCES Question (idQuestion) on delete cascade,
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade
 );

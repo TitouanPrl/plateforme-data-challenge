@@ -22,14 +22,23 @@ function disconnect($conn) {
 
 //REQUÊTE GÉNÉRALE
 function request($conn,$sql) {
-    $result = mysqli_query($conn, $sql);
-    while ($ligne = $result->fetch_assoc()) {
-        $tableau[] = $ligne;
+    try {
+        $result = mysqli_query($conn, $sql);
+        while ($ligne = $result->fetch_assoc()) {
+            $tableau[] = $ligne;
+        }
+        return $tableau;
+    } catch (Exception $e) {
+        die('Erreur : '.$e->getMessage());
     }
-    return $tableau;
 }
 function send($conn,$sql) {
-    mysqli_query($conn,$sql);
+    try {
+        mysqli_query($conn,$sql);
+    } catch (Exception $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+   
 }
 
 
@@ -62,81 +71,87 @@ function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
 
     return $podium;
 }
-function getSujetByEvenement($idEvenement) { //récupère touts les sujets d'un évenement 
+function getSujetByEvenement($conn,$idEvenement) { //récupère touts les sujets d'un évenement 
     $sql = "SELECT * FROM Sujet WHERE idEvenement=$idEvenement";
     $sujets = request($conn,$sql);
 
     return $sujets;
 }
-function getSujetById($idSujet) {
+function getSujetById($conn,$idSujet) {
     $sql = "SELECT * FROM Sujet WHERE idSujet=$idSujet";
     $sujet = request($conn,$sql);
 
     return $sujet;
 }
-function getEvenements() { //récupère tous les évenements
+function getEvenements($conn) { //récupère tous les évenements
     $sql = "SELECT * FROM Evenement";
     $evenements = request($conn,$sql);
 
     return $evenements;
 }
-function getEquipeMembers($idEquipe) {  //récupère tous les membres d'une équipe
+function getEquipeMembers($conn,$idEquipe) {  //récupère tous les membres d'une équipe
     $sql = "SELECT idUser FROM Utilisateur WHERE idEquipe = $idEquipe";
     $membres = request($conn,$sql);
 
     return $membres;
 }
-function getEquipe($idEquipe) {  //renvoie nom, id et capitaine d'equipe
+function getEquipe($conn,$idEquipe) {  //renvoie nom, id et capitaine d'equipe
     $sql = "SELECT * FROM Equipe WHERE idEquipe=$idEquipe";
     $equipe = request($conn,$sql);
 
     return $equipe;
 }
-function getEquipes() { //récupère toutes les équipes
+function getEquipes($conn) { //récupère toutes les équipes
     $sql = "SELECT * FROM Equipe";
     $equipes = request($conn,$sql);
 
     return $equipes;
 }
-function getProjetsOnSujet($idSujet) { //récupère tous les projets proposé pour le sujet
+function getProjetsOnSujet($conn,$idSujet) { //récupère tous les projets proposé pour le sujet
     $sql = "SELECT idProjet FROM Projet WHERE idSujet = $idSujet";
     $projets = request($conn,$sql);
 
     return $projets;
 }
-function getEquipeByProjet($idProjet) { //récupère l'équipe attachée à un projet
+function getEquipeByProjet($conn,$idProjet) { //récupère l'équipe attachée à un projet
     $sql = "SELECT idEquipe FROM Projet WHERE idProjet = $idProjet";
     $equipe = request($conn,$sql);
 
     return $equipe;
 }
 
-function getUtilisateursBySujet($idSujet) { //récupère tous les utilisateurs attachés à un sujet
-    $projets = getProjetsOnSujet($idSujet);
+function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisateurs attachés à un sujet
+    $projets = getProjetsOnSujet($conn,$idSujet);
     $equipes = array();
     foreach ($projets as $projet) {
-        $equipes[] = getTeamByProjet($projet['idProjet']);
+        $equipes[] = getTeamByProjet($conn,$projet['idProjet']);
     }
     $utilisateurs = array();
     foreach ($equipes as $equipe) {
-        $utilisateurs[] = getEquipeMembers($equipe['idEquipe']);
+        $utilisateurs[] = getEquipeMembers($conn,$equipe['idEquipe']);
     }
 
     return $utilisateurs;
 }
-function getQuestionsOnQuestionnaire($idQuestionnaire) {  //récupère toutes les questions d'un questionnaire
+function getQuestionsOnQuestionnaire($conn,$idQuestionnaire) {  //récupère toutes les questions d'un questionnaire
     $sql = "SELECT * FROM Question WHERE idQuestionnaire = $idQuestionnaire";
     $questions = request($conn,$sql);
 
     return $questions;
 }
-function getReponsesOnQuestion($idQuestion) {  //renvoie les réponses de toutes les équipes à une question
+function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de toutes les équipes à une question
     $sql = "SELECT * FROM Reponse WHERE idQuestion = $idQuestion";
     $reponses = request($conn,$sql);
 
     return $responses;
 }
-function getIdByNomPrenom($nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
+function getQuestionnairesOnSujet($idSujet) {
+    $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
+    $questionnaires = request($conn,$sql);
+
+    return $questionnaires;
+}
+function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
     $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
     $id = request($conn,$sql);
 
@@ -148,91 +163,116 @@ function getIdByNomPrenom($nom,$prenom) {   //renvoie l'id d'une personne depuis
 
 
 //AJOUT DE DONNÉES
-function addAdmin($nom,$prenom,$numTel,$email,$mdp) {
+function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN')";
     send($conn,$sql);
 }
-function addGestion($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD) {
+function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION')";
     send($conn,$sql);
 }
-function addEtudiant($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
+function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER')";
     send($conn,$sql);
 }
-function createQuestionnaire($idSujet) {
-    $sql = "INSERT INTO Questionnaire (idSujet) VALUES ($idSujet)";
+function createQuestionnaire($conn,$idSujet,$dateD,$dateF) {
+    $sql = "INSERT INTO Questionnaire (idSujet,dateD,dateF) VALUES ($idSujet,$dateD,$dateF)";
     send($conn,$sql);
 }
-function addQuestion($idQuestionnaire,$contenu) {
+function addQuestion($conn,$idQuestionnaire,$contenu) {
     $sql = "INSERT INTO Question (contenu,idQuestionnaire) VALUES ($contenu,$idQuestionnaire)";
     send($conn,$sql);
 }
-function addRéponse($idQuestion,$idEquipe,$contenu) {
+function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
     $sql = "INSERT INTO Reponse (contenu,idQuestion,idEquipe) VALUES ($contenu,$idQuestion,$idEquipe)";
     send($conn,$sql);
 }
-function addMessage($contenu, $idExpediteur, $idDestinataire) {
+function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
     send($conn,$sql);
 }
-function createEquipe($nom,$capitaine) {
+function createEquipe($conn,$nom,$capitaine) {
     $sql = "INSERT INTO Equipe (nom,capitaine) VALUES ($nom,$capitaine)";
     send($conn,$sql);
 }
+function createEvenement($conn,$libelle,$descrip,$dateD,$dateF) {
+    $sql = "INSERT INTO Evenement (libelle,descrip,dateD,dateF) VALUES ($libelle,$descrip,$dateD,$dateF)";
+    send($conn,$sql);
+}
+function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) {
+    $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
+    send($conn,$sql);
+}
+
 
 
 //SUPPRESSION DE DONNÉES
-function deleteUtilisateur($idUser) { //supprimer un utilisateur
+function deleteUtilisateur($conn,$idUser) { //supprimer un utilisateur
     $sql = "DELETE FROM Utilisateur WHERE idUser = $idUser";
     send($conn,$sql);
 }
-function deleteSujet($idSujet) { //supprimer un sujet
+function deleteSujet($conn,$idSujet) { //supprimer un sujet
     $sql = "DELETE FROM Sujet WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function deleteEvenement($idEvenement) { //supprimer un évenement
+function deleteEvenement($conn,$idEvenement) { //supprimer un évenement
     $sql = "DELETE FROM Evenement WHERE idEvenement = $idEvenement";
     send($conn,$sql);
 }
-function deleteProjet($idProjet) { //supprimer un projet
+function deleteProjet($conn,$idProjet) { //supprimer un projet
     $sql = "DELETE FROM Projet WHERE idProjet = $idProjet";
     send($conn,$sql);
 }
-function deletePodium($idPodium) { //supprimer un podium
+function deletePodium($conn,$idPodium) { //supprimer un podium
     $sql = "DELETE FROM Podium WHERE idPodium = $idPodium";
     send($conn,$sql);
 }
-function deleteQuestionnaire($idQuestionnaire) {
+function deleteQuestionnaire($conn,$idQuestionnaire) {
     $sql = "DELETE FROM Questionnaire WHERE idQuestionnaire = $idQuestionnaire";
     send($conn,$sql);
 }
-function deleteQuestion($idQuestion) {
+function deleteQuestion($conn,$idQuestion) {
     $sql = "DELETE FROM Question WHERE idQuestion = $idQuestion";
     send($conn,$sql);
 }
-function deleteReponse($idReponse) {
+function deleteReponse($conn,$idReponse) {
     $sql = "DELETE FROM Reponse WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
 
 
 //MODIFIER LES DONNÉES
-function modifyAdmin($nom,$prenom,$numTel,$email,$mdp,$idUser) {
+function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$mdp,$idUser) {
     $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN') WHERE idUser = $idUser";
     send($conn,$sql);
 }
-function modifyGestion($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$idUser) {
+function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$idUser) {
     $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
     send($conn,$sql);
 }
-function modifyEtudiant($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville,$idUser) {
+function modifyEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville,$idUser) {
     $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) = ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER') WHERE idUser = $idUser";
     send($conn,$sql);
 } 
-function addMembreEquipe($idEquipe,$idUser) {   //ajouter un membre dans l'équipe
+function addMembreEquipe($conn,$idEquipe,$idUser) {   //ajouter un membre dans l'équipe
     $sql = "UPDATE Utilisateur SET idEquipe = $idEquipe WHERE idUser = $idUser";
     send($conn,$sql);
 }
+function modifyEvenement($conn,$idEvenement,$libelle,$descrip,$dateD,$dateF) {
+    $sql = "UPDATE Evenement SET (libelle,descrip,dateD,dateF) = ($libelle,$descrip,$dateD,$dateF) WHERE idEvenement = $idEvenement";
+    send($conn,$sql);
+}
+function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) {
+    $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
+    send($conn,$sql);
+}
+function setNote($idReponse,$note) {
+    $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
+    send($conn,$sql);
+}
+
+
+
+
 
 ?>
