@@ -1,3 +1,4 @@
+package analyseurcode;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -79,9 +80,9 @@ public class PythonCodeAnalyzer {
         System.out.println("Nombre minimum de lignes par fonction : " + minLines);
         System.out.println("Nombre moyen de lignes par fonction :  " + averageLines);
 
-        System.out.println("Statistiques par fonction :");
 
-        for (FUnctionData functionData : functionDataList) {
+        System.out.println("Statistiques par fonction :");
+        for (FunctionData functionData : functionDataList) {
             System.out.println("Fonction : " + functionData.getFunctionName());
             System.out.println("Nombre de lignes : " + functionData.getLines());
             System.out.println("------------------------");
