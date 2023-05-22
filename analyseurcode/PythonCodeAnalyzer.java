@@ -68,6 +68,7 @@ public class PythonCodeAnalyzer {
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
+                // enlever les commentaires en ligne
                 if (!line.isEmpty() && !line.startsWith("#")) {
                     lines.add(line);
                 } 
@@ -94,6 +95,32 @@ public class PythonCodeAnalyzer {
         }
         // si on arrive ici, c'est qu'il y a eu une erreur
         return null;
+    }
+
+
+    /**
+     * Met tout ce qui peut être écrit sur une ligne sur une ligne
+     * @param filePath : chemin du fichier python
+     * @return lines : liste de lignes sans commentaires
+     */
+    public static List<String> mettreEnForme(String filePath) {
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = null;
+        boolean estParametreFonction = false;
+
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.strip();
+
+                // à chaque début de fonciton 
+            }
+
+        }
+
+
     }
 
 
