@@ -169,8 +169,8 @@ function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$vi
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER')";
     send($conn,$sql);
 }
-function createQuestionnaire($conn,$idSujet) {
-    $sql = "INSERT INTO Questionnaire (idSujet) VALUES ($idSujet)";
+function createQuestionnaire($conn,$idSujet,$dateD,$dateF) {
+    $sql = "INSERT INTO Questionnaire (idSujet,dateD,dateF) VALUES ($idSujet,$dateD,$dateF)";
     send($conn,$sql);
 }
 function addQuestion($conn,$idQuestionnaire,$contenu) {
@@ -197,6 +197,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
     send($conn,$sql);
 }
+
 
 
 //SUPPRESSION DE DONNÉES
@@ -259,4 +260,13 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
+function setNote($idReponse,$note) {
+    $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
+    send($conn,$sql);
+}
+
+
+
+
+
 ?>
