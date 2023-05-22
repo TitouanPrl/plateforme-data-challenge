@@ -173,10 +173,10 @@ public class Nombres {
 			System.out.println("le nombre maximum de lignes des fonction est :" + max);
 			System.out.println(" le nombre moyen de lignes des fonctions est : " + moy);
 		}	
-	}
-	
+	}	
+
 	public static void main(String[] args) throws IOException {
-		String chemin = "Fichiers/python/fichier_python.txt";
+		String chemin = "/home/cytech/Desktop/AnalysePY2JSON(1)/Fichiers/python/fichier_python.txt";
 		String texte=txtToString(chemin);
 		texte = supprimerCommentaires(texte);
 		
