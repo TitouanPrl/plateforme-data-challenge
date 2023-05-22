@@ -5,7 +5,7 @@ require_once('bddData.php');
 
 $conn;
 
-// Fonction de connexion
+// CONNEXION / DÉCONNEXION
 function connect() {
     global $conn, $servername, $username, $password, $bddname;
     $conn = mysqli_connect($servername, $username, $password, $bddname);
@@ -14,12 +14,13 @@ function connect() {
     }
     return true;
 }
-
-// Fonction de déconnexion
 function disconnect($conn) {
     $conn->close();
 }
 
+
+
+//REQUÊTE GÉNÉRALE
 function request($conn,$sql) {
     $result = mysqli_query($conn, $sql);
     while ($ligne = $result->fetch_assoc()) {
@@ -27,22 +28,27 @@ function request($conn,$sql) {
     }
     return $tableau;
 }
+function send($conn,$sql) {
+    mysqli_query($conn,$sql);
+}
+
+
 
 //RÉCUPÉRATION DES DONNÉES
-function getPersonById($conn,$id) { //récupère toutes les infos d'une personne avec son id
+function getUtilisateurById($conn,$id) { //récupère toutes les infos d'une personne avec son id
     $sql = "SELECT * FROM Utilisateur WHERE idUser=$id";
     $person = request($conn,$sql);
     return $person;
 }
-function getUsersByType($conn,$fonction) { //récupère tous les utilisateurs d'une catégorie
+function getUtilisateurByFonction($conn,$fonction) { //récupère tous les utilisateurs d'une catégorie
     $sql = "SELECT * FROM Utilisateur WHERE fonction=$fonction";
     $users = request($conn,$sql);
     return $users;
 }
-function getAllUsers($conn) { //récupère tous les utilisateurs
-    $etudiants = getUsersByType($conn,'USER');
-    $gestion = getUsersByType($conn,'GESTION');
-    $admin = getUsersByType($conn,'ADMIN');
+function getAllUtilisateurs($conn) { //récupère tous les utilisateurs
+    $etudiants = getUtilisateurByFonction($conn,'USER');
+    $gestion = getUtilisateurByFonction($conn,'GESTION');
+    $admin = getUtilisateurByFonction($conn,'ADMIN');
     $users = array();
     $users[] = $etudiants;
     $users[] = $gestion;
@@ -68,23 +74,55 @@ function getEvenements() { //récupère tous les évenements
 
     return $evenements;
 }
-function getTeamMembers($idEquipe) {  //récupère tous les membres d'une équipe
+function getEquipeMembers($idEquipe) {  //récupère tous les membres d'une équipe
     $sql = "SELECT * FROM Equipe WHERE idEquipe = $idEquipe";
     $membres = request($conn,$sql);
 
     return $membres;
 }
-function getTeams() {
+function getEquipes() { //récupère toutes les équipes
     $sql = "SELECT * FROM Equipe";
     $equipes = request($conn,$sql);
 
     return $equipes;
 }
-function getTeamsOnSujet($idSujet) { //récupère toutes les équipes ayant un projet proposé pour le sujet
-    $sql = "SELECT idEquipe FROM Projet WHERE idSujet = $idSujet";
-    $equipes = request($conn,$sql);
+function getProjetsOnSujet($idSujet) { //récupère tous les projets proposé pour le sujet
+    $sql = "SELECT idProjet FROM Projet WHERE idSujet = $idSujet";
+    $projets = request($conn,$sql);
 
-    return $equipes;
+    return $projets;
+}
+function getTeamByProjet($idProjet) { //récupère l'équipe attachée à un projet
+    $sql = "SELECT idEquipe FROM Projet WHERE idProjet = $idProjet";
+    $equipe = request($conn,$sql);
+
+    return $equipe;
+}
+
+function getUtilisateursBySujet($idSujet) { //récupère tous les utilisateurs zrattachés à un sujet
+    $projets = getProjetsOnSujet($idSujet);
+    $equipes = array();
+    foreach ($projets as $projet) {
+        $equipes[] = getTeamByProjet($projet['idProjet']);
+    }
+    $utilisateurs = array();
+    foreach ($equipes as $equipe) {
+        $utilisateurs[] = getEquipeMembers($equipe['idEquipe']);
+    }
+
+    return $utilisateurs;
+}
+function getQuestionsOnQuestionnaire($idQuestionnaire) {
+    $sql = "SELECT * FROM Question WHERE idQuestionnaire = $idQuestionnaire";
+    $questions = request($conn,$sql);
+
+    return $questions;
+}
+function getReponsesOnQuestion($idQuestion) {
+    $sql = "SELECT * FROM Réponses WHERE idQuestion = $idQuestion";
+    $reponses = request($conn,$sql);
+
+    return $responses;
 }
 
 
@@ -92,36 +130,49 @@ function getTeamsOnSujet($idSujet) { //récupère toutes les équipes ayant un p
 //AJOUT DE DONNÉES
 function addAdmin($nom,$prenom,$numTel,$email,$mdp) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN')";
-    mysqli_connect($conn,$sql);
+    send($conn,$sql);
 }
 function addGestion($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION')";
-    mysqli_connect($conn,$sql);
+    send($conn,$sql);
 }
 function addEtudiant($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
     $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER')";
-    mysqli_connect($conn,$sql);
+    send($conn,$sql);
 }
+function createQuestionnaire($idSujet) {
+    $sql = "INSERT INTO Questionnaire (idSujet) VALUES ($idSujet)";
+    send($conn,$sql);
+}
+function addQuestion($idQuestionnaire,$contenu) {
+    $sql = "INSERT INTO Question (contenu,idQuestionnaire) VALUES ($contenu,$idQuestionnaire)";
+    send($conn,$sql);
+}
+function addRéponse($idQuestion,$idEquipe,$contenu) {
+    $sql = "INSERT INTO Réponse (contenu,idQuestion,idEquipe) VALUES ($contenu,$idQuestion,$idEquipe)";
+    send($conn,$sql);
+}
+
 
 
 //SUPPRESSION DE DONNÉES
-function deleteUser($idUser) {
+function deleteUser($idUser) { //supprimer un utilisateur
     $sql = "DELETE FROM Utilisateur WHERE idUser = $idUser";
     mysqli_connect($conn,$sql);
 }
-function deleteSujet($idSujet) {
+function deleteSujet($idSujet) { //supprimer un sujet
     $sql = "DELETE FROM Sujet WHERE idSujet = $idSujet";
     mysqli_connect($conn,$sql);
 }
-function deleteEvenement($idEvenement) {
+function deleteEvenement($idEvenement) { //supprimer un évenement
     $sql = "DELETE FROM Evenement WHERE idEvenement = $idEvenement";
     mysqli_connect($conn,$sql);
 }
-function deleteProjet($idProjet) {
+function deleteProjet($idProjet) { //supprimer un projet
     $sql = "DELETE FROM Projet WHERE idProjet = $idProjet";
     mysqli_connect($conn,$sql);
 }
-function deletePodium($idPodium) {
+function deletePodium($idPodium) { //supprimer un podium
     $sql = "DELETE FROM Podium WHERE idPodium = $idPodium";
     mysqli_connect($conn,$sql);
 }

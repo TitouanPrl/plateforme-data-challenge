@@ -79,20 +79,20 @@ CREATE TABLE Podium (
 );
 
 CREATE TABLE Questionnaire (
-    idQuestionnaire INTEGER PRIMARY KEY,
+    idQuestionnaire INTEGER PRIMARY KEY auto_increment,
     idSujet INTEGER,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
 
 CREATE TABLE Question (
-    idQuestion INTEGER PRIMARY KEY,
+    idQuestion INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(250),
     idQuestionnaire INTEGER,
     FOREIGN KEY (idQuestionnaire) REFERENCES Questionnaire (idQuestionnaire) on delete cascade
 );
 
 CREATE TABLE Réponse (
-    idReponse INTEGER PRIMARY KEY,
+    idReponse INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(1024),
     idQuestion INTEGER,
     idEquipe INTEGER,
