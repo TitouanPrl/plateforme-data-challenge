@@ -16,10 +16,10 @@ public class PythonCodeAnalyzer {
 
     /**
      * Enlève les lignes vides d'un fichier python
-     * @param filePath
-     * @return
+     * @param filePath : chemin du fichier python
+     * @return lines : liste de lignes non vides
      */
-    public static List<String> removeEmptyLines(String filePath) {
+    public static List<String> enleverLignesVides(String filePath) {
         List<String> lines = new ArrayList<>();
         BufferedReader reader = null;
 
@@ -48,7 +48,50 @@ public class PythonCodeAnalyzer {
                 }
             }
         }
+        // si on arrive ici, c'est qu'il y a eu une erreur
+        return null;
+    }
 
+    /**
+     * Enlève tous les commentaires d'un fichier python
+     * @param filePath : chemin du fichier python
+     * @return lines : liste de lignes sans commentaires
+     */
+    public static List<String> enleverCommentaires(String filePath) {
+        List<String> lines = new ArrayList<>();
+        BufferedReader reader = null;
+
+        try {
+            reader = new BufferedReader(new FileReader(filePath));
+            String line;
+
+            while ((line = reader.readLine()) != null) {
+                line = line.strip();
+
+                if (!line.isEmpty() && !line.startsWith("#")) {
+                    lines.add(line);
+                } 
+                // enlever les commentaires en bloc
+                else if (line.startsWith("'''")) {
+                    while (!line.endsWith("'''")) {
+                        line = reader.readLine();
+                    }
+                }
+            }
+
+            return lines;
+        } catch (IOException e) {
+            e.printStackTrace();
+        } finally {
+            // fermeture du reader
+            if (reader != null) {
+                try {
+                    reader.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
         // si on arrive ici, c'est qu'il y a eu une erreur
         return null;
     }
