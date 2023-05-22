@@ -51,7 +51,7 @@ CREATE TABLE Sujet (
     img VARCHAR(250),
     telGerant VARCHAR(16),
     emailGerant VARCHAR(250),
-    lienResources VARCHAR(250),
+    lienRessources VARCHAR(250),
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
