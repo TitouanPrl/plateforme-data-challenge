@@ -266,7 +266,7 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function setNote($idReponse,$note) {
+function setNote($idReponse,$note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
