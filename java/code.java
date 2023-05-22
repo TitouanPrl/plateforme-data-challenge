@@ -106,4 +106,4 @@ public class Nombres {
 	    System.out.println(supprimerTriplesQuotes(texte));
 	    //System.out.println(supprimerCommentaires(texte));
 	}
-}−
+}
