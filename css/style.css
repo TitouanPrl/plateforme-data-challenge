@@ -18,6 +18,7 @@ SUJETS : encadré blanc à droite
 /* variables à utiliser de cette manière : var(--bleu) */
 :root {
     --vert: rgb(14,135,105);
+    --vert-trans: rgba(14,135,105,0.8);
     --bleu: rgb(0,187,189);
     --bleu-fond:rgb(231, 253, 255);
     --montagne: "../img/mountain_bg.jpeg";
