@@ -29,9 +29,8 @@ session_start();
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
-                <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+                <a href="../General/infoChallenge.php">Informations Challenges</a>
+                <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >
@@ -39,16 +38,5 @@ session_start();
             </form>
 
         </div>
-
-        <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
-
-        <nav id="liens">
-            <a href="../General/infoChallenge.php">Informations Challenges</a>
-            <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
-        </nav>
-
-        <form action="../Connexion/deconnexion.php">
-            <input type="submit" id="deco" value="Déconnexion">
-        </form>
 
     </header>
