@@ -48,5 +48,10 @@ if (!isset($_SESSION["login"])) {
 
     </header>
 
+        <nav id="liens">
+            <a href="../General/listeChallenge.php">Informations Challenges</a>
+            <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
+            <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+        </nav>
 
 
