@@ -18,6 +18,28 @@
     height: fit-content;
 }
 
+#formAdmin {
+    display: flex;
+    flex-wrap: wrap;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    padding: 17px;
+}
+#formD,
+#formG {
+    text-align: center;
+    padding: 30px;
+    border: none;
+    color: white;
+    float: left;
+    width: 40%;
+    height: fit-content;
+}
+#formfunction {
+    width: 99%;
+    align-self:center ;
+}
+
 #connexion {
     align-self: center;
 }
@@ -35,12 +57,34 @@
 
 }
 
+
 legend {
     font-size: 17px;
     font-weight: bold;
     padding-bottom: 5px;
     color:var(--bleu-fond); 
 }
+label {
+    color:var(--bleu);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+label:hover {
+    cursor: pointer;
+    border: none;
+    opacity: 0.8;
+}
+
+
 fieldset {
     border: none;
 }
@@ -50,6 +94,7 @@ input[type="text"],
 input[type="email"],
 input[type="date"],
 input[type="password"],
+input[type="tel"],
 select,
 textarea {
     width: 100%;
@@ -66,4 +111,15 @@ textarea {
     padding-bottom: 20px;
     font-weight: bold;
     opacity: 0.8;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+.boutonsRadio {
+    display:flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
 }
