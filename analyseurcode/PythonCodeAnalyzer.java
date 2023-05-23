@@ -1,17 +1,60 @@
 package analyseurcode;
+
+
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.io.File;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+
 
 public class PythonCodeAnalyzer {
 
+    
+
+
     public static void main(String[] args) {
-        String pythonFilePath = "test.py";
-        List<FunctionData> functionDataList = analyzePythonCode(pythonFilePath);
-        printFunctionStatistics(functionDataList);
+
+        File folder = new File("py");
+        List<String> listeFichier = listeFichierDuDossier(folder, ".py");
+
+        for (String fichier : listeFichier) {
+            System.out.println(fichier);
+            String pythonFilePath = "py/" + fichier;
+            List<FunctionData> functionDataList = analyzePythonCode(pythonFilePath);
+            System.out.println("###############################################################");
+            printFunctionStatistics(functionDataList);
+            
+        }
     }
+    
+
+    /**
+     * Affiche la liste des fichiers du dossier
+     * @param folder : dossier cible
+     * @param extension : extension des fichiers sélectionnés
+     * @return liste des fichiers du dossier qui ont l'extension donnée
+     */
+    public static List<String> listeFichierDuDossier(final File folder, String extension) {
+        List<String> listeFichier = new ArrayList<>();
+        for (final File fileEntry : folder.listFiles()) {
+            if (fileEntry.isDirectory()) {
+                listeFichier.addAll(listeFichierDuDossier(fileEntry, extension));
+            } else {
+                if (fileEntry.getName().endsWith(extension)) {
+                    listeFichier.add(fileEntry.getName());
+                }
+            }
+        }
+        return listeFichier;
+        
+    }
+
+
 
 
     /**
@@ -98,9 +141,12 @@ public class PythonCodeAnalyzer {
     }
 
 
-   
 
-
+    /**
+     * Analyse le code python et retourne une liste de données sur les fonctions
+     * @param filePath : chemin du fichier python
+     * @return functionDataList : liste de données sur les fonctions
+     */
     public static List<FunctionData> analyzePythonCode(String filePath) {
         List<FunctionData> functionDataList = new ArrayList<>();
         BufferedReader reader = null;
@@ -109,7 +155,7 @@ public class PythonCodeAnalyzer {
             reader = new BufferedReader(new FileReader(filePath));
             String line;
             String currentFunctionName = null;
-            int currentFunctionLines = 0;
+            int currentFunctionLines = 1;
             boolean estDansCommentaire = false;
 
             while ((line = reader.readLine()) != null) {
@@ -161,12 +207,6 @@ public class PythonCodeAnalyzer {
             totalLines += lines;
             maxLines = Math.max(maxLines, lines);
             minLines = Math.min(minLines, lines);
-            if (maxLines == Integer.MAX_VALUE) {
-                maxLines = 0;
-            }
-            if (minLines == Integer.MIN_VALUE) {
-                minLines = 0;
-            }
         }
 
         int numberOfFunctions = functionDataList.size();
@@ -182,6 +222,12 @@ public class PythonCodeAnalyzer {
 
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
         System.out.println("Nombre de lignes total : " + totalLines);
+        if (maxLines == Integer.MAX_VALUE) {
+            maxLines = 0;
+        }
+        if (minLines == Integer.MIN_VALUE) {
+            minLines = 0;
+        }
         System.out.println("Nombre maximum de lignes par fonction : " + maxLines);
         System.out.println("Nombre minimum de lignes par fonction : " + minLines);
         System.out.println("Nombre moyen de lignes par fonction :  " + averageLines);
