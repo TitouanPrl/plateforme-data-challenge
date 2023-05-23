@@ -26,10 +26,6 @@
     $nivEtude = erase($_POST['nivEtude']);
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
-    $tel = erase($_POST['tel']);
-    $gestionnaire =erase($_POST['gestionnaire']);
-    $admin = erase($_POST['admin']);
-    $etudiant = erase($_POST['etudiant']);
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -37,16 +33,13 @@
     || empty($mail)
     || empty($nivEtude)
     || empty($ecole)
-    || empty($ville)
-    || empty($tel)) {
+    || empty($ville)) {
 
-        global $valide;
        $valide = false;
     }
 
     /* Matche pattern nom et prenom */
     function patern_nom($data) {
-        global $valide;
         if (!ctype_upper($data[0]) || !ctype_alpha($data)) {
             $valide = false;
         }
@@ -55,32 +48,30 @@
     patern_nom($nom);
     patern_nom($prenom);
 
-    /* Matche patern tel */
-
-    function patern_tel($data) {
-        global $valide;
-        if((!is_numeric($data)) || (strlen($data) != 10)) {
+    /* Matche pattern sujet et contenu */
+    function patern_content($data) {
+        if (!ctype_alpha($data)) {
             $valide = false;
         }
     }
 
-    patern_tel($tel);
+    patern_content($sujet);
+    patern_content($contenu);
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
-    if ($valide == false) {
-        header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&tel=' . $tel . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
+    if ($valide = false) {
+        header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
         exit();
     }
 
     /* Si elles le sont, on envoie un mail avec un récap et on push dans la BDD */
-    if ($valide == true) {
+    if ($valide = true) {
         mail(
             $mail,         /* Destinataire */
             'Résumé de votre inscription sur la plateforme IA Pau',       /* Sujet du mail */
             'Nom : ' . $nom . '\r\n
             Prénom : ' . $prenom . '\r\n
             Mail : ' . $mail . '\r\n
-            Tel : ' . $tel . '\r\n
             Niveau d\'étude : ' . $nivEtude . '\r\n
             Ecole : ' . $ecole . '\r\n
             Ville : ' . $ville . '\r\n'

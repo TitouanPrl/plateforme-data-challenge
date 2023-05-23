@@ -31,6 +31,7 @@ session_start();
             <nav id="liens">
                 <a href="../General/infoChallenge.php">Informations Challenges</a>
                 <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
+                <a href="../Admin/accueilAdmin.php">Accueil admin</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >

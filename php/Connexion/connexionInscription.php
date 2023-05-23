@@ -94,6 +94,14 @@ require '../Integrations/headerVanilla.php'; ?>
                 <legend>Votre mail</legend>
                 <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
               </fieldset>
+
+              <fieldset>
+                <legend>Votre Tel</legend>
+                <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
+              </fieldset>
+            </div>
+
+            <div id="formD">
               <fieldset>
                 <legend>Quel est votre degré d'étude ?</legend>
                 <select name="nivEtude" id="nivEtude" required>
