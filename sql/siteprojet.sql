@@ -55,6 +55,13 @@ CREATE TABLE Sujet (
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
+CREATE TABLE Inscription (
+    idUser INTEGER,
+    idEvenement INTEGER,
+    PRIMARY KEY (idUser,idEvenement)
+)
+
+
 CREATE TABLE Projet (
     idProjet INTEGER PRIMARY KEY,
     idEquipe INTEGER,
