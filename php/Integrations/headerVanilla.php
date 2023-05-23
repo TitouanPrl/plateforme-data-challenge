@@ -35,7 +35,7 @@ session_start();
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
-                <input type="submit" class="boutonDeco" value="Déconnexion">
+                <input type="submit" class="boutonDeco" value="Connexion">
             </form>
 
         </div>
