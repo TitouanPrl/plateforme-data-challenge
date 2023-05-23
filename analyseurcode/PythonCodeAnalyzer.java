@@ -1,4 +1,4 @@
-package analyseurcode;
+
 
 
 
@@ -8,7 +8,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-// import com.fasterxml.jackson.databind.ObjectMapper;
 
 
 
@@ -156,12 +155,12 @@ public class PythonCodeAnalyzer {
             String line;
             String currentFunctionName = null;
             int currentFunctionLines = 1;
-            boolean estDansCommentaire = false;
+            // boolean estDansCommentaire = false;
 
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
-                if ((line.startsWith("def")) && (line.endsWith(":")) && (!estDansCommentaire)) {
+                if ((line.startsWith("def")) && (line.endsWith(":"))) {
 
                     
                     // ajouter la fonction précédente
@@ -173,7 +172,14 @@ public class PythonCodeAnalyzer {
                     // Commencer les données de la nouvelle fonction
                     currentFunctionName = line.substring(4, line.indexOf("("));
                     currentFunctionLines = 0;
-                } else if (!line.isEmpty()) {
+                } else if (line.startsWith("#")) {
+                    line = reader.readLine();
+                } else if (line.startsWith("'''")) {
+                    while (!line.endsWith("'''")) {
+                        line = reader.readLine();
+                    }
+                }
+                else if (!line.isEmpty()) {
                     currentFunctionLines++;
                 }
             }
