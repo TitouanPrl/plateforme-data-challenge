@@ -26,7 +26,6 @@
     $nivEtude = erase($_POST['nivEtude']);
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
-    $tel = erase($_POST['tel']);
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -34,8 +33,7 @@
     || empty($mail)
     || empty($nivEtude)
     || empty($ecole)
-    || empty($ville)
-    || empty($tel)) {
+    || empty($ville)) {
 
        $valide = false;
     }
@@ -60,17 +58,9 @@
     patern_content($sujet);
     patern_content($contenu);
 
-    /* Matche patern tel */
-
-    function patern_content($data) {
-        if(!ctype_alnum($data)) {
-            $valide = false;
-        }
-    }
-
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
     if ($valide = false) {
-        header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&tel=' . $tel . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
+        header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
         exit();
     }
 
@@ -82,7 +72,6 @@
             'Nom : ' . $nom . '\r\n
             Prénom : ' . $prenom . '\r\n
             Mail : ' . $mail . '\r\n
-            Tel : ' . $tel . '\r\n
             Niveau d\'étude : ' . $nivEtude . '\r\n
             Ecole : ' . $ecole . '\r\n
             Ville : ' . $ville . '\r\n'

@@ -103,6 +103,11 @@ session_start();
                 <legend>Votre mail</legend>
                 <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
               </fieldset>
+
+              <fieldset>
+                <legend>Votre Tel</legend>
+                <input type="tel" id="tel" name="tel" value="<?php echo ($GET_tel['tel']); ?>" required patern = "[0-9]+">
+              </fieldset>
             </div>
 
             <div id="formD">
