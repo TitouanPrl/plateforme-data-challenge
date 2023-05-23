@@ -22,7 +22,7 @@ getAllUtilisateurs($conn);
 
 /* Si le fichier n'existe pas on renvoit une erreur */
 if ($_SESSION['data']['Utilisateur'] == NULL) {     
-  echo "La liste des utilisateurs n'existe pas, l'administrateur a fait un sale boulot, n'hésite pas à le critiquer";
+  throw new Exception("La liste des utilisateurs n'existe pas, l'administrateur a fait un sale boulot, n'hésite pas à le critiquer");
   exit();
 }
 
@@ -38,8 +38,10 @@ else {
     /* Si les infos de connexion correspondent on passe l'état à connecté et on redirige vers l'accueil */
     if ($_SESSION['login'] == $_SESSION['login1'] && md5($_SESSION['mdp']) == $_SESSION['mdp1']){
 
-      /* On change l'état de la connexion */
-      $user['connectID'] = 'true';
+      /* On vérifie qu'un ID existe bien pour cet utilisateur */
+      if (!isset($user['idUser'])) {
+        throw new Exception('Pas d\'identifiant associé à cet utilisateur.');
+      }
 
       /* On met en session l'id de l'utilisateur */
       $_SESSION['ID'] = $user['idUser'];
