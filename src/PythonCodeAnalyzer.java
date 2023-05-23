@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-
+// import com.fasterxml.jackson.databind.*;
 
 
 public class PythonCodeAnalyzer {
@@ -226,6 +226,8 @@ public class PythonCodeAnalyzer {
         }
         
 
+
+        // Statistiques générales des fichiers python
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
         System.out.println("Nombre total de lignes : " + totalLines);
         if (maxLines == Integer.MAX_VALUE) {
@@ -237,9 +239,10 @@ public class PythonCodeAnalyzer {
         System.out.println("Nombre maximum de lignes par fonction : " + maxLines);
         System.out.println("Nombre minimum de lignes par fonction : " + minLines);
         System.out.println("Nombre moyen de lignes par fonction :  " + averageLines);
-
-
         System.out.println("---------------------------\nStatistiques par fonction :\n---------------------------");
+
+
+        // Statistiques de chaque fonction
         for (FunctionData functionData : functionDataList) {
             System.out.println("Fonction : " + functionData.getFunctionName());
             System.out.println("Nombre de lignes : " + functionData.getLines());
@@ -253,7 +256,7 @@ public class PythonCodeAnalyzer {
 
     
     /**
-     * Classe pour stocker les données d'une fonction
+     * Classe pour stocker le nom et le nombre de lignes d'une fonction
      */
     static class FunctionData {
         private String functionName;
