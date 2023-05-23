@@ -47,16 +47,7 @@
 
     patern_nom($nom);
     patern_nom($prenom);
-
-    /* Matche pattern sujet et contenu */
-    function patern_content($data) {
-        if (!ctype_alpha($data)) {
-            $valide = false;
-        }
-    }
-
-    patern_content($sujet);
-    patern_content($contenu);
+    
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
     if ($valide = false) {
