@@ -145,7 +145,7 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
 
     return $responses;
 }
-function getQuestionnairesOnSujet($idSujet) {
+function getQuestionnairesOnSujet($idSujet) {   //tous les qusetionnaires envoyés pour un sujet
     $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
     $questionnaires = request($conn,$sql);
 
