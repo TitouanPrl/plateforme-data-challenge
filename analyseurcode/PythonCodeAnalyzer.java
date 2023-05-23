@@ -221,7 +221,7 @@ public class PythonCodeAnalyzer {
         
 
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
-        System.out.println("Nombre de lignes total : " + totalLines);
+        System.out.println("Nombre total de lignes : " + totalLines);
         if (maxLines == Integer.MAX_VALUE) {
             maxLines = 0;
         }
