@@ -5,6 +5,7 @@
     "java.project.referencedLibraries": [
         "lib/**/*.jar",
         "jar/jar_files/jackson-databind-2.15.1.jar",
-        "jar/jar_files/jackson-core-2.15.1.jar"
+        "jar/jar_files/jackson-core-2.15.1.jar",
+        "jar/jar_files/jackson-annotations-2.15.1.jar"
     ]
 }

@@ -3,9 +3,11 @@ import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
 import com.sun.net.httpserver.HttpServer;
 
+import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.OutputStream;
-// import java.io.InputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.Executors;
@@ -35,6 +37,8 @@ public class Serveur {
     }
 
     private static class MyHttpHandler implements HttpHandler {
+
+
         /**
          * Manage GET request param
          * @param httpExchange
@@ -53,12 +57,21 @@ public class Serveur {
          * @param httpExchange
          * @return first value
          */
-        // private String handlePostRequest(HttpExchange httpExchange) {
-        //     try {
-        //         InputStream inputStream = httpExchange.getRequestBody();
-
-        //     }
-        // }
+        private String handlePostRequest(HttpExchange httpExchange) {
+            try {
+                InputStream inputStream = httpExchange.getRequestBody();
+                BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
+                StringBuilder bodyBuilder = new StringBuilder();
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    bodyBuilder.append(line);
+                }
+                return bodyBuilder.toString();
+            } catch (IOException e) {
+                LOGGER.warning("Erreur lors de la lecture du corps de la requête : " + e.getMessage());
+            }
+            return null;
+        }
         
 
         /** 
@@ -96,11 +109,9 @@ public class Serveur {
                 requestParamValue = handleGetRequest(httpExchange);
             }
             else if ("POST".equals(httpExchange.getRequestMethod())) {
-
                 // Gérer la requête POST (faire la même chose que pour la méthode get mais avec la méthode post)
-
                 LOGGER.info("Méthode POST");
-
+                requestParamValue = handlePostRequest(httpExchange);
             }
             else {
                 LOGGER.warning("Méthode non gérée");

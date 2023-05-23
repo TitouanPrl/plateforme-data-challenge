@@ -8,7 +8,14 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
-// import com.fasterxml.jackson.databind.*;
+
+// Importation de la librairie jackson
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
+
+// importation du hashmap
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class PythonCodeAnalyzer {
@@ -29,13 +36,27 @@ public class PythonCodeAnalyzer {
             printFunctionStatistics(functionDataList);
             
         }
+
+
+        // test de jackson pour convertir un objet en json
+        ObjectMapper mapper = new ObjectMapper();
+        Map<String, String> map = new HashMap<>();
+        map.put("name", "John");
+        map.put("age", "30");
+        String json = "";
+        try {
+            json = mapper.writeValueAsString(map);
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        System.out.println(json);
     }
     
 
     /**
      * Affiche la liste des fichiers du dossier
-     * @param folder : dossier cible
-     * @param extension : extension des fichiers sélectionnés
+     * @param folder : répertoire cible
+     * @param extension : extension souhaitée des fichiers
      * @return liste des fichiers du dossier qui ont l'extension donnée
      */
     public static List<String> listeFichierDuDossier(final File folder, String extension) {
@@ -250,7 +271,8 @@ public class PythonCodeAnalyzer {
         }
 
         System.out.println("Nombre de fonctions : " + numberOfFunctions);
-        
+
+
 
     }
 
