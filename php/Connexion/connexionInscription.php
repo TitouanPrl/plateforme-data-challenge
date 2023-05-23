@@ -124,9 +124,6 @@ require '../Integrations/headerVanilla.php'; ?>
           </div>
         </div>
 
-<<<<<<< HEAD
-        
-=======
         <!-- INSCRIPTION -->
         <div id="inscription">
           <h2>Inscription</h2>
@@ -180,7 +177,6 @@ require '../Integrations/headerVanilla.php'; ?>
 
           </form>
         </div>
->>>>>>> f6ceedba24a5e1e72c0fb5da1b372a760aac4739
       </article>
     </div>
   </main>
