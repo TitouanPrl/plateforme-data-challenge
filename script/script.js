@@ -20,4 +20,3 @@ function scrollFunction() {
     }
 } 
 
-rgba(237, 251, 252)

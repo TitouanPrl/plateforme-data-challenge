@@ -34,7 +34,7 @@ session_start();
                 <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
             </nav>
 
-            <form action="../Connexion/deconnexion.php" >
+            <form action="../Connexion/connexionInscription.php" >
                 <input type="submit" class="boutonDeco" value="Connexion">
             </form>
 

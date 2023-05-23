@@ -1,6 +1,6 @@
 <?php
 session_start();
-?>
+require '../Integrations/headerVanilla.php'; ?>
 
 <!DOCTYPE html>
 <html lang="FR">
@@ -22,9 +22,7 @@ session_start();
   <!-- HEADER -->
 
   <header>
-    <h1>TITRE INTRO</h1>
-
-    <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
+    <div class="bordure"></div>
 
     <?php
     /* Envoie un message correspondant à l'erreur de manipulation */
@@ -54,58 +52,48 @@ session_start();
   <!-- MAIN CONTENT -->
 
   <main>
-    <article>
+    <div class="corps">
 
-      <!-- CONNEXION -->
-      <div id="connexion">
-        <h2>Connexion</h2>
+    
+      <article>
 
-        <form action="verifConnexion.php" method="POST">
+        <!-- CONNEXION -->
+        <div id="connexion">
+          <h2>Connexion</h2>
 
-          <div id="form">
+          <form action="verifConnexion.php" method="POST">
+            <div id="form">
+              <fieldset>
+                <legend>Login</legend>
+                <input type="text" id="login" name="login" required> <br>
+              </fieldset>
+              <fieldset>
+                <legend>Mot de passe</legend>
+                <input type="password" id="mdp" name="mdp" required> <br>
+              </fieldset>
+            </div>
+            <input type="submit" id="submit" value="Valider">
+          </form>
+        </div>
 
-            <fieldset>
-              <legend>Login</legend>
-              <input type="text" id="login" name="login" required> <br>
-            </fieldset>
+        <!-- INSCRIPTION -->
+        <div id="inscription">
+          <h2>Inscription</h2>
 
-            <fieldset>
-              <legend>Mot de passe</legend>
-              <input type="password" id="mdp" name="mdp" required> <br>
-            </fieldset>
-
-          </div>
-
-          <input type="submit" id="submit" value="Valider">
-
-        </form>
-      </div>
-
-      <!-- INSCRIPTION -->
-      <div id="inscription">
-        <h2>Inscription</h2>
-
-        <form action="validInscription.php" method="POST">
-
-          <div id="form">
-            <div id="formG">
+          <form action="validInscription.php" method="POST">
+            <div id="form">           
               <fieldset>
                 <legend>Votre nom</legend>
                 <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
-
               <fieldset>
                 <legend>Votre prénom</legend>
                 <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
-
               <fieldset>
                 <legend>Votre mail</legend>
                 <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
               </fieldset>
-            </div>
-
-            <div id="formD">
               <fieldset>
                 <legend>Quel est votre degré d'étude ?</legend>
                 <select name="nivEtude" id="nivEtude" required>
@@ -119,25 +107,22 @@ session_start();
                 </select>
                 <br>
               </fieldset>
-
               <fieldset>
                 <legend>Votre ecole</legend>
                 <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['ecole']); ?>"> <br>
               </fieldset>
-
               <fieldset>
                 <legend>Votre ville</legend>
                 <input type="text" id="ville" name="ville" value="<?php echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
-
             </div>
-          </div>
 
-          <input type="submit" id="submit" value="Valider">
+            <input type="submit" id="submit" value="Valider">
 
-        </form>
-      </div>
-    </article>
+          </form>
+        </div>
+      </article>
+    </div>
   </main>
 
   <?php require '../Integrations/footer.php'; ?>
