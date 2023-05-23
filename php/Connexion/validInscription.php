@@ -27,6 +27,9 @@
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
     $tel = erase($_POST['tel']);
+    $gestionnaire =erase($_POST['gestionnaire']);
+    $admin = erase($_POST['admin']);
+    $etudiant = erase($_POST['etudiant']);
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -37,12 +40,14 @@
     || empty($ville)
     || empty($tel)) {
 
+        global $valide;
        $valide = false;
     }
 
     /* Matche pattern nom et prenom */
     function patern_nom($data) {
-        if (!ctype_upper($data[0] || !ctype_alpha($data))) {
+        global $valide;
+        if (!ctype_upper($data[0]) || !ctype_alpha($data)) {
             $valide = false;
         }
     }
@@ -50,32 +55,25 @@
     patern_nom($nom);
     patern_nom($prenom);
 
-    /* Matche pattern sujet et contenu */
-    function patern_content($data) {
-        if (!ctype_alpha($data)) {
-            $valide = false;
-        }
-    }
-
-    patern_content($sujet);
-    patern_content($contenu);
-
     /* Matche patern tel */
 
-    function patern_content($data) {
-        if(!ctype_alnum($data)) {
+    function patern_tel($data) {
+        global $valide;
+        if((!is_numeric($data)) || (strlen($data) != 10)) {
             $valide = false;
         }
     }
 
+    patern_tel($tel);
+
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
-    if ($valide = false) {
+    if ($valide == false) {
         header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&tel=' . $tel . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
         exit();
     }
 
     /* Si elles le sont, on envoie un mail avec un récap et on push dans la BDD */
-    if ($valide = true) {
+    if ($valide == true) {
         mail(
             $mail,         /* Destinataire */
             'Résumé de votre inscription sur la plateforme IA Pau',       /* Sujet du mail */

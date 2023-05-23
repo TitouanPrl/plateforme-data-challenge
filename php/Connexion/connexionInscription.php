@@ -106,7 +106,7 @@ session_start();
 
               <fieldset>
                 <legend>Votre Tel</legend>
-                <input type="tel" id="tel" name="tel" value="<?php echo ($GET_tel['tel']); ?>" required patern = "[0-9]+">
+                <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
               </fieldset>
             </div>
 

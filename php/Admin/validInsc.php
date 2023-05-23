@@ -40,7 +40,7 @@
 
     /* Matche pattern nom et prenom */
     function patern_nom($data) {
-        if (!ctype_upper($data[0] || !ctype_alpha($data))) {
+        if (!ctype_upper($data[0]) || !ctype_alpha($data)) {
             $valide = false;
         }
     }
