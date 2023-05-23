@@ -2,7 +2,7 @@
 
 <!-- MAIN CONTENT -->
 
-<main>
+<main class="corps">
     <!-- CLASSEMENT -->
     <div id="classement">
         <h3>Classement</h3>

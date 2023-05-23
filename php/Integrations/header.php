@@ -16,7 +16,7 @@ if (!isset($_SESSION["login"])) {
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
 
-    <title>K-Food</title>
+    <title>IA Pau</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
@@ -26,20 +26,25 @@ if (!isset($_SESSION["login"])) {
 </head>
 
 <body>
-    <!-- HEADER -->
+    <!-- HEADER UTILISATEUR CONNECTÉ -->
 
     <header>
+        <div id="header">
 
-        <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
+            <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
+            <nav id="liens">
+                <a href="../General/infoChallenge.php">Informations Challenges</a>
+                <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
+                <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+            </nav>
 
-        <nav id="liens">
-            <a href="../General/infoChallenge.php">Informations Challenges</a>
-            <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
-            <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
-        </nav>
+            <form action="../Connexion/deconnexion.php" >
+                <input type="submit" class="boutonDeco" value="Déconnexion">
+            </form>
 
-        <form action="../Connexion/deconnexion.php">
-            <input type="submit" id="deco" value="Déconnexion">
-        </form>
+        </div>
 
     </header>
+
+
+
