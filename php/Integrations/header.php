@@ -35,8 +35,8 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/infoChallenge.php">Informations Challenges</a>
-                <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
+                <a href="../General/listeChallenge.php">Informations Challenges</a>
+                <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
                 <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
             </nav>
 
@@ -48,10 +48,6 @@ if (!isset($_SESSION["login"])) {
 
     </header>
 
-        <nav id="liens">
-            <a href="../General/listeChallenge.php">Informations Challenges</a>
-            <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
-            <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
-        </nav>
+        
 
 
