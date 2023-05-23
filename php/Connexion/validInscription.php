@@ -47,7 +47,6 @@
 
     patern_nom($nom);
     patern_nom($prenom);
-    
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
     if ($valide = false) {
