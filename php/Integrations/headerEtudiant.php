@@ -26,7 +26,7 @@ if (!isset($_SESSION["login"])) {
 </head>
 
 <body>
-    <!-- HEADER UTILISATEUR CONNECTÉ -->
+    <!-- HEADER UTILISATEUR CONNECTÉ EN TANT QUE PARTICIPANT -->
 
     <header>
         <div id="header" class="">
@@ -35,9 +35,8 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
-                <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+                <a href="inscriptionChallenge.php">Liste Challenges</a>
+                <a href="equipe.php">Mon équipe</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
