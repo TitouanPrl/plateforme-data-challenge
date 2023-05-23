@@ -2,5 +2,7 @@
     "java.configuration.updateBuildConfiguration": "interactive",
     "java.project.sources": [
         "src/main/java"
-    ]
+    ],
+    "json.schemas": []
+    
 }
