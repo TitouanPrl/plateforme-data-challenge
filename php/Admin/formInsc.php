@@ -16,15 +16,15 @@
                     Quel type de compte souhaitez vous ajouter ?
                 </legend>
                 <div>
-                    <input type="radio" id="admin" name="function" value="<?php echo ($_POST['admin']); ?>"> 
+                    <input type="radio" id="admin" name="function" value="Choix 1"> 
                     <label for="admin">Adinistrateur</label>
                 </div>
                 <div>
-                    <input type="radio" id="gestionnaire" name="function" value="<?php echo ($_POST['gestionnaire']); ?>">
+                    <input type="radio" id="gestionnaire" name="function" value="Choix 2">
                     <label for="gestionnaire">Gestionnaire</label>
                 </div>
                 <div> 
-                    <input type="radio" id="etudiant" name="function" value= "<?php echo ($_POST['etudiant']); ?>">
+                    <input type="radio" id="etudiant" name="function" value= "Choix 3">
                     <label for="etudiant">Etudiant</label>
                 </div>
             </fieldset>
