@@ -7,7 +7,7 @@ window.onscroll = function() {scrollFunction()};
 function scrollFunction() {
     if (document.body.scrollTop > 180 || document.documentElement.scrollTop > 180) {
         document.getElementById("header").style.padding = "0px 5px";
-        document.getElementById("header").style.backgroundColor = "rgba(237, 251, 252,0.68)";
+        document.getElementById("header").style.backgroundColor = "rgba(237, 251, 252,0.8)";
         document.getElementById("logo").style.paddingTop = "13px";
         document.getElementById("logo").style.height = "80px";
         document.getElementById("logo").style.width = "80px";

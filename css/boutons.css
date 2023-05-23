@@ -12,7 +12,8 @@
     margin-right: 30px;
 }
 .boutonDeco:hover {
-    scale: 110%;
+    scale: 101%;
+    opacity: 0.9;
 } 
 
 
