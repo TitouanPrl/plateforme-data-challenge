@@ -20,7 +20,7 @@ if (!isset($_SESSION["login"])) {
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
-    <script src="../../js/script.js"></script>
+    <script src="../../script/script.js"></script>
 
 
 </head>
@@ -29,9 +29,11 @@ if (!isset($_SESSION["login"])) {
     <!-- HEADER UTILISATEUR CONNECTÉ -->
 
     <header>
-        <div id="header">
+        <div id="header" class="">
 
-            <img id="logo" src="../../img/logo_iaPau.png" alt="logo">
+            <a class="shine" href="../General/accueilGeneral.php">
+                <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
+            </a>
             <nav id="liens">
                 <a href="../General/infoChallenge.php">Informations Challenges</a>
                 <a href="../General/inscriptionChallenge.php">Inscription Challenge</a>
