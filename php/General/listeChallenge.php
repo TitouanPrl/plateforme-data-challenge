@@ -7,7 +7,7 @@ echo('<!-- MAIN CONTENT -->
 /* Affichage des challenges disponibles */
 foreach ($_SESSION["data"]['Evenement'] as $current) {
 
-    echo ('<a href="infoChallenge.php?challenge=' . $current['idEvenement'] . '">
+    echo ('<a href="listeSujets.php?challenge=' . $current['idEvenement'] . '">
             <div class="challenge">
                 <span class="titre_challenge"> ' . $current['libelle'] . ' </span>
                 <span class="descript_challenge"> ' . $current['description'] . ' </span>

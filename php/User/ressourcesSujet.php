@@ -1,0 +1,7 @@
+<?php 
+
+/************
+ * A FAIRE EN DEMANDANT DES PRECISIONS SUR LES LIENS A METTRE 
+ */
+
+?>

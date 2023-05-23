@@ -18,7 +18,7 @@ function disconnect($conn) {
     $conn->close();
 }
 
-//REQUÊTE GÉNÉRALE
+/*REQUÊTE GÉNÉRALE*/
 function request($conn,$sql) {
     try {
         $result = mysqli_query($conn, $sql);
@@ -38,6 +38,8 @@ function send($conn,$sql) {
     }
    
 }
+
+
 
 
 
@@ -117,6 +119,26 @@ function getEquipeByProjet($conn,$idProjet) { //récupère l'équipe attachée �
 
     return $equipe;
 }
+function getQuestionnairesOnSujet($idSujet) {   //tous les qusetionnaires envoyés pour un sujet
+    $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
+    $questionnaires = request($conn,$sql);
+
+    return $questionnaires;
+}
+function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
+    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
+    $id = request($conn,$sql);
+
+    return $id;
+}
+function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
+    $sql = "SELECT idUser FROM Inscritption WHERE idEvenement=$idEvenement";
+    $inscrits = request($conn,$sql);
+
+    return $inscrits;
+}
+
+
 
 function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisateurs attachés à un sujet
     $projets = getProjetsOnSujet($conn,$idSujet);
@@ -143,18 +165,7 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
 
     return $responses;
 }
-function getQuestionnairesOnSujet($idSujet) {
-    $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
-    $questionnaires = request($conn,$sql);
 
-    return $questionnaires;
-}
-function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
-    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
-    $id = request($conn,$sql);
-
-    return $id;
-}
 
 
 
@@ -201,6 +212,10 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
     send($conn,$sql);
 }
+function inscription($idUser,$idEvenement) {
+    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idSujet,$idEvenement)";
+    send($conn,$sql);
+}
 
 
 
@@ -237,6 +252,10 @@ function deleteReponse($conn,$idReponse) {
     $sql = "DELETE FROM Reponse WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
+function desinscription($idUser,$idEvenement) {
+    $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idSujet,$idEvenement)";
+    send($conn,$sql);
+}
 
 
 //MODIFIER LES DONNÉES
@@ -264,7 +283,7 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function setNote($idReponse,$note) {
+function setNote($idReponse,$note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
     send($conn,$sql);
 }

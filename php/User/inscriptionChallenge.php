@@ -9,10 +9,12 @@ echo ('<!-- MAIN CONTENT -->
 /* Affichage des challenges disponibles */
 foreach ($_SESSION["data"]['Evenement'] as $current) {
 
-    echo ('<div class="challenge">
+    echo ('<a href="gestionInscription.php?challenge=' . $current['idEvenement'] . '">
+            <div class="challenge">
                 <span class="titre_challenge"> ' . $current['libelle'] . ' </span>
                 <span class="descript_challenge"> ' . $current['description'] . ' </span>
-                </div>');
+            </div>
+          </a>');
 }
     
         
