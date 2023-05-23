@@ -100,7 +100,7 @@ public class Nombres {
 	
 	public static int nbLignes(String texte) {
 		String[] lignes = texte.split("\\r?\\n");
-		int nbl = 0;
+		int nbl = -1;
 		for (String ligne : lignes) {
 			nbl += 1;
 		}
@@ -176,7 +176,7 @@ public class Nombres {
 	}	
 
 	public static void main(String[] args) throws IOException {
-		String chemin = "/home/cytech/Desktop/AnalysePY2JSON/Fichiers/python/fichier_python.txt";
+		String chemin = "/home/cytech/Desktop/AnalysePY2JSON/Fichiers/python/fichier_python_cool.txt";
 		String texte=txtToString(chemin);
 		texte = supprimerCommentaires(texte);
 		
