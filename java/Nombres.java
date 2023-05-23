@@ -2,7 +2,7 @@ import java.io.*;
 
 public class Nombres {
 	
-
+	
 	public static String supprimerLignesVides(String texte) {
 	    String[] lignes = texte.split("\\r?\\n");
 	    StringBuilder sb = new StringBuilder();
@@ -176,7 +176,7 @@ public class Nombres {
 	}	
 
 	public static void main(String[] args) throws IOException {
-		String chemin = "/home/cytech/Desktop/AnalysePY2JSON(1)/Fichiers/python/fichier_python.txt";
+		String chemin = "/home/cytech/Desktop/AnalysePY2JSON/Fichiers/python/fichier_python.txt";
 		String texte=txtToString(chemin);
 		texte = supprimerCommentaires(texte);
 		
