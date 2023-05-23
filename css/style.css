@@ -106,6 +106,7 @@ h2 {
 .corps {
     background-image: url("../img/mountain_bg.jpeg");
     height: 980px;
+    background-repeat: repeat;
 }
 
 #titres {
