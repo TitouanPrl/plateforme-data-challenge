@@ -87,6 +87,8 @@
         );
 
         // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
+        
+        //RECUPERER L'ID DU NOUVEL USER
 
         /* On redirige vers l'accueil avec connexion */
         header('Location:../User/accueilUser.php');
