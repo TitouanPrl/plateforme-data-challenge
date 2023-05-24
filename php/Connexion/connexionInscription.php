@@ -26,8 +26,8 @@ require '../Integrations/headerVanilla.php'; ?>
 
     <?php
     /* Envoie un message correspondant à l'erreur de manipulation */
-    if (isset($_GET['error'])) {
-      switch ($_GET['error']) {
+    if (isset($_GET['message'])) {
+      switch ($_GET['message']) {
         case '1':
           echo "<p id='notif'>Il semblerait que vous n'ayez pas rentré vos identifiants.</p>";
           break;
@@ -39,6 +39,10 @@ require '../Integrations/headerVanilla.php'; ?>
         case '3':
           echo "<p id='notif'>Le type d'utilisateur est indéfini, veuillez contacter un administrateur.</p>";
           break;
+
+        case '4':
+          echo "<p id='notif'>Votre inscription a bien été prise en compte !</p>";
+        break;
 
         default:
           break;

@@ -1,5 +1,12 @@
 <?php
 session_start();
+
+/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
+if (!isset($_SESSION["login"])) {
+    header('Location:../Connexion/connexionInscription.php?message=1');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -12,8 +19,6 @@ session_start();
     <title>IA Pau</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/boutons.css" />
-    <link rel="stylesheet" href="../../css/form.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
 
@@ -21,7 +26,7 @@ session_start();
 </head>
 
 <body>
-    <!-- HEADER UTILISATEUR NON CONNECTÉ-->
+    <!-- HEADER UTILISATEUR CONNECTÉ EN TANT QUE PARTICIPANT -->
 
     <header>
         <div id="header" class="">
@@ -30,15 +35,18 @@ session_start();
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Liste Challenges</a>
-                <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
-                <a href="../Admin/accueilAdmin.php">Accueil admin</a>
+                <a href="inscriptionChallenge.php">Liste Challenges</a>
+                <a href="equipe.php">Mon équipe</a>
             </nav>
 
-            <form action="../Connexion/connexionInscription.php" >
-                <input type="submit" class="boutonDeco" value="Connexion">
+            <form action="../Connexion/deconnexion.php" >
+                <input type="submit" class="boutonDeco" value="Déconnexion">
             </form>
 
         </div>
 
     </header>
+
+        
+
+

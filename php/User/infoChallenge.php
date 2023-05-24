@@ -6,7 +6,7 @@ require_once("../../bdd/fonctionsBDD.php");
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
 if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?error=1');
+    header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
 
@@ -16,7 +16,7 @@ connect();
 $idEvent = $_GET['challenge'];
 
 /* On récupère les sujets associés au challenge */
-$tabSujets = getSujetByEvenement($idEvent);
+$tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 

@@ -9,7 +9,7 @@ connect();
 $idEvent = $_GET['challenge'];
 
 /* On récupère les sujets associés au challenge */
-$tabSujets = getSujetByEvenement($idEvent);
+$tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 

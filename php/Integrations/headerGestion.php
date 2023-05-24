@@ -3,7 +3,7 @@ session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
 if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?error=1');
+    header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
 
@@ -26,7 +26,7 @@ if (!isset($_SESSION["login"])) {
 </head>
 
 <body>
-    <!-- HEADER UTILISATEUR CONNECTÉ -->
+    <!-- HEADER UTILISATEUR CONNECTÉ EN TANT QUE GESTIONNAIRE -->
 
     <header>
         <div id="header" class="">
@@ -35,9 +35,8 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
-                <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+                <a href="listeChallenges.php">Challenges</a>
+                <a href="modifInfos.php">Modifier mes données</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
