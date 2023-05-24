@@ -15,20 +15,10 @@
                 <legend>
                     Quel type de compte souhaitez vous ajouter ?
                 </legend>
-                <div>
-                    <input type="radio" id="admin" name="function" value="Choix 1"> 
-                    <label for="admin">Adinistrateur</label>
-                </div>
-                <div>
-                    <input type="radio" id="gestionnaire" name="function" value="Choix 2">
-                    <label for="gestionnaire">Gestionnaire</label>
-                </div>
-                <div> 
-                    <input type="radio" id="etudiant" name="function" value= "Choix 3">
-                    <label for="etudiant">Etudiant</label>
-                </div>
-            </fieldset>
-            
+                    <input type="button" id="admin" onclick="admin()" value="administrateur" > 
+                    <input type="button" id="gestionnaire" onclick="gestionnaire()" value="gestionnaire">
+                    <input type="button" id="etudiant" onclick="etudiant()" value= "étudiant">
+          </fieldset>
         </div>
           <div id="form">
             <div id="formG">
@@ -93,5 +83,5 @@
     </article>
   </main>
       <!-- faire apparaitre les champs en fonction de la checkbox et faire gaffe aux champs apparent  -->
-
+<script src="../script/form.js"></script>
 <?php require '../Integrations/footer.php'; ?>

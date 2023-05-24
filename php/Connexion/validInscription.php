@@ -27,9 +27,9 @@
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
     $tel = erase($_POST['tel']);
-    $gestionnaire =erase($_POST['gestionnaire']);
-    $admin = erase($_POST['admin']);
-    $etudiant = erase($_POST['etudiant']);
+    $entreprise = erase ($_POST['entreprises']);
+    
+
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -38,7 +38,8 @@
     || empty($nivEtude)
     || empty($ecole)
     || empty($ville)
-    || empty($tel)) {
+    || empty($tel)
+    || empty($entreprise)) {
 
         global $valide;
        $valide = false;

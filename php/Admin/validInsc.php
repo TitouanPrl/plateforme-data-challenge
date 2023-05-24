@@ -26,6 +26,7 @@
     $nivEtude = erase($_POST['nivEtude']);
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
+    $entreprise = erase($_POST['entreprise']);
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -33,7 +34,8 @@
     || empty($mail)
     || empty($nivEtude)
     || empty($ecole)
-    || empty($ville)) {
+    || empty($ville)
+    || empty($entreprise)) {
 
        $valide = false;
     }
@@ -47,16 +49,7 @@
 
     patern_nom($nom);
     patern_nom($prenom);
-
-    /* Matche pattern sujet et contenu */
-    function patern_content($data) {
-        if (!ctype_alpha($data)) {
-            $valide = false;
-        }
-    }
-
-    patern_content($sujet);
-    patern_content($contenu);
+    
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
     if ($valide = false) {

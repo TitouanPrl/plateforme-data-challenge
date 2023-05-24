@@ -29,7 +29,7 @@ session_start();
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/infoChallenge.php">Informations Challenges</a>
+                <a href="../General/listeChallenge.php">Informations Challenges</a>
                 <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
                 <a href="../Admin/accueilAdmin.php">Accueil admin</a>
             </nav>
