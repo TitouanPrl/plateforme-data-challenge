@@ -6,9 +6,7 @@ $_SESSION['donnees']=$donnees;
 
 foreach($_SESSION['donnees'] as $element => $nameFichier){
     foreach($nameFichier as $nameFonction => $newLigne){
-        echo' nom du fichier:' .$nameFichier. ', nombre de lignes:' .$newLigne;
+        echo"nom du fichier: $nameFichier, nombre de lignes: .$newLigne";
     }
 }
-
-
 ?>
