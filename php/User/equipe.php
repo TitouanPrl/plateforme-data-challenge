@@ -11,7 +11,14 @@ connect();
         <a href="creerEquipe.php">Créer une équipe</a>
         <div id="monEquipe">
             <?php 
-                $members = getEquipeMembers($conn,$idEquipe)
+                foreach ($_SESSION['teamMembers'] as $member) {
+                    echo('<div class="ligne_equipe">');
+                    if ($member == $_SESSION['infoTeam']['capitaine']) {
+                        echo('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
+                    }
+                    echo('<span class="nom_teamMember"> ' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>   
+                    </div>');
+                }
             ?>
         </div>
     </div>
