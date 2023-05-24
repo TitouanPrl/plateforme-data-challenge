@@ -20,7 +20,7 @@ foreach ($tabSujets as $current) {
 
     echo ('  <!-- SUJETS-->
         <a href="infoSujet.php?sujet=' . $current['idSujet'] . '
-             <div id="sujets">
+             <div class="sujets">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
         </a>');

@@ -1,38 +1,27 @@
 <?php require '../Integrations/headerEtudiant.php';
-session_start();
 
 /* On inclut les fonctions de manipulation de la BDD */
 require_once("../../bdd/fonctionsBDD.php");
 
-/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?message=1');
-    exit();
-}
-
 connect();
 
-/* On récupère le challenge sélectionné */
-$idEvent = $_GET['challenge'];
+/* On récupère le challenge auquel l'équipe participe */
+$idEvent = $_SESSION['infoTeam']['idEvent'];
 
 /* On récupère les sujets associés au challenge */
-$tabSujets = getSujetByEvenement($conn, $idEvent);
+$liste_inscrits = getInscrits($idEvent);
 
 echo('<!-- MAIN CONTENT -->
 
 <main>');
 
 /* Affichage des challenges disponibles */
-foreach ($tabSujets as $current) {
-
-    echo ('  <!-- SUJETS-->
-        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
-             <div id="sujets">
-                 <h3>' . $current['libelle'] . '</h3>
-             </div>
-        </a>');
+foreach ($liste_inscrits as $current) {
+    echo ('  <!-- INSCRITS--> ');
+        if (getUtilisateurById($conn, $current)['idEquipe'] != $_SESSION['infoTeam']['idEquipe']) {
+        echo('<span class="participant"> ' . getUtilisateurById($conn, $current)['prenom'] . ' ' . getUtilisateurById($conn, $current)['nom'] . '</span>');
+        }
 }
-
-    echo('</main>');
+echo('</main>');
 
 require '../Integrations/footer.php'; ?>

@@ -25,6 +25,7 @@ CREATE TABLE Utilisateur(
 CREATE TABLE Equipe(
     idEquipe INTEGER PRIMARY KEY auto_increment,
     nom VARCHAR(64),
+    /* RAJOUTE RUN ID EVENT POUR LIER L'EQUIPE A UN CHALLENGE */
     capitaine INTEGER
 );
 
