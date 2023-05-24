@@ -20,3 +20,34 @@ function scrollFunction() {
     }
 } 
 
+/* Ajout/Suppression de membres dans une équipe */
+function updTeam() {
+    var xhr = getXHR();
+
+    var listemembre = document.getElementsByClassName("maskName").outerText;
+
+    console.log(membre);
+
+    xhr.onreadystatechange = function() {
+
+       if (xhr.readyState == 4 && xhr.status == 200){
+        var myTeam = document.getElementById("fl"); 
+        var membresDispo = document.getElementById("fl"); 
+
+        if (myTeam) {
+            myTeam.parentNode.appendChild(membre);
+        }
+        if (membresDispo) {
+            membresDispo.parentNode.removeChild(membresDispo);
+          }
+       }
+    }
+
+    
+    xhr.open("POST","gestionEquipe.php",true) ;
+    xhr.setRequestHeader('Content-Type',
+           'application/x-www-form-urlencoded;charset=utf-8');
+    xhr.send("val1="+membre);
+    
+  }
+
