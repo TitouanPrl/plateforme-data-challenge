@@ -37,19 +37,6 @@ public class PythonCodeAnalyzer {
             
         }
 
-
-        // test de jackson pour convertir un objet en json
-        ObjectMapper mapper = new ObjectMapper();
-        Map<String, String> map = new HashMap<>();
-        map.put("name", "John");
-        map.put("age", "30");
-        String json = "";
-        try {
-            json = mapper.writeValueAsString(map);
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        System.out.println(json);
     }
     
 
@@ -246,6 +233,7 @@ public class PythonCodeAnalyzer {
             averageLines = (double) totalLines / numberOfFunctions;
         }
         
+        Map<String, Object> statistiques = new HashMap<>();
 
 
         // Statistiques générales des fichiers python
@@ -263,14 +251,35 @@ public class PythonCodeAnalyzer {
         System.out.println("---------------------------\nStatistiques par fonction :\n---------------------------");
 
 
+        // ajout des données statistiques dans la map
+        statistiques.put("nbFonctions", numberOfFunctions);
+        statistiques.put("nbLignes", totalLines);
+        statistiques.put("nbLignesMax", maxLines);
+        statistiques.put("nbLignesMin", minLines);
+        statistiques.put("nbLignesMoy", averageLines);
+
+
+
         // Statistiques de chaque fonction
         for (FunctionData functionData : functionDataList) {
             System.out.println("Fonction : " + functionData.getFunctionName());
             System.out.println("Nombre de lignes : " + functionData.getLines());
             System.out.println("---------------------------");
+            statistiques.put(functionData.getFunctionName(), functionData.getLines());
         }
 
-        System.out.println("Nombre de fonctions : " + numberOfFunctions);
+        
+        // Conversion en json avec jackson
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+
+        try {
+            json = mapper.writeValueAsString(statistiques);
+            System.out.println(json);   
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+        }
+        
 
 
 
@@ -313,4 +322,6 @@ public class PythonCodeAnalyzer {
             return lines;
         }
     }
+
+    
 }
