@@ -144,7 +144,7 @@ function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisat
     $projets = getProjetsOnSujet($conn,$idSujet);
     $equipes = array();
     foreach ($projets as $projet) {
-        $equipes[] = getTeamByProjet($conn,$projet['idProjet']);
+        $equipes[] = getEquipeByProjet($conn,$projet['idProjet']);
     }
     $utilisateurs = array();
     foreach ($equipes as $equipe) {
@@ -163,7 +163,7 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
     $sql = "SELECT * FROM Reponse WHERE idQuestion = $idQuestion";
     $reponses = request($conn,$sql);
 
-    return $responses;
+    return $reponses;
 }
 
 
@@ -287,9 +287,5 @@ function setNote($idReponse,$note) { // définir la note de la réponse à une q
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
-
-
-
-
 
 ?>

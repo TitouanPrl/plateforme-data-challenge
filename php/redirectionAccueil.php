@@ -15,7 +15,7 @@ switch ($_GET['type']) {
       break;
 
     default:
-      header('Location: Connexion/connexionInscription.php?error=3');
+      header('Location: Connexion/connexionInscription.php?message=3');
       break;
   }
 
