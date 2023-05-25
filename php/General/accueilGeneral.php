@@ -89,6 +89,19 @@
         </div> 
     </div>
 
+    
+    <!-- les petites montagnes  
+    <div class="row" style="margin-top:-500px;">
+        <div>
+          <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep5" viewBox="0 0 1600 200" style="display: block;" data-height="200">
+          <polygon class="" style="fill: var(--bleu);" points="1488,134 1304,100 1068,152 909.935,92.044 672,198 364,142 242,32 -4,95 -4,204 1604,204 1604,0 "></polygon> 
+          <polygon class="" style="opacity: 1;fill: white;" points="672,198 364,142 242,32 -4,95 -4,82.333 242,32 374,136 "></polygon> 
+          <polygon class="" style="opacity: 1;fill: white;" points="894,86 672,198 909.935,92.044 "></polygon> 
+          <polygon class="" style="opacity: 1;fill: white;" points="1068,152 1302,86 1486,126 1604,0 1488,134 1304,100 "></polygon></svg>
+        </div>
+    </div>
+    -->
+    
     <div class="content">
         <p>
             Le requin-baleine (Rhincodon typus) est une espèce de poissons cartilagineux, seul membre du genre Rhincodon et seule espèce actuelle de la famille des Rhincodontidae. Pouvant exceptionnellement atteindre 20 mètres de long, pour une masse de 34 tonnes, ce requin est considéré comme le plus grand poisson vivant actuellement sur Terre. Cependant, sa taille observable est en pratique généralement comprise entre 4 et 14 mètres.

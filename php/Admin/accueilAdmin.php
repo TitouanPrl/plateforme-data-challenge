@@ -5,14 +5,15 @@
 <main>
     <div class="bordure"></div>
     <div class="corps">
-        <h1>Accueil administrateur </h1>
-        <h2>Gestion des utilisateurs</h2>
-        <nav id="liens">
-            <a href="/php/Admin/formDC.php">Data Challenge</a>
-            <a href="/php/Admin/formInsc.php">Inscription</a>
-            <a href="/php/Admin/formProjet.php"> Projets</a>
-        </nav>
-
+        <div class="pageTab">
+            <h1 style="padding-top:90px;">Accueil administrateur </h1>
+            <h2>Gestion des utilisateurs</h2>
+            <nav id="tab" style="padding-top:90px;">
+                <a href="/php/Admin/formDC.php">Data Challenge</a>
+                <a href="/php/Admin/formInsc.php">Inscription</a>
+                <a href="/php/Admin/formProjet.php"> Projets</a>
+            </nav>
+        </div>
     </div>
 
     

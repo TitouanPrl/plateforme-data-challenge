@@ -1,16 +1,18 @@
 <?php require '../Integrations/headerVanilla.php'; ?>
 <div class="bordure"></div>
 <div class="corps">
-  <h2>Gestion des utilisateurs</h2>
-
+  <div class="back-button">
+    <a href="accueilAdmin.php" class="fleche"></a>
+  </div>
   <main>
     <article>
       <!-- création d'un data challenge -->
-      <div style="display:flex; justify-content:center;align-items:center">
-        <div id="inscription">
+      <div style="display:flex; justify-content:center;align-items:center; padding-top:70px; ">
+        <div id="inscriptionDC">
           <h2> Data challenge</h2>
-
-            <div id="formDC">
+            
+          <form action="validInsc.php" method="POST">
+            <div style="display:flex; justify-content:center;align-items:center;">
               <div id="formG">
                 <fieldset>
                   <legend>Libellé</legend>
@@ -36,18 +38,24 @@
                   <legend>Heure fin</legend>
                   <input type="time" id="heureFin" name="heureFin" value ="<?php echo($_GET['HeureFin']); ?>" required> <br>
                 </fieldset>
+              </div>
 
-              <fieldset>
-                  <legend>Commentaires</legend>
-                  <textarea id="Com" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>">Ajouter un commentaire/sujet enfin ce que vous voulez quoi </textarea>
-              </fieldset>
+              <div id="formD">
+                <fieldset>
+                    <legend>Commentaires</legend>
+                    <textarea id="Com" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>">Ajouter un commentaire/sujet enfin ce que vous voulez quoi </textarea>
+                </fieldset>
 
-              <fieldset>
-                  <legend>Déposer un document</legend>
-                  <form method="post" enctype="multipart/form-data">
-                  <input type="file" id="file" name="fichier" multiple>
-              </fieldset>
+                <fieldset>
+                    <legend>Déposer un document</legend>
+                    <form method="post" enctype="multipart/form-data">
+                    <input type="file" id="file" name="fichier" multiple>
+                </fieldset>
+
+              </div>
             </div>
+
+            <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
 
           </form>
         </div>
@@ -56,3 +64,5 @@
   </main>
 </div>
 <?php require '../Integrations/footer.php'; ?>
+
+

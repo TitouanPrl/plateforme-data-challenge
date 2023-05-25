@@ -58,3 +58,20 @@
 		left: 125%;
 	}
 }
+
+
+.back-button {
+	position: absolute;
+	padding: 60px;
+	width: 53px;/* modified by label length */
+}
+
+.fleche{
+	padding: 15px;
+	border: solid black;
+	border-width: 0 5px 5px 0;
+	border-radius: 5px;
+	display: inline-block;
+	transform: rotate(90deg);
+	-webkit-transform: rotate(135deg);
+}
