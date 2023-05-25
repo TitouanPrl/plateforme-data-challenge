@@ -69,7 +69,7 @@ require '../Integrations/headerVanilla.php'; ?>
             <form action="verifConnexion.php" method="POST">
               <div id="form">
                 <fieldset>
-                  <legend>Login</legend>
+                  <legend>Identifiant</legend>
                   <input type="text" id="login" name="login" required> <br>
                 </fieldset>
                 <fieldset>
@@ -85,20 +85,28 @@ require '../Integrations/headerVanilla.php'; ?>
           <div id="inscription">
             <h2 class="titreForm">Inscription</h2>
 
-            <form action="validInscription.php" method="POST">
-              <div id="form">           
-                <fieldset>
-                  <legend>Votre nom</legend>
-                  <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-                </fieldset>
-                <fieldset>
-                  <legend>Votre prénom</legend>
-                  <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-                </fieldset>
-                <fieldset>
-                  <legend>Votre mail</legend>
-                  <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
-                </fieldset>
+              <form action="validInscription.php" method="POST">
+                <div id="form">           
+                  <fieldset>
+                    <legend>Votre nom</legend>
+                    <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Votre prénom</legend>
+                    <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                  </fieldset>
+                  <fieldset>
+                    <legend>Votre e-mail</legend>
+                    <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
+                  </fieldset>
+
+                  <fieldset>
+                    <legend>Votre numéro de téléphone</legend>
+                    <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
+                  </fieldset>
+                </div>
+
+                
                 <fieldset>
                   <legend>Quel est votre degré d'étude ?</legend>
                   <select name="nivEtude" id="nivEtude" required>
@@ -113,75 +121,22 @@ require '../Integrations/headerVanilla.php'; ?>
                   <br>
                 </fieldset>
                 <fieldset>
-                  <legend>Votre ecole</legend>
+                  <legend>Votre école</legend>
                   <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['ecole']); ?>"> <br>
                 </fieldset>
                 <fieldset>
                   <legend>Votre ville</legend>
                   <input type="text" id="ville" name="ville" value="<?php echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                 </fieldset>
-              </div>
+                
+                <input type="submit" class="boutonForm" value="Valider">
 
-              <input type="submit" class="boutonForm" value="Valider">
-
-            </form>
+              </form>
           </div>
         </div>
 
-        <!-- INSCRIPTION -->
-        <div id="inscription">
-          <h2>Inscription</h2>
-
-          <form action="validInscription.php" method="POST">
-            <div id="form">           
-              <fieldset>
-                <legend>Votre nom</legend>
-                <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-              </fieldset>
-              <fieldset>
-                <legend>Votre prénom</legend>
-                <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-              </fieldset>
-              <fieldset>
-                <legend>Votre mail</legend>
-                <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
-              </fieldset>
-
-              <fieldset>
-                <legend>Votre Tel</legend>
-                <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
-              </fieldset>
-            </div>
-
-            <div id="formD">
-              <fieldset>
-                <legend>Quel est votre degré d'étude ?</legend>
-                <select name="nivEtude" id="nivEtude" required>
-                  <option value=""> <?php echo ($_GET['nivEtude']); ?></option>
-                  <option value="L1">1ère année de Licence</option>
-                  <option value="L2">2ème année de Licence</option>
-                  <option value="L3">3ème année de Licence</option>
-                  <option value="M1">1ère année de Master</option>
-                  <option value="M2">2ème année de Master</option>
-                  <option value="D">Doctorat</option>
-                </select>
-                <br>
-              </fieldset>
-              <fieldset>
-                <legend>Votre ecole</legend>
-                <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['ecole']); ?>"> <br>
-              </fieldset>
-              <fieldset>
-                <legend>Votre ville</legend>
-                <input type="text" id="ville" name="ville" value="<?php echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-              </fieldset>
-            </div>
-
-            <input type="submit" id="submit" value="Valider">
-
-          </form>
-        </div>
       </article>
+    
     </div>
   </main>
 

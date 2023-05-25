@@ -68,12 +68,13 @@ header {
 }
 
 /* navigation */
+#tab,
 #liens {
     overflow: hidden;
     display:flex;
     flex-wrap: wrap;
 }
-
+#tab a,
 #liens a {
     color: rgb(92, 92, 92);
     text-align: center;
@@ -82,29 +83,38 @@ header {
     text-decoration: none;
     margin: 20px; 
 }
-  
+#tab a:hover,
 #liens a:hover {
     background-color: var(--bleu);
     color: white;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
+#tab a {
+    background-color: var(--vert);
+    color: var(--bleu-fond);
+    padding: 40px;
+    font-size: 25px;
+    border-radius: 20px;
+}
 
 
 h1 {
     font-size: 60px;
     font-weight: 700;
     color: white;
+    text-shadow:1px 1px 20px black;
 }
 h2 {
     font-size: 40px;
-    color: white;
     font-weight:100;
+    color: white;
+    text-shadow:1px 1px 20px black;
 }
 
 
 .corps {
-    background-image: url("../img/mountain_bg.jpeg");
+    background-image: url("../img/mountain_bg_desaturee.jpeg");
     height: 980px;
     background-repeat: repeat;
 }
@@ -115,6 +125,17 @@ h2 {
     display:flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+}
+
+#titre {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    font-weight: bold;
+    text-shadow:1px 1px 20px black;
+    color: var(--bleu-fond);
 }
 
 
@@ -128,3 +149,28 @@ h2 {
 }
 
 
+.row{
+    width:100%;
+    padding:0;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position:relative;
+  }
+
+
+.pageTab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright {
+    margin:2px;
+    opacity:70%;
+    margin-bottom:10px;
+    color:var(--bleu-fond);
+    font-weight: bold;
+}

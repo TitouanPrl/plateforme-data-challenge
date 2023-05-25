@@ -18,12 +18,29 @@
     height: fit-content;
 }
 
-#formAdmin {
-    display: flex;
-    flex-wrap: wrap;
+#inscriptionDC {
+    width: 40%;
+    text-align: center;
+    padding: 30px;
+    border: none;
+    color: white;
+    float: left;
     background-color: var(--vert-trans);
     border-radius: 20px;
-    padding: 17px;
+    height: fit-content;
+    
+}
+#formProjet,
+#formAdmin {
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    float: left;
+    width: 37%;
+    height: fit-content;
+    padding:30px;
+    margin: auto 30%;
 }
 #formD,
 #formG {
@@ -95,11 +112,13 @@ input[type="email"],
 input[type="date"],
 input[type="password"],
 input[type="tel"],
+input[type="file"],
+input[type="time"],
 select,
 textarea {
     width: 100%;
     padding: 10px;
-    border: 3px solid var(--bleu-fond);
+    border: 1px solid black;
     border-radius: 4px;
     box-sizing: border-box;
     margin-bottom: 20px;
@@ -116,6 +135,13 @@ textarea {
 input[type="radio"] {
     display: none;
 }
+
+input[type="radio"]:checked + label {
+    background: var(--bleu-fond);
+    color: black;    
+}
+
+
 
 .boutonsRadio {
     display:flex;
