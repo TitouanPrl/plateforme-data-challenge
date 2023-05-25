@@ -2,7 +2,7 @@
 
 //fixation de la barre de navigation pendant le scroll
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -18,36 +18,59 @@ function scrollFunction() {
         document.getElementById("logo").style.width = "90px";
         document.getElementById("logo").style.paddingTop = "10px";
     }
-} 
+}
 
-/* Ajout/Suppression de membres dans une équipe */
-function updTeam() {
+/* Ajout de membres dans une équipe */
+function addMemberTeam() {
     var xhr = getXHR();
 
-    var listemembre = document.getElementsByClassName("maskName").outerText;
+    var membre = document.getElementById("participant").outerText;
 
     console.log(membre);
 
-    xhr.onreadystatechange = function() {
+    xhr.onreadystatechange = function () {
 
-       if (xhr.readyState == 4 && xhr.status == 200){
-        var myTeam = document.getElementById("fl"); 
-        var membresDispo = document.getElementById("fl"); 
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var myTeam = document.getElementById("monEquipe");
 
-        if (myTeam) {
-            myTeam.parentNode.appendChild(membre);
+            if (myTeam) {
+                myTeam.parentNode.appendChild(membre);
+            }
         }
-        if (membresDispo) {
-            membresDispo.parentNode.removeChild(membresDispo);
-          }
-       }
     }
 
-    
-    xhr.open("POST","gestionEquipe.php",true) ;
+
+    xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
-           'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1="+membre);
-    
-  }
+        'application/x-www-form-urlencoded;charset=utf-8');
+    xhr.send("val1=" + membre);
+
+}
+
+/* Suppression de membres dans une équipe */
+function addMemberTeam(nb) {
+    var xhr = getXHR();
+
+    var membre = document.getElementsByClassName("ligne_equipe")[nb].outerText;
+
+    console.log(membre);
+
+    xhr.onreadystatechange = function () {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var myTeam = document.getElementById("monEquipe");
+
+            if (myTeam) {
+                myTeam.parentNode.remove(membre);
+            }
+        }
+    }
+
+
+    xhr.open("POST", "gestionEquipe.php", true);
+    xhr.setRequestHeader('Content-Type',
+        'application/x-www-form-urlencoded;charset=utf-8');
+    xhr.send("val1=" + membre);
+
+}
 
