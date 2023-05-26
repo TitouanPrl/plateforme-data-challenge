@@ -138,7 +138,7 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
     return $id;
 }
 function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
-    $sql = "SELECT idUser FROM Inscritption WHERE idEvenement=$idEvenement";
+    $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
 
     return $inscrits;

@@ -17,6 +17,7 @@ session_start();
     <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
+    <script src="../../script/messagerie.js"></script>
 
 
 </head>
