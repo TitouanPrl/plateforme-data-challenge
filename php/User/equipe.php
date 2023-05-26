@@ -1,4 +1,8 @@
-<?php require '../Integrations/headerEtudiant.php'; 
+<?php require '../Integrations/headerEtudiant.php';
+
+/* On inclut les fonctions de manipulation de la BDD */
+require_once("../../bdd/fonctionsBDD.php");
+
 connect();
 ?>
 
@@ -8,28 +12,47 @@ connect();
     <div class="bordure">
     </div>
     <div class="corps">
-        <!-- Bouton pour créer une équipe -->
-        <a href="creerEquipe.php">Créer une équipe</a>
 
-        <!-- Affichage des membres de son équipe -->
-        <div id="monEquipe">
-            <?php 
-            /* On initialise le compteur pour naviguer dans la classe */
-            $i = 0;
-                foreach ($_SESSION['teamMembers'] as $member) {
-                    echo('<div class="ligne_equipe" onclick="supprMemberTeam(' . $i . ')">');
-                    if ($member == $_SESSION['infoTeam']['capitaine']) {
-                        echo('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
-                    }
-                    echo('<span class="nom_teamMember">' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>   
+        <?php
+        /* Si l'utilisateur n'a pas d'équipe, on affiche le bouton lui proposant d'en créer une */
+        if (!isset($_SESSION['infoUser']['idEquipe'])) {
+            echo ('<input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
+            <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>');
+        }
+
+        echo ('<!-- Affichage des membres de son équipe -->
+        <div id="monEquipe">');
+        /* On initialise le compteur pour naviguer dans la classe */
+        $i = 0;
+        foreach ($_SESSION['teamMembers'] as $member) {
+            echo ('<div class="ligne_equipe" onclick="supprMemberTeam(' . $i . ')">');
+
+            /* Si le membre est le capitaine, on affiche une couronne */
+            if ($member == $_SESSION['infoTeam']['capitaine']) {
+                echo ('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
+            }
+            echo ('<span class="nom_teamMember">' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>  
+                   <input class="idTeamMember" type="hidden" value="' . $member . '"> 
                     </div>');
-                    $i++;
-                }
-            ?>
-        </div>
+            $i++;
+        }
+        echo ('</div>');
+
+        /* On récupère le challenge auquel l'équipe participe */
+        $idEvent = $_SESSION['infoTeam']['idEvent'];
+
+        /* On récupère les étudiants inscrits au challenge */
+        $liste_inscrits = getInscrits($idEvent);
+
+        /* Champ de saisie pour ajouter un membre à l'équipe */
+        echo ('<div id="ajout_membre">
+        <input type="text" id="partipant" name="login" required>
+        <button type="button" onclick="addMemberTeam();">Ajouter à l\'équipe</button>
+        </div>');
+        ?>
     </div>
-    
-    
+
+
 
     <!-- les petits sapins, cherchez pas à comprendre -->
     <div class="sapins">
@@ -100,7 +123,7 @@ connect();
                 c-13.6,34-32.3,43.5-32.3,43.5c7.5-0.8,15.1-1.6,22.6-2.3c-17.9,34.1-38.4,44.2-38.4,44.3c-38,4.1-75.9,7.6-113.8,12.3
                 c0.4,3.3,0.8,7.6,1.3,10.9c0,13.3,1608,13.3,1608,0c0.4-3.3,0.8-7.6,1.3-10.9C1562,185.6,1518.8,181.6,1475.4,177z"></path>
             </svg>
-        </div> 
+        </div>
     </div>
 
 </main>
