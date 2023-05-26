@@ -12,10 +12,10 @@
     border: none;
     color: white;
     float: left;
-    width: 20%;
     background-color: var(--vert-trans);
     border-radius: 20px;
     height: fit-content;
+    width: fit-content;
 }
 
 #inscriptionDC {
