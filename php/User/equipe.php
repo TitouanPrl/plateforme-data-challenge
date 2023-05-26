@@ -8,18 +8,28 @@ connect();
     <div class="bordure">
     </div>
     <div class="corps">
+        <!-- Bouton pour créer une équipe -->
         <a href="creerEquipe.php">Créer une équipe</a>
+
+        <!-- Affichage des membres de son équipe -->
         <div id="monEquipe">
             <?php 
-                $members = getEquipeMembers($conn,$idEquipe)
+            /* On initialise le compteur pour naviguer dans la classe */
+            $i = 0;
+                foreach ($_SESSION['teamMembers'] as $member) {
+                    echo('<div class="ligne_equipe" onclick="supprMemberTeam(' . $i . ')">');
+                    if ($member == $_SESSION['infoTeam']['capitaine']) {
+                        echo('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
+                    }
+                    echo('<span class="nom_teamMember">' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>   
+                    </div>');
+                    $i++;
+                }
             ?>
         </div>
     </div>
     
     
-
-    <!-- RAJOUTER 2-3 TXT SINON CA FAIT VIDE -->
-
 
     <!-- les petits sapins, cherchez pas à comprendre -->
     <div class="sapins">

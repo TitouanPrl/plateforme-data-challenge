@@ -1,14 +1,7 @@
-<?php require '../Integrations/header.php';
-session_start();
+<?php require '../Integrations/headerEtudiant.php';
 
 /* On inclut les fonctions de manipulation de la BDD */
 require_once("../../bdd/fonctionsBDD.php");
-
-/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?message=1');
-    exit();
-}
 
 connect();
 
@@ -27,7 +20,7 @@ foreach ($tabSujets as $current) {
 
     echo ('  <!-- SUJETS-->
         <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
-             <div id="sujets">
+             <div class="sujets">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
         </a>');
