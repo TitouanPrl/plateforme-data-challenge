@@ -118,6 +118,9 @@ h2 {
     height: 980px;
     background-repeat: repeat;
 }
+main {
+    height: 980px;
+}
 
 #titres {
     text-shadow:1px 1px 20px black;

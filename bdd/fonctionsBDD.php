@@ -293,5 +293,9 @@ function setNote($idReponse,$note) { // définir la note de la réponse à une q
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
+function deleteMembreEquipe($conn,$idUser) {
+    $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
+    send($conn,$sql);
+}
 
 ?>
