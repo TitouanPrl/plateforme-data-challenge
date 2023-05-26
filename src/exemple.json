@@ -3,20 +3,8 @@
     "nbLignesMoyen": 1,
     "nbLignesMax": 1,
     "nbLignesMin": 1,
-    "nomFichier": {
-        "nomFonction": {
-            "nombreLignes": 1
-        },
-        "nomFonction2": {
-            "nombreLignes": 2
-        }
-    },
-    "nomFichier2": {
-        "nomFonction": {
-            "nombreLignes": 1
-        },
-        "nomFonction2": {
-            "nombreLignes": 2
-        }
+    "Fonctions": {
+        "nomFonction": 2,
+        "nomFonction2": 2
     } 
 }

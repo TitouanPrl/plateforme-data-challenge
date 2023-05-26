@@ -13,6 +13,9 @@ import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
+
+
+
 public class Serveur {
     // logger pour trace
     private static final Logger LOGGER = Logger.getLogger( Serveur.class.getName() );
@@ -53,9 +56,9 @@ public class Serveur {
 
 
         /**
-         * Manage POST request param
-         * @param httpExchange
-         * @return first value
+         * Gérer le corps de la requête POST
+         * @param httpExchange : requête http
+         * @return le corps de la requête
          */
         private String handlePostRequest(HttpExchange httpExchange) {
             try {
@@ -75,26 +78,20 @@ public class Serveur {
         
 
         /** 
-         * Generate simple response html page
-         * @param httpExchange
-         * @param requestParamVaue
+         * Générer une réponse HTML simple à partir d'un paramètre de requête
+         * @param httpExchange : 
+         * @param requestParamVaue : 
          */
         private void handleResponse(HttpExchange httpExchange, String requestParamValue)  throws  IOException {
             OutputStream outputStream = httpExchange.getResponseBody();
-            StringBuilder htmlBuilder = new StringBuilder();
-            htmlBuilder.append("<html>")
-                    .append("<body>")
-                    .append("<h1>")
-                    .append("Hello ")
-                    .append(requestParamValue)
-                    .append("</h1>")
-                    .append("</body>")
-                    .append("</html>");
-            // encode HTML content
-            String htmlResponse = htmlBuilder.toString();
+
+
+            // Traitement du fichier python envoyé par le client et envoi de la réponse au client
+            String json = PythonCodeAnalyzer.analyzePythonCode(requestParamValue);
+
             // this line is a must
-            httpExchange.sendResponseHeaders(200, htmlResponse.length());
-            outputStream.write(htmlResponse.getBytes());
+            httpExchange.sendResponseHeaders(200, json.length());
+            outputStream.write(json.getBytes());
             outputStream.flush();
             outputStream.close();
         }
@@ -102,7 +99,7 @@ public class Serveur {
         // Interface method to be implemented
         @Override
         public void handle(HttpExchange httpExchange) throws IOException {
-            LOGGER.info(" Je réponds");
+            LOGGER.info("Réponse à la requête");
             String requestParamValue=null;
             if("GET".equals(httpExchange.getRequestMethod())) {
                 LOGGER.info("Méthode GET");

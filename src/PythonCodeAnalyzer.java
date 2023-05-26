@@ -3,11 +3,12 @@
 
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+// import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.io.File;
+import java.io.StringReader;
 
 // Importation de la librairie jackson
 import com.fasterxml.jackson.core.JsonProcessingException;
@@ -25,18 +26,26 @@ public class PythonCodeAnalyzer {
 
     public static void main(String[] args) {
 
-        File folder = new File("py");
-        List<String> listeFichier = listeFichierDuDossier(folder, ".py");
+        // File folder = new File("py");
+        // List<String> listeFichier = listeFichierDuDossier(folder, ".py");
 
-        for (String fichier : listeFichier) {
-            System.out.println(fichier);
-            String pythonFilePath = "py/" + fichier;
-            List<FunctionData> functionDataList = analyzePythonCode(pythonFilePath);
-            System.out.println("###############################################################");
-            printFunctionStatistics(functionDataList);
+        // for (String fichier : listeFichier) {
+        //     System.out.println(fichier);
+        //     String pythonFilePath = "py/" + fichier;
+        //     List<FunctionData> functionDataList = analyzePythonCode(new FileReader(pythonFilePath).toString());
+        //     System.out.println("###############################################################");
+        //     printFunctionStatistics(functionDataList);
             
-        }
+        // }
 
+
+
+    }
+
+
+    // fonction test 
+    public int ajouter1(int a) {
+        return a + 1;
     }
     
 
@@ -64,102 +73,22 @@ public class PythonCodeAnalyzer {
 
 
 
-    /**
-     * Enlève les lignes vides d'un fichier python
-     * @param filePath : chemin du fichier python
-     * @return lines : liste de lignes non vides
-     */
-    public static List<String> enleverLignesVides(String filePath) {
-        List<String> lines = new ArrayList<>();
-        BufferedReader reader = null;
+  
+   
 
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.strip();
-
-                if (!line.isEmpty()) {
-                    lines.add(line);
-                }
-            }
-
-            return lines;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // fermeture du reader
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        // si on arrive ici, c'est qu'il y a eu une erreur
-        return null;
-    }
-
-    /**
-     * Enlève tous les commentaires d'un fichier python (il faut que les paramètres des fonctions soient sur une seule ligne)
-     * @param filePath : chemin du fichier python
-     * @return lines : liste de lignes sans commentaires
-     */
-    public static List<String> enleverCommentaires(String filePath) {
-        List<String> lines = new ArrayList<>();
-        BufferedReader reader = null;
-
-        try {
-            reader = new BufferedReader(new FileReader(filePath));
-            String line;
-
-            while ((line = reader.readLine()) != null) {
-                line = line.strip();
-
-                // enlever les commentaires en ligne
-                if (!line.isEmpty() && !line.startsWith("#")) {
-                    lines.add(line);
-                } 
-                // enlever les commentaires en bloc
-                else if (line.startsWith("'''")) {
-                    while (!line.endsWith("'''")) {
-                        line = reader.readLine();
-                    }
-                }
-            }
-
-            return lines;
-        } catch (IOException e) {
-            e.printStackTrace();
-        } finally {
-            // fermeture du reader
-            if (reader != null) {
-                try {
-                    reader.close();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-            }
-        }
-        // si on arrive ici, c'est qu'il y a eu une erreur
-        return null;
-    }
-
-
+    
 
     /**
      * Analyse le code python et retourne une liste de données sur les fonctions
-     * @param filePath : chemin du fichier python
+     * @param code : Fichier python sous forme de chaîne de caractères 
      * @return functionDataList : liste de données sur les fonctions
      */
-    public static List<FunctionData> analyzePythonCode(String filePath) {
+    public static String analyzePythonCode(String code) {
         List<FunctionData> functionDataList = new ArrayList<>();
         BufferedReader reader = null;
 
         try {
-            reader = new BufferedReader(new FileReader(filePath));
+            reader = new BufferedReader(new StringReader(code));
             String line;
             String currentFunctionName = null;
             int currentFunctionLines = 1;
@@ -179,11 +108,15 @@ public class PythonCodeAnalyzer {
 
                     // Commencer les données de la nouvelle fonction
                     currentFunctionName = line.substring(4, line.indexOf("("));
-                    currentFunctionLines = 0;
+                    currentFunctionLines = 1;
                 } else if (line.startsWith("#")) {
                     line = reader.readLine();
                 } else if (line.startsWith("'''")) {
                     while (!line.endsWith("'''")) {
+                        line = reader.readLine();
+                    }
+                } else if (line.startsWith("\"\"\"")) {
+                    while (!line.endsWith("\"\"\"")) {
                         line = reader.readLine();
                     }
                 }
@@ -208,9 +141,98 @@ public class PythonCodeAnalyzer {
             }
         }
 
-        return functionDataList;
+        // Conversion de la liste de fonctions en données sur les fonctions
+        Map<String, Object> statistiques = convertirEnMap(functionDataList);
+
+        // Conversion de la map en chaîne de caractères
+        String statistiquesEnJson = convertirEnJson(statistiques);
+
+        return statistiquesEnJson;
+        
     }
 
+
+
+    /**
+     * Convertit la liste de données sur les fonctions en une map
+     * @param functionDataList : liste de données sur les fonctions
+     * @return statistiques : map contenant les statistiques sur les fonctions
+     */
+    public static Map<String, Object> convertirEnMap(List<FunctionData> functionDataList) {
+        Map<String, Object> statistiques = new HashMap<>();
+        int totalLines = 0;
+        int maxLines = Integer.MIN_VALUE;
+        int minLines = Integer.MAX_VALUE;
+
+        for (FunctionData functionData : functionDataList) {
+            int lines = functionData.getLines();
+            totalLines += lines;
+            maxLines = Math.max(maxLines, lines);
+            minLines = Math.min(minLines, lines);
+        }
+
+        int numberOfFunctions = functionDataList.size();
+        double averageLines;
+        if (numberOfFunctions == 0) {
+            System.out.println("Aucune fonction trouvée");
+            averageLines = 0;
+
+        } else {
+            averageLines = (double) totalLines / numberOfFunctions;
+        }
+        
+        if (maxLines == Integer.MAX_VALUE) {
+            maxLines = 0;
+        }
+        if (minLines == Integer.MIN_VALUE) {
+            minLines = 0;
+        }
+        // ajout des données statistiques dans la map
+        statistiques.put("nbFonctions", numberOfFunctions);
+        statistiques.put("nbLignes", totalLines);
+        statistiques.put("nbLignesMax", maxLines);
+        statistiques.put("nbLignesMin", minLines);
+        statistiques.put("nbLignesMoy", averageLines);
+
+
+        Map<String,Integer> fonction = new HashMap<>();
+        // Statistiques de chaque fonction
+        for (FunctionData functionData : functionDataList) {
+            fonction.put(functionData.getFunctionName(), functionData.getLines());
+        }
+
+        statistiques.put("Fonctions", fonction);
+        
+
+        return statistiques;
+    }
+
+
+    /**
+     * Convertit la map en chaîne de caractères
+     * @param statistiques : map contenant les statistiques sur les fonctions
+     * @return json : chaîne de caractères contenant les statistiques sur les fonctions
+     */
+    public static String convertirEnJson(Map<String, Object> statistiques) {
+        // Conversion en json avec jackson
+        ObjectMapper mapper = new ObjectMapper();
+        String json = "";
+
+        try {
+            json = mapper.writeValueAsString(statistiques);   
+        } catch (JsonProcessingException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return json;
+    }
+        
+
+
+    /**
+     * Affiche les statistiques sur les fonctions
+     * @param functionDataList : liste de données sur les fonctions
+     */
     public static void printFunctionStatistics(List<FunctionData> functionDataList) {
         int totalLines = 0;
         int maxLines = Integer.MIN_VALUE;
@@ -259,16 +281,17 @@ public class PythonCodeAnalyzer {
         statistiques.put("nbLignesMoy", averageLines);
 
 
-
+        Map<String,Integer> fonction = new HashMap<>();
         // Statistiques de chaque fonction
         for (FunctionData functionData : functionDataList) {
             System.out.println("Fonction : " + functionData.getFunctionName());
             System.out.println("Nombre de lignes : " + functionData.getLines());
             System.out.println("---------------------------");
-            statistiques.put(functionData.getFunctionName(), functionData.getLines());
+            fonction.put(functionData.getFunctionName(), functionData.getLines());
+            // statistiques.put("Fonctions",functionData);
         }
 
-        
+        statistiques.put("Fonctions", fonction);
         // Conversion en json avec jackson
         ObjectMapper mapper = new ObjectMapper();
         String json = "";
