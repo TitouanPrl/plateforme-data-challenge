@@ -8,7 +8,10 @@
     </div>
     <main>
         <article>
-            <div style="padding-top:70px; display:flex; flex-wrap:wrap; justify-content:center; align-items:flex-base;height:980px;">
+            <div style="padding-top:40px; display:flex;flex-direction:column;align-items:center;height:980px;">
+                <div id="titreMessagerie">
+                    <h2 style="padding-left:39%;">Messagerie</h2>
+                </div>
                 <div class="messagerie" id="messagerie">
                     <div>
                         <input type="hidden" name="e1" id="e1" value="<?php echo $_SESSION["login_fic"]; ?>">
@@ -21,10 +24,10 @@
                     </div>
 
 
-                    <input type="button" id="env" value="" onclick="message()" hidden>
+                    <input type="button" id="envoi" value="" onclick="message()" hidden>
                     <div class="messages" id="messages">
                         <!-- Les messages -->
-                        <input type="text" name="msg" id="barreEnvoie" value="" placeholder="Envoyer un message...">
+                        <input type="text" name="barreEnvoie" id="barreEnvoie" value="" placeholder="Envoyer un message...">
                     </div>
                 </div>
             </div>
