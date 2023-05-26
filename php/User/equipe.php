@@ -17,7 +17,7 @@ connect();
             /* On initialise le compteur pour naviguer dans la classe */
             $i = 0;
                 foreach ($_SESSION['teamMembers'] as $member) {
-                    echo('<div class="ligne_equipe" onclick="supprMemberTeam()">');
+                    echo('<div class="ligne_equipe" onclick="supprMemberTeam(' . $i . ')">');
                     if ($member == $_SESSION['infoTeam']['capitaine']) {
                         echo('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
                     }

@@ -20,7 +20,7 @@ function scrollFunction() {
     }
 }
 
-/* Ajout de membres dans une équipe */
+/* Ajout d'un membre dans une équipe */
 function addMemberTeam() {
     var xhr = getXHR();
 
@@ -47,8 +47,8 @@ function addMemberTeam() {
 
 }
 
-/* Suppression de membres dans une équipe */
-function addMemberTeam(nb) {
+/* Suppression d'un membre dans une équipe */
+function supprMemberTeam(nb) {
     var xhr = getXHR();
 
     var membre = document.getElementsByClassName("ligne_equipe")[nb].outerText;
