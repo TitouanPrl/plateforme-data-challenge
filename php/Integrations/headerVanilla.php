@@ -14,6 +14,7 @@ session_start();
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="stylesheet" href="../../css/boutons.css" />
     <link rel="stylesheet" href="../../css/form.css" />
+    <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
 
@@ -33,6 +34,7 @@ session_start();
                 <a href="../General/listeChallenge.php">Liste Challenges</a>
                 <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
                 <a href="../Admin/accueilAdmin.php">Accueil admin</a>
+                <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >

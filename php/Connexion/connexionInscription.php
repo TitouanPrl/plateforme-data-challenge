@@ -2,21 +2,6 @@
 session_start();
 require '../Integrations/headerVanilla.php'; ?>
 
-<!DOCTYPE html>
-<html lang="FR">
-
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width" />
-
-  <title>IA Pau</title>
-  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
-  <link rel="stylesheet" href="../../css/style.css" />
-  <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
-  <script src="../../js/script.js"></script>
-
-
-</head>
 
 <body>
   <!-- HEADER -->
