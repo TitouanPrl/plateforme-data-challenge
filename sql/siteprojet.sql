@@ -4,10 +4,21 @@ CREATE DATABASE SiteWeb;
 USE SiteWeb;
 
 
+CREATE TABLE Evenement (
+    idEvenement INT PRIMARY KEY auto_increment,
+    kind VARCHAR(30), /* CHALLENGE OU BATTLE */
+    libelle VARCHAR(30),
+    descrip VARCHAR(1024),
+    dateD DATETIME,
+    dateF DATETIME
+);
+
 CREATE TABLE Equipe(
     idEquipe INTEGER PRIMARY KEY auto_increment,
+    idEvenement INTEGER,
     nom VARCHAR(64),
-    capitaine INTEGER
+    capitaine INTEGER,
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement)
 );
 
 CREATE TABLE Utilisateur(
@@ -33,16 +44,9 @@ CREATE TABLE Message (
     idMessage INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(250),
     idExpediteur INTEGER,
-    idDestinataire INTEGER
-);
-
-CREATE TABLE Evenement (
-    idEvenement INT PRIMARY KEY auto_increment,
-    kind VARCHAR(30), /* CHALLENGE OU BATTLE */
-    libelle VARCHAR(30),
-    descrip VARCHAR(1024),
-    dateD DATETIME,
-    dateF DATETIME
+    idDestinataire INTEGER,
+    FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser),
+    FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser)
 );
 
 CREATE TABLE Sujet (
@@ -54,13 +58,19 @@ CREATE TABLE Sujet (
     telGerant VARCHAR(16),
     emailGerant VARCHAR(250),
     lienRessources VARCHAR(250),
+    -- équipes du podium
+    idE1 INTEGER DEFAULT NULL,
+    idE2 INTEGER DEFAULT NULL,
+    idE3 INTEGER DEFAULT NULL,
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
 CREATE TABLE Inscription (
     idUser INTEGER,
     idEvenement INTEGER,
-    PRIMARY KEY (idUser,idEvenement)
+    PRIMARY KEY (idUser,idEvenement),
+    FOREIGN KEY (idUser) REFERENCES Utilisateur (idUser),
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement4    )
 );
 
 
@@ -73,15 +83,7 @@ CREATE TABLE Projet (
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
 
-CREATE TABLE Podium (
-    idPodium INTEGER PRIMARY KEY,
-    idE1 INTEGER DEFAULT NULL,
-    idE2 INTEGER DEFAULT NULL,
-    idE3 INTEGER DEFAULT NULL,
-    idSujet INTEGER,
-    FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 
-);
 
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,

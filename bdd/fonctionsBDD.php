@@ -101,6 +101,12 @@ function getEquipe($conn,$idEquipe) {  //renvoie nom, id et capitaine d'equipe
 
     return $equipe;
 }
+function getIDEquipeByCapitaineNom($conn,$capitaine,$nom) {
+    $sql = "SELECT idEquipe FROM Equipe WHERE capitaine=$capitaine AND nom=$nom";
+    $id = request($conn,$sql);
+
+    return $id;
+}
 function getEquipes($conn) { //récupère toutes les équipes
     $sql = "SELECT * FROM Equipe";
     $equipes = request($conn,$sql);
