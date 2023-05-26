@@ -13,10 +13,12 @@ import java.io.StringReader;
 // Importation de la librairie jackson
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
+// import com.sun.org.slf4j.internal.Logger;
 
 // importation du hashmap
 import java.util.HashMap;
 import java.util.Map;
+
 
 
 public class PythonCodeAnalyzer {
@@ -38,15 +40,16 @@ public class PythonCodeAnalyzer {
             
         // }
 
+        // String code = "def ajouter1(a):\n    return a+1\n'''je suis\nun commentaire'''def ajouter2(a):\n    return a+2\n'''je suis\nun autre commentaire'''";
 
+        // String json = analyzePythonCode(code);
+
+        // System.out.println(json);
 
     }
 
 
-    // fonction test 
-    public int ajouter1(int a) {
-        return a + 1;
-    }
+    
     
 
     /**
@@ -86,7 +89,7 @@ public class PythonCodeAnalyzer {
     public static String analyzePythonCode(String code) {
         List<FunctionData> functionDataList = new ArrayList<>();
         BufferedReader reader = null;
-
+        System.out.println("code de la requête : " + code);
         try {
             reader = new BufferedReader(new StringReader(code));
             String line;
@@ -103,6 +106,7 @@ public class PythonCodeAnalyzer {
                     // ajouter la fonction précédente
                     if (currentFunctionName != null) {
                         functionDataList.add(new FunctionData(currentFunctionName, currentFunctionLines));
+                        System.out.println(currentFunctionName + " : " + currentFunctionLines);
                     }
 
 
@@ -129,6 +133,10 @@ public class PythonCodeAnalyzer {
             if (currentFunctionName != null) {
                 functionDataList.add(new FunctionData(currentFunctionName, currentFunctionLines));
             }
+            // Afficher les données sur les fonctions
+            // for (FunctionData functionData : functionDataList) {
+            //     // System.out.println(functionData);
+            // }
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
@@ -150,6 +158,43 @@ public class PythonCodeAnalyzer {
         return statistiquesEnJson;
         
     }
+
+
+
+
+/**
+ * Supprime les lignes vides
+ * @param texte : texte à analyser
+ * @return texte sans les lignes vides
+ */
+    public static String supprimerLignesVides(String texte) {
+	    String[] lignes = texte.split("\\r?\\n");
+	    StringBuilder sb = new StringBuilder();
+	    for (String ligne : lignes) {
+	        if (!ligne.trim().isEmpty()) {
+	            sb.append(ligne).append("\n");
+	        }
+	    }
+	    return sb.toString();
+	}
+	
+
+
+    /**
+     * Supprime les lignes de commentaires commençant par #
+     * @param texte : texte à analyser
+     * @return texte sans les lignes de commentaires
+     */
+	public static String supprimerHastags(String texte) {
+		String[] lignes = texte.split("\\r?\\n");
+	    StringBuilder sb = new StringBuilder();
+	    for (String ligne : lignes) {
+	        if (!ligne.trim().startsWith("#")) {
+	            sb.append(ligne).append("\n");
+	        }
+	    }
+	    return sb.toString();
+	}
 
 
 
@@ -343,6 +388,15 @@ public class PythonCodeAnalyzer {
          */
         public int getLines() {
             return lines;
+        }
+
+        /**
+         * Affiche les données de la fonction
+         * @return String : chaîne de caractères contenant les données de la fonction
+         */
+        @Override
+        public String toString() {
+            return "FunctionData [functionName=" + functionName + ", lines=" + lines + "]";
         }
     }
 

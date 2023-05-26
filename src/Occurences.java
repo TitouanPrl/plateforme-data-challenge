@@ -3,6 +3,12 @@ import java.io.FileReader;
 import java.io.IOException;
 
 public class Occurences {
+
+	public static void main(String[] args) {
+		String texte = "\ndef hello():\n\n	#jesuisuncommentaire\n	'''commentaire\n	en\n	bloc'''\n	print(\"Hello World\")";
+		texte = supprimerCommentaires(texte);
+		System.out.println(texte);
+	}
 	
 	public static String supprimerLignesVides(String texte) {
 	    String[] lignes = texte.split("\\r?\\n");

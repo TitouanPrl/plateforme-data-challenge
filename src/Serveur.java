@@ -21,7 +21,7 @@ public class Serveur {
     private static final Logger LOGGER = Logger.getLogger( Serveur.class.getName() );
     private static final String SERVEUR = "localhost"; // url de base du service
     private static final int PORT = 8001; // port serveur
-    private static final String URL = "/test"; // url de base du service
+    private static final String URL = "/projet/php"; // url de base du service
     // boucle principale qui lance le serveur sur le port 8001, à l'url test
     public static void main(String[] args) {
         HttpServer server = null;
@@ -64,12 +64,18 @@ public class Serveur {
             try {
                 InputStream inputStream = httpExchange.getRequestBody();
                 BufferedReader reader = new BufferedReader(new InputStreamReader(inputStream));
-                StringBuilder bodyBuilder = new StringBuilder();
+                StringBuilder codeBuilder = new StringBuilder();
                 String line;
                 while ((line = reader.readLine()) != null) {
-                    bodyBuilder.append(line);
+                    codeBuilder.append(line).append("\n");
                 }
-                return bodyBuilder.toString();
+
+                String pythonCode = codeBuilder.toString();
+                
+                // Traiter le fichier python envoyé par le client et envoyer la réponse au client
+                String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
+
+                return result;
             } catch (IOException e) {
                 LOGGER.warning("Erreur lors de la lecture du corps de la requête : " + e.getMessage());
             }
@@ -85,10 +91,14 @@ public class Serveur {
         private void handleResponse(HttpExchange httpExchange, String requestParamValue)  throws  IOException {
             OutputStream outputStream = httpExchange.getResponseBody();
 
+            // Envoi de la réponse au client 
+            String json = requestParamValue;
 
-            // Traitement du fichier python envoyé par le client et envoi de la réponse au client
-            String json = PythonCodeAnalyzer.analyzePythonCode(requestParamValue);
-
+            // Spécifier le contenu de la réponse et envoyer les en-têtes HTTP
+            httpExchange.getResponseHeaders().set("Content-Type", "application/json");
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Origin", "*");
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Methods", "POST");
+            httpExchange.getResponseHeaders().add("Access-Control-Allow-Headers", "Content-Type");
             // this line is a must
             httpExchange.sendResponseHeaders(200, json.length());
             outputStream.write(json.getBytes());
