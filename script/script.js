@@ -24,6 +24,7 @@ function scrollFunction() {
 function CreateTeam(nom_prenom_cap) {
     var xhr = getXHR();
 
+    /* On récupère le nom de l'équipe et celui du challenge */
     var nomTeam = document.getElementById("nom_equipe").innerText;
     var challenge = document.getElementById("nom_challenge").innerText;
 
@@ -32,11 +33,14 @@ function CreateTeam(nom_prenom_cap) {
 
     xhr.onreadystatechange = function () {
 
+        /* On ajoute le capitaine à l'équipe dans l'affichage et on cache le form de création d'équipe */
         if (xhr.readyState == 4 && xhr.status == 200) {
             var myTeam = document.getElementById("monEquipe");
+            var formEquipe = document.getElementById("creer_equipe");
 
             if (myTeam) {
                 myTeam.parentNode.appendChild(nom_prenom_cap);  // SUREMENT A REFAIRE EN CREEANT UN ELMT DIV
+                formEquipe.style.visibility = "hidden";
             }
         }
     }
@@ -54,10 +58,8 @@ function addMemberTeam(idNewMember) {
     var xhr = getXHR();
 
     var membre = document.getElementById("participant").innerText;
-    var nomTeam = document.getElementById("nom_equipe").innerText;
 
     console.log(membre);
-    console.log(nomTeam);
 
     xhr.onreadystatechange = function () {
 
@@ -74,7 +76,7 @@ function addMemberTeam(idNewMember) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1=" + membre + "&type=ajout" + "&nomTeam=" + nomTeam);
+    xhr.send("val1=" + membre + "&type=ajout");
 
 }
 

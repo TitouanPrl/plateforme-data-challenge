@@ -16,9 +16,11 @@ connect();
         <?php
         /* Si l'utilisateur n'a pas d'équipe, on affiche les champs et le bouton lui proposant d'en créer une */
         if (!isset($_SESSION['infoUser']['idEquipe'])) {
-            echo ('<input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
+            echo ('<div id="creer_equipe">
+            <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
             <input type="text" id="nom_challenge" placeholder="Challenge auquel vous souhaitez inscrire votre équipe">
-            <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>');
+            <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+            </div>');
         }
 
         /* Affichage des membres de l'équipe */
