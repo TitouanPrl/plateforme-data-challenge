@@ -1,4 +1,9 @@
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerVanilla.php'; 
+
+/* On initialise les variables de session contenant les informations sur les challenges */
+require_once 'initVarChallenges.php'; 
+
+?>
 
 <!-- MAIN CONTENT -->
 

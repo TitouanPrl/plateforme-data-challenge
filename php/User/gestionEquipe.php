@@ -24,8 +24,10 @@ if(isset($_POST["type"])) {
 
 if(isset($_POST["idUser"])) {
     $idNewMember = $_POST["idUser"];
+    $idTeamToAdd = getIDEquipeByIDCapitaine($conn, $_SESSION['infoUser']['idUser']);
+    $teamToAdd = getEquipe($conn,$idTeamToAdd);
     $infosNewMember = getUtilisateurById($conn,$idNewMember);
-    $liste_inscrits = getInscrits($idEvenement);
+    $liste_inscrits = getInscrits($teamToAdd['idEvenement']);
     $inscrit = false;
 
     /* on vérifie que le membre à ajouter est bien inscrit au projet */
@@ -36,8 +38,14 @@ if(isset($_POST["idUser"])) {
     }
 }
 
+/* On récupère le nom de l'équipe */
 if(isset($_POST["nomTeam"])) {
     $nomTeam = $_POST['nomTeam'];
+}
+
+/* On récupère l'ID de l'évènement auquel l'équipe s'inscrit */
+if(isset($_POST["challenge"])) {
+    $IDchallenge = getIDByNomEvenement($conn, $_POST['challenge']);
 }
 
 /* On écrit l'id du capitaine de l'équipe */
@@ -45,21 +53,23 @@ $idCap = $_SESSION['infoUser']['idUser'];
 
 
 /* ==== AJOUT D'UN CAPITAINE ==== */
+/* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
-    createEquipe($conn,$nomTeam,$idCap);
-    $idEquipe = getIDEquipeByCapitaineNom($conn, $idCap, $nomTeam);
+    createEquipe($conn, $IDchallenge, $nomTeam, $idCap);
+    $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     $_SESSION['infoUser']['idEquipe'] = $idEquipe;
     addMembreEquipe($conn, $idEquipe, $idCap);
 }
 
 /* ==== AJOUT D'UN MEMBRE ==== */
-/* On vérifie que le capitaine a une équipe, que le membre n'en a pas, mais qu'il est bien inscrit au challenge */
+/* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
-    $idEquipe = getIDEquipeByCapitaineNom($conn, $idCap, $nomTeam);
+    $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     addMembreEquipe($conn,$idEquipe,$idNewMember);
 }
 
 /* ==== SUPPRESSION D'UN MEMBRE ==== */
+/* On vérifie que le capitaine a une équipe, que le membre en a une, et qu'il est bien inscrit au challenge */
 else if (($type == 'suppr') && (isset($_SESSION['infoUser']['idEquipe'])) && (isset($infosNewMember['idEquipe'])) && $inscrit) {
     deleteMembreEquipe($conn,$idNewMember);
 }

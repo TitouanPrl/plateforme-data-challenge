@@ -7,7 +7,7 @@ echo ('<!-- MAIN CONTENT -->
 
 
 /* Affichage des challenges disponibles */
-foreach ($_SESSION["data"]['Evenement'] as $current) {
+foreach ($_SESSION['Evenements'] as $current) {
 
     echo ('<a href="gestionInscription.php?challenge=' . $current['idEvenement'] . '">
             <div class="challenge">

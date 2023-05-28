@@ -71,11 +71,21 @@ function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
 
     return $podium;
 }
-function getSujetByEvenement($conn,$idEvenement) { //récupère touts les sujets d'un évenement 
+
+/* Récupère touts les sujets d'un évenement */
+function getSujetByEvenement($conn,$idEvenement) { 
     $sql = "SELECT * FROM Sujet WHERE idEvenement=$idEvenement";
     $sujets = request($conn,$sql);
 
     return $sujets;
+}
+
+/* Récupère l'ID d'un évent en fonction de son nom */
+function getIDByNomEvenement($conn,$nomEvenement) {
+    $sql = "SELECT idEvenement FROM Evenement WHERE libelle=$nomEvenement";
+    $idEvent = request($conn,$sql);
+
+    return $idEvent;
 }
 function getSujetById($conn,$idSujet) {
     $sql = "SELECT * FROM Sujet WHERE idSujet=$idSujet";
@@ -101,8 +111,8 @@ function getEquipe($conn,$idEquipe) {  //renvoie nom, id et capitaine d'equipe
 
     return $equipe;
 }
-function getIDEquipeByCapitaineNom($conn,$capitaine,$nom) {
-    $sql = "SELECT idEquipe FROM Equipe WHERE capitaine=$capitaine AND nom=$nom";
+function getIDEquipeByIDCapitaine($conn,$capitaine) {
+    $sql = "SELECT idEquipe FROM Equipe WHERE capitaine=$capitaine";
     $id = request($conn,$sql);
 
     return $id;
@@ -139,6 +149,14 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
 }
 function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
+    $inscrits = request($conn,$sql);
+
+    return $inscrits;
+}
+
+/* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
+function getInscritsSansEquipe($idEvenement) {  
+    $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
     $inscrits = request($conn,$sql);
 
     return $inscrits;
@@ -206,8 +224,8 @@ function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
     send($conn,$sql);
 }
-function createEquipe($conn,$nom,$capitaine) {
-    $sql = "INSERT INTO Equipe (nom,capitaine) VALUES ($nom,$capitaine)";
+function createEquipe($conn, $idEvenement, $nom, $capitaine) {
+    $sql = "INSERT INTO Equipe (idEvenement,nom,capitaine) VALUES ($idEvenement,$nom,$capitaine)";
     send($conn,$sql);
 }
 function createEvenement($conn,$libelle,$descrip,$dateD,$dateF) {
