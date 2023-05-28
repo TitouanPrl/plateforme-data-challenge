@@ -30,7 +30,7 @@ connect();
             }
 
             echo('</datalist>
-            <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . '_' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+            <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
             </div>');
         }
 
@@ -46,8 +46,7 @@ connect();
             if ($member == $_SESSION['infoTeam']['capitaine']) {
                 echo ('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
             }
-            echo ('<span class="nom_teamMember">' . getUtilisateurById($conn, $member)['prenom'] . '_' . getUtilisateurById($conn, $member)['nom'] . ' </span>  
-                   <input class="idTeamMember" type="hidden" value="' . $member . '"> 
+            echo ('<span class="nom_teamMember id="' . $member . '">' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>  
                     </div>');
             $i++;
         }
@@ -67,7 +66,7 @@ connect();
 
             /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */            
             foreach($liste_inscrits as $current) {
-                echo('<option value="' . $current['prenom'] . '_' . $current['nom'] . ' id="' . $current['prenom'] . '_' . $current['nom'] . '>');
+                echo('<option value="' . $current['prenom'] . ' ' . $current['nom'] . ' name="' . $current['idUser'] . '>');
             }
 
             echo('</datalist>

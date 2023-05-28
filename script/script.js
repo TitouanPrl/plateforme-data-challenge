@@ -22,11 +22,11 @@ function scrollFunction() {
 
 /* Création d'une équipe */
 function CreateTeam(nom_prenom_cap) {
-    let xhr = getXHR();
+    var xhr = getXHR();
 
     /* On récupère le nom de l'équipe et celui du challenge */
-    let nomTeam = document.getElementById("nom_equipe").innerText;
-    let challenge = document.getElementById("nom_challenge").innerText;
+    var nomTeam = document.getElementById("nom_equipe").innerText;
+    var challenge = document.getElementById("nom_challenge").innerText;
 
     console.log(nomTeam);
     console.log(challenge);
@@ -65,7 +65,7 @@ function CreateTeam(nom_prenom_cap) {
         }
     }
 
-
+    /* UPDATE DES VARS SESSIONS ET DE LA BDD */
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
@@ -75,32 +75,46 @@ function CreateTeam(nom_prenom_cap) {
 
 /* Ajout d'un membre dans une équipe */
 function addMemberTeam(idNewMember) {
-    let xhr = getXHR();
+    var xhr = getXHR();
 
-    let membre = document.getElementById("participant").innerText;
-    let membreInList = document.getElementById(membre);
+    var membre = document.getElementById("participant").value;
+    var idMembre = document.getElementById("participant").name;
 
     console.log(membre);
-    console.log(membreInList);
+    console.log(idMembre);
 
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
             let myTeam = document.getElementById("monEquipe");
             let listInscrits = document.getElementById("liste_participants");
+            let memberToDelete = document.getElementsByName(idMembre);
+
+            /* === On crée la ligne à ajouter et ses différents éléments === */
+            let newLine = document.createElement("div");
+                newLine.class = "ligne_equipe";
+            
+            /* Nom Prénom */
+            let nom = document.createElement("span");
+                nom.class = "nom_teamMember";
+                nom.id = idMembre;
+                nom.innerText = membre;
+
+            /* On insère les éléments dans la ligne */
+            newLine.appendChild(nom);
 
             /* On ajoute le membre à l'équipe */
             if (myTeam) {
-                myTeam.appendChild(membre);
+                myTeam.appendChild(newLine);
             }
             /* Et on le retire de la liste des participants disponibles */
             if (listInscrits) {
-                listInscrits.removeChild(membreInList);
+                listInscrits.removeChild(memberToDelete);
             }
         }
     }
 
-
+    /* UPDATE DES VARS SESSIONS ET DE LA BDD */
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
@@ -110,31 +124,39 @@ function addMemberTeam(idNewMember) {
 
 /* Suppression d'un membre dans une équipe */
 function supprMemberTeam(nb) {
-    let xhr = getXHR();
+    var xhr = getXHR();
 
-    let membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
-    let idMembre = document.getElementById("idTeamMember").innerText;
+    var membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
+    var idMembre = document.getElementsByClassName("nom_teamMember")[nb].id;
 
     console.log(membre);
+    console.log(idMembre);
 
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
             let myTeam = document.getElementById("monEquipe");
             let listInscrits = document.getElementById("liste_participants");
+            let memberToDelete = document.getElementsByClassName("ligne_equipe")[nb];
+            
+            /* On crée la ligne à ajouter et ses différents éléments */
+            let newOption = document.createElement("option");
+                newOption.value = membre;
+                newOption.name = idMembre;
 
-            /* On retire le membre de l'équipe */
-            if (myTeam) {
-                myTeam.removeChild(membre);
-            }
-            /* Et on le remet dans la liste des participants disponibles */
+            /* On met le membre dans la liste des participants disponibles */
             if (listInscrits) {
-                listInscrits.appendChild(membreInList);
+                listInscrits.appendChild(newOption);
             }
+
+            /* Et on le retire de l'équipe */
+            if (myTeam) {
+                myTeam.removeChild(memberToDelete);
+            }   
         }
     }
 
-
+    /* UPDATE DES VARS SESSIONS ET DE LA BDD */
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
