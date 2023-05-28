@@ -12,37 +12,30 @@ function nouvelleConv() {
         if(this.readyState == 4 && this.status == 200){
 
             let answer = this.responseText.split('|')
-            document.getElementById('conv').value = answer[1];
+            document.getElementById('conv').value = answer[0];
 
-            if (answer[0] == "add") {
-
-                let ajout = destinataire;
-                let node = document.createElement("div");
-                let textnode = document.createTextNode(ajout);
-                node.appendChild(textnode);
+            let ajout = destinataire;
+            let node = document.createElement("div");
+            let textnode = document.createTextNode(ajout);
+            node.appendChild(textnode);
 
 
-                node.setAttribute("onclick", "afficheConv('"+answer[1]+"')");
-                node.setAttrianswerbute("id", answer[1]);
-                node.setAttribute("class", "dest");
+            node.setAttribute("onclick", "afficheConv('"+answer[1]+"')");
+            node.setAttribute("id", answer[1]);
+            node.setAttribute("class", "dest");
 
-                document.getElementById("Utilisateur").appendChild(node);
+            document.getElementById("Utilisateur").appendChild(node);
 
-                //ajout du logo "poubelle" pour supprimer la conversation
-                let button = document.createElement("img");
-                button.setAttribute("onclick", "delConv(this)");
-                button.setAttribute("class","poubelleConv");
-                button.setAttribute("src", "../img/poubelle.png");
-                button.setAttribute("id", answer[1]);
-                document.getElementById("Utilisateur").appendChild(button);
+            //ajout du logo "poubelle" pour supprimer la conversation
+            let button = document.createElement("img");
+            button.setAttribute("onclick", "delConv(this)");
+            button.setAttribute("class","poubelleConv");
+            button.setAttribute("src", "../img/poubelle.png");
+            button.setAttribute("id", answer[1]);
+            document.getElementById("Utilisateur").appendChild(button);
 
-                afficheConv(answer[1]);
-            }
-
-            else if (answer[0] == "Non") {
-                alert("Cette personne n'existe pas");
-            }
-
+            afficheConv(answer[1]);
+            
         }
     }
 

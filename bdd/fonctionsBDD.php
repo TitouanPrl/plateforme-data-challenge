@@ -196,6 +196,12 @@ function getConversationById($conn,$idConv) {
 
     return $conversation;
 }
+function getIDConversationByCorres($conn,$idExp,$idDest) {
+    $sql = "SELECT idConversation FROM Conversation WHERE (idExpediteur = $idExp AND idDestinataire = $idDest) OR (idExpediteur = $idDest AND idDestinataire = $idExp) LIMIT 1";
+    $id = request($conn,$sql);
+
+    return $id;
+}
 
 
 
