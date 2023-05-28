@@ -93,6 +93,10 @@ function addMemberTeam(idNewMember) {
             /* === On crée la ligne à ajouter et ses différents éléments === */
             let newLine = document.createElement("div");
                 newLine.class = "ligne_equipe";
+                /* On récupère le compteur du nb d'équipiers */
+                compteur = parseInt(myTeam.lastChild.id);
+                newLine.id = compteur+1;
+                newLine.onclick = "supprMemberTeam(" + compteur+1 + ")"
             
             /* Nom Prénom */
             let nom = document.createElement("span");

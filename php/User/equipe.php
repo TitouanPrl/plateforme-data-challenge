@@ -40,7 +40,7 @@ connect();
         /* On initialise le compteur pour naviguer dans la classe */
         $i = 0;
         foreach ($_SESSION['teamMembers'] as $member) {
-            echo ('<div class="ligne_equipe" onclick="supprMemberTeam(' . $i . ')">');
+            echo ('<div class="ligne_equipe" id="' . $i . '" onclick="supprMemberTeam(' . $i . ')">');
 
             /* Si le membre est le capitaine, on affiche une couronne */
             if ($member == $_SESSION['infoTeam']['capitaine']) {
