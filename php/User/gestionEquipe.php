@@ -36,8 +36,14 @@ if(isset($_POST["idUser"])) {
     }
 }
 
+/* On récupère le nom de l'équipe */
 if(isset($_POST["nomTeam"])) {
     $nomTeam = $_POST['nomTeam'];
+}
+
+/* On récupère l'ID de l'évènement auquel l'équipe s'inscrit */
+if(isset($_POST["challenge"])) {
+    $IDchallenge = getIDByNomEvenement($conn, $_POST['challenge']);
 }
 
 /* On écrit l'id du capitaine de l'équipe */
@@ -46,7 +52,7 @@ $idCap = $_SESSION['infoUser']['idUser'];
 
 /* ==== AJOUT D'UN CAPITAINE ==== */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
-    createEquipe($conn,$nomTeam,$idCap);
+    createEquipe($conn, $IDchallenge, $nomTeam, $idCap);
     $idEquipe = getIDEquipeByCapitaineNom($conn, $idCap, $nomTeam);
     $_SESSION['infoUser']['idEquipe'] = $idEquipe;
     addMembreEquipe($conn, $idEquipe, $idCap);

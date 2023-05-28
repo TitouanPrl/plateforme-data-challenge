@@ -25,8 +25,10 @@ function CreateTeam(nom_prenom_cap) {
     var xhr = getXHR();
 
     var nomTeam = document.getElementById("nom_equipe").innerText;
+    var challenge = document.getElementById("nom_challenge").innerText;
 
     console.log(nomTeam);
+    console.log(challenge);
 
     xhr.onreadystatechange = function () {
 
@@ -43,7 +45,7 @@ function CreateTeam(nom_prenom_cap) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("type=ajout" + "&nomTeam=" + nomTeam);
+    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge);
 
 }
 

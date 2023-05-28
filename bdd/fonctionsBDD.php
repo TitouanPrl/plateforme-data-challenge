@@ -71,11 +71,21 @@ function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
 
     return $podium;
 }
-function getSujetByEvenement($conn,$idEvenement) { //récupère touts les sujets d'un évenement 
+
+/* Récupère touts les sujets d'un évenement */
+function getSujetByEvenement($conn,$idEvenement) { 
     $sql = "SELECT * FROM Sujet WHERE idEvenement=$idEvenement";
     $sujets = request($conn,$sql);
 
     return $sujets;
+}
+
+/* Récupère l'ID d'un évent en fonction de son nom */
+function getIDByNomEvenement($conn,$nomEvenement) {
+    $sql = "SELECT idEvenement FROM Evenement WHERE libelle=$nomEvenement";
+    $idEvent = request($conn,$sql);
+
+    return $idEvent;
 }
 function getSujetById($conn,$idSujet) {
     $sql = "SELECT * FROM Sujet WHERE idSujet=$idSujet";
