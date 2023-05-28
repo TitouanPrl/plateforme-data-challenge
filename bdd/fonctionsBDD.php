@@ -154,6 +154,14 @@ function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites �
     return $inscrits;
 }
 
+/* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
+function getInscritsSansEquipe($idEvenement) {  
+    $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
+    $inscrits = request($conn,$sql);
+
+    return $inscrits;
+}
+
 
 
 function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisateurs attachés à un sujet
