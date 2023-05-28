@@ -29,7 +29,7 @@ require '../Integrations/headerVanilla.php'; ?>
     if (isset($_GET['message'])) {
       switch ($_GET['message']) {
         case '1':
-          echo "<p id='notif'>Il semblerait que vous n'ayez pas rentré vos identifiants.</p>";
+          echo "<p id='notif'>Il semblerait que vous n'ayiez pas rentré vos identifiants.</p>";
           break;
 
         case '2':

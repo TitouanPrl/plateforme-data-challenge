@@ -100,7 +100,7 @@ function supprMemberTeam(nb) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1=" + membre + "&type=suppr" + "&idUser=" + idUser);
+    xhr.send("val1=" + membre + "&type=suppr" + "&idUser=" + idMembre);
 
 }
 

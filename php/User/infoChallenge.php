@@ -8,14 +8,14 @@ connect();
 /* On récupère le challenge sélectionné */
 $idEvent = $_GET['challenge'];
 
-/* On récupère les sujets associés au challenge */
+/* On récupère les sujets associés au challenge dans la BDD */
 $tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 
 <main>');
 
-/* Affichage des challenges disponibles */
+/* Affichage des sujets disponibles */
 foreach ($tabSujets as $current) {
 
     echo ('  <!-- SUJETS-->
