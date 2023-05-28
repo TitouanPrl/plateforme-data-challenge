@@ -70,7 +70,7 @@ CREATE TABLE Inscription (
     idEvenement INTEGER,
     PRIMARY KEY (idUser,idEvenement),
     FOREIGN KEY (idUser) REFERENCES Utilisateur (idUser) on delete cascade,
-    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement4) on delete cascade
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
 
