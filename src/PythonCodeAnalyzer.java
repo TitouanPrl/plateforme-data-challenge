@@ -49,13 +49,48 @@ public class PythonCodeAnalyzer {
     }
 
 
+
+    /**
+     * Compte le nombre d'occurences de mots dans un texte 
+     * @param texte : texte dans lequel on cherche les occurences
+     * @param mot : mot dont on cherche le nombre d'occurences
+     * @return nbOccurences : nombre d'occurences du mot dans le texte
+     */
+    public static int nbOccurences(String texte, String mot) {
+        int nbOccurences = 0;
+        String[] lignes = texte.split("\\r?\\n");
+        for (String ligne : lignes) {
+            if (ligne.contains(mot)) {
+                nbOccurences++;
+            }
+        }
+        return nbOccurences;
+    }
+
+
+    /**
+     * Fonction qui prend en entrée une liste de mot sous forme de chaîne de caractères et qui retourne une Map avec le nombre d'occurences de chaque mot
+     * @param listeMots : liste de mots sous forme de chaîne de caractères. Les mots sont séparés par des virgules
+     * @param texte : texte dans lequel on cherche les occurences
+     * @return mapOccurences : map avec le nombre d'occurences de chaque mot
+     */
+    public static Map<String, Integer> occurencesMots(String listeMots, String texte) {
+        Map<String, Integer> mapOccurences = new HashMap<>();
+        String[] mots = listeMots.split(",");
+        for (String mot : mots) {
+            mapOccurences.put(mot, nbOccurences(texte, mot));
+        }
+        return mapOccurences;
+    }
+
+
     
     
 
     /**
      * Affiche la liste des fichiers du dossier
      * @param folder : répertoire cible
-     * @param extension : extension souhaitée des fichiers
+     * @param extension : extension des fichiers souhaitée 
      * @return liste des fichiers du dossier qui ont l'extension donnée
      */
     public static List<String> listeFichierDuDossier(final File folder, String extension) {
@@ -76,6 +111,9 @@ public class PythonCodeAnalyzer {
 
 
 
+
+
+
   
    
 
@@ -87,6 +125,7 @@ public class PythonCodeAnalyzer {
      * @return functionDataList : liste de données sur les fonctions
      */
     public static String analyzePythonCode(String code) {
+        code = Occurences.supprimerCommentaires(code);
         List<FunctionData> functionDataList = new ArrayList<>();
         BufferedReader reader = null;
         System.out.println("code de la requête : " + code);
@@ -275,7 +314,7 @@ public class PythonCodeAnalyzer {
 
 
     /**
-     * Affiche les statistiques sur les fonctions
+     * Affiche les statistiques sur les fonctions (méthode qui permet de vérifier les résultats)
      * @param functionDataList : liste de données sur les fonctions
      */
     public static void printFunctionStatistics(List<FunctionData> functionDataList) {

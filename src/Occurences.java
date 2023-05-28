@@ -5,7 +5,7 @@ import java.io.IOException;
 public class Occurences {
 
 	public static void main(String[] args) {
-		String texte = "\ndef hello():\n\n	#jesuisuncommentaire\n	'''commentaire\n	en\n	bloc'''\n	print(\"Hello World\")";
+		String texte = "\n def hello(): \n\n\t#jesuisuncommentaire\n\t'''commentaire\n\ten\n\tbloc'''\n\tprint(\"Hello World\") '''\tcommentaire\nen\nbloc2\n'''\ndef fonction():\n\treturn 0";
 		texte = supprimerCommentaires(texte);
 		System.out.println(texte);
 	}
@@ -103,6 +103,12 @@ public class Occurences {
 		return sb.toString();
 	}
 	
+
+	/**
+	 * Convertit un fichier texte en String
+	 * @param chemin : chemin du fichier texte
+	 * @return String du fichier texte
+	 */
 	public static String txtToString(String chemin) {
         StringBuilder stringBuilder = new StringBuilder();
         String ligne;
@@ -118,21 +124,18 @@ public class Occurences {
     }
 	
 	
+	/**
+	 * Supprime les commentaires et les lignes vides d'un code python
+	 * @param texte : code python
+	 * @return code python sans commentaires et lignes vides
+	 */
 	public static String supprimerCommentaires(String texte) {
 		String texteG = supprimerQuotes1(texte);
 		String texteH = supprimerQuotes2(texteG);
 		String texteS = supprimerHastags(texteH);
 		texteS = supprimerLignesVides(texteS);
-		return texteS;
+		return texteS.strip();
 	}
 	
-	
-	// public static void main(String[] args) {
-	// 	String chemin = "Fichiers/python/fichier_python.txt";
-	// 	String texte=txtToString(chemin);
-	// 	String recherche = "blabla";
-	// 	System.out.println((supprimerCommentaires(texte)));
-    //     int nboccurence = occurence(texte, recherche);
-    //     System.out.println("Nombre de mots : " + nboccurence);
-    // }
+
 }
