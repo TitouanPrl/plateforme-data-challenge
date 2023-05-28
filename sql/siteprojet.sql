@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS SiteWeb;
+DROP DATABASE IF EXISTS SiteProjet;
 
-CREATE DATABASE SiteWeb;
-USE SiteWeb;
+CREATE DATABASE SiteProjet;
+USE SiteProjet;
 
 
 CREATE TABLE Evenement (
@@ -40,9 +40,17 @@ CREATE TABLE Utilisateur(
 );
 
 
-CREATE TABLE Message (
+CREATE TABLE Messages (
     idMessage INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(250),
+    idExpediteur INTEGER,
+    idDestinataire INTEGER,
+    FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser),
+    FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser)
+);
+
+CREATE TABLE Conversation (
+    idConversation INTEGER PRIMARY KEY auto_increment,
     idExpediteur INTEGER,
     idDestinataire INTEGER,
     FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser),
@@ -70,7 +78,7 @@ CREATE TABLE Inscription (
     idEvenement INTEGER,
     PRIMARY KEY (idUser,idEvenement),
     FOREIGN KEY (idUser) REFERENCES Utilisateur (idUser),
-    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement4    )
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement)
 );
 
 
@@ -137,5 +145,9 @@ UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=1;
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=2;
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=3;
 
-INSERT INTO Message (contenu, idExpediteur,idDestinataire) VALUES ("arrête d'être méchant >:(",1,2);
+INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("arrête d'être méchant >:(",1,2);
+INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("toi arrête >:(",2,1);
+INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("grrr",1,2);
+INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("!!!",2,1);
+INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("!!!!!!",2,1);
 

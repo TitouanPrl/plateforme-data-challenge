@@ -6,37 +6,44 @@ require_once('bddData.php');
 $conn;
 
 // CONNEXION / DÉCONNEXION
+
 function connect() {
-    global $conn, $servername, $username, $password, $bddname;
-    $conn = mysqli_connect($servername, $username, $password, $bddname);
-    if ($conn->connect_error) {
+    global $conn, $servername, $username, $password, $dbname;
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return true;
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
         return false;
     }
-    return true;
-}
-function disconnect($conn) {
-    $conn->close();
 }
 
-/*REQUÊTE GÉNÉRALE*/
-function request($conn,$sql) {
-    try {
-        $result = mysqli_query($conn, $sql);
-        while ($ligne = $result->fetch_assoc()) {
-            $tableau[] = $ligne;
-        }
-        return $tableau;
-    } catch (Exception $e) {
-        die('Erreur : '.$e->getMessage());
-    }
+function disconnect($conn) {
+    $conn = null;
 }
-function send($conn,$sql) {
+
+
+/*REQUÊTE GÉNÉRALE*/
+function request($conn, $sql) {
+    $use = "use SiteProjet";
+    $conn->exec($use);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $rows;
+}
+
+
+function send($conn, $sql) {
     try {
-        mysqli_query($conn,$sql);
-    } catch (Exception $e) {
+        $conn->exec($sql);
+    } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }
-   
 }
 
 
@@ -143,6 +150,18 @@ function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites �
 
     return $inscrits;
 }
+function getMessages($conn) {
+    $sql ="SELECT * FROM Messages";
+    $messages = request($conn,$sql);
+
+    return $messages;
+}
+function getConversations($conn) {
+    $sql ="SELECT * FROM Conversation";
+    $conversations = request($conn,$sql);
+
+    return $conversations;
+}
 
 
 
@@ -170,6 +189,12 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
     $reponses = request($conn,$sql);
 
     return $reponses;
+}
+function getConversationById($conn,$idConv) {
+    $sql = "SELECT * FROM Conversation WHERE idConversation = $idConv";
+    $conversation = request($conn,$sql);
+
+    return $conversation;
 }
 
 
@@ -204,6 +229,10 @@ function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
 }
 function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
+    send($conn,$sql);
+}
+function addConversation($conn, $idExpediteur, $idDestinataire) {
+    $sql = "INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES ($idExpediteur,$idDestinataire)";
     send($conn,$sql);
 }
 function createEquipe($conn,$nom,$capitaine) {
@@ -260,6 +289,14 @@ function deleteReponse($conn,$idReponse) {
 }
 function desinscription($idUser,$idEvenement) {
     $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idSujet,$idEvenement)";
+    send($conn,$sql);
+}
+function deleteMessage($conn,$idMessage) {
+    $sql = "DELETE FROM Messages WHERE idMessage = $idMessage";
+    send($conn,$sql);
+}
+function deleteConversation($conn,$idConversation) {
+    $sql = "DELETE FROM Conversation WHERE idConversation = $idConversation";
     send($conn,$sql);
 }
 

@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once "../../bdd/fonctionsBDD.php";
 ?>
 
 <!DOCTYPE html>

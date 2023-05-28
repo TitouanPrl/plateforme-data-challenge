@@ -1,22 +1,13 @@
 
 
-//pour envoyer le message quand on appuie sur "entrée"
-var barre = document.getElementById("barreEnvoie");
-barre.addEventListener("keypress", function(event) {
-    if (event.key === "Enter") {
-        event.preventDefault();
-        document.getElementById("envoi").click();
-    }
-});
-
-
 //création d'une nouvelle conversation 
 function nouvelleConv() {
 
     let xhttp = new XMLHttpRequest();
-    let e1 = document.getElementById('e1').value;
-    let e2 = document.getElementById('e2').value;
-    document.getElementById("e2").value = "";
+    let expediteur = document.getElementById('expediteur').value;
+    let destinataire = document.getElementById('destinataire').value;
+    console.log(destinataire);
+    document.getElementById("destinataire").value = "";
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
 
@@ -25,14 +16,14 @@ function nouvelleConv() {
 
             if (answer[0] == "add") {
 
-                let ajout = e2;
+                let ajout = destinataire;
                 let node = document.createElement("div");
                 let textnode = document.createTextNode(ajout);
                 node.appendChild(textnode);
 
 
                 node.setAttribute("onclick", "afficheConv('"+answer[1]+"')");
-                node.setAttribute("id", answer[1]);
+                node.setAttrianswerbute("id", answer[1]);
                 node.setAttribute("class", "dest");
 
                 document.getElementById("Utilisateur").appendChild(node);
@@ -58,24 +49,23 @@ function nouvelleConv() {
     xhttp.open("POST", "creerConv.php", true);
 
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    if (e2 != "") {
-        xhttp.send("eleve1=" + e1 + "&eleve2=" + e2);
+    if (destinataire != "") {
+        xhttp.send("&expediteur=" + expediteur + "&destinataire=" + destinataire);
     }
 }
 
 
+//==================================================================================================================//
 
-//==================================================================================================================//
-//==================================================================================================================//
 
 //permet de créer un message dans une conversation
 function message(){
-    if(document.getElementById('conv').value == "NULL" ) return;
+    if (document.getElementById('conv').value == "NULL" ) return;
 
 
     let xhttp = new XMLHttpRequest();
-    let e1 = document.getElementById('e1').value;
-    let adress = document.getElementById('conv').value;
+    let expediteur = document.getElementById('expediteur').value;
+    let destinataire = document.getElementById('conv').value;
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
@@ -101,8 +91,8 @@ function message(){
             let button = document.createElement("img");
             button.setAttribute("src", "../img/poubelle.png");
             button.setAttribute("class", "poubelle");
-            button.setAttribute("onclick", "del(this)");
-            button.setAttribute("id", index);
+            button.setAttribute("onclick", "del(this)");  //this fait référence à l'objet sur lequel l'évenement est appliqué
+            button.setAttribute("id", index);    //on modifie son id pour pouvoir le passer en parametre de del avec this
             node.appendChild(button);
 
             document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
@@ -113,24 +103,25 @@ function message(){
     //ajout du message dans la bdd
     xhttp.open("POST", "insererMsg.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("emetteur=" + e1 + "&personne=" + adress + "&message=" + document.getElementById('barreEnvoie').value);
+    xhttp.send("&expediteur=" + expediteur + "&destinataire=" + destinataire + "&contenu=" + document.getElementById('barreEnvoie').value);
 }
 
 
-//==================================================================================================================//
 //==================================================================================================================//
 
 
 
 //affichage de la discution avec personne (actualisée)
-function afficheConv(personne) {
-    document.getElementById('conv').value = personne;
+function afficheConv(idConv) {
+    document.getElementById('conv').value = idConv;
     document.getElementById("messages").remove();
 
+
+    //initialisation de la nouvelle div "messages"
     let node = document.createElement("div");
     node.setAttribute("id", "messages");
     node.setAttribute("class", "messages");
-    document.getElementById("content").appendChild(node);
+    document.getElementById("messagerie").appendChild(node);
 
     let xhttp = new XMLHttpRequest();
 
@@ -139,37 +130,34 @@ function afficheConv(personne) {
         if(this.readyState == 4 && this.status == 200){
             if(this.responseText != "empty"){
 
-                index = 0;
                 if (this.responseText != "NULL"){
-                    let msgs = this.responseText.split('|');
-                    for(let test of msgs){
-                        let Message = JSON.parse(test);
-                        if(Message.state == "visible"){
+                    let messages = this.responseText.split('|');
+                    for(let msg of messages){
 
-                            let ajout = Message.message;
-                            let node = document.createElement("div");
-                            let textnode = document.createTextNode(ajout);
-                            let pnode = document.createElement("p");
-                            pnode.appendChild(textnode);
-                            pnode.setAttribute("class", "textMess");
-                            node.appendChild(pnode);
-                            node.setAttribute("id", index);
+                        let texte = msg["contenu"];
+                        let node = document.createElement("div");
+                        let textnode = document.createTextNode(texte);
+                        let pnode = document.createElement("p");
+                        pnode.appendChild(textnode);
+                        pnode.setAttribute("class", "textMess");
+                        node.appendChild(pnode);
+                        node.setAttribute("id", msg["idMessage"]);
 
-                            if(Message.emetteur == document.getElementById('e1').value){
-                                node.setAttribute("class", "droite");
-                                let button = document.createElement("img");
-                                button.setAttribute("src", "../img/poubelle.png");
-                                button.setAttribute("class", "poubelle");
-                                button.setAttribute("onclick", "del(this)");
-                                button.setAttribute("id", index);
-                                node.appendChild(button);
-                            } else {
-                                node.setAttribute("class", "gauche");
-                            }
-
-                            document.getElementById("messages").appendChild(node);
+                        if(msg["idExpediteur"] == document.getElementById('expediteur').value){  //si on a envoyé le message
+                            node.setAttribute("class", "droite");
+                            //poubelle pour le supprimer
+                            let button = document.createElement("img");
+                            button.setAttribute("src", "../img/poubelle.png");
+                            button.setAttribute("class", "poubelle");
+                            button.setAttribute("onclick", "del(this)");
+                            button.setAttribute("id", msg["idMessage"]);
+                            node.appendChild(button);
+                        } else {   //si on l'a reçu
+                            node.setAttribute("class", "gauche");
                         }
-                        index++;
+
+                        document.getElementById("messages").appendChild(node);
+                        
                     }
                 }
                 document.getElementById("messages").appendChild(saveInput);
@@ -181,14 +169,15 @@ function afficheConv(personne) {
 
     xhttp.open("POST", "getDiscussion.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("personne="+ personne);
+    xhttp.send("&idConv="+ idConv);
 }
 
 
 
 //==================================================================================================================//
-//==================================================================================================================//
 
+
+//permet de supprimer un message
 function del(that) {
 
     let xhttp = new XMLHttpRequest();
@@ -201,13 +190,14 @@ function del(that) {
 
     xhttp.open("POST", "supprMsg.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("id="+ that.id +"&personne=" + document.getElementById('conv').value);
+    xhttp.send("&idMes="+ that.id);
 }
 
 
 //==================================================================================================================//
-//==================================================================================================================//
 
+
+//permet de supprimer une conversation (pas les messages, juste son affichage)
 function delConv(that){
     let xhttp = new XMLHttpRequest();
 
@@ -221,65 +211,59 @@ function delConv(that){
                 let node = document.createElement("div");
                 node.setAttribute("id", "messages");
                 node.setAttribute("class", "messages");
-                document.getElementById("content").appendChild(node);
+                document.getElementById("messagerie").appendChild(node);
 
                 document.getElementById("messages").appendChild(saveInput);
                 document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
             }
-            let msg = that.id;
-            document.getElementById(msg).remove();
-            document.getElementsByName(msg)[0].remove();
-            that.remove();
-
         }
     }
 
     xhttp.open("POST", "supprConv.php", true);
     xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    xhttp.send("&personne=" + that.id);
+    xhttp.send("&idConv=" + that.id);
 }
 
 
 //==================================================================================================================//
-//==================================================================================================================//
 
-//affichage de la conversation par défaut quand on arrive sur la messagerie
-var index = 0;
+
+//affichage des conversations sur la gauche
 let xhttp = new XMLHttpRequest();
-let moi = document.getElementById('e1').value;
+let moi = document.getElementById('expediteur').value;
 
 xhttp.onreadystatechange = function () {
     if(this.readyState == 4 && this.status == 200){
-        let msgs = this.responseText.split('|');
+        let conversations = this.responseText.split('|');
 
-        for(let test of msgs){
+        for(let conv of conversations){
 
-            let Message = JSON.parse(test);
-
-            //on prend les conversations où on participe
-            if(Message.eleve1 == moi || Message.eleve2 == moi) {
-
-                let ajout;
-                if (Message.eleve1 === moi) {
-                    ajout = Message.eleve2;
+            //parmi toutes les conversations dans la bdd, on prend celles où on participe
+            if(conv["idExpediteur"] == moi || conv["idDestinataire"] == moi) {
+                
+                //contact à afficher en fonction de qui a créé la conversation
+                let correspondant;
+                if (conv["idExpediteur"] == moi) {
+                    correspondant = conv["idDestinataire"];
                 } else {
-                    ajout = Message.eleve1;
+                    correspondant = conv["idExpediteur"];
                 }
 
-                
+                //infos globales de la conversation
                 let node = document.createElement("div");
-                let textnode = document.createTextNode(ajout);
+                let textnode = document.createTextNode(correspondant);
                 node.appendChild(textnode);
-                node.setAttribute("id", Message.personne);
-                node.setAttribute("onclick", "afficheConv('"+Message.personne+"')");
+                node.setAttribute("id", conv["idConversation"]);
+                node.setAttribute("onclick", "afficheConv('"+conv["idConversation"]+"')");
                 node.setAttribute("class", "dest");
                 document.getElementById("Utilisateur").appendChild(node);
-
+                
+                //poubelle de la conversation
                 let button = document.createElement("img");
                 button.setAttribute("onclick", "delConv(this)");
                 button.setAttribute("class", "poubelleConv");
                 button.setAttribute("src", "../img/poubelle.png");
-                button.setAttribute("id", Message.personne);
+                button.setAttribute("id", conv["idConversation"]);
                 document.getElementById("Utilisateur").appendChild(button);
 
 
@@ -290,4 +274,4 @@ xhttp.onreadystatechange = function () {
 
 xhttp.open("POST", "getConversation.php", true);
 xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-xhttp.send();
+xhttp.send("&expediteur=" + moi);

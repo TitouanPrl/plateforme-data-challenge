@@ -1,21 +1,30 @@
 <?php
+//pour obtenir la discussion entre deux personnes
 
-if (file_exists('./conv/'.$_POST["adresse"])) {
+    $messages = getMessages($conn);
+    $idConv = $_POST["idConv"];
 
-    $data = file_get_contents('./conv/'.$_POST["personne"]);
-    $json = json_decode($data);
+    $conv = getConversationById($conn,$idConv);
 
-    if(count($json) == 0 ) {
+    //les deux personnes liées à la discussion
+    $idExp = $conv["idExpediteur"];
+    $idDest = $conv["idDestinataire"];
+
+    if(count($messages) == 0 ) {
         echo "NULL";
     } else {
         $res = "";
-        foreach ($json as $key => $value) {
-            $res .= json_encode($value, JSON_PRETTY_PRINT) . '|';
+        foreach ($messages as $msg) {
+            $tmpDest = $msg['idDestinataire'];
+            $tmpExp = $msg['idExpediteur'];
+            //si le message est entre les deux personnes liées à la discussion
+            if (($tmpDest == $idDest)&&($tmpExp == $idExp) || ($tmpDest == $idExp)&&($tmpExp == $idDest)) {
+                $res .= $msg . '|';
+            }
+            
         }
         echo rtrim($res, '|');
     }
-} else {
-    echo "NULL";
-}
+
 
 ?>
