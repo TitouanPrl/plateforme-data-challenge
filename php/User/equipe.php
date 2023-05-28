@@ -18,7 +18,18 @@ connect();
         if (!isset($_SESSION['infoUser']['idEquipe'])) {
             echo ('<div id="creer_equipe">
             <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
-            <input type="text" id="nom_challenge" placeholder="Challenge auquel vous souhaitez inscrire votre équipe">
+
+            <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe">
+            <datalist id="liste_challenges">');
+
+            /* Liste de tous les challenges en cours */
+            $listEvents = getEvenements($conn);
+            
+            foreach($listEvents as $current) {
+                echo('<option value="' . $current['libelle'] . '>');
+            }
+
+            echo('</datalist>
             <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
             </div>');
         }
@@ -50,7 +61,17 @@ connect();
 
         /* Champ de saisie pour ajouter un membre à l'équipe */
         echo ('<div id="ajout_membre">
-        <input type="text" id="partipant" name="login" required>
+        <input type="text" id="partipant" list="liste_participants" required>
+
+        <datalist id="liste_participants">');
+
+            /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */            
+            foreach($liste_inscrits as $current) {
+                echo('<option value="' . $current['prenom'] . $current['nom'] . '>');
+            }
+
+            echo('</datalist>
+
         <button type="button" onclick="addMemberTeam();">Ajouter à l\'équipe</button>
         </div>');
         ?>
