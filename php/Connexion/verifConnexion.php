@@ -32,7 +32,7 @@ else {
   foreach($allUsers as $user) {
 
     /* On écrit les var dans la session */
-    $_SESSION['login1'] = $user['loginID'];
+    $_SESSION['login1'] = $user['email'];
     $_SESSION['mdp1'] = $user['mdp'];
 
     /* Si les infos de connexion correspondent on passe l'état à connecté et on redirige vers l'accueil */

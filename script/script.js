@@ -22,11 +22,11 @@ function scrollFunction() {
 
 /* Création d'une équipe */
 function CreateTeam(nom_prenom_cap) {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
     /* On récupère le nom de l'équipe et celui du challenge */
-    var nomTeam = document.getElementById("nom_equipe").innerText;
-    var challenge = document.getElementById("nom_challenge").innerText;
+    let nomTeam = document.getElementById("nom_equipe").innerText;
+    let challenge = document.getElementById("nom_challenge").innerText;
 
     console.log(nomTeam);
     console.log(challenge);
@@ -35,11 +35,31 @@ function CreateTeam(nom_prenom_cap) {
 
         /* On ajoute le capitaine à l'équipe dans l'affichage et on cache le form de création d'équipe */
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var myTeam = document.getElementById("monEquipe");
-            var formEquipe = document.getElementById("creer_equipe");
+            let myTeam = document.getElementById("monEquipe");
+            let formEquipe = document.getElementById("creer_equipe");
 
+            /* === On crée la ligne à ajouter et ses différents éléments === */
+            let newLine = document.createElement("div");
+                newLine.class = "ligne_equipe";
+
+            /* Image de la couronne */
+            let crown = document.createElement("img");
+                crown.id = "logo_crown";
+                crown.src = "../../img/logo_crown.png";
+                crown.alt = "logo";
+            
+            /* Nom Prénom */
+            let nom = document.createElement("span");
+                nom.class = "nom_teamMember";
+                nom.innerText = nom_prenom_cap;
+
+            /* On insère les éléments dans la ligne */
+            newLine.appendChild(crown);
+            newLine.appendChild(nom);
+
+            /* On ajoute la ligne à l'équipe et on cache la ligne de création d'équipe */
             if (myTeam) {
-                myTeam.parentNode.appendChild(nom_prenom_cap);  // SUREMENT A REFAIRE EN CREEANT UN ELMT DIV
+                myTeam.appendChild(newLine);
                 formEquipe.style.visibility = "hidden";
             }
         }
@@ -55,10 +75,10 @@ function CreateTeam(nom_prenom_cap) {
 
 /* Ajout d'un membre dans une équipe */
 function addMemberTeam(idNewMember) {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
-    var membre = document.getElementById("participant").innerText;
-    var membreInList = document.getElementById(membre);
+    let membre = document.getElementById("participant").innerText;
+    let membreInList = document.getElementById(membre);
 
     console.log(membre);
     console.log(membreInList);
@@ -66,16 +86,16 @@ function addMemberTeam(idNewMember) {
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var myTeam = document.getElementById("monEquipe");
-            var listInscrits = document.getElementById("liste_participants");
+            let myTeam = document.getElementById("monEquipe");
+            let listInscrits = document.getElementById("liste_participants");
 
             /* On ajoute le membre à l'équipe */
             if (myTeam) {
-                myTeam.parentNode.appendChild(membre);
+                myTeam.appendChild(membre);
             }
             /* Et on le retire de la liste des participants disponibles */
             if (listInscrits) {
-                listInscrits.parentNode.removeChild(membreInList);
+                listInscrits.removeChild(membreInList);
             }
         }
     }
@@ -90,26 +110,26 @@ function addMemberTeam(idNewMember) {
 
 /* Suppression d'un membre dans une équipe */
 function supprMemberTeam(nb) {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
-    var membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
-    var idMembre = document.getElementById("idTeamMember").innerText;
+    let membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
+    let idMembre = document.getElementById("idTeamMember").innerText;
 
     console.log(membre);
 
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var myTeam = document.getElementById("monEquipe");
-            var listInscrits = document.getElementById("liste_participants");
+            let myTeam = document.getElementById("monEquipe");
+            let listInscrits = document.getElementById("liste_participants");
 
             /* On retire le membre de l'équipe */
             if (myTeam) {
-                myTeam.parentNode.removeChild(membre);
+                myTeam.removeChild(membre);
             }
             /* Et on le remet dans la liste des participants disponibles */
             if (listInscrits) {
-                listInscrits.parentNode.appendChild(membreInList);
+                listInscrits.appendChild(membreInList);
             }
         }
     }
