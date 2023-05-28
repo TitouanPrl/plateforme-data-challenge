@@ -206,8 +206,8 @@ function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
     send($conn,$sql);
 }
-function createEquipe($conn,$nom,$capitaine) {
-    $sql = "INSERT INTO Equipe (nom,capitaine) VALUES ($nom,$capitaine)";
+function createEquipe($conn, $idEvenement, $nom, $capitaine) {
+    $sql = "INSERT INTO Equipe (idEvenement,nom,capitaine) VALUES ($idEvenement,$nom,$capitaine)";
     send($conn,$sql);
 }
 function createEvenement($conn,$libelle,$descrip,$dateD,$dateF) {
