@@ -11,6 +11,9 @@ connect();
 /* On récupère les infos de l'utilisateur en cours */
 $_SESSION['infoUser'] = getUtilisateurById($conn,$_SESSION['ID']);
 
+/* On récupère les challenges auxquels l'utilisateur est inscrit */
+$_SESSION['inscriptions'] = getEventInscrit($_SESSION['ID']);
+
 /* On récupère les membres de son équipe et ses infos */
 if (isset($_SESSION['infoUser']['idEquipe'])) {
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);

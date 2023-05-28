@@ -38,6 +38,7 @@ if (!isset($_SESSION["login"])) {
             <nav id="liens">
                 <a href="inscriptionChallenge.php">Liste Challenges</a>
                 <a href="equipe.php">Mon équipe</a>
+                <a href="mesChallenges.php">Mes challenges</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
