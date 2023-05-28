@@ -58,16 +58,24 @@ function addMemberTeam(idNewMember) {
     var xhr = getXHR();
 
     var membre = document.getElementById("participant").innerText;
+    var membreInList = document.getElementById(membre);
 
     console.log(membre);
+    console.log(membreInList);
 
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
             var myTeam = document.getElementById("monEquipe");
+            var listInscrits = document.getElementById("liste_participants");
 
+            /* On ajoute le membre à l'équipe */
             if (myTeam) {
                 myTeam.parentNode.appendChild(membre);
+            }
+            /* Et on le retire de la liste des participants disponibles */
+            if (listInscrits) {
+                listInscrits.parentNode.removeChild(membreInList);
             }
         }
     }
@@ -93,9 +101,15 @@ function supprMemberTeam(nb) {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
             var myTeam = document.getElementById("monEquipe");
+            var listInscrits = document.getElementById("liste_participants");
 
+            /* On retire le membre de l'équipe */
             if (myTeam) {
-                myTeam.parentNode.remove(membre);
+                myTeam.parentNode.removeChild(membre);
+            }
+            /* Et on le remet dans la liste des participants disponibles */
+            if (listInscrits) {
+                listInscrits.parentNode.appendChild(membreInList);
             }
         }
     }

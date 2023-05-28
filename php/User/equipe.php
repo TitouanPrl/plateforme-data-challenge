@@ -56,8 +56,8 @@ connect();
         /* On récupère le challenge auquel l'équipe participe */
         $idEvent = $_SESSION['infoTeam']['idEvent'];
 
-        /* On récupère les étudiants inscrits au challenge */
-        $liste_inscrits = getInscrits($idEvent);
+        /* On récupère les étudiants inscrits au challenge et n'ayant pas d'équipe */
+        $liste_inscrits = getInscritsSansEquipe($idEvent);
 
         /* Champ de saisie pour ajouter un membre à l'équipe */
         echo ('<div id="ajout_membre">
