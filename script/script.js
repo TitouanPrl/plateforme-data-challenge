@@ -20,13 +20,42 @@ function scrollFunction() {
     }
 }
 
-/* Ajout d'un membre dans une équipe */
-function addMemberTeam() {
+/* Création d'une équipe */
+function CreateTeam(nom_prenom_cap) {
     var xhr = getXHR();
 
-    var membre = document.getElementById("participant").outerText;
+    var nomTeam = document.getElementById("nom_equipe").innerText;
+
+    console.log(nomTeam);
+
+    xhr.onreadystatechange = function () {
+
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            var myTeam = document.getElementById("monEquipe");
+
+            if (myTeam) {
+                myTeam.parentNode.appendChild(nom_prenom_cap);  // SUREMENT A REFAIRE EN CREEANT UN ELMT DIV
+            }
+        }
+    }
+
+
+    xhr.open("POST", "gestionEquipe.php", true);
+    xhr.setRequestHeader('Content-Type',
+        'application/x-www-form-urlencoded;charset=utf-8');
+    xhr.send("type=ajout" + "&nomTeam=" + nomTeam);
+
+}
+
+/* Ajout d'un membre dans une équipe */
+function addMemberTeam(idNewMember) {
+    var xhr = getXHR();
+
+    var membre = document.getElementById("participant").innerText;
+    var nomTeam = document.getElementById("nom_equipe").innerText;
 
     console.log(membre);
+    console.log(nomTeam);
 
     xhr.onreadystatechange = function () {
 
@@ -43,7 +72,7 @@ function addMemberTeam() {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1=" + membre);
+    xhr.send("val1=" + membre + "&type=ajout" + "&nomTeam=" + nomTeam);
 
 }
 
@@ -51,7 +80,8 @@ function addMemberTeam() {
 function supprMemberTeam(nb) {
     var xhr = getXHR();
 
-    var membre = document.getElementsByClassName("ligne_equipe")[nb].outerText;
+    var membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
+    var idMembre = document.getElementById("idTeamMember").innerText;
 
     console.log(membre);
 
@@ -70,7 +100,7 @@ function supprMemberTeam(nb) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1=" + membre);
+    xhr.send("val1=" + membre + "&type=suppr" + "&idUser=" + idMembre);
 
 }
 
