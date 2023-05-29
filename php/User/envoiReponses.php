@@ -17,7 +17,7 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
 }
 
 /* Sinon on récupère le nombre de réponses */
-$nbReponses = (int) ($_POST['nbReponses']) + 1;
+$nbReponses = (int) $_POST['nbReponses'];
 
 /* Et on ajoute les réponses dans la BDD */
 for ($i = 0; $i < $nbReponses; $i++) {

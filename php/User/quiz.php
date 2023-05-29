@@ -54,6 +54,8 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
                             /* On passe l'id de la question en hidden */
                             echo('<input type="hidden" value="' . $actQuestion['idQuestion'] . '" name="id' . $i . '">
                             </div>');
+                            
+                            $i++;
                         }
 
                         /* On passe le nb de réponses en hidden */
