@@ -135,6 +135,15 @@ function getEquipeByProjet($conn,$idProjet) { //récupère l'équipe attachée �
 
     return $equipe;
 }
+
+/* Récupère les équipes inscrites à un challenge */
+function getEquipesByEvenement($conn,$idEvenement) { 
+    $sql = "SELECT idEquipe FROM Equipe WHERE idEvenement = $idEvenement";
+    $equipes = request($conn,$sql);
+
+    return $equipes;
+}
+
 function getQuestionnairesOnSujet($idSujet) {   //tous les questionnaires envoyés pour un sujet
     $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
     $questionnaires = request($conn,$sql);

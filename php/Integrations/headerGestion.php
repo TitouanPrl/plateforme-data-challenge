@@ -35,7 +35,7 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="listeChallenges.php">Challenges</a>
+                <a href="modifInfos.php">Mon profil</a>
                 <a href="modifInfos.php">Modifier mes données</a>
             </nav>
 
