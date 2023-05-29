@@ -123,11 +123,6 @@ public class Serveur {
                     return json;
 
                 }
-                
-                // Traiter le fichier python envoyé par le client et envoyer la réponse au client
-                // String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
-
-                // return result;
             } catch (IOException e) {
                 LOGGER.warning("Erreur lors de la lecture du corps de la requête : " + e.getMessage());
             }
