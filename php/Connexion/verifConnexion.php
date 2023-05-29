@@ -62,3 +62,5 @@ else {
   header('Location: connexionInscription.php?message=2');
 
 }
+
+?>

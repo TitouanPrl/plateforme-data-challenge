@@ -179,8 +179,6 @@ function getChallengeByID($idEvenement) {
     return $infos;
 }
 
-
-
 function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisateurs attachés à un sujet
     $projets = getProjetsOnSujet($conn,$idSujet);
     $equipes = array();
