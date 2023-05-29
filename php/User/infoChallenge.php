@@ -15,6 +15,8 @@ echo('<!-- MAIN CONTENT -->
 
 <main>
 
+<div id="sujets">
+
 <h2 class="titreForm"> Sujets </h2>');
 
 /* Affichage des sujets disponibles */
@@ -27,6 +29,8 @@ foreach ($tabSujets as $current) {
         </a>');
 }
 
-    echo('</main>');
+echo('</div>');
+
+echo('</main>');
 
 require '../Integrations/footer.php'; ?>

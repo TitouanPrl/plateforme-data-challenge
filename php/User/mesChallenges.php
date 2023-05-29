@@ -33,7 +33,10 @@ connect();
                       </div>
                     </a>');
         }
+
+        echo('</div>');
         ?>
+        
     </div>
 
 </main>
