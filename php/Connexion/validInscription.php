@@ -3,7 +3,13 @@
 
 <?php
 // on récupère le type d'utilisateur qui s'inscrit
-$type = $_SESSION["type"];?>
+if(!empty($_SESSION["type"] )){
+    $type = $_SESSION["type"];
+}
+else{
+    $type = "etudiant";
+}
+?>
 
 <?php
 
@@ -119,7 +125,6 @@ $type = $_SESSION["type"];?>
                 Date de fin de compte : '. $dateFin  . ' \r\n'
             );
 
-        // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
 
         /* On redirige vers l'accueil avec connexion */
         header('Location:../User/accueilUser.php');
@@ -151,11 +156,9 @@ $type = $_SESSION["type"];?>
                 Ville : ' . $ville . '\r\n'
             );
 
-            // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
-
             /* On redirige vers l'accueil avec connexion */
             header('Location:../User/accueilUser.php');
         }
     }
-
+    header('location:../User/accueilUser.php');
 ?>

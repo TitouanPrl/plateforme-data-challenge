@@ -6,7 +6,7 @@
   if($_SESSION["type"]=="administrateur"){
     echo('RGB t le plus bo PTHNUYDEGI');
   }
-  
+   echo($_SESSION["type"]);
 ?>
 <h2>Gestion des utilisateurs</h2>
 
@@ -86,5 +86,4 @@
     </article>
   </main>
       <!-- faire apparaitre les champs en fonction de la checkbox et faire gaffe aux champs apparent  -->
-<script src="../script/form.js"></script>
 <?php require '../Integrations/footer.php'; ?>
