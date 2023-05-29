@@ -39,16 +39,20 @@ if (!isset($_SESSION["login"])) {
                 <a href="inscriptionChallenge.php">Liste Challenges</a>
                 <a href="equipe.php">Mon équipe</a>
                 <a href="mesChallenges.php">Mes challenges</a>
+                <?php
+                /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
+                if (isset($_SESSION['infoTeam'])) {
+                    if ($_SESSION['capitaine'] == true) {
+                        echo ('<a href="quiz.php">Quiz</a>');
+                    }
+                }
+                ?>
             </nav>
 
-            <form action="../Connexion/deconnexion.php" >
+            <form action="../Connexion/deconnexion.php">
                 <input type="submit" class="boutonDeco" value="Déconnexion">
             </form>
 
         </div>
 
     </header>
-
-        
-
-

@@ -18,6 +18,15 @@ $_SESSION['inscriptions'] = getEventInscrit($_SESSION['ID']);
 if (isset($_SESSION['infoUser']['idEquipe'])) {
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
     $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);
+
+    /* On regarde si le user est capitaine ou non */
+    if ($_SESSION['ID'] == $_SESSION['infoTeam']['capitaine']) {
+        $_SESSION['capitaine'] = true;
+    }
+    else {
+        $_SESSION['capitaine'] = false;
+    }
+    
 }
 
 ?>

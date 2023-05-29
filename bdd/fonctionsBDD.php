@@ -298,6 +298,18 @@ function desinscription($idUser,$idEvenement) {
     send($conn,$sql);
 }
 
+/* Supprime une équipe */
+function deleteEquipe($conn,$idEquipe) {
+    $sql = "DELETE FROM Equipe WHERE idEquipe = $idEquipe";
+    send($conn,$sql);
+}
+
+/* Supprime un membre d'une équipe */
+function deleteMembreEquipe($conn,$idUser) {
+    $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
+    send($conn,$sql);
+}
+
 
 //MODIFIER LES DONNÉES
 function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$mdp,$idUser) {
@@ -326,10 +338,6 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
 }
 function setNote($idReponse,$note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
-    send($conn,$sql);
-}
-function deleteMembreEquipe($conn,$idUser) {
-    $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
     send($conn,$sql);
 }
 

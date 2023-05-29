@@ -24,12 +24,12 @@ connect();
 
             /* Liste de tous les challenges en cours */
             $listEvents = getEvenements($conn);
-            
-            foreach($listEvents as $current) {
-                echo('<option value="' . $current['libelle'] . '>');
+
+            foreach ($listEvents as $current) {
+                echo ('<option value="' . $current['libelle'] . '>');
             }
 
-            echo('</datalist>
+            echo ('</datalist>
             <button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
             </div>');
         }
@@ -40,7 +40,12 @@ connect();
         /* On initialise le compteur pour naviguer dans la classe */
         $i = 0;
         foreach ($_SESSION['teamMembers'] as $member) {
-            echo ('<div class="ligne_equipe" id="' . $i . '" onclick="supprMemberTeam(' . $i . ')">');
+            echo ('<div class="ligne_equipe" id="' . $i . '"');
+            /* Si le user actuel est capitaine, on lui permet de supprimer des membres */
+            if ($_SESSION['capitaine'] == true) {
+                echo ('onclick="supprMemberTeam(' . $i . ')"');
+            }
+            echo ('>');
 
             /* Si le membre est le capitaine, on affiche une couronne */
             if ($member == $_SESSION['infoTeam']['capitaine']) {
@@ -50,6 +55,12 @@ connect();
                     </div>');
             $i++;
         }
+
+        /* Si le user actuel est capitaine, on lui permet de supprimer l'équipe */
+        if ($_SESSION['capitaine'] == true) {
+            echo ('<a id="but_suppr_equipe" href="supprEquipe.php">');
+        }
+
         echo ('</div>');
 
         /* On récupère le challenge auquel l'équipe participe */
@@ -64,15 +75,19 @@ connect();
 
         <datalist id="liste_participants">');
 
-            /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */            
-            foreach($liste_inscrits as $current) {
-                echo('<option value="' . $current['prenom'] . ' ' . $current['nom'] . ' name="' . $current['idUser'] . '>');
-            }
+        /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */
+        foreach ($liste_inscrits as $current) {
+            echo ('<option value="' . $current['prenom'] . ' ' . $current['nom'] . ' name="' . $current['idUser'] . '>');
+        }
 
-            echo('</datalist>
+        echo ('</datalist>');
 
-        <button type="button" onclick="addMemberTeam();">Ajouter à l\'équipe</button>
-        </div>');
+        /* Si le user actuel est capitaine, on lui permet d'ajouter des membres */
+        if ($_SESSION['capitaine'] == true) {
+            echo ('<button type="button" id="but_add_member" onclick="addMemberTeam();">Ajouter à l\'équipe</button>');
+        }
+        echo ('</div>');
+        
         ?>
     </div>
 
