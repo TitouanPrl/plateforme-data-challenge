@@ -43,8 +43,11 @@
 
             <fieldset>
                 <legend>Déposer un document</legend>
-                <form method="post" enctype="multipart/form-data">
-                <input type="file" id="file" name="fichier" multiple>
+                <form method="post" enctype="multipart/form-data" action="accueilAdmin.php">
+                    <input type="file" name="userfile" size="4000">
+                    <br>
+                    <input type="submit" value="Envoi">
+                </form>
             </fieldset>
           </div>
 

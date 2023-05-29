@@ -1,7 +1,15 @@
+<?php session_start() ?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 
 
+<?php
+  if($_SESSION["type"]=="administrateur"){
+    echo('RGB t le plus bo PTHNUYDEGI');
+  }
+  
+?>
 <h2>Gestion des utilisateurs</h2>
+
 
 <main>
     <article>
@@ -9,17 +17,7 @@
       <div id="inscription">
         <h2>Inscription utilisateur</h2>
 
-        <form action="validInsc.php" method="POST">
-        <div id="formfunction">
-            <fieldset>
-                <legend>
-                    Quel type de compte souhaitez vous ajouter ?
-                </legend>
-                    <input type="button" id="admin" onclick="admin()" value="administrateur" > 
-                    <input type="button" id="gestionnaire" onclick="gestionnaire()" value="gestionnaire">
-                    <input type="button" id="etudiant" onclick="etudiant()" value= "étudiant">
-          </fieldset>
-        </div>
+        <form action="validInscription.php" method="POST">
           <div id="form">
             <div id="formG">
               <fieldset>
@@ -44,9 +42,9 @@
             </div>
 
             <div id="formD">
-              <fieldset>
+              <fieldset id="nivEtude">
                 <legend> Degré d'étude :</legend>
-                <select name="nivEtude" id="nivEtude" required>
+                <select name="nivEtude" id="nivEtude" >
                   <option value=""> <?php echo ($_GET['nivEtude']); ?></option>
                   <option value="L1">1ère année de Licence</option>
                   <option value="L2">2ème année de Licence</option>
@@ -58,12 +56,12 @@
                 <br>
               </fieldset>
 
-              <fieldset>
+              <fieldset id='ecole'>
                 <legend>Ecole</legend>
                 <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['ecole']); ?>"> <br>
               </fieldset>
 
-              <fieldset>
+              <fieldset id='entreprise'>
                 <legend>Entreprise</legend>
                 <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['entreprise']); ?>"> <br>
               </fieldset>
@@ -71,6 +69,11 @@
               <fieldset>
                 <legend>Ville</legend>
                 <input type="text" id="ville" name="ville" value="<?php echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+              </fieldset>
+
+              <fieldset id='dateFin'>
+                <legend>Date de fin du compte</legend>
+                <input type="date" id="dateFin" name="dateFin" value="<?php echo ($_GET['dateFin']);?>" > <br>
               </fieldset>
 
             </div>

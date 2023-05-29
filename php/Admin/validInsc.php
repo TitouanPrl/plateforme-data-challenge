@@ -1,79 +1,48 @@
+<?php session_start() ?>
+<?php require '../Integrations/headerVanilla.php'; ?>
+
+
 <?php
-
-    /* Var témoin pour savoir si les données sont valides ou non */
-    $valide = true;
-
-    /* Sécurise la chaine de caractère lue, évite l'injection de code malveillant */
-    function erase($donnees) {
-
-        /* On supprime les espaces inutiles */
-        $donnees = trim($donnees);
-
-        /* On supprime les antislashs */
-        $donnees = stripslashes($donnees);
-
-        /* On échappe les caractères spéciaux */
-        $donnees = htmlspecialchars($donnees);
-
-        return $donnees;
-
-    }  
-    
-    /* Définition des variables */
-    $nom = erase($_POST['nom']);
-    $prenom = erase($_POST['prenom']);
-    $mail = erase($_POST['mail']);
-    $nivEtude = erase($_POST['nivEtude']);
-    $ecole = erase($_POST['ecole']);
-    $ville = erase($_POST['ville']);
-    $entreprise = erase($_POST['entreprise']);
-
-    /* On vérifie que les var ne sont pas vides */
-    if (empty($nom)
-    || empty($prenom)
-    || empty($mail)
-    || empty($nivEtude)
-    || empty($ecole)
-    || empty($ville)
-    || empty($entreprise)) {
-
-       $valide = false;
+  $admin = $_POST['admin'];
+  $gestionnaire = $_POST['gestionnaire'];
+  $etudiant = $_POST['etudiant'];
+  $valider= $_POST['valider'];
+  if(isset($valider)){
+    if(!empty($admin) && $admin != ""){
+        $_SESSION["type"]=$admin;
     }
-
-    /* Matche pattern nom et prenom */
-    function patern_nom($data) {
-        if (!ctype_upper($data[0]) || !ctype_alpha($data)) {
-            $valide = false;
-        }
+    if(!empty('gestionnaire') && $gestionnaire != ""){
+        $_SESSION["type"]=$gestionnaire;
     }
-
-    patern_nom($nom);
-    patern_nom($prenom);
-    
-
-    /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
-    if ($valide = false) {
-        header('Location:connexionInscription.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&nivEtude=' . $nivEtude . '&ecole=' . $ecole . '&ville=' . $ville);
-        exit();
+    if(!empty('etudiant') && $etudiant !=""){
+        $_SESSION["type"] = $etudiant;
     }
-
-    /* Si elles le sont, on envoie un mail avec un récap et on push dans la BDD */
-    if ($valide = true) {
-        mail(
-            $mail,         /* Destinataire */
-            'Résumé de votre inscription sur la plateforme IA Pau',       /* Sujet du mail */
-            'Nom : ' . $nom . '\r\n
-            Prénom : ' . $prenom . '\r\n
-            Mail : ' . $mail . '\r\n
-            Niveau d\'étude : ' . $nivEtude . '\r\n
-            Ecole : ' . $ecole . '\r\n
-            Ville : ' . $ville . '\r\n'
-        );
-
-        // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
-
-        /* On redirige vers l'accueil avec connexion */
-        header('Location:../User/accueilUser.php');
-    }
-
+    header('location:formInsc.php');
+  }
+  else{
+    echo('Il y a une erreur');
+  }
+  
 ?>
+<h2>Gestion des utilisateurs</h2>
+
+<main>
+    <article>
+      <!-- INSCRIPTION D'un utilisateur -->
+      <div id="inscription">
+        <h2>Inscription utilisateur</h2>
+
+        <form method="POST">
+        <div id="formfunction">
+            <fieldset>
+                <legend>
+                    Quel type de compte souhaitez vous ajouter ?
+                </legend>
+                    Administrateur : <input type="radio" id="admin" name="admin" value="administrateur"> 
+                    Gestionnaire : <input type="radio" id="type" name="gestionnaire" value="gestionnaire">
+                    Étudiant :<input type="radio" id="type" value= "étudiant"><br>
+                    <input type="submit" id="valider" name="valider">
+          </fieldset>
+        </div>
+</main>
+

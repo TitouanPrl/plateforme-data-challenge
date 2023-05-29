@@ -1,25 +1,13 @@
 
-function selectType() {
-    var xhr = getXHR();
-
-    var type = document.getElementById("type");
-
-    xhr.onreadystatechange = function() {
-
-       if (xhr.readyState == 4 && xhr.status == 200){
-        var stockAct = document.getElementById(maskName+"st").value -= maskNumber;
-
-        var trElement = document.getElementById("fl"); 
-        if (trElement) {
-          trElement.parentNode.removeChild(trElement);
+let selected;
+    document.getElementById('valider').onclick = function() {
+        var radios = document.getElementsByName('type');
+        for (var radio of radios)
+        {
+            if (radio.checked) {
+                selected = radio.value;
+                var selectedRadio = '<?php echo $variable_php; ?>';
+            }
         }
-       }
     }
-
-    
-    xhr.open("POST","newStock.php",true) ;
-    xhr.setRequestHeader('Content-Type',
-           'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("val1="+maskName+"&val2="+maskNumber);
-    
-  }
+ 
