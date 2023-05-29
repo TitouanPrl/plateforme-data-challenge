@@ -18,7 +18,8 @@ CREATE TABLE Equipe(
     idEvenement INTEGER,
     nom VARCHAR(64),
     capitaine INTEGER,
-    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade,
+    FOREIGN KEY (capitaine) REFERENCES Utilisateur (idUser) on delete cascade
 );
 
 CREATE TABLE Utilisateur(

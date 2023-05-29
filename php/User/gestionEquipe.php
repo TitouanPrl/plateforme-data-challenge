@@ -59,6 +59,17 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     $_SESSION['infoUser']['idEquipe'] = $idEquipe;
     addMembreEquipe($conn, $idEquipe, $idCap);
+
+    /* On met à jour la var des infos d'équipe */
+    $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);
+    $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
+
+    /* Et on définit le user comme capitaine */
+    $_SESSION['capitaine'] = true;
+
+    /* On recharge la page pour actualiser les fonctionnalités d'ajout et de suppression de membres */
+    header('Location: equipe.php');
+    exit();
 }
 
 /* ==== AJOUT D'UN MEMBRE ==== */
@@ -66,12 +77,18 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     addMembreEquipe($conn,$idEquipe,$idNewMember);
+
+    /* On met à jour les membres de l'équipe en session */
+    $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
 }
 
 /* ==== SUPPRESSION D'UN MEMBRE ==== */
 /* On vérifie que le capitaine a une équipe, que le membre en a une, et qu'il est bien inscrit au challenge */
 else if (($type == 'suppr') && (isset($_SESSION['infoUser']['idEquipe'])) && (isset($infosNewMember['idEquipe'])) && $inscrit) {
     deleteMembreEquipe($conn,$idNewMember);
+
+    /* On met à jour les membres de l'équipe en session */
+    $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
 }
 
 ?>

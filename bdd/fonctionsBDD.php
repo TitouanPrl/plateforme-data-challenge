@@ -135,7 +135,7 @@ function getEquipeByProjet($conn,$idProjet) { //récupère l'équipe attachée �
 
     return $equipe;
 }
-function getQuestionnairesOnSujet($idSujet) {   //tous les qusetionnaires envoyés pour un sujet
+function getQuestionnairesOnSujet($idSujet) {   //tous les questionnaires envoyés pour un sujet
     $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
     $questionnaires = request($conn,$sql);
 
@@ -147,6 +147,7 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
 
     return $id;
 }
+
 function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
@@ -160,6 +161,22 @@ function getInscritsSansEquipe($idEvenement) {
     $inscrits = request($conn,$sql);
 
     return $inscrits;
+}
+
+/* Récupère la liste des challenges auxquels un utilisateur est inscrit */
+function getEventInscrit($idUser) { 
+    $sql = "SELECT idEvenement FROM Inscription WHERE idUser=$idUser";
+    $events = request($conn,$sql);
+
+    return $events;
+}
+
+/* Récupère les données d'un challenge via son ID */
+function getChallengeByID($idEvenement) { 
+    $sql = "SELECT * FROM Evenement WHERE idEvenement = $idEvenement";
+    $infos = request($conn,$sql);
+
+    return $infos;
 }
 
 
@@ -281,6 +298,18 @@ function desinscription($idUser,$idEvenement) {
     send($conn,$sql);
 }
 
+/* Supprime une équipe */
+function deleteEquipe($conn,$idEquipe) {
+    $sql = "DELETE FROM Equipe WHERE idEquipe = $idEquipe";
+    send($conn,$sql);
+}
+
+/* Supprime un membre d'une équipe */
+function deleteMembreEquipe($conn,$idUser) {
+    $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
+    send($conn,$sql);
+}
+
 
 //MODIFIER LES DONNÉES
 function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$mdp,$idUser) {
@@ -309,10 +338,6 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
 }
 function setNote($idReponse,$note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
-    send($conn,$sql);
-}
-function deleteMembreEquipe($conn,$idUser) {
-    $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
     send($conn,$sql);
 }
 
