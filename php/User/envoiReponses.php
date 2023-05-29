@@ -16,10 +16,10 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
     exit();
 }
 
-/* On récupère le nombre de réponses */
+/* Sinon on récupère le nombre de réponses */
 $nbReponses = (int) ($_POST['nbReponses']) + 1;
 
-/* On ajoute les réponses dans la BDD */
+/* Et on ajoute les réponses dans la BDD */
 for ($i = 0; $i < $nbReponses; $i++) {
     addRéponse($conn, $_POST['id' . $i], $_SESSION['infoTeam']['idEquipe'], $_POST['reponse' . $i]);
 }
