@@ -3,7 +3,7 @@
 
 
 import java.io.BufferedReader;
-// import java.io.FileReader;
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -40,11 +40,13 @@ public class PythonCodeAnalyzer {
             
         // }
 
-        // String code = "def ajouter1(a):\n    return a+1\n'''je suis\nun commentaire'''def ajouter2(a):\n    return a+2\n'''je suis\nun autre commentaire'''";
+        String code = "\n def hello(): \n\n\t#jesuisuncommentaire\n\t'''commentaire\n\ten\n\tbloc'''\n\tprint(\"Hello World\")\n\tprint(\"testtesttest\") '''\tcommentaire\nen\nbloc2\n'''\ndef fonction():\n\treturn 0";
+        System.out.println(code);
+        code=supprimerCommentaires(code);
+        System.out.println("----------------------\n" + code);   
+        String json = analyzePythonCode(code);
 
-        // String json = analyzePythonCode(code);
-
-        // System.out.println(json);
+        System.out.println(json);
 
     }
 
@@ -109,76 +111,51 @@ public class PythonCodeAnalyzer {
     }
 
 
-
-
-
-
-
-  
-   
-
-    
-
     /**
      * Analyse le code python et retourne une liste de données sur les fonctions
      * @param code : Fichier python sous forme de chaîne de caractères 
      * @return functionDataList : liste de données sur les fonctions
      */
     public static String analyzePythonCode(String code) {
-        code = Occurences.supprimerCommentaires(code);
+        code = supprimerCommentaires(code);
         List<FunctionData> functionDataList = new ArrayList<>();
         BufferedReader reader = null;
-        System.out.println("code de la requête : " + code);
+        // System.out.println("code de la requête : " + code);
         try {
             reader = new BufferedReader(new StringReader(code));
             String line;
             String currentFunctionName = null;
             int currentFunctionLines = 1;
-            // boolean estDansCommentaire = false;
 
             while ((line = reader.readLine()) != null) {
                 line = line.strip();
 
+                // si la ligne commence par def et se termine par : alors c'est une fonction
                 if ((line.startsWith("def")) && (line.endsWith(":"))) {
-
-                    
                     // ajouter la fonction précédente
                     if (currentFunctionName != null) {
                         functionDataList.add(new FunctionData(currentFunctionName, currentFunctionLines));
-                        System.out.println(currentFunctionName + " : " + currentFunctionLines);
+                        // System.out.println(currentFunctionName + " : " + currentFunctionLines);
                     }
 
-
-                    // Commencer les données de la nouvelle fonction
+                    // Commencer les données de la nouvelle fonction à ajouter
                     currentFunctionName = line.substring(4, line.indexOf("("));
                     currentFunctionLines = 1;
-                } else if (line.startsWith("#")) {
-                    line = reader.readLine();
-                } else if (line.startsWith("'''")) {
-                    while (!line.endsWith("'''")) {
-                        line = reader.readLine();
-                    }
-                } else if (line.startsWith("\"\"\"")) {
-                    while (!line.endsWith("\"\"\"")) {
-                        line = reader.readLine();
-                    }
-                }
-                else if (!line.isEmpty()) {
+                } else if (!line.isEmpty()) {
                     currentFunctionLines++;
                 }
             }
 
-            // Add data for the last function
+            // Add les données de la dernière fonciton à la liste
             if (currentFunctionName != null) {
                 functionDataList.add(new FunctionData(currentFunctionName, currentFunctionLines));
             }
-            // Afficher les données sur les fonctions
-            // for (FunctionData functionData : functionDataList) {
-            //     // System.out.println(functionData);
-            // }
+
         } catch (IOException e) {
             e.printStackTrace();
         } finally {
+
+            // Fermeture du reader s'il est ouvert
             if (reader != null) {
                 try {
                     reader.close();
@@ -199,13 +176,11 @@ public class PythonCodeAnalyzer {
     }
 
 
-
-
-/**
- * Supprime les lignes vides
- * @param texte : texte à analyser
- * @return texte sans les lignes vides
- */
+    /**
+     * Supprimer les lignes vides d'un code python
+     * @param texte : code python sous forme de chaîne de caractères
+     * @return texte : code python sans les lignes vides
+     */
     public static String supprimerLignesVides(String texte) {
 	    String[] lignes = texte.split("\\r?\\n");
 	    StringBuilder sb = new StringBuilder();
@@ -218,11 +193,10 @@ public class PythonCodeAnalyzer {
 	}
 	
 
-
     /**
-     * Supprime les lignes de commentaires commençant par #
-     * @param texte : texte à analyser
-     * @return texte sans les lignes de commentaires
+     * Supprimer les commentaires d'un code python commençant par #
+     * @param texte : code python sous forme de chaîne de caractères
+     * @return texte : code python sans les commentaires
      */
 	public static String supprimerHastags(String texte) {
 		String[] lignes = texte.split("\\r?\\n");
@@ -233,6 +207,124 @@ public class PythonCodeAnalyzer {
 	        }
 	    }
 	    return sb.toString();
+	}
+	
+
+    /**
+     * Supprimer les commentaires en bloc délimités par """ et """
+     * @param texte : code python sous forme de chaîne de caractères
+     * @return texte : code python sans les commentaires
+     */
+	public static String supprimerQuotes1(String texte) {
+		char[] caracteres = texte.toCharArray();
+		int index_depart = 0;
+		boolean state = false;
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = index_depart ; i < (texte.length()- 3); i++) {
+			if (caracteres[i] == '\"') {
+				if (caracteres[i+1] == '\"') {
+					if (caracteres[i+2] == '\"') {
+						if (state == true) {
+							state = false;
+							caracteres[i] = ' ';
+							caracteres[i+1] = ' ';
+							caracteres[i+2] = ' ';
+						}
+						else {
+							state = true;
+						}
+					}
+				}
+			}
+			if (state == false) {
+				sb.append(caracteres[i]);
+			}
+			if (state == true) {
+				if (caracteres[i] == '\n') {
+					sb.append('\n');
+				}
+			}
+		}
+		sb.append(caracteres[texte.length()-3]);
+		sb.append(caracteres[texte.length()-2]);
+		sb.append(caracteres[texte.length()-1]);
+		return sb.toString();
+	}
+	
+
+
+    /**
+     * Supprimer les commentaires en bloc délimités par ''' et '''
+     * @param texte : code python sous forme de chaîne de caractères
+     * @return texte : code python sans les commentaires
+     */
+	public static String supprimerQuotes2(String texte) {
+		char[] caracteres = texte.toCharArray();
+		int index_depart = 0;
+		boolean state = false;
+		StringBuilder sb = new StringBuilder();
+		
+		for (int i = index_depart ; i < (texte.length()); i++) {
+			if (caracteres[i] == '\'') {
+				if (caracteres[i+1] == '\'') {
+					if (caracteres[i+2] == '\'') {
+						if (state == true) {
+							state = false;
+							caracteres[i] = ' ';
+							caracteres[i+1] = ' ';
+							caracteres[i+2] = ' ';
+						}
+						else {
+							state = true;
+						}
+					}
+				}
+			}
+			if (state == false) {
+				sb.append(caracteres[i]);
+			}
+			if (state == true) {
+				if (caracteres[i] == '\n') {
+					sb.append('\n');
+				}
+			}
+		}
+		return sb.toString();
+	}
+	
+
+	/**
+	 * Convertit un fichier texte en String
+	 * @param chemin : chemin du fichier texte
+	 * @return String du fichier texte
+	 */
+	public static String txtToString(String chemin) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String ligne;
+        try (BufferedReader br = new BufferedReader(new FileReader(chemin))) {
+            while ((ligne = br.readLine()) != null) {
+                stringBuilder.append(ligne);
+                stringBuilder.append(System.lineSeparator());
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return stringBuilder.toString();
+    }
+	
+	
+	/**
+	 * Supprime les commentaires et les lignes vides d'un code python
+	 * @param texte : code python
+	 * @return code python sans commentaires et lignes vides
+	 */
+	public static String supprimerCommentaires(String texte) {
+		String texteG = supprimerQuotes1(texte);
+		String texteH = supprimerQuotes2(texteG);
+		String texteS = supprimerHastags(texteH);
+		texteS = supprimerLignesVides(texteS);
+		return texteS.strip();
 	}
 
 
@@ -311,90 +403,10 @@ public class PythonCodeAnalyzer {
         return json;
     }
         
-
-
-    /**
-     * Affiche les statistiques sur les fonctions (méthode qui permet de vérifier les résultats)
-     * @param functionDataList : liste de données sur les fonctions
-     */
-    public static void printFunctionStatistics(List<FunctionData> functionDataList) {
-        int totalLines = 0;
-        int maxLines = Integer.MIN_VALUE;
-        int minLines = Integer.MAX_VALUE;
-
-        for (FunctionData functionData : functionDataList) {
-            int lines = functionData.getLines();
-            totalLines += lines;
-            maxLines = Math.max(maxLines, lines);
-            minLines = Math.min(minLines, lines);
-        }
-
-        int numberOfFunctions = functionDataList.size();
-        double averageLines;
-        if (numberOfFunctions == 0) {
-            System.out.println("Aucune fonction trouvée");
-            averageLines = 0;
-
-        } else {
-            averageLines = (double) totalLines / numberOfFunctions;
-        }
-        
-        Map<String, Object> statistiques = new HashMap<>();
-
-
-        // Statistiques générales des fichiers python
-        System.out.println("Nombre de fonctions : " + numberOfFunctions);
-        System.out.println("Nombre total de lignes : " + totalLines);
-        if (maxLines == Integer.MAX_VALUE) {
-            maxLines = 0;
-        }
-        if (minLines == Integer.MIN_VALUE) {
-            minLines = 0;
-        }
-        System.out.println("Nombre maximum de lignes par fonction : " + maxLines);
-        System.out.println("Nombre minimum de lignes par fonction : " + minLines);
-        System.out.println("Nombre moyen de lignes par fonction :  " + averageLines);
-        System.out.println("---------------------------\nStatistiques par fonction :\n---------------------------");
-
-
-        // ajout des données statistiques dans la map
-        statistiques.put("nbFonctions", numberOfFunctions);
-        statistiques.put("nbLignes", totalLines);
-        statistiques.put("nbLignesMax", maxLines);
-        statistiques.put("nbLignesMin", minLines);
-        statistiques.put("nbLignesMoy", averageLines);
-
-
-        Map<String,Integer> fonction = new HashMap<>();
-        // Statistiques de chaque fonction
-        for (FunctionData functionData : functionDataList) {
-            System.out.println("Fonction : " + functionData.getFunctionName());
-            System.out.println("Nombre de lignes : " + functionData.getLines());
-            System.out.println("---------------------------");
-            fonction.put(functionData.getFunctionName(), functionData.getLines());
-            // statistiques.put("Fonctions",functionData);
-        }
-
-        statistiques.put("Fonctions", fonction);
-        // Conversion en json avec jackson
-        ObjectMapper mapper = new ObjectMapper();
-        String json = "";
-
-        try {
-            json = mapper.writeValueAsString(statistiques);
-            System.out.println(json);   
-        } catch (JsonProcessingException e) {
-            e.printStackTrace();
-        }
-        
-
-
-
-    }
-
     
+
     /**
-     * Classe pour stocker le nom et le nombre de lignes d'une fonction
+     * Classe statique pour stocker le nom et le nombre de lignes d'une fonction
      */
     static class FunctionData {
         private String functionName;
@@ -436,6 +448,29 @@ public class PythonCodeAnalyzer {
         @Override
         public String toString() {
             return "FunctionData [functionName=" + functionName + ", lines=" + lines + "]";
+        }
+
+        /**
+         * Compare deux fonctions
+         * @param obj : fonction à comparer
+         * @return boolean : true si les fonctions sont identiques, false sinon
+         */
+        @Override
+        public boolean equals(Object obj) {
+            if (obj == null) {
+                return false;
+            }
+            if (!FunctionData.class.isAssignableFrom(obj.getClass())) {
+                return false;
+            }
+            final FunctionData other = (FunctionData) obj;
+            if ((this.functionName == null) ? (other.functionName != null) : !this.functionName.equals(other.functionName)) {
+                return false;
+            }
+            if (this.lines != other.lines) {
+                return false;
+            }
+            return true;
         }
     }
 
