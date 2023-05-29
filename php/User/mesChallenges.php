@@ -20,7 +20,8 @@ connect();
 
         /* Sinon on affiche la liste des challenges auxquels il est inscrit */
         echo ('<!-- Affichage des challenges auxquels l\'utilisateur est inscrit -->
-        <div id="mesChallenges">');
+        <div id="mesChallenges">
+        <h2 class="titreForm"> Mes Challenges </h2>');
         foreach ($_SESSION['inscriptions'] as $current) {
             /* On récupère les infos liées à l'événement */
             $infos = getChallengeByID($current);

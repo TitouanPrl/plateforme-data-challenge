@@ -13,11 +13,12 @@ $tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 
-<main>');
+<main>
+
+<h2 class="titreForm"> Sujets </h2>');
 
 /* Affichage des sujets disponibles */
 foreach ($tabSujets as $current) {
-
     echo ('  <!-- SUJETS-->
         <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
              <div class="sujets">

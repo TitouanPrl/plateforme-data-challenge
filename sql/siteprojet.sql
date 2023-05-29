@@ -66,6 +66,7 @@ CREATE TABLE Sujet (
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
+/* Gère les liaisons participant-event et gestionnaire-event */
 CREATE TABLE Inscription (
     idUser INTEGER,
     idEvenement INTEGER,
