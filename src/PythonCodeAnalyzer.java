@@ -72,17 +72,32 @@ public class PythonCodeAnalyzer {
 
     /**
      * Fonction qui prend en entrée une liste de mot sous forme de chaîne de caractères et qui retourne une Map avec le nombre d'occurences de chaque mot
-     * @param listeMots : liste de mots sous forme de chaîne de caractères. Les mots sont séparés par des virgules
+     * @param listeMots : liste de mots dont on cherche le nombre d'occurences
      * @param texte : texte dans lequel on cherche les occurences
      * @return mapOccurences : map avec le nombre d'occurences de chaque mot
      */
-    public static Map<String, Integer> occurencesMots(String listeMots, String texte) {
+    public static Map<String, Integer> occurencesMots(String texte, List<String> listeMots) {
         Map<String, Integer> mapOccurences = new HashMap<>();
-        String[] mots = listeMots.split(",");
-        for (String mot : mots) {
+        for (String mot : listeMots) {
             mapOccurences.put(mot, nbOccurences(texte, mot));
         }
         return mapOccurences;
+
+    }
+
+
+    /**
+     * Extraire les mots de la liste de mots
+     * @param requestBody : liste de mots sous forme de chaîne de caractères
+     * @return listeMots : liste de mots sous forme de Liste de String
+     */
+    public static List<String> extraireListeMots(String requestBody) {
+        List<String> listeMots = new ArrayList<>();
+        String[] mots = requestBody.split(",");
+        for (String mot : mots) {
+            listeMots.add(mot);
+        }
+        return listeMots;
     }
 
 
@@ -357,10 +372,11 @@ public class PythonCodeAnalyzer {
             averageLines = (double) totalLines / numberOfFunctions;
         }
         
-        if (maxLines == Integer.MAX_VALUE) {
+        // Gestion des cas particuliers
+        if (maxLines == Integer.MIN_VALUE) {
             maxLines = 0;
         }
-        if (minLines == Integer.MIN_VALUE) {
+        if (minLines == Integer.MAX_VALUE) {
             minLines = 0;
         }
         // ajout des données statistiques dans la map
@@ -371,12 +387,14 @@ public class PythonCodeAnalyzer {
         statistiques.put("nbLignesMoy", averageLines);
 
 
+        // Map contenant les statistiques de chaque fonction
         Map<String,Integer> fonction = new HashMap<>();
-        // Statistiques de chaque fonction
+        // Ajout des données de chaque fonction dans la map
         for (FunctionData functionData : functionDataList) {
             fonction.put(functionData.getFunctionName(), functionData.getLines());
         }
 
+        // Ajout de la map des fonctions dans la map des statistiques
         statistiques.put("Fonctions", fonction);
         
 
@@ -389,7 +407,7 @@ public class PythonCodeAnalyzer {
      * @param statistiques : map contenant les statistiques sur les fonctions
      * @return json : chaîne de caractères contenant les statistiques sur les fonctions
      */
-    public static String convertirEnJson(Map<String, Object> statistiques) {
+    public static String convertirEnJson(Map<String, ?> statistiques) {
         // Conversion en json avec jackson
         ObjectMapper mapper = new ObjectMapper();
         String json = "";

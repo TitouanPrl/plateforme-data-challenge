@@ -9,9 +9,17 @@ import java.io.OutputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.InetSocketAddress;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.concurrent.ThreadPoolExecutor;
+import java.util.List;
+import java.util.Map;
+import java.util.ArrayList;
+import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
+
+
 
 
 
@@ -22,6 +30,9 @@ public class Serveur {
     private static final String SERVEUR = "localhost"; // url de base du service
     private static final int PORT = 8001; // port serveur
     private static final String URL = "/projet/php"; // url de base du service
+    // liste des chemins des fichiers envoyés par le client
+    private static List<String> uploadedFiles = new ArrayList<>(); // Liste pour stocker les chemins des fichiers envoyés
+
     // boucle principale qui lance le serveur sur le port 8001, à l'url test
     public static void main(String[] args) {
         HttpServer server = null;
@@ -70,18 +81,73 @@ public class Serveur {
                     codeBuilder.append(line).append("\n");
                 }
 
-                String pythonCode = codeBuilder.toString();
+                String requestBody = codeBuilder.toString();
+                
+                // Vérifier si le corps de la requête est un fichier ou une liste de mots
+                if (isFileRequest(requestBody)) {
+                    // Corps de requête est un fichier
+                    String pythonCode = requestBody;
+
+                    // Enregistrer le fichier sur le serveur dans un dossier temporaire
+                    String fileName = "py/" + UUID.randomUUID().toString() + ".py";
+                    Files.write(Paths.get(fileName), pythonCode.getBytes());
+                    
+                    // Ajouter le chemin du fichier à la liste des fichiers envoyés 
+                    uploadedFiles.add(fileName);
+
+                    // Traiter le fichier python envoyé par le client et envoyer la réponse au client
+                    String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
+
+                    return result;
+                } else {
+                    // Corps de requête est une liste de mots
+                    List<String> listeMots = PythonCodeAnalyzer.extraireListeMots(requestBody);
+
+                    // Vérifier si un fichier a été envoyé  précédemment
+                    if (uploadedFiles.isEmpty()) {
+                        return "Aucun fichier n'a été envoyé précédemment";
+                    }
+
+                    // Récupérer le dernier fichier envoyé
+                    String dernierFichierEnvoye = uploadedFiles.get(uploadedFiles.size() - 1);
+
+                    // Lire le contenu du fichier
+                    String contenu = new String(Files.readAllBytes(Paths.get(dernierFichierEnvoye)));
+
+                    // compter les occurrences des mots dans le contenu du fichier
+                    Map<String, Integer> occurrences = PythonCodeAnalyzer.occurencesMots(contenu, listeMots);
+
+                    // Convertir le résutat en JSON (avec jackson)
+                    String json = PythonCodeAnalyzer.convertirEnJson(occurrences);
+
+                    return json;
+
+                }
                 
                 // Traiter le fichier python envoyé par le client et envoyer la réponse au client
-                String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
+                // String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
 
-                return result;
+                // return result;
             } catch (IOException e) {
                 LOGGER.warning("Erreur lors de la lecture du corps de la requête : " + e.getMessage());
             }
             return null;
         }
         
+
+        /**
+         * Vérifie si le corps de la requête est un fichier ou une liste de mots
+         * @param requestBody
+         * @return
+         */
+        private boolean isFileRequest(String requestBody) {
+            // vérifier si le corps de la requête correspond à un fichier ou à une liste de mots
+            if (requestBody.startsWith("mots=")) {
+                return false;   // C'est une liste de mots
+            } else {
+                return true;    // C'est un fichier
+            }
+        }
 
         /** 
          * Générer une réponse HTML simple à partir d'un paramètre de requête
