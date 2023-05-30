@@ -28,7 +28,7 @@ connect();
             /* On récupère les infos liées à l'événement */
             $infos = getChallengeByID($current);
 
-            echo ('<a href="equipesInscrites.php.php?challenge=' . $current . '">
+            echo ('<a href="equipesEtProjets.php.php?challenge=' . $current . '">
                       <div class="challenge">
                           <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
                           <span class="descript_challenge"> ' . $infos['description'] . ' </span>
@@ -38,7 +38,7 @@ connect();
 
         echo('</div>');
         ?>
-        b
+        
     </div>
 
 </main>
