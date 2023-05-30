@@ -31,10 +31,19 @@
     padding: 20px;
     height: 100%;
     width: 59%;
-    overflow: auto;
+    overflow: auto; 
 }
-#barreEnvoie{
-    display: relative;
+
+.messages > *:not(:last-child) {
+    margin-bottom: 10px; /* Espacement entre les éléments */
+}
+
+.messages > :last-child {
+    align-self: flex-end; /* Pour aligner le dernier élément en bas */
+    margin-bottom: 0;
+}
+
+#barreEnvoi{
     margin-right: 10px;
     background-color: var(--bleu-fond);
     padding: 1em;
@@ -44,7 +53,7 @@
     color: black;
     font-size: 16px;
 }
-#barreEnvoie:hover{
+#barreEnvoi:hover{
     opacity: 0.85;
 }
 
@@ -55,49 +64,50 @@
 }
 .gauche .textMess{
     padding: 10px;
+    padding-left: 15px;
     border-radius: 20px;
     border-bottom-left-radius: 0;
-    background-color: var(--bleu-fond);
-    color: black;
-    width: auto;
+    background-color: var(--bleu);
+    color: white;
+    width: 91%;
 }
 .droite{
     float: right;
     width: 60%;
     word-wrap: break-word;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
 }
 .droite .textMess{
     padding: 10px;
+    padding-left: 15px;
     border-radius: 20px;
     border-bottom-right-radius: 0;
     background-color: var(--bleu-fond);
     color: black;
-    width: auto;
+    width: 91%;
 }
 
 .convs{
     display: inline-block;
 }
 
-.poubelle{
-    width: 10%;
-    margin-bottom: 5px;
-    margin-left: 3px;
-    border-radius: 10px;
-    transition: 0.5s;
-}
-
+.poubelle,
 .poubelleConv{
     width: 10%;
-    margin-bottom: 5px;
-    margin-left: 3px;
-    border-radius: 10px;
-    transition: 0.5s;
+    border-radius: 11px;
+    height: 30px;
+    width: auto;
+    margin-top: 5px;
 }
 .poubelle:hover,
 .poubelleConv:hover{
-    background-color: red;
+    background-color: rgba(255, 0, 0, 0.829);
+    border-radius: 11px;
+    cursor: pointer;
 }
+  
 
 .Utilisateur{
     float: left;
@@ -127,14 +137,19 @@
 
 .dest{
     display: inline-block;
-    text-align: left;
-    margin: 10px;
-    margin-top: 0;
+    text-align: left;   
     padding: 10px;
     background-color: var(--bleu-fond);
     border-radius: 20px;
+    height: 40px;
+    width: auto;
+    cursor: pointer;
 }
 
 .dest:hover{
     opacity: 0.85;
+}
+
+#uneConv {
+    justify-content: center;
 }

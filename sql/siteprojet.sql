@@ -151,3 +151,6 @@ INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("grrr",1,2);
 INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("!!!",2,1);
 INSERT INTO Messages (contenu, idExpediteur,idDestinataire) VALUES ("!!!!!!",2,1);
 
+
+INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES (1,2);
+

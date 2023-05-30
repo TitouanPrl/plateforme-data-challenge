@@ -4,6 +4,8 @@ if (!connect()) {
     die('Erreur de connexion à la base de données');
 }
 
+$_SESSION["idUser"] = 2;
+
 function aff($variable) {
     echo '<pre style="color: white;">';
     var_dump($variable);
@@ -14,9 +16,6 @@ function aff($variable) {
 
 <div class="bordure"></div>
 <div class="corps">
-    <div class="back-button">
-        <a href="accueilAdmin.php" class="fleche"></a>
-    </div>
     <main>
         <article>
             <div style="padding-top:40px; display:flex;flex-direction:column;align-items:center;height:980px;">
@@ -26,16 +25,15 @@ function aff($variable) {
                 <div class="messagerie" id="messagerie">
                     <div>
                         <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION["idUser"]; ?>">
+                        <?php ?>
                         <input type="hidden" name="conv" id="conv" value="NULL">
                     </div>
 
                     <div class="Utilisateur" id =Utilisateur>
-                        <input type="destinataire" name="destinataire" id="destinataire" class="barreDest" value="" placeholder="Votre destinataire...">
-                        <input type="button" id="newConv" class="boutonForm" value="Contacter" onclick="nouvelleConv()">
-                        <?php 
-                        $messages = getMessages($conn);
-                        aff($messages);
-                        ?>
+                        <div>
+                            <input type="destinataire" name="destinataire" id="destinataire" class="barreDest" value="" placeholder="Votre destinataire...">
+                            <input type="button" id="newConv" class="boutonForm" value="Contacter" onclick="nouvelleConv()">
+                        </div>
                     </div>
 
 
@@ -50,16 +48,7 @@ function aff($variable) {
     </main>
 </div>
 
-<script>
-    //pour envoyer le message quand on appuie sur "entrée"
-    var barre = document.getElementById("envoi");
-    barre.addEventListener("keypress", function(event) {
-        if (event.key === "Enter") {
-            event.preventDefault();
-            document.getElementById("envoi").click();
-        }
-    });
-</script>
 
+<script src="../../script/messagerie.js"></script>
 
 <?php require '../Integrations/footer.php'; ?>

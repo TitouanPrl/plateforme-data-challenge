@@ -6,5 +6,5 @@
     addConversation($conn, $idExpediteur, $idDestinataire);
     $idConv = getIDConversationByCorres($conn,$idExpediteur,$idDestinataire);
 
-    echo $idDestinataire ."|". $idConv;
+    echo $idConv;
 ?>

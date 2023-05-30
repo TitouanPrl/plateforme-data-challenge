@@ -40,7 +40,10 @@ function request($conn, $sql) {
 
 function send($conn, $sql) {
     try {
-        $conn->exec($sql);
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $resultat = $conn->exec($sql);
+
     } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }
@@ -163,8 +166,6 @@ function getConversations($conn) {
     return $conversations;
 }
 
-
-
 function getUtilisateursBySujet($conn,$idSujet) { //récupère tous les utilisateurs attachés à un sujet
     $projets = getProjetsOnSujet($conn,$idSujet);
     $equipes = array();
@@ -196,7 +197,7 @@ function getConversationById($conn,$idConv) {
 
     return $conversation;
 }
-function getIDConversationByCorres($conn,$idExp,$idDest) {
+function getIDConversationByCoress($conn,$idExp,$idDest) {
     $sql = "SELECT idConversation FROM Conversation WHERE (idExpediteur = $idExp AND idDestinataire = $idDest) OR (idExpediteur = $idDest AND idDestinataire = $idExp) LIMIT 1";
     $id = request($conn,$sql);
 
@@ -210,11 +211,22 @@ function getIDConversationByCorres($conn,$idExp,$idDest) {
 
 //AJOUT DE DONNÉES
 function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN')";
-    send($conn,$sql);
+    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,'ADMIN')";
+
+    $use = "use SiteProjet";
+    $conn->exec($use);
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':numTel', $numTel);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mdp', $mdp);
+
+    $stmt->execute();
 }
-function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION')";
+function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF) {
+    $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,dateF,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF,'GESTION')";
     send($conn,$sql);
 }
 function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
@@ -234,8 +246,20 @@ function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
     send($conn,$sql);
 }
 function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
-    $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Messages (contenu,idExpediteur,idDestinataire) VALUES (:contenu,:idExpediteur,:idDestinataire)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':contenu', $contenu);
+        $stmt->bindParam(':idExpediteur', $idExpediteur);
+        $stmt->bindParam(':idDestinataire', $idDestinataire);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+    
 }
 function addConversation($conn, $idExpediteur, $idDestinataire) {
     $sql = "INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES ($idExpediteur,$idDestinataire)";
