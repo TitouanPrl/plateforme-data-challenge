@@ -24,6 +24,7 @@ import java.util.logging.Logger;
 
 
 
+
 public class Serveur {
     // logger pour trace
     private static final Logger LOGGER = Logger.getLogger( Serveur.class.getName() );
@@ -82,6 +83,8 @@ public class Serveur {
                 }
 
                 String requestBody = codeBuilder.toString();
+                // enlever les 4 premières lignes et la dernière ligne du corps de la requête
+
                 
                 // Vérifier si le corps de la requête est un fichier ou une liste de mots
                 if (isFileRequest(requestBody)) {
@@ -100,6 +103,8 @@ public class Serveur {
 
                     return result;
                 } else {
+                    // Enlever le "mots=" du corps de la requête
+                    requestBody = requestBody.substring(5);
                     // Corps de requête est une liste de mots
                     List<String> listeMots = PythonCodeAnalyzer.extraireListeMots(requestBody);
 
@@ -115,7 +120,7 @@ public class Serveur {
                     String contenu = new String(Files.readAllBytes(Paths.get(dernierFichierEnvoye)));
 
                     // compter les occurrences des mots dans le contenu du fichier
-                    Map<String, Integer> occurrences = PythonCodeAnalyzer.occurencesMots(contenu, listeMots);
+                    Map<String, Integer> occurrences = PythonCodeAnalyzer.occurrencesMots(contenu, listeMots);
 
                     // Convertir le résutat en JSON (avec jackson)
                     String json = PythonCodeAnalyzer.convertirEnJson(occurrences);

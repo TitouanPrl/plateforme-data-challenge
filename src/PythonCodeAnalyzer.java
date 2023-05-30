@@ -53,35 +53,35 @@ public class PythonCodeAnalyzer {
 
 
     /**
-     * Compte le nombre d'occurences de mots dans un texte 
-     * @param texte : texte dans lequel on cherche les occurences
-     * @param mot : mot dont on cherche le nombre d'occurences
-     * @return nbOccurences : nombre d'occurences du mot dans le texte
+     * Compte le nombre d'occurrences de mots dans un texte 
+     * @param texte : texte dans lequel on cherche les occurrences
+     * @param mot : mot dont on cherche le nombre d'occurrences
+     * @return nbOccurences : nombre d'occurrences du mot dans le texte
      */
-    public static int nbOccurences(String texte, String mot) {
-        int nbOccurences = 0;
-        String[] lignes = texte.split("\\r?\\n");
+    public static int nbOccurrences(String texte, String mot) {
+        int nbOccurrences = 0;
+        String[] lignes = texte.split("\\n");
         for (String ligne : lignes) {
             if (ligne.contains(mot)) {
-                nbOccurences++;
+                nbOccurrences++;
             }
         }
-        return nbOccurences;
+        return nbOccurrences;
     }
 
 
     /**
      * Fonction qui prend en entrée une liste de mot sous forme de chaîne de caractères et qui retourne une Map avec le nombre d'occurences de chaque mot
-     * @param listeMots : liste de mots dont on cherche le nombre d'occurences
-     * @param texte : texte dans lequel on cherche les occurences
-     * @return mapOccurences : map avec le nombre d'occurences de chaque mot
+     * @param listeMots : liste de mots dont on cherche le nombre d'occurrences
+     * @param texte : texte dans lequel on cherche les occurrences
+     * @return mapOccurrences : map avec le nombre d'occurrences de chaque mot
      */
-    public static Map<String, Integer> occurencesMots(String texte, List<String> listeMots) {
-        Map<String, Integer> mapOccurences = new HashMap<>();
+    public static Map<String, Integer> occurrencesMots(String texte, List<String> listeMots) {
+        Map<String, Integer> mapOccurrences = new HashMap<>();
         for (String mot : listeMots) {
-            mapOccurences.put(mot, nbOccurences(texte, mot));
+            mapOccurrences.put(mot, nbOccurrences(texte, mot));
         }
-        return mapOccurences;
+        return mapOccurrences;
 
     }
 
