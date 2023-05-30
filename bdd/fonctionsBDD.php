@@ -157,7 +157,8 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
     return $id;
 }
 
-function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
+/* Récupère les inscrits à un challenge donné */
+function getInscrits($idEvenement) {
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
 
@@ -261,7 +262,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     send($conn,$sql);
 }
 function inscription($idUser,$idEvenement) {
-    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idSujet,$idEvenement)";
+    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idUser,$idEvenement)";
     send($conn,$sql);
 }
 
