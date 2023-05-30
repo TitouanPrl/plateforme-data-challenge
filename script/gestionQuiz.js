@@ -79,7 +79,7 @@ function createQuiz() {
     xhr.open("POST", "gestionQuiz.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge);
+    xhr.send("type=ajout" + "&IDchallenge=" + IDchallenge + "&debut=" + debut + "&fin=" + fin + "&question0=" + question0 + "&question1=" + question1 + "&question2=" + question2 + "&question3=" + question3 + "&question4=" + question4 + "$newID" + newID);
 
 }
 
@@ -109,7 +109,7 @@ function supprQuiz(nb, id) {
     xhr.open("POST", "gestionQuiz.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("idQuestionnaire=" + id);
+    xhr.send("type=suppr" + "&idQuestionnaire=" + id);
 
 }
 
