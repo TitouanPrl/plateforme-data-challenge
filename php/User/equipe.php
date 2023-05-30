@@ -22,7 +22,7 @@ connect();
         /* Si l'utilisateur n'a pas d'équipe, on affiche les champs et le bouton lui proposant d'en créer une */
         if (!isset($_SESSION['infoUser']['idEquipe'])) {
             echo ('<div id="creer_equipe">
-            <h2 class="titreForm"> Création d\une équipe </h2>
+            <h2 class="titreForm"> Création d\'une équipe </h2>
             <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
 
             <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe">
@@ -61,12 +61,11 @@ connect();
         /* On initialise le compteur pour naviguer dans la classe */
         $i = 0;
         foreach ($_SESSION['teamMembers'] as $member) {
-            echo ('<div class="ligne_equipe" id="' . $i . '"');
+            echo ('<div class="ligne_equipe" id="' . $i . '">');
             /* Si le user actuel est capitaine, on lui permet de supprimer des membres */
             if ($_SESSION['capitaine'] == true) {
-                echo ('onclick="supprMemberTeam(' . $i . ')"');
+                echo ('<img class="delete_button" src="../../img/croix.png" onclick="supprMemberTeam(' . $i . ')" alt="I am an image">');
             }
-            echo ('>');
 
             /* Si le membre est le capitaine, on affiche une couronne */
             if ($member == $_SESSION['infoTeam']['capitaine']) {
@@ -79,7 +78,7 @@ connect();
 
         /* Si le user actuel est capitaine, on lui permet de supprimer l'équipe */
         if ($_SESSION['capitaine'] == true) {
-            echo ('<a id="but_suppr_equipe" href="supprEquipe.php">');
+            echo ('<a id="but_suppr_equipe" href="supprEquipe.php">Supprimer l\'équipe</a>');
         }
 
         echo ('</div>');

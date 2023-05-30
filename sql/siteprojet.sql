@@ -84,8 +84,6 @@ CREATE TABLE Projet (
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
 
-
-
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,
     idSujet INTEGER,

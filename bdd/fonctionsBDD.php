@@ -99,6 +99,15 @@ function getEvenements($conn) { //récupère tous les évenements
 
     return $evenements;
 }
+
+/* Récupère tous les challenges d'un certain type */
+function getEvenementsByKind($conn, $kind) {
+    $sql = "SELECT * FROM Evenement WHERE kind = $kind";
+    $evenements = request($conn,$sql);
+
+    return $evenements;
+}
+
 function getEquipeMembers($conn,$idEquipe) {  //récupère tous les membres d'une équipe
     $sql = "SELECT idUser FROM Utilisateur WHERE idEquipe = $idEquipe";
     $membres = request($conn,$sql);
@@ -144,7 +153,7 @@ function getEquipesByEvenement($conn,$idEvenement) {
     return $equipes;
 }
 
-function getQuestionnairesOnSujet($idSujet) {   //tous les questionnaires envoyés pour un sujet
+function getQuestionnairesOnSujet($conn, $idSujet) {   //tous les questionnaires envoyés pour un sujet
     $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
     $questionnaires = request($conn,$sql);
 
@@ -215,7 +224,13 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
     return $reponses;
 }
 
+/* Renvoit l'id le plus grand parmi ceux des questionnaires */
+function getMaxIdQuestionnaire($conn) { 
+    $sql = "SELECT MAX(idQuestionnaire) FROM Questionnaire";
+    $max = request($conn,$sql);
 
+    return $max;
+}
 
 
 
