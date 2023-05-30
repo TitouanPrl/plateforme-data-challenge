@@ -22,6 +22,14 @@ if(isset($_POST["val1"])) {
     $nom_prenom = $_POST["val1"];
 }
 
+if(isset($_POST["idNewMember2"])) {
+    $idNewMember2 = $_POST["idNewMember2"];
+}
+
+if(isset($_POST["idNewMember3"])) {
+    $idNewMember3 = $_POST["idNewMember3"];
+}
+
 if(isset($_POST["type"])) {
     $type = $_POST["type"];
 }
@@ -67,6 +75,8 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     $_SESSION['infoUser']['idEquipe'] = $idEquipe;
     addMembreEquipe($conn, $idEquipe, $idCap);
+    addMembreEquipe($conn,$idEquipe,$idNewMember2);
+    addMembreEquipe($conn,$idEquipe,$idNewMember3);
 
     /* On met à jour la var des infos d'équipe */
     $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);

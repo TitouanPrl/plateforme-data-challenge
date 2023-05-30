@@ -11,12 +11,12 @@ function CreateTeam(nom_prenom_cap) {
     var challenge = document.getElementById("nom_challenge").innerText;
 
     /* Var deuxième user */
-    var membre = document.getElementById("participant2").value;
-    var idMembre = document.getElementById("participant2").name;
+    var membre2 = document.getElementById("participant2").value;
+    var idMembre2 = document.getElementById("participant2").name;
 
     /* Var troisième user */
-    var membre = document.getElementById("participant3").value;
-    var idMembre = document.getElementById("participant3").name;
+    var membre3 = document.getElementById("participant3").value;
+    var idMembre3 = document.getElementById("participant3").name;
 
     console.log(nomTeam);
     console.log(challenge);
@@ -58,8 +58,8 @@ function CreateTeam(nom_prenom_cap) {
             /* Nom Prénom */
             let nom2 = document.createElement("span");
             nom2.class = "nom_teamMember";
-            nom2.id = idMembre;
-            nom2.innerText = membre;
+            nom2.id = idMembre2;
+            nom2.innerText = membre2;
 
             /* On insère les éléments dans la ligne */
             newLine2.appendChild(nom2);
@@ -73,8 +73,8 @@ function CreateTeam(nom_prenom_cap) {
             /* Nom Prénom */
             let nom3 = document.createElement("span");
             nom3.class = "nom_teamMember";
-            nom3.id = idMembre;
-            nom3.innerText = membre;
+            nom3.id = idMembre3;
+            nom3.innerText = membre3;
 
             /* On insère les éléments dans la ligne */
             newLine3.appendChild(nom3);
@@ -93,7 +93,7 @@ function CreateTeam(nom_prenom_cap) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge);
+    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge +"&idNewMember2=" + idMembre2 + "&idNewMember3=" + idMembre2);
 
 }
 
