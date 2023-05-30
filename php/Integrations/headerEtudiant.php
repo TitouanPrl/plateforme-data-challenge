@@ -2,7 +2,7 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
@@ -36,7 +36,7 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="inscriptionChallenge.php">Liste Challenges</a>
+                <a href="inscriptionChallenge.php">Liste des challenges</a>
                 <a href="equipe.php">Mon équipe</a>
                 <a href="mesChallenges.php">Mes challenges</a>
                 <?php

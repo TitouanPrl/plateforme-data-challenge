@@ -2,7 +2,7 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION")) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
@@ -21,6 +21,7 @@ if (!isset($_SESSION["login"])) {
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
+    <script src="../../script/gestionQuiz.js"></script>
 
 
 </head>
@@ -35,7 +36,7 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="listeChallenges.php">Challenges</a>
+                <a href="modifInfos.php">Mon profil</a>
                 <a href="modifInfos.php">Modifier mes données</a>
             </nav>
 

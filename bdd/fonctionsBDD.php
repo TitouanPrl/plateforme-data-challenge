@@ -99,6 +99,15 @@ function getEvenements($conn) { //récupère tous les évenements
 
     return $evenements;
 }
+
+/* Récupère tous les challenges d'un certain type */
+function getEvenementsByKind($conn, $kind) {
+    $sql = "SELECT * FROM Evenement WHERE kind = $kind";
+    $evenements = request($conn,$sql);
+
+    return $evenements;
+}
+
 function getEquipeMembers($conn,$idEquipe) {  //récupère tous les membres d'une équipe
     $sql = "SELECT idUser FROM Utilisateur WHERE idEquipe = $idEquipe";
     $membres = request($conn,$sql);
@@ -135,7 +144,16 @@ function getEquipeByProjet($conn,$idProjet) { //récupère l'équipe attachée �
 
     return $equipe;
 }
-function getQuestionnairesOnSujet($idSujet) {   //tous les questionnaires envoyés pour un sujet
+
+/* Récupère les équipes inscrites à un challenge */
+function getEquipesByEvenement($conn,$idEvenement) { 
+    $sql = "SELECT idEquipe FROM Equipe WHERE idEvenement = $idEvenement";
+    $equipes = request($conn,$sql);
+
+    return $equipes;
+}
+
+function getQuestionnairesOnSujet($conn, $idSujet) {   //tous les questionnaires envoyés pour un sujet
     $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
     $questionnaires = request($conn,$sql);
 
@@ -148,7 +166,8 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
     return $id;
 }
 
-function getInscrits($idEvenement) {  //renvoie toutes les personnes inscrites à un évenement
+/* Récupère les inscrits à un challenge donné */
+function getInscrits($idEvenement) {
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
 
@@ -205,7 +224,13 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
     return $reponses;
 }
 
+/* Renvoit l'id le plus grand parmi ceux des questionnaires */
+function getMaxIdQuestionnaire($conn) { 
+    $sql = "SELECT MAX(idQuestionnaire) FROM Questionnaire";
+    $max = request($conn,$sql);
 
+    return $max;
+}
 
 
 
@@ -252,7 +277,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     send($conn,$sql);
 }
 function inscription($idUser,$idEvenement) {
-    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idSujet,$idEvenement)";
+    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idUser,$idEvenement)";
     send($conn,$sql);
 }
 

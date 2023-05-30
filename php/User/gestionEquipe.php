@@ -13,13 +13,37 @@ require_once("../../bdd/fonctionsBDD.php");
 
 connect();
 
+/* ================================== *
+*         LECTURE DES DONNEES         *
+* =================================== */
+
 /* On récupère les variables envoyées si elles sont renseignées */
 if(isset($_POST["val1"])) {
     $nom_prenom = $_POST["val1"];
 }
+else {
+    $nom_prenom = NULL;
+}
+
+if(isset($_POST["idNewMember2"])) {
+    $idNewMember2 = $_POST["idNewMember2"];
+}
+else {
+    $idNewMember2 = NULL;
+}
+
+if(isset($_POST["idNewMember3"])) {
+    $idNewMember3 = $_POST["idNewMember3"];
+}
+else {
+    $idNewMember3 = NULL;
+}
 
 if(isset($_POST["type"])) {
     $type = $_POST["type"];
+}
+else {
+    $type = NULL;
 }
 
 if(isset($_POST["idUser"])) {
@@ -42,23 +66,35 @@ if(isset($_POST["idUser"])) {
 if(isset($_POST["nomTeam"])) {
     $nomTeam = $_POST['nomTeam'];
 }
+else {
+    $nomTeam = NULL;
+}
 
 /* On récupère l'ID de l'évènement auquel l'équipe s'inscrit */
 if(isset($_POST["challenge"])) {
     $IDchallenge = getIDByNomEvenement($conn, $_POST['challenge']);
+}
+else {
+    $IDchallenge = NULL;
 }
 
 /* On écrit l'id du capitaine de l'équipe */
 $idCap = $_SESSION['infoUser']['idUser'];
 
 
-/* ==== AJOUT D'UN CAPITAINE ==== */
+
+/* ================================== *
+*            AJOUT CAPITAINE          *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     createEquipe($conn, $IDchallenge, $nomTeam, $idCap);
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
     $_SESSION['infoUser']['idEquipe'] = $idEquipe;
     addMembreEquipe($conn, $idEquipe, $idCap);
+    addMembreEquipe($conn,$idEquipe,$idNewMember2);
+    addMembreEquipe($conn,$idEquipe,$idNewMember3);
 
     /* On met à jour la var des infos d'équipe */
     $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);
@@ -72,7 +108,11 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     exit();
 }
 
-/* ==== AJOUT D'UN MEMBRE ==== */
+
+/* ================================== *
+*             AJOUT MEMBRE            *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
@@ -82,7 +122,11 @@ else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!i
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
 }
 
-/* ==== SUPPRESSION D'UN MEMBRE ==== */
+
+/* ================================== *
+*          SUPPRESSION MEMBRE         *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, que le membre en a une, et qu'il est bien inscrit au challenge */
 else if (($type == 'suppr') && (isset($_SESSION['infoUser']['idEquipe'])) && (isset($infosNewMember['idEquipe'])) && $inscrit) {
     deleteMembreEquipe($conn,$idNewMember);
