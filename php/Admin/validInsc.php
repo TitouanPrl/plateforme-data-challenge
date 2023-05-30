@@ -18,7 +18,7 @@
     if(!empty('etudiant') && $etudiant !=""){
         $_SESSION["type"] = $etudiant;
     }
-    header('location:validInsc.php');
+    header('location:formInsc.php');
   }
   else{
     echo('Il y a une erreur');
