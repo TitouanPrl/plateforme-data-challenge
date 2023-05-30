@@ -21,17 +21,29 @@ connect();
 if(isset($_POST["val1"])) {
     $nom_prenom = $_POST["val1"];
 }
+else {
+    $nom_prenom = NULL;
+}
 
 if(isset($_POST["idNewMember2"])) {
     $idNewMember2 = $_POST["idNewMember2"];
+}
+else {
+    $idNewMember2 = NULL;
 }
 
 if(isset($_POST["idNewMember3"])) {
     $idNewMember3 = $_POST["idNewMember3"];
 }
+else {
+    $idNewMember3 = NULL;
+}
 
 if(isset($_POST["type"])) {
     $type = $_POST["type"];
+}
+else {
+    $type = NULL;
 }
 
 if(isset($_POST["idUser"])) {
@@ -54,10 +66,16 @@ if(isset($_POST["idUser"])) {
 if(isset($_POST["nomTeam"])) {
     $nomTeam = $_POST['nomTeam'];
 }
+else {
+    $nomTeam = NULL;
+}
 
 /* On récupère l'ID de l'évènement auquel l'équipe s'inscrit */
 if(isset($_POST["challenge"])) {
     $IDchallenge = getIDByNomEvenement($conn, $_POST['challenge']);
+}
+else {
+    $IDchallenge = NULL;
 }
 
 /* On écrit l'id du capitaine de l'équipe */
