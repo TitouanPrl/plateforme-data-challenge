@@ -2,7 +2,7 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
+if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
