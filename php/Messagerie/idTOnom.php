@@ -5,11 +5,6 @@
         die('Erreur de connexion à la base de données');
     }
 
-    function aff($variable) {
-        echo '<pre style="color: black;">';
-        var_dump($variable);
-        echo '</pre>';
-    }
 
 
     //on obtient le nom et prénom correspondant à l'id

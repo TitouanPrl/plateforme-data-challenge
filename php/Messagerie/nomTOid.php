@@ -2,28 +2,39 @@
 
     //on cherche l'id correspondant au nom et prénom donnés
 
+    require_once "../../bdd/fonctionsBDD.php";
+    if (!connect()) {
+        die('Erreur de connexion à la base de données');
+    }
+
     $nom = $_POST["nom"];
     $prenom = $_POST["prenom"];
 
-    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom AND prenom=$prenom LIMIT 1";
     $use = "use SiteProjet";
     $conn->exec($use);
-    $stmt = $conn->prepare($sql);
-    $stmt->execute();
+    $sql = "SELECT idUser FROM Utilisateur WHERE UPPER(nom) = ? AND UPPER(prenom) = ? LIMIT 1";
 
-    if (!$stmt) {  //on essaye de voir si nom et prenom ont été inversés
-        $sql2 = "SELECT idUser FROM Utilisateur WHERE nom=$prenom AND prenom=$nom LIMIT 1";
-        $stmt2 = $conn->prepare($sql2);
-        $stmt2->execute();
-        if (!$stmt2) {
-            echo NULL;
-        } else {
-            $id = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-            echo $id;
-        }
+    $stmt = $conn->prepare($sql);
+    $stmt->execute([strtoupper($nom), strtoupper($prenom)]);
+
+    $id = $stmt->fetchColumn();
+
+    if ($id) {
+        echo $id;
     } else {
-        $id = $stmt2->fetchAll(PDO::FETCH_ASSOC);
-            echo $id;
+        $sql2 = "SELECT idUser FROM Utilisateur WHERE UPPER(nom) = ? AND UPPER(prenom) = ? LIMIT 1";
+        $stmt2 = $conn->prepare($sql2);
+        $stmt2->execute([strtoupper($prenom), strtoupper($nom)]);
+
+        $id2 = $stmt2->fetchColumn();
+
+        if ($id2) {
+            echo $id2;
+        } else {
+            echo "";
+        }
     }
+
+
 
 ?>

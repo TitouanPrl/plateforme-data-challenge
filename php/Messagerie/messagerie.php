@@ -4,13 +4,16 @@ if (!connect()) {
     die('Erreur de connexion à la base de données');
 }
 
-$_SESSION["idUser"] = 2;
+$_SESSION["idUser"] = 1;
 
 function aff($variable) {
-    echo '<pre style="color: white;">';
+    echo '<pre style="color: black;">';
     var_dump($variable);
     echo '</pre>';
 }
+
+$users = getAllUtilisateurs($conn);
+
 
 ?>
 
@@ -30,8 +33,24 @@ function aff($variable) {
                     </div>
 
                     <div class="Utilisateur" id =Utilisateur>
-                        <div>
-                            <input type="destinataire" name="destinataire" id="destinataire" class="barreDest" value="" placeholder="Votre destinataire...">
+                        <div style="margin-bottom:40px;">
+                            <!--<input type="destinataire" name="destinataire" id="destinataire" class="barreDest" value="" placeholder="Votre destinataire...">-->
+                            
+                            <input list="choixDest" class="barreDest" id="destinataire" placeholder="Votre destinataire...">
+                            <datalist id="choixDest">
+
+                                <?php
+                                    foreach ($users as $user) {
+                                        $prenom = $user["prenom"];
+                                        $nom = $user["nom"];
+                                        $personne = $nom . " " . $prenom;
+                                        echo('
+                                        <option value="'. $personne .'">
+                                        ');
+                                    }
+                                ?>
+                            </datalist>
+                            
                             <input type="button" id="newConv" class="boutonForm" value="Contacter" onclick="nouvelleConv()">
                         </div>
                     </div>

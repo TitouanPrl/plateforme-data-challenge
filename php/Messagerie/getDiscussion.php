@@ -4,17 +4,10 @@
         die('Erreur de connexion à la base de données');
     }
 
-    function aff($variable) {
-        echo '<pre style="color: black;">';
-        var_dump($variable);
-        echo '</pre>';
-    }
-
     //pour obtenir la discussion entre deux personnes
 
     $messages = getMessages($conn);
-    //$idConv = $_POST["idConv"];
-    $idConv = 1;
+    $idConv = $_POST["idConv"];
 
     $conv = getConversationById($conn,$idConv);
 
@@ -23,7 +16,7 @@
     $idDest = $conv[0]["idDestinataire"];
 
     if(count($messages) == 0 ) { //count obtient le nombre de messages
-        echo "";
+        echo "hello";
     } else {
 
         $res = "";

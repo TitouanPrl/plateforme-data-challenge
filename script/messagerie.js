@@ -12,27 +12,22 @@ barreEnvoi.addEventListener("keypress", function(event) {
 function nomTOid(destinataire) {
     return new Promise(function(resolve, reject) {
         let xhttp = new XMLHttpRequest();
+        
+        let nomPrenom = destinataire.split(" "); // Sépare la chaîne en nom et prénom
 
         xhttp.onreadystatechange = function() {
             if (this.readyState == 4) {
                 if (this.status == 200) {
-                    let nomPrenom = destinataire.split(" "); // Sépare la chaîne en nom et prénom
-                    if (nomPrenom.length != 2) {
-                        alert("Cette personne n'existe pas !");
-                        resolve("");
-                    }
 
                     let id = this.responseText;
-                    resolve(id); // Résoudre la promesse avec nomPrenom
-                
-                    
-                    
-                    
+                    resolve(id);
+ 
                 } else {
                     reject(new Error('Erreur lors de la requête AJAX'));
                 }
             }
         }
+
 
         xhttp.open("POST", "nomTOid.php", true);
         xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
@@ -50,7 +45,7 @@ function convTOids(idConv) {
                 if (this.status == 200) {
 
                     let ids = this.responseText;
-                    resolve(ids); // Résoudre la promesse avec nomPrenom
+                    resolve(ids);
                 
                 } else {
                     reject(new Error('Erreur lors de la requête AJAX'));
@@ -63,8 +58,6 @@ function convTOids(idConv) {
         xhttp.send("idConv=" + idConv);
     });
 }
-
-
 
 
 //obtenir nom prénom depuis l'id
@@ -99,57 +92,56 @@ function nouvelleConv() {
     let expediteur = document.getElementById('expediteur').value;
     let destinataire = document.getElementById('destinataire').value; //destinataire de la forme nom prénom
 
-    //on obtient l'id du destinataire depuis son nom et son prénom
-    let idDestinataire = nomTOid(destinataire);
+    async function asynNomPrenom() {
+        try {
+            //on obtient l'id du destinataire depuis son nom et son prénom
+            let idDestinataire = await nomTOid(destinataire);
+            //on remet rien dans la barre pour chercher 
+            document.getElementById("destinataire").value = "";
 
-    //on remet rien dans la barre pour chercher 
-    document.getElementById("destinataire").value = "";
-
-    xhttp.onreadystatechange = function () {
-        if(this.readyState == 4 && this.status == 200){
+            xhttp.onreadystatechange = function () {
+                if(this.readyState == 4 && this.status == 200){
+                    
+                    //si on a trouvé l'id de la personne
+                    if (idDestinataire != "") {
+                        let idConv = this.responseText; 
+                        document.getElementById('conv').value = idDestinataire;
             
-            //si on a trouvé l'id de la personne
-            if (idDestinataire != NULL) {
-                let idConv = this.responseText; 
-                document.getElementById('conv').value = idDestinataire;
-    
-                let ajout = destinataire;  //nom et prénom à afficher en haut de la conv
-                let node = document.createElement("div");
-                let textnode = document.createTextNode(ajout);
-                node.appendChild(textnode);
-    
-                //quand on séléctionnera la conv en cliquant
-                node.setAttribute("onclick", "afficheConv('"+idConv+"')");
-                node.setAttribute("id", idConv);
-                node.setAttribute("class", "dest");
-                //on l'ajoute à la liste des conversations
-                document.getElementById("Utilisateur").appendChild(node);
-    
-                //ajout du logo "poubelle" pour supprimer la conversation
-                let button = document.createElement("img");
-                button.setAttribute("onclick", "delConv(this)");
-                button.setAttribute("class","poubelleConv");
-                button.setAttribute("src", "../img/poubelle.png");
-                button.setAttribute("id", idConv);
-                document.getElementById("Utilisateur").appendChild(button);
-                
-                //on affiche la conv après l'avoir créée
-                afficheConv(idConv);
+                        let ajout = destinataire;  //nom et prénom à afficher en haut de la conv
+                        let node = document.createElement("div");
+                        let textnode = document.createTextNode(ajout);
+                        node.appendChild(textnode);
 
-            } else { //si la personne n'existe pas 
-                alert("Cette personne n'existe pas !");
-                return
+                        //quand on séléctionnera la conv en cliquant
+                        node.setAttribute("onclick", "afficheConv('"+idConv+"')");
+                        node.setAttribute("id", idConv);
+                        node.setAttribute("class", "dest");
+                        //on l'ajoute à la liste des conversations
+                        document.getElementById("Utilisateur").appendChild(node);
+                        
+                        //on affiche la conv après l'avoir créée
+                        afficheConv(idConv);
+
+                    } else { //si la personne n'existe pas 
+                        alert("Cette personne n'existe pas !");
+                        return
+                    }
+        
+                }
             }
- 
+
+            xhttp.open("POST", "creerConv.php", true);
+
+            xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+            if (destinataire != "") {
+                xhttp.send("&expediteur=" + expediteur + "&destinataire=" + idDestinataire);
+            }
+        } catch (error) {
+            console.error(error);
         }
     }
-
-    xhttp.open("POST", "creerConv.php", true);
-
-    xhttp.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
-    if (destinataire != "") {
-        xhttp.send("&expediteur=" + expediteur + "&destinataire=" + destinataire);
-    }
+        
+    asynNomPrenom();
 }
 
 
@@ -189,7 +181,7 @@ function message(){
             let button = document.createElement("img");
             button.setAttribute("src", "../../img/poubelle.png");
             button.setAttribute("class", "poubelle");
-            button.setAttribute("onclick", "del(this)");  //this fait référence à l'objet sur lequel l'évenement est appliqué
+            button.setAttribute("onclick", "del(this)"); 
             button.setAttribute("id", index);    //on modifie son id pour pouvoir le passer en parametre de del avec this
             node.appendChild(button);
 
@@ -241,48 +233,47 @@ function afficheConv(idConv) {
 
             xhttp.onreadystatechange = function () {
                 if(this.readyState == 4 && this.status == 200){
-                    if(this.responseText != "empty"){
 
-                        if (this.responseText != "NULL"){
-                            let messages = this.responseText.split('|');
-                            for(let msg of messages){
+                    let messages = this.responseText.split('|');
+                    if (!((messages.length == 1) && (messages[0] == ' '))) {
+                        for(let msg of messages){
+                            msg = JSON.parse(msg);
+                            var idMessage = msg[0].idMessage;
+                            var contenu = msg[0].contenu;
+                            var idExpediteur = msg[0].idExpediteur;
 
-                                msg = JSON.parse(msg);
-                                var idMessage = msg[0].idMessage;
-                                var contenu = msg[0].contenu;
-                                var idExpediteur = msg[0].idExpediteur;
+                            let texte = contenu;
+                            let node = document.createElement("div");
+                            let textnode = document.createTextNode(texte);
+                            let pnode = document.createElement("p");
+                            pnode.appendChild(textnode);
+                            pnode.setAttribute("class", "textMess");
+                            node.appendChild(pnode);
+                            node.setAttribute("id", idMessage);
 
-                                let texte = contenu;
-                                let node = document.createElement("div");
-                                let textnode = document.createTextNode(texte);
-                                let pnode = document.createElement("p");
-                                pnode.appendChild(textnode);
-                                pnode.setAttribute("class", "textMess");
-                                node.appendChild(pnode);
-                                node.setAttribute("id", idMessage);
-
-                                if(idExpediteur == document.getElementById('expediteur').value){  //si on a envoyé le message
-                                    node.setAttribute("class", "droite");
-                                    //poubelle pour le supprimer
-                                    let button = document.createElement("img");
-                                    button.setAttribute("src", "../../img/poubelle.png");
-                                    button.setAttribute("class", "poubelle");
-                                    button.setAttribute("onclick", "del(this)");
-                                    button.setAttribute("id", idMessage);
-                                    node.appendChild(button);
-                                } else {   //si on l'a reçu
-                                    node.setAttribute("class", "gauche");
-                                }
-
-                                document.getElementById("messages").appendChild(node);
-                                
+                            if(idExpediteur == document.getElementById('expediteur').value){  //si on a envoyé le message
+                                node.setAttribute("class", "droite");
+                                //poubelle pour le supprimer
+                                let button = document.createElement("img");
+                                button.setAttribute("src", "../../img/poubelle.png");
+                                button.setAttribute("class", "poubelle");
+                                button.setAttribute("onclick", "del(this)");
+                                button.setAttribute("id", idMessage);
+                                node.appendChild(button);
+                            } else {   //si on l'a reçu
+                                node.setAttribute("class", "gauche");
                             }
-                        }
-                        document.getElementById("messages").appendChild(barreEnvoi);
-                        document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
-                    }
 
+                            document.getElementById("messages").appendChild(node);
+                            
+                        }
+                    }
                 }
+                document.getElementById("messages").appendChild(barreEnvoi);
+                document.getElementById("messages").scrollTop = document.getElementById("messages").scrollHeight;
+            
+
+                
             }
 
             xhttp.open("POST", "getDiscussion.php", true);
@@ -334,16 +325,15 @@ xhttp.onreadystatechange = function () {
         let conversations = JSON.parse(this.responseText);
 
         for(let conv of conversations){
-
             //parmi toutes les conversations dans la bdd, on prend celles où on participe
-            if(conv["idExpediteur"] == moi || conv["idDestinataire"] == moi) {
+            if(conv[0].idExpediteur == moi || conv[0].idDestinataire == moi) {
                 
                 //contact à afficher en fonction de qui a créé la conversation
                 let correspondant;
-                if (conv["idExpediteur"] == moi) {
-                    correspondant = conv["idDestinataire"];
+                if (conv[0].idExpediteur == moi) {
+                    correspondant = conv[0].idDestinataire;
                 } else {
-                    correspondant = conv["idExpediteur"];
+                    correspondant = conv[0].idExpediteur;
                 }
 
                 async function asynNomPrenom() {
@@ -356,20 +346,12 @@ xhttp.onreadystatechange = function () {
                         let textnode = document.createTextNode(nomPrenom);
                         node.appendChild(textnode);
                         node.setAttribute("id", conv["idConversation"]);
-                        node.setAttribute("onclick", "afficheConv('"+conv["idConversation"]+"')");
+                        node.setAttribute("onclick", "afficheConv('"+conv[0].idConversation+"')");
                         node.setAttribute("class", "dest");
-                        
-                        //poubelle de la conversation
-                        let button = document.createElement("img");
-                        button.setAttribute("onclick", "delConv(this)");
-                        button.setAttribute("class", "poubelleConv");
-                        button.setAttribute("src", "../../img/poubelle.png");
-                        button.setAttribute("id", conv["idConversation"]);
 
                         let unite = document.createElement("div");
                         unite.setAttribute("id", "uneConv");
                         unite.appendChild(node);
-                        unite.appendChild(button);
 
                         document.getElementById("Utilisateur").appendChild(unite);
                                 

@@ -11,8 +11,8 @@
         echo '</pre>';
     }
 
-    //on obtient le nom et prénom correspondant à l'id
 
+    //on obtient le nom et prénom correspondant à l'id
     $idConv = $_POST["idConv"];
 
     $conv = getConversationById($conn,$idConv);

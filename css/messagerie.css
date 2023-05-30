@@ -93,16 +93,14 @@
     display: inline-block;
 }
 
-.poubelle,
-.poubelleConv{
+.poubelle{
     width: 10%;
     border-radius: 11px;
     height: 30px;
     width: auto;
     margin-top: 5px;
 }
-.poubelle:hover,
-.poubelleConv:hover{
+.poubelle:hover{
     background-color: rgba(255, 0, 0, 0.829);
     border-radius: 11px;
     cursor: pointer;
@@ -137,13 +135,14 @@
 
 .dest{
     display: inline-block;
-    text-align: left;   
-    padding: 10px;
+    text-align: center;  
+    font-weight:500 ; 
+    padding: 20px;
     background-color: var(--bleu-fond);
     border-radius: 20px;
-    height: 40px;
-    width: auto;
+    width: 70%;
     cursor: pointer;
+    margin: 7px;
 }
 
 .dest:hover{

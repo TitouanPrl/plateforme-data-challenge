@@ -60,21 +60,17 @@ function getUtilisateurById($conn,$id) { //récupère toutes les infos d'une per
     return $person;
 }
 function getUtilisateurByFonction($conn,$fonction) { //récupère tous les utilisateurs d'une catégorie
-    $sql = "SELECT * FROM Utilisateur WHERE fonction=$fonction";
+    $sql = "SELECT * FROM Utilisateur WHERE fonction='$fonction'";
     $users = request($conn,$sql);
     return $users;
 }
 function getAllUtilisateurs($conn) { //récupère tous les utilisateurs
-    $etudiants = getUtilisateurByFonction($conn,'USER');
-    $gestion = getUtilisateurByFonction($conn,'GESTION');
-    $admin = getUtilisateurByFonction($conn,'ADMIN');
-    $users = array();
-    $users[] = $etudiants;
-    $users[] = $gestion;
-    $users[] = $admin;
+    $sql = "SELECT * FROM Utilisateur";
+    $users = request($conn,$sql);
 
     return $users;
 }
+
 function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
     $sql = "SELECT * FROM Podium WHERE idSujet=$idSujet";
     $podium = request($conn,$sql);
@@ -197,15 +193,12 @@ function getConversationById($conn,$idConv) {
 
     return $conversation;
 }
-function getIDConversationByCoress($conn,$idExp,$idDest) {
+function getIDConversationByCorres($conn,$idExp,$idDest) {
     $sql = "SELECT idConversation FROM Conversation WHERE (idExpediteur = $idExp AND idDestinataire = $idDest) OR (idExpediteur = $idDest AND idDestinataire = $idExp) LIMIT 1";
     $id = request($conn,$sql);
 
     return $id;
 }
-
-
-
 
 
 
