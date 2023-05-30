@@ -93,7 +93,7 @@ function CreateTeam(nom_prenom_cap) {
     xhr.open("POST", "gestionEquipe.php", true);
     xhr.setRequestHeader('Content-Type',
         'application/x-www-form-urlencoded;charset=utf-8');
-    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge +"&idNewMember2=" + idMembre2 + "&idNewMember3=" + idMembre2);
+    xhr.send("type=ajout" + "&nomTeam=" + nomTeam + "&challenge=" + challenge +"&idNewMember2=" + idMembre2 + "&idNewMember3=" + idMembre3);
 
 }
 
