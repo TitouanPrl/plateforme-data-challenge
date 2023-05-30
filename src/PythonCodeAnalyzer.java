@@ -40,34 +40,48 @@ public class PythonCodeAnalyzer {
             
         // }
 
-        String code = "\n def hello(): \n\n\t#jesuisuncommentaire\n\t'''commentaire\n\ten\n\tbloc'''\n\tprint(\"Hello World\")\n\tprint(\"testtesttest\") '''\tcommentaire\nen\nbloc2\n'''\ndef fonction():\n\treturn 0";
-        System.out.println(code);
-        code=supprimerCommentaires(code);
-        System.out.println("----------------------\n" + code);   
-        String json = analyzePythonCode(code);
+        // String code = "\n def hello(): \n\n\t#jesuisuncommentaire\n\t'''commentaire\n\ten\n\tbloc'''\n\tprint(\"Hello World\")\n\tprint(\"testtesttest\") '''\tcommentaire\nen\nbloc2\n'''\ndef fonction():\n\treturn 0";
+        // System.out.println(code);
+        // code=supprimerCommentaires(code);
+        // System.out.println("----------------------\n" + code);   
+        // String json = analyzePythonCode(code);
 
-        System.out.println(json);
+        // System.out.println(json);
+
+
+
+        
+        String texteExemple = "def fonction1():\n\treturn \"je suis la fonction 1\"\n'''jesuis\nun\ncommentaire\nen\nbloc'''\ndef fonction2():\n\treturn 2";
+        System.out.println(texteExemple);
+        String mot = "def";
+        System.out.println("nb occurences de " + mot +  " : " + nbOccurrences(texteExemple, mot));
 
     }
-
 
 
     /**
      * Compte le nombre d'occurrences de mots dans un texte 
      * @param texte : texte dans lequel on cherche les occurrences
      * @param mot : mot dont on cherche le nombre d'occurrences
-     * @return nbOccurences : nombre d'occurrences du mot dans le texte
+     * @return nbOccurrences : nombre d'occurrences du mot dans le texte
      */
-    public static int nbOccurrences(String texte, String mot) {
-        int nbOccurrences = 0;
-        String[] lignes = texte.split("\\n");
-        for (String ligne : lignes) {
-            if (ligne.contains(mot)) {
-                nbOccurrences++;
+    public static int nbOccurrences(String str, String motif) {
+        int count = 0;
+        int lastIndex = 0;
+        while (lastIndex != -1) {
+            lastIndex = str.indexOf(motif, lastIndex);
+            if (lastIndex != -1) {
+                count++;
+                lastIndex += motif.length();
             }
         }
-        return nbOccurrences;
+        return count;
     }
+    
+
+    
+    
+    
 
 
     /**
@@ -95,6 +109,7 @@ public class PythonCodeAnalyzer {
         List<String> listeMots = new ArrayList<>();
         String[] mots = requestBody.split(",");
         for (String mot : mots) {
+            mot.trim();
             listeMots.add(mot);
         }
         return listeMots;

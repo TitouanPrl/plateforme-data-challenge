@@ -83,7 +83,6 @@ public class Serveur {
                 }
 
                 String requestBody = codeBuilder.toString();
-                // enlever les 4 premières lignes et la dernière ligne du corps de la requête
 
                 
                 // Vérifier si le corps de la requête est un fichier ou une liste de mots
@@ -93,6 +92,7 @@ public class Serveur {
 
                     // Enregistrer le fichier sur le serveur dans un dossier temporaire
                     String fileName = "py/" + UUID.randomUUID().toString() + ".py";
+                    // On enlève l'entête du fichier (ajoutée lors de l'envoi de la requête)
                     Files.write(Paths.get(fileName), pythonCode.getBytes());
                     
                     // Ajouter le chemin du fichier à la liste des fichiers envoyés 
@@ -104,7 +104,12 @@ public class Serveur {
                     return result;
                 } else {
                     // Enlever le "mots=" du corps de la requête
+                    LOGGER.info("requestBody : " + requestBody);
                     requestBody = requestBody.substring(5);
+                    // enlever le saut de ligne à la fin de requestBody
+                    LOGGER.info("requestBody : " + requestBody);
+                    requestBody = requestBody.substring(0, requestBody.length() - 1);
+                    LOGGER.info("requestBody : " + requestBody);
                     // Corps de requête est une liste de mots
                     List<String> listeMots = PythonCodeAnalyzer.extraireListeMots(requestBody);
 
@@ -133,7 +138,7 @@ public class Serveur {
             }
             return null;
         }
-        
+
 
         /**
          * Vérifie si le corps de la requête est un fichier ou une liste de mots
