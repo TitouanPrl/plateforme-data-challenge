@@ -13,6 +13,10 @@ require_once("../../bdd/fonctionsBDD.php");
 
 connect();
 
+/* ================================== *
+*         LECTURE DES DONNEES         *
+* =================================== */
+
 /* On récupère les variables envoyées si elles sont renseignées */
 if(isset($_POST["val1"])) {
     $nom_prenom = $_POST["val1"];
@@ -52,7 +56,11 @@ if(isset($_POST["challenge"])) {
 $idCap = $_SESSION['infoUser']['idUser'];
 
 
-/* ==== AJOUT D'UN CAPITAINE ==== */
+
+/* ================================== *
+*            AJOUT CAPITAINE          *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     createEquipe($conn, $IDchallenge, $nomTeam, $idCap);
@@ -72,7 +80,11 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
     exit();
 }
 
-/* ==== AJOUT D'UN MEMBRE ==== */
+
+/* ================================== *
+*             AJOUT MEMBRE            *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
     $idEquipe = getIDEquipeByIDCapitaine($conn, $idCap);
@@ -82,7 +94,11 @@ else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!i
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
 }
 
-/* ==== SUPPRESSION D'UN MEMBRE ==== */
+
+/* ================================== *
+*          SUPPRESSION MEMBRE         *
+* =================================== */
+
 /* On vérifie que le capitaine a une équipe, que le membre en a une, et qu'il est bien inscrit au challenge */
 else if (($type == 'suppr') && (isset($_SESSION['infoUser']['idEquipe'])) && (isset($infosNewMember['idEquipe'])) && $inscrit) {
     deleteMembreEquipe($conn,$idNewMember);
