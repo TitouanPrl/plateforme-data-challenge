@@ -317,7 +317,7 @@ function deleteReponse($conn,$idReponse) {
     send($conn,$sql);
 }
 function desinscription($idUser,$idEvenement) {
-    $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idSujet,$idEvenement)";
+    $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idUser,$idEvenement)";
     send($conn,$sql);
 }
 
