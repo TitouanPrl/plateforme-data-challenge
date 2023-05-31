@@ -1,5 +1,10 @@
 <?php
 
+    /* On inclut les fonctions de manipulation de la BDD */
+    require_once("../../bdd/fonctionsBDD.php");
+
+    connect();
+
     /* Var témoin pour savoir si les données sont valides ou non */
     $valide = true;
 
@@ -27,9 +32,7 @@
     $ecole = erase($_POST['ecole']);
     $ville = erase($_POST['ville']);
     $tel = erase($_POST['tel']);
-    $gestionnaire =erase($_POST['gestionnaire']);
-    $admin = erase($_POST['admin']);
-    $etudiant = erase($_POST['etudiant']);
+    $mdp = erase($_POST['mdp']);
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -38,7 +41,8 @@
     || empty($nivEtude)
     || empty($ecole)
     || empty($ville)
-    || empty($tel)) {
+    || empty($tel)
+    || empty($mdp)) {
 
         global $valide;
        $valide = false;
@@ -86,10 +90,11 @@
             Ville : ' . $ville . '\r\n'
         );
 
-        // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
+        /* On crée le user dans la BDD */
+        addEtudiant($conn,$nom,$prenom,$tel,$mail,$mdp,$nivEtude,$ecole,$ville);
         
         /* On redirige l'utilisateur vers la connexion */
-        header('Location:connexionInscription?message=4.php');
+        header('Location:connexionInscription.php?message=4');
     }
 
 ?>

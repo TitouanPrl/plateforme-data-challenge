@@ -301,7 +301,7 @@ function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$d
     send($conn,$sql);
 }
 function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER')";
+    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ('$nom','$prenom','$numTel','$email','$mdp','$nivEtude','$ville','$ecole','USER')";
     send($conn,$sql);
 }
 function createQuestionnaire($conn,$idSujet,$dateD,$dateF) {

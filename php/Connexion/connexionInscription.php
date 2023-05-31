@@ -1,5 +1,4 @@
 <?php
-session_start();
 require '../Integrations/headerVanilla.php'; ?>
 
 
@@ -80,23 +79,31 @@ require '../Integrations/headerVanilla.php'; ?>
                       <legend>Votre nom</legend>
                       <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                     </fieldset>
+
                     <fieldset>
                       <legend>Votre prénom</legend>
                       <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                     </fieldset>
+
                     <fieldset>
                       <legend>Votre e-mail</legend>
                       <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
                     </fieldset>
 
                     <fieldset>
-                      <legend>Votre numéro de téléphone</legend>
-                      <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
+                      <legend>Votre mot de passe</legend>
+                      <input type="password" id="mdp" name="mdp" required>
                     </fieldset>
-                  </div>
+
+                    </div>
                   </div>
 
                   <div id="formD">
+                   <fieldset>
+                      <legend>Votre numéro de téléphone</legend>
+                      <input type="tel" id="tel" name="tel" value="<?php echo ($_GET['tel']); ?>" required patern = "[0-9]+">
+                    </fieldset>
+
                     <fieldset>
                       <legend>Votre degré d'étude ?</legend>
                       <select name="nivEtude" id="nivEtude" required>
