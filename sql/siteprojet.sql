@@ -123,7 +123,6 @@ CREATE TABLE Reponse (
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Archibald","Haddock",0783698488,"hh@gmail.com","1ère année de Master","la mer","Mauléon","love","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Rastapopoulos","Monsieur",0808080808,"rp@gmail.com","1ère année de Master","l'école des méchants","Lyon","alan","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",0202020202,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","bijou","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tintin","et Milou",0606060607,"Le petit 20e","tt@gmail.com","milou","ADMIN");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",0606060608,"Laboratoire de Genève","tty@gmail.com","quoi","GESTION");
 
 
