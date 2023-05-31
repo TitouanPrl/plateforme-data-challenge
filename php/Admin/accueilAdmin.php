@@ -86,25 +86,55 @@ while($i< count($_FILES['userfile'])){
     <?php
     $kind ='CHALLENGE';
     $DC = getEvenementsByKind($conn,$kind);
-    foreach ($DC as $current) : ?>
-        <!--  -->    
-        <tr class="ligne">
+    foreach ($DC as $evt) : ?>
+        <div>
+        <tr class="ligneDc">
             <?php
-                    echo ('<td>'.'<a href="modifDC.php?DC=' . $current['idEvenement'] . '">
+                    $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
+                    echo ('<td>'.'<a href="modifDC.php?DC=' . $evt['idEvenement'] . '">
                         <div class="infosUser">
-                            <span class="nomDC"> ' . $current['libelle'] . ' </span>
-                            <span class="debut"> ' . $current['dateD'] . ' </span>
-                            <span class="fin"> ' . $current['dateF'] . ' </span>
+                            <span class="nomDC"> ' . $evt['libelle'] . ' </span>
+                            <span class="debut"> ' . $evt['dateD'] . ' </span>
+                            <span class="fin"> ' . $evt['dateF'] . ' </span>
                         </div>
                     </a>'. '</td>');
-                ?>
+                    
+                    foreach ($sujet as $sp) : ?>
+                        <div>
+                        <tr class="ligneSuj">
+                            <?php 
+                            $projet = getProjetsOnSujet($conn,$sp['idSujet']);
+                            echo ('<td>'.'<a href="modifSujet.php?Sujet=' . $sp['idSujet'] . '">
+                            <div class="infosSujet">
+                                <span class="nomSujet"> ' . $sp['libelle'] . ' </span>
+                                <span class="descriSujet"> ' . $sp['descri'] . ' </span>
+                            </div>
+                            </a>'. '</td>');
+                            
+                            foreach ($projet as $current): ?>
+                                <div>
+                                <tr class="ligneProjet">
+                                    <?php
+                                        $equipe = getEquipeByProjet($conn,$current['idProjet']);
+                                        echo ('<td>'.'<a href="modifProj.php?Projet=' . $current['idProjet'] . '">
+                                        <div class="infosProjet">
+                                            <span class="Idequipe"> ' . $equipe['nom'] . ' </span>
+                                        </div>
+                                        </a>'. '</td>');
+                                    ?>
+                                </tr>
+                                </div>
+                                <?php endforeach?>
+                        </tr>
+                        </div>
+                        <?php endforeach ?>
             <td>
-                
                 <p>
                     <button class="supp" id="supp<?php echo $DC['idEvenement'];?>">X</button>
                 </p>
             </td>
         </tr>
+        </div>
     <?php endforeach ?>
     </table>
 </table>
@@ -125,20 +155,34 @@ while($i< count($_FILES['userfile'])){
     <?php
     $kind ='CHALLENGE';
     $DC = getEvenementsByKind($conn,$kind);
+    
     foreach($DC as $evt){
+        echo('<div>');
         $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
         foreach($sujet as $sp){
+            echo('<div>');
             $projet = getProjetsOnSujet($conn,$sp['idSujet']);
                 foreach ($projet as $current) {
-                    echo('<tr class="ligne">');
-                    echo ('<td><a href="modifProj.php?Projet=' . $current['idProjet'] . '"> 
+                    echo('<div>');
+                    echo ('<tr class="ligne">
+                        <td><a href="modifProj.php?Projet=' . $current['idProjet'] . '"> 
                             <div class="infosUser">
                                 <span class="nomPro"> ' . $sp['libelle'] . ' : </span>
                                 <span class="descrip"> ' . $sp['descrip'] . ' </span>
                             </div>
-                        </a></td>');
+                        </a>
+                        </td>
+                        <td>
+                            <p>
+                                <button class="supp" id="supp">X</button>
+                            </p>
+                        </td>
+                        </tr>
+                        </div>');
                 }
+                echo('</div>');
         }
+        echo('</div>');
     }
     ?>
 
