@@ -108,7 +108,7 @@ function getEvenements($conn) { //récupère tous les évenements
 
 /* Récupère tous les challenges d'un certain type */
 function getEvenementsByKind($conn, $kind) {
-    $sql = "SELECT * FROM Evenement WHERE kind = $kind";
+    $sql = "SELECT * FROM Evenement WHERE kind = '$kind'";
     $evenements = request($conn,$sql);
 
     return $evenements;
@@ -360,7 +360,7 @@ function addQuestion($conn,$idQuestionnaire,$contenu) {
         die('Erreur : '.$e->getMessage());
     }
 }
-function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
+function addReponse($conn,$idQuestion,$idEquipe,$contenu) {
     try {
         $sql = "INSERT INTO Reponse (contenu,idQuestion,idEquipe) VALUES (:contenu,:idQuestion,:idEquipe)";
         $use = "use SiteProjet";

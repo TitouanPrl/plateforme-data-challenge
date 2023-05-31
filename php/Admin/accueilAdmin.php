@@ -1,6 +1,5 @@
 
 <?php session_start()?>
-<?php connect()?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 
 <?php
@@ -12,6 +11,7 @@
     }
 ?>
 <?php include('./php/bddData.php');?>
+<?php connect()?>
 
 <body>
 <!-- fonction qui permet de récupérer les fichiers télécharger dans un répertoire -->
@@ -48,96 +48,101 @@ while($i< count($_FILES['userfile'])){
     <!-- Pour chaque catégorie du tableau -->
     <?php
     $Users = getAllUtilisateurs($conn);
-     foreach ($Users as $User) : ?>
-    <!-- Si le titre est celui du GET -->
-    <?php if ($User['idUser'] == $_GET['user']) : ?>
-        <!-- J'ajoute ma référence à la liste -->
-        <script> referencesList.push('<?php echo $User['idUser']; ?>'); </script>
-        
-        <tr class="ligne">
-            <?php
-            foreach ($Users as $User['idUser']) {
-                echo '<td class="user" id="idUser'.$Users['nom'].'">'.$Users['prenom']. '<br>' . $Users['fonction'] .'</td>';
-            }
+     foreach ($Users as $current) : ?>
+    <!--  -->    
+    <tr class="ligne">
+        <?php
+                echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
+                    <div class="infosUser">
+                        <span class="nomU"> ' . $current['nom'] . ' </span>
+                        <span class="prenomU"> ' . $current['prenom'] . ' </span>
+                        <span class="fonctionU"> ' . $current['fonction'] . ' </span>
+                    </div>
+                </a>'. '</td>');
             ?>
-            <td>
-                <p>
-                    <button class="supp" id="supp<?php echo $User['idUser'];?>">X</button>
-                </p>
-            </td>
-        </tr>
-    <?php endif ?>
+        <td>
+            
+            <p>
+                <button class="supp" id="supp<?php echo $Users['idUser'];?>">X</button>
+            </p>
+        </td>
+    </tr>
 <?php endforeach ?>
 </table>
+</section>
 
-<div>
+
+<section>
+    <div>
     <table id='tabDC'>
         <!-- On crée le headers du tableau -->
         <tr>
-            <th> Data Challenges</th>
+            <th> Data Challenge</th>
         </tr>       
     </table>
-</div>
+    </div>
 <table>
     <!-- Pour chaque catégorie du tableau -->
     <?php
-    $DC = getEvenements($conn);
-     foreach ($DC as $DC) : ?>
-    <!-- Si le titre est celui du GET -->
-    <?php if ($DC['idEvenement'] == $_GET['DC']) : ?>
-        <!-- J'ajoute ma référence à la liste -->
-        <script> referencesList.push('<?php echo $DC['idEvenement']; ?>'); </script>
-        
+    $kind ='CHALLENGE';
+    $DC = getEvenementsByKind($conn,$kind);
+    foreach ($DC as $current) : ?>
+        <!--  -->    
         <tr class="ligne">
             <?php
-            $DC =  getEvenements($conn);
-            foreach ($DC as $DC['idEVenement']) {
-                echo '<td class="DC" id="idEvenement'.$DC['libelle'].'">'. '<br>' . $User['fonction'] .'</td>';
-            }
-            ?>
+                    echo ('<td>'.'<a href="modifDC.php?DC=' . $current['idEvenement'] . '">
+                        <div class="infosUser">
+                            <span class="nomDC"> ' . $current['libelle'] . ' </span>
+                            <span class="debut"> ' . $current['dateD'] . ' </span>
+                            <span class="fin"> ' . $current['dateF'] . ' </span>
+                        </div>
+                    </a>'. '</td>');
+                ?>
             <td>
+                
                 <p>
-                    <button class="supp" id="supp<?php echo $DC['idDC'];?>">X</button>
+                    <button class="supp" id="supp<?php echo $DC['idEvenement'];?>">X</button>
                 </p>
             </td>
         </tr>
-    <?php endif ?>
-<?php endforeach ?>
+    <?php endforeach ?>
+    </table>
 </table>
 
-<div>
-    <table id='tabProjets'>
+</section>
+
+<section>
+    <div>
+    <table id='tabDC'>
         <!-- On crée le headers du tableau -->
         <tr>
             <th> Projets</th>
         </tr>       
     </table>
-</div>
+    </div>
 <table>
     <!-- Pour chaque catégorie du tableau -->
     <?php
-    $DC = getEvenements($conn);
-     foreach ($DC as $DC) : ?>
-    <!-- Si le titre est celui du GET -->
-    <?php if ($DC['idEvenement'] == $_GET['DC']) : ?>
-        <!-- J'ajoute ma référence à la liste -->
-        <script> referencesList.push('<?php echo $DC['idEvenement']; ?>'); </script>
-        
-        <tr class="ligne">
-            <?php
-            $DC =  getEvenements($conn);
-            foreach ($DC as $DC['idEVenement']) {
-                echo '<td class="DC" id="idEvenement'.$DC['libelle'].'">'. '<br>' . $User['fonction'] .'</td>';
-            }
-            ?>
-            <td>
-                <p>
-                    <button class="supp" id="supp<?php echo $DC['idDC'];?>">X</button>
-                </p>
-            </td>
-        </tr>
-    <?php endif ?>
-<?php endforeach ?>
+    $kind ='CHALLENGE';
+    $DC = getEvenementsByKind($conn,$kind);
+    foreach($DC as $evt){
+        $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
+        foreach($sujet as $sp){
+            $projet = getProjetsOnSujet($conn,$sp['idSujet']);
+                foreach ($projet as $current) {
+                    echo('<tr class="ligne">');
+                    echo ('<td><a href="modifProj.php?Projet=' . $current['idProjet'] . '"> 
+                            <div class="infosUser">
+                                <span class="nomPro"> ' . $sp['libelle'] . ' : </span>
+                                <span class="descrip"> ' . $sp['descrip'] . ' </span>
+                            </div>
+                        </a></td>');
+                }
+        }
+    }
+    ?>
+
+    </table>
 </table>
 
 </section>
