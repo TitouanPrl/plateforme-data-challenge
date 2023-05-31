@@ -28,6 +28,10 @@ require '../Integrations/headerVanilla.php'; ?>
           echo "<p id='notif'>Votre inscription a bien été prise en compte !</p>";
         break;
 
+        case '5':
+          echo "<p id='notif'>Vous avez bien été déconnecté !</p>";
+        break;
+
         default:
           break;
       }
