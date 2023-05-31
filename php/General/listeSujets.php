@@ -13,7 +13,10 @@ $tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 
-<main>');
+<main>
+
+    <div id="mesChallenges">
+        <h2 class="titreForm"> Sujets </h2>');
 
 /* Affichage des challenges disponibles */
 foreach ($tabSujets as $current) {

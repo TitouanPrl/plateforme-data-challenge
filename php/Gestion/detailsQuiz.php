@@ -14,6 +14,9 @@ if(!isset($_GET['quiz'])) {
 /* Sinon on récupère le questionnaire sélectionné */
 $idQuiz = $_GET['quiz'];
 
+/* On passe par des var session pour stocker l'ID du challenge et celui du sujet afin de faciliter le traitement */
+$quiz = getQuestionnairesByID($conn, $idQuiz);
+$_SESSION['info_sujet'] = getSujetById($conn, $quiz['idSujet']);
 
 /* On récupère les questions du questionnaire */
 $listeQuestions = getQuestionsOnQuestionnaire($conn,$idQuiz); ?>

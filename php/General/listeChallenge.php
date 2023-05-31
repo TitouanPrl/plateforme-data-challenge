@@ -2,7 +2,10 @@
 
 echo('<!-- MAIN CONTENT -->
 
-<main>');
+<main>
+
+    <div id="mesChallenges">
+        <h2 class="titreForm"> Challenges </h2>');
 
 /* Affichage des challenges disponibles */
 foreach ($_SESSION['Evenements'] as $current) {

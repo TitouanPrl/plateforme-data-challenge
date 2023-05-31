@@ -165,6 +165,15 @@ function getQuestionnairesOnSujet($conn, $idSujet) {   //tous les questionnaires
 
     return $questionnaires;
 }
+
+/* Récupère les infos d'un questionnaire via son ID */
+function getQuestionnairesByID($conn, $idQuestionnaire) {   
+    $sql = "SELECT * FROM Questionnaire WHERE idQuestionnaire = $idQuestionnaire";
+    $questionnaire = request($conn,$sql);
+
+    return $questionnaire;
+}
+
 function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
     $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
     $id = request($conn,$sql);
@@ -173,7 +182,7 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
 }
 
 /* Récupère les inscrits à un challenge donné */
-function getInscrits($idEvenement) {
+function getInscrits($conn, $idEvenement) {
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
 
@@ -192,7 +201,7 @@ function getConversations($conn) {
     return $conversations;
 }
 /* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
-function getInscritsSansEquipe($idEvenement) {  
+function getInscritsSansEquipe($conn, $idEvenement) {  
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
     $inscrits = request($conn,$sql);
 
@@ -200,7 +209,7 @@ function getInscritsSansEquipe($idEvenement) {
 }
 
 /* Récupère la liste des challenges auxquels un utilisateur est inscrit */
-function getEventInscrit($idUser) { 
+function getEventInscrit($conn, $idUser) { 
     $sql = "SELECT idEvenement FROM Inscription WHERE idUser=$idUser";
     $events = request($conn,$sql);
 
@@ -208,7 +217,7 @@ function getEventInscrit($idUser) {
 }
 
 /* Récupère les données d'un challenge via son ID */
-function getChallengeByID($idEvenement) { 
+function getChallengeByID($conn, $idEvenement) { 
     $sql = "SELECT * FROM Evenement WHERE idEvenement = $idEvenement";
     $infos = request($conn,$sql);
 
@@ -260,6 +269,14 @@ function getMaxIdQuestionnaire($conn) {
     return $max;
 }
 
+/* Renvoit le nombre de points d'une équipe */
+function getNbPoints($conn, $idEquipe) { 
+    $sql = "SELECT SUM(notes) FROM Reponse WHERE idEquipe = $idEquipe";
+    $max = request($conn,$sql);
+
+    return $max;
+}
+
 
 
 
@@ -271,12 +288,12 @@ function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
         $use = "use SiteProjet";
         $conn->exec($use);
 
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':nom', $nom);
-        $stmt->bindParam(':prenom', $prenom);
-        $stmt->bindParam(':numTel', $numTel);
-        $stmt->bindParam(':email', $email);
-        $stmt->bindParam(':mdp', $mdp);
+    $stmt = $conn ->prepare($sql);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':numTel', $numTel);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mdp', $mdp);
 
         $stmt->execute();
     } catch (PDOException $e) {
@@ -455,7 +472,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }}
-function inscription($idUser,$idEvenement) {
+function inscription($conn,$idUser,$idEvenement) {
     try {
         $use = "use SiteProjet";
         $conn->exec($use);
@@ -488,10 +505,7 @@ function deleteProjet($conn,$idProjet) { //supprimer un projet
     $sql = "DELETE FROM Projet WHERE idProjet = $idProjet";
     send($conn,$sql);
 }
-function deletePodium($conn,$idPodium) { //supprimer un podium
-    $sql = "DELETE FROM Podium WHERE idPodium = $idPodium";
-    send($conn,$sql);
-}
+
 function deleteQuestionnaire($conn,$idQuestionnaire) {
     $sql = "DELETE FROM Questionnaire WHERE idQuestionnaire = $idQuestionnaire";
     send($conn,$sql);
@@ -504,7 +518,7 @@ function deleteReponse($conn,$idReponse) {
     $sql = "DELETE FROM Reponse WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
-function desinscription($idUser,$idEvenement) {
+function desinscription($conn, $idUser,$idEvenement) {
     $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idUser,$idEvenement)";
     send($conn,$sql);
 }
@@ -555,8 +569,16 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function setNote($idReponse,$note) { // définir la note de la réponse à une question
+function setNote($conn, $idReponse, $note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
+    send($conn,$sql);
+}
+
+/* Mise à jour du podium d'un sujet */
+function modifyPodium($conn, $idSujet, $idEquipe1, $idEquipe2, $idEquipe3) {
+    $sql = "UPDATE Sujet SET idE1 = $idEquipe1 WHERE idSujet = $idSujet;
+    UPDATE Sujet SET idE2 = $idEquipe2 WHERE idSujet = $idSujet;
+    UPDATE Sujet SET idE3 = $idEquipe3 WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
 

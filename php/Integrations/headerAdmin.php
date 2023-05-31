@@ -38,6 +38,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
                 <a href="gererUsers.php">Gestion utilisateurs</a>
                 <a href="gererChallenges.php">Gestion challenges</a>
                 <a href="gererRessources.php">Gestion ressources</a>
+                <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
