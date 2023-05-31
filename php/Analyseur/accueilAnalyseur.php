@@ -1,12 +1,25 @@
-<!DOCTYPE html>
-<html>
+<?php require '../Integrations/headerVanilla.php';
 
+/* On initialise les variables de session contenant les informations sur les challenges */
+require_once '../General/accueilGeneral.php';
+?>
 <head>
     <title>Page PHP</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.7"></script>
 </head>
+<!-- MAIN CONTENT -->
+
+<div class="bordure">
+</div>
+<div class="corps">
+    <main>
+        <div id="titres">
+            <h1>
+        </div>
+    </main>
+</div>
 
 <body>
 
@@ -261,17 +274,10 @@
     </script>
 
     <!-- Afficher le résultat -->
-    <div style="width:70%; height:300px;" align=center>
-        <canvas id="chartContainer"></canvas>
-    </div>
+<canvas id="chartContainer" style="width:70%; height:300px;" align=center></canvas>
 
-    <div style="width:70%; height:300px;" align=center>
-        <canvas id="barChartContainer"></canvas>
-    </div>
+<canvas id="barChartContainer" style="width:70%; height:300px;" align=center></canvas>
 
-    <div style="width:70%; height:300px;" align=center>
-        <canvas id="wordChartContainer"></canvas>
-    </div>
+
+<canvas style="width:70%; height:300px;" align=center id="wordChartContainer"></canvas>
 </body>
-
-</html>
