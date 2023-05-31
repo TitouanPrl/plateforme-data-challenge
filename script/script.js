@@ -20,3 +20,20 @@ function scrollFunction() {
     }
 }
 
+
+
+//apparition du logo sous le texte quand on scroll
+window.addEventListener('scroll', function() {
+    var presentation = document.querySelector('.presentation');
+    var logoSlide = document.querySelector('.logo-slide');
+
+    var slideInAt = (window.scrollY + window.innerHeight) - presentation.offsetHeight / 2;
+    var presentationBottom = presentation.offsetTop + presentation.offsetHeight;
+
+    if (slideInAt > presentation.offsetTop && window.scrollY < presentationBottom) {
+        logoSlide.classList.add('active');
+    } else {
+        logoSlide.classList.remove('active');
+    }
+});
+

@@ -96,130 +96,59 @@ require_once 'initVarChallenges.php';
 
 <!-- CONTENU -->
 <div class="content">
-    <p>
-        Le requin-baleine (Rhincodon typus) est une espèce de poissons cartilagineux, seul membre du genre Rhincodon et seule espèce actuelle de la famille des Rhincodontidae. Pouvant exceptionnellement atteindre 20 mètres de long, pour une masse de 34 tonnes, ce requin est considéré comme le plus grand poisson vivant actuellement sur Terre. Cependant, sa taille observable est en pratique généralement comprise entre 4 et 14 mètres.
+    <div class="presentation">
+        L’association IA PAU rassemble dans la bonne humeur chercheurs, enseignants, étudiants, entrepreneurs, particuliers autour de la thématique du traitement des données et propose de rapprocher la sphère économique, le monde académique et le grand public en organisant des événements et des projets collaboratifs.
+        <br>
+        <br>
+        Son objectif est de vulgariser et partager les connaissances autour de ce progrès majeur du XXIème siècle qui suscite de nombreuses interrogations scientifiques, technologiques, éthiques, et démocratiques.
+    </div>
+    
+    <div class="logo-slide">
+        <img src="../../img/logo_iaPau.png" alt="LogoSlide">
+    </div>
 
-        Massif, se déplaçant assez lentement et dénué d'agressivité, ce requin est parfaitement inoffensif pour l'Homme. À l'image de la baleine bleue, son équivalent chez les mammifères de la mégafaune maritime, ce géant des mers se nourrit principalement de plancton, d'algues et d'animaux microscopiques, qu'il absorbe par sa large bouche.
+    <!-- la petite vague là -->
+    <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="2000" height="560" preserveAspectRatio="none" viewBox="0 0 2000 560">
+        <g mask="url(&quot;#SvgjsMask1124&quot;)" fill="none">
+            <rect width="2000" height="560" x="0" y="0" fill="rgba(231, 253, 255, 1)"></rect>
+            <path d="M 0,160 C 100,137.6 300,44.6 500,48 C 700,51.4 800,177.6 1000,177 C 1200,176.4 1300,42.2 1500,45 C 1700,47.8 1900,161.8 2000,191L2000 560L0 560z" fill="rgba(14, 135, 105, 1)"></path>
+            <path d="M 0,544 C 100,516.8 300,415.8 500,408 C 700,400.2 800,520.8 1000,505 C 1200,489.2 1300,337.4 1500,329 C 1700,320.6 1900,436.2 2000,463L2000 560L0 560z" fill="rgba(231, 253, 255, 1)"></path>
+        </g>
+        <defs>
+            <mask id="SvgjsMask1124">
+                <rect width="2000" height="560" fill="#ffffff"></rect>
+            </mask>
+        </defs>
+    </svg>
+    
 
-        Facilement reconnaissable avec sa livrée en damier, le requin-baleine se rencontre dans les mers ouvertes et les océans tropicaux et chauds. Sa durée de vie est estimée entre 100 et 150 ans1 même si le plus vieux spécimen recueilli était âgé d'environ 70 ans2. Bien qu'il n'y ait aucune donnée précise sur sa population totale, l'espèce est considérée comme en danger.
-
-        Description
-        Morphologie générale
-        Son corps est hydrodynamique, allongé mais plutôt massif, et plusieurs crêtes longitudinales s'étendant de la tête au dos. Sa tête est large et aplatie. Les yeux, dépourvus de paupière ou de poche sub-oculaire, sont placés latéralement, sur les côtés de la tête3. Sa bouche immense peut mesurer jusqu'à deux mètres de large, et lui permet de filtrer 2 000 t d’eau par heure. Il possède un très grand nombre de dents minuscules, disposées en 300 rangées par mâchoire4. Les cinq paires de fentes branchiales, très longues, outre leur fonction respiratoire, servent à filtrer l'eau pour en séparer la nourriture avant la déglutition.
-
-        Taille
-
-        Croquis comparatif entre un homme et un requin-baleine.
-        Whale Shark and Freediver.jpg
-        Le Requin-baleine est le plus grand poisson actuel, et seuls les Leedsichthys et les Mégalodons, des espèces disparues, l'auraient dépassé.
-
-        La taille des requins-baleines a fait l'objet d'un certain nombre d'assertions plus ou moins justifiées. Selon les observations faites dans l'océan Indien, la taille du Requin-baleine se situe presque toujours entre 4 et 14 m (95 % des observations), avec un maximum d'observations entre 5,50 et 10 m (71 % des cas)5. Il peut donc en pratique atteindre une longueur de l'ordre de 14 m, même si un record de 20 m (pour un poids d'environ 34 t) a été rapporté en 19992.
-
-        Dans le reste du règne animal, Le Requin-baleine reste toutefois plus petit que la Baleine bleue, un mammifère qui peut atteindre 30 m (et 170 t).
-
-        Peau
-        La peau du ventre du requin-baleine est complètement blanche, tandis que celle du dos est grise, plus foncée que chez la plupart des requins, avec beaucoup de taches claires et des lignes horizontales et verticales de couleur blanche ou jaune formant un « damier ».
-
-        On a déjà observé aux îles Galápagos et en Australie6 et même filmé un requin-baleine albinos7. Comme dans le reste du règne animal, ces individus sont extrêmement rares.
-
-        La peau du requin-baleine, son principal moyen de défense, est plus dure que celle de toute autre espèce dans le monde, atteignant jusqu'à 15 cm d'épaisseur, et est couverte de denticules dermiques8,9,10,11.
-
-        Identification
-        La forme et distribution des taches de la peau permettent l'identification des individus par photo-identification : des fiches signalétiques, sortes de cartes d’identité, sont associées aux animaux, et sont ensuite utilisées par les chercheurs pour reconnaître et dénombrer les requins-baleines12.
-
-        Un algorithme spécial a été développé pour aider à l'identification13
-
-        Nageoires
-        La première nageoire dorsale a une forme globalement triangulaire. L'extrémité est arrondie chez les juvéniles et devient plus droite et anguleuse avec l'âge. Ses faces ont la même livrée en « damier » que le corps. La seconde nageoire dorsale est plus petite.
-
-        Les nageoires pectorales, puissantes, ont une forme de faux. La face supérieure est sombre et parsemée de taches tandis que la face inférieure est blanche.
-
-        La nageoire caudale est hétérocerque, le lobe supérieur étant bien plus grand que l'inférieur (l'asymétrie devient moins prononcée chez les adultes). C'est elle qui fournit la force motrice. Cependant, le requin-baleine n'est pas un nageur efficace, il utilise tout son corps pour nager et se déplace à une vitesse moyenne de 5 km/h, une vitesse relativement lente pour un poisson.
-
-        Les yeux, situés au même niveau que la gueule, permettent d'identifier le requin-baleine comme faisant partie des orectolobiformes.
-        Les yeux, situés au même niveau que la gueule, permettent d'identifier le requin-baleine comme faisant partie des orectolobiformes.
-
+    <div class="card-container">
+        <a href="" class="card">
+            <img src="../../img/datachallenge.jpg"/>
+            <div class="content">
+                <h3>Nos challenges</h3>
+                <p>Découvrez tous les Data Datlles et Data Challenges en cours et à venir !</p>
+            </div>
+        </a>
+    
+        <a href="" class="card" style="margin-bottom:90px">
+            <img src="https://placeimg.com/800/500/animals"/>
+            <div class="content">
+                <h3>Les classements</h3>
+                <p>Venez découvrir le classements des équipes déjà en compétition ! Suivez en temps réel l'évolution du score des équipe et soyez parmi les premiers à découvrir le classement final !</p>
+            </div>
+        </a>
+    
+        <a href="" class="card">
+            <img src="https://placeimg.com/800/500/animals"/>
+            <div class="content">
+                <h3>Inscription</h3>
+                <p>C'est par ici pour vous inscrire ! N'attendez plus et rejoignez l'aventure avec vos amis pour tenter de remporter les lots à la clé.</p>
+            </div>
+        </a>
         
-        Andrew Smith, qui est le premier à décrire l'animal, avait déjà mis en valeur la livrée « en damier » du requin-baleine en 1845.
-        Andrew Smith, qui est le premier à décrire l'animal, avait déjà mis en valeur la livrée « en damier » du requin-baleine en 1845.
-
-        
-        Ce dessin en damier sur les flancs permet de reconnaître les individus dans leur milieu naturel.
-        Ce dessin en damier sur les flancs permet de reconnaître les individus dans leur milieu naturel.
-
-        
-        Les larges fentes branchiales lui permettent d'extraire la nourriture contenue dans l'eau de mer.
-
-        Comportement
-        Alimentation
-
-        Un requin-baleine s'alimentant de zooplancton aux Maldives.
-        0:12
-        Le requin-baleine peut « aspirer » d'énormes quantités d'eau pour se nourrir (observer la déformation de la surface).
-
-        Le krill fait partie du régime alimentaire du requin-baleine.
-        Ce géant des mers ne partage pas que son nom avec les baleines. Il suit également le même régime alimentaire. En effet, le requin-baleine se nourrit uniquement de proies de petite taille telles que le plancton et le krill, mais aussi d'algues, de petits crustacés, de petits calmars ou de poissons de moins de 10 cm (maquereaux, etc.). Une analyse du contenu de l'estomac d'un spécimen pêché au large des côtes de l'Inde en 1961 a révélé une grande variété d'ingesta, « y compris de grandes quantités de zooplancton, de restes de poissons en partie digérés, de crustacés, de mollusques et de petites quantités d'algues, ce qui suggère sans aucun doute un régime alimentaire omnivore14 ». Cependant, il convient de se montrer moins catégorique car, à cause de son comportement de filtreur, l'absorption d'algues peut être involontaire. Il compte parmi les quatre seules espèces connues de requins qui, à l'instar des baleines à fanons, filtrent leur nourriture en nageant lentement dans des eaux riches en plancton, gueule béante. L'eau s'y engouffre chargée d'aliments de toutes tailles et en ressort vidée de nutriments.
-
-        Pour compenser la petite taille de ses proies, il doit avaler de grandes quantités de nourriture (près d'une tonne de plancton par jour). Pour cela, il filtre, grâce à ses larges ouïes, l'eau qui s'engouffre dans son immense gueule. Ses nombreuses rangées de dents, longues de quelques millimètres, ne jouent aucun rôle dans l'alimentation. Au lieu de cela, le requin aspire l'eau, ferme la bouche et expulse l'eau par ses branchies. Pendant le léger retard entre la fermeture de la bouche et l'ouverture des fentes branchiales, la nourriture est piégée contre les denticules dermiques tapissant les lames branchiales et le pharynx. Cette modification unique des branchies empêche le passage des solides, de taille supérieure à 2 mm, mais laisse les liquides s'écouler15. Les particules isolées par ce « tamis » sont alors avalées. Des requins-baleines ont été surpris en train de « tousser ». On présume qu'il s'agit d'un moyen de retirer l'accumulation de particules dans les branchies15.
-
-        Seuls quatre membres de la famille des élasmobranches sont réputés être des filtreurs12 :
-
-        le requin-baleine ;
-        le requin grande-gueule ;
-        le requin pèlerin ;
-        la raie manta.
-        Dans son comportement alimentaire, le requin-baleine fait appel à deux techniques : il peut « filtrer », à la manière de la baleine bleue ou bien « gober », de façon similaire au tarpon. Ainsi, l'animal ne se contente pas de filtrer l'eau au cours de ses déplacements quand la concentration de nourriture planctonique est faible. Immobile, il peut aussi aspirer très rapidement de grandes quantités de liquide, ce qui est plus adapté à la capture des proies plus larges ou de nuages planctoniques compacts16.
-
-        Des individus solitaires ont été observés se nourrissant passivement, nageant gueule béante, ou parfois campés verticalement dans la mer et ouvrant la bouche pour aspirer des proies, lorsqu'elles sont nombreuses. Cette dernière méthode est employée sur des bancs de petits crustacés (krill), de calmars, d'anchois ou sardines17.
-
-        Lors de chasses en groupe, les requins-baleines se nourrissent, au crépuscule ou la nuit, en filtrant les eaux de surface avec la bouche ouverte et la mâchoire distendue, ou bien en « gobant » les proies de façon dynamique17.
-
-        Reproduction
-        Les auteurs ne s'accordent pas sur le mode de reproduction du requin-baleine. Il semble ovovivipare, mais ceci a longtemps été contesté. En 1953, un œuf de 30 cm de long, 14 cm de large et 9 cm de haut, contenant un embryon presque à terme de 36 cm a ainsi été découvert dans le golfe du Mexique. L'hypothèse a donc été faite que l'espèce est ovipare18. Toutefois, en raison de la rareté du recueil d'œufs viables, leur fragilité et l'absence de vrilles sur le seul exemplaire connu, le jaune considérable, le développement incomplet des branchies de l'embryon en son sein, mais également la présence de cicatrices ombilicales sur les plus petits individus vivants observés (55 cm de long), une autre hypothèse a été formulée19. L'œuf retrouvé dans le golfe du Mexique a été abandonné avant terme et le requin-baleine est normalement ovovivipare. Cette théorie a été confirmée par la capture d'une femelle adulte requin-baleine au large de Taïwan. Elle contenait quelque 300 jeunes dans son utérus20. Ces jeunes requins-baleines ont été séparés selon trois classes : embryons rattachés au vitellus à l'intérieur d'un œuf, mesurant de 42 à 52 cm de long ; embryons rattachés au vitellus à l'intérieur d'un œuf, mesurant de 52 à 58 cm de long ; et enfin, individus apparemment à terme, sans œuf et avec un vitellus résorbé long de 58 et 64 cm.
-
-        Le type d'ovoviviparité adopté par le requin-baleine est relativement simple et semble très semblable à celui des requins nourrices : les jeunes se développent dans un œuf au sein de l'utérus et ils doivent s'extraire du premier avant d'être « mis bas » par la mère.
-
-        La période de gestation n'est pas connue, mais certains auteurs suggèrent que le requin-baleine peut se reproduire tous les deux ans, comme le requin nourrice21. Il disparaît parfois pendant des semaines, plongeant à plus de 1,5 km sous la surface pour se reposer dans les profondeurs. Personne ne sait où ils s'accouplent et mettent bas.
-
-        Les plus petits requins-baleines retrouvés vivants dans le milieu naturel mesurent de 55 à 59 cm de long, dont certains portant une cicatrice ombilicale. Ces juvéniles ont été pêchés au niveau de l'Afrique occidentale tropicale dans l'Atlantique Centre-Est et à proximité de l'Amérique centrale dans le Pacifique Est, près des eaux continentales et dans l'océan loin de la terre19,22, ce qui suggère que les jeunes peuvent être nés dans l'océan et que les zones de mise bas y existent.
-
-        Plongées
-        Selon une étude menée en 2015, les requins-baleines passent 95% du temps dans les profondeurs épipélagiques (inférieures à 200 m). Néanmoins, ils plongent régulièrement à des profondeurs dépassant les 500 m, généralement en journée ou au crépuscule. La plongée la plus profonde a été enregistrée à 1928 m. Des observations confirment en outre la présence continue de requins-baleines pendant au minimum trois jours à des profondeurs dépassant 50 mètres, ce qui indique qu’ils ne s’alimentent pas uniquement en surface 23,24.
-
-        Répartition géographique
-
-        Un requin-baleine rencontré au large de l'Australie.
-        On rencontre le requin-baleine dans les eaux tropicales et tempérées à chaudes de l'Atlantique, du Pacifique et de l'océan Indien. En hiver, de jeunes requins-baleines viennent se nourrir de plancton dans les eaux riches en nutriments du golfe de Tadjourah, au large de Djibouti. Le requin-baleine vit dans une bande autour de l'équateur jusqu'à 30° de latitude Nord et 35° de latitude Sud3. C'est une espèce essentiellement pélagique vivant au large en eau très profonde25. Cependant, adultes et juvéniles se retrouvent près de lagons, de récifs coralliens ou de zones sablonneuses durant plusieurs mois. Ils sont généralement repérés près de la surface de l'eau, solitaires ou en groupes pouvant atteindre des centaines d'individus.
-
-        Les requins-baleines migrent sur de longues distances, leurs déplacements étant probablement liés à la prolifération du plancton et aux changements de température de l'eau. Ils sont souvent associés à des bancs de poissons pélagiques, en particulier les scombridés. Repérés et observés aujourd'hui par des satellites de télédétection, les requins-baleines ont parcouru plus de 12 000 km vers le sud-ouest dans les eaux internationales et les eaux au large des nations du Pacifique sud26. Ces satellites ont permis d'enregistrer des déplacements de plusieurs milliers de kilomètres sur des périodes de quelques semaines ou de quelques mois dans le Pacifique est et près de l'Asie du Sud-Est. Un requin repéré dans la mer de Bohol, près des Philippines, a effectué plus de 3 000 km en deux mois jusqu'aux abords du Viêt Nam26. Un autre, repéré sur la côte de Sabah, en Malaisie, s'est éloigné au large avant de retourner dans les eaux côtières de la Malaisie après avoir effectué un parcours de plus de 2 152 km26. Un regroupement de requin-baleine se produit annuellement dans le golfe de Californie, au large du Mexique.
-
-        Un adulte peut naviguer de nuit comme de jour à la vitesse de 1,5 à 5 km/h.
-
-        Il se pourrait que les eaux peu profondes près de l'embouchure de certaines rivières et de certains estuaires constituent des lieux de prédilection pour l'accouplement, la mise bas, ou pour l'alimentation. Les requins-baleines fréquentent de façon saisonnière les eaux peu profondes à proximité d'estuaires et d'embouchures de rivières dans au moins deux régions d'Asie du Sud-Est : le Nord de Bornéo et les Philippines3.
-
-        Le requin-baleine et l'Homme
-        Une espèce menacée
-
-        Dans le monde occidental, la pêche du requin-baleine est plutôt fortuite.
-        Ses seuls prédateurs connus sont l'Orque, l'Homme et certains requins opportunistes. Du fait de son cycle de reproduction lent, le requin-baleine est surtout vulnérable à la surpêche. Sa chair est mangée seulement en Chine et particulièrement à Taïwan. L'objet de toutes les convoitises : ses ailerons. Ceux-ci peuvent valoir près de 650 € le kilogramme au marché noir27. À Taïwan, il est nommé « requin tofu » à cause du goût et de la texture de sa chair, semblables à cet aliment3.
-
-        La population totale n'est pas connue car sa dispersion et sa mobilité rendent difficile son recensement. L'espèce est cependant considérée comme en danger par l'UICN28 et est, depuis le 15 novembre 2002, inscrite sur la liste du CITES. En effet, bien que de nombreux requins-baleines aient été pêchés à Taïwan au cours de la dernière moitié du xxe siècle, parmi les spécimens recueillis, très peu de femelles manifestement d'âge mûr ont été recensées. Signe que les individus en âge de procréer sont en déclin, ce qui pourrait avoir des conséquences sur le nombre des naissances20.
-
-        Une technique récente signalée par un chercheur australien, Brad Norman, permet d'identifier individuellement les requins-baleines d'après le positionnement exact de leurs taches blanches29. Comme les empreintes digitales, il a prouvé que les taches blanches sont uniques d'un animal à l'autre. Pour permettre cette identification, le chercheur a mis en place un site web30 servant de photothèque et regroupant les individus déjà identifiés.
-
-        Rencontre avec un requin-baleine
-
-        Un requin-baleine tolère facilement la présence d'un plongeur dans son sillage.
-        Cette espèce, malgré sa grande taille, ne pose aucun danger pour les êtres humains31. C'est un exemple souvent cité pour contredire la mauvaise réputation des requins. En ajoutant à cela sa nature placide, le fait qu'il soit présent sans obligatoirement avoir été appâté par de la nourriture et sa propension à nager près de la surface, le requin-baleine a été surnommé l'« Ambassadeur des requins »32. Ne courant aucun risque (à l'exception des coups de sa longue queue que ce géant pourrait asséner involontairement), les plongeurs peuvent donc nager sans équipement lourd ou cage à côté de ce poisson hors norme.
-
-        Ce requin est accessible pour les plongeurs dans les îles du golfe du Honduras, aux Maldives, dans la baie de Nosy Be à Madagascar, aux îles Galápagos, aux Philippines, en Thaïlande, en mer Rouge, dans le récif de Ningaloo et l'île Christmas, en Australie occidentale, au large de Tofo au Mozambique et dans la baie de Sodwana en Afrique du Sud. Certains de ces lieux, comme en Australie occidentale, sont devenus des points centraux de l'industrie de l'écotourisme qui permettent de générer localement des revenus importants32.
 
 
-        Natation avec requin-baleine à Quintana Roo au Mexique.
-        À lui seul, ce tourisme consacré au requin-baleine résume tous les enjeux, positifs et négatifs, de l'écotourisme en général. Une des plus fortes concentrations de requins-baleines dans le monde se trouve aux Philippines33. De novembre à mai, durant la période du butanding34, du nom philippin donné à la rencontre avec le géant, ces poissons se regroupent sur les rives peu profondes de Donsol, dans la province de Sorsogon. Alors qu'il était chassé pour sa chair et ses ailerons, les habitants ont modifié leurs habitudes au milieu des années 1990 afin de préserver cette ressource qui leur rapporterait plus d'argent vivante que morte. Sur les conseils du WWF35, l'écotourisme a pu s'y développer et le requin-baleine est devenu un « produit d'appel » pour les touristes amateurs de snorkeling.
-
-        Cependant, les effets négatifs du butanding semblent significatifs à long terme : conséquence de l'afflux d'étrangers, les sites de regroupement sont devenus moins sûrs pour ces poissons et leur fréquentation a fortement diminué dans les années 2000. De surcroît, la négligence de capitaines de bateaux touristiques a déjà provoqué des chocs directs ou bien des blessures infligées par les hélices32. Du fait de la raréfaction des requins, le site de Sorsogon n'est plus ouvert que quelques jours par semaine et seulement pour quelques opérateurs accrédités. Malheureusement, de nombreux opérateurs illégaux continuent à proposer des visites32.
-    </p>
 </div>
 
 
