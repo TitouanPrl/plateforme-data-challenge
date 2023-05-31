@@ -16,6 +16,7 @@ require_once "../../bdd/fonctionsBDD.php";
     <link rel="stylesheet" href="../../css/boutons.css" />
     <link rel="stylesheet" href="../../css/form.css" />
     <link rel="stylesheet" href="../../css/messagerie.css" />
+    <link rel="stylesheet" href="../../css/cartes.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
 
@@ -32,7 +33,8 @@ require_once "../../bdd/fonctionsBDD.php";
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Liste Challenges</a>
+                <a href="../General/listeChallenge.php">Informations Challenges</a>
+                <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
                 <a href="../Admin/accueilAdmin.php">Accueil admin</a>
             </nav>
 
