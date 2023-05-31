@@ -1,0 +1,5 @@
+appel d'une fct js qui exécute le big pavé ajax
+    => dans le pavé ajax on appelle une page de traitement php qui sert à update la BDD et les var de SESSION
+
+=> js == modification front-end
+=> php == modification back-end 

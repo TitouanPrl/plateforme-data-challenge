@@ -1,0 +1,154 @@
+#titreMessagerie {
+    background-color: var(--vert-trans);
+    width: 60%;
+    padding: 10px 40px;
+    border-top-left-radius: 20px;
+    border-top-right-radius: 20px;
+}
+
+.messagerie{
+    padding: 40px;
+    padding-top: 20px;
+    color:  var(--vert);
+    margin: 0 auto;
+    width: 60%;
+    height: 60%;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border: none;
+    min-height: 100px;
+    overflow: hidden;
+}
+
+
+.messages{
+    float: right;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 20px;
+    padding: 20px;
+    height: 100%;
+    width: 59%;
+    overflow: auto; 
+}
+
+.messages > *:not(:last-child) {
+    margin-bottom: 10px; /* Espacement entre les éléments */
+}
+
+.messages > :last-child {
+    align-self: flex-end; /* Pour aligner le dernier élément en bas */
+    margin-bottom: 0;
+}
+
+#barreEnvoi{
+    margin-right: 10px;
+    background-color: var(--bleu-fond);
+    padding: 1em;
+    border: 2px solid black;    
+    border-radius: 30px;
+    width: 94%;
+    color: black;
+    font-size: 16px;
+}
+#barreEnvoi:hover{
+    opacity: 0.85;
+}
+
+.gauche{
+    float: left;
+    width: 60%;
+    word-wrap: break-word;
+}
+.gauche .textMess{
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 20px;
+    border-bottom-left-radius: 0;
+    background-color: var(--bleu);
+    color: white;
+    width: 91%;
+}
+.droite{
+    float: right;
+    width: 60%;
+    word-wrap: break-word;
+    display:flex;
+    flex-direction:column;
+    align-items:flex-end;
+}
+.droite .textMess{
+    padding: 10px;
+    padding-left: 15px;
+    border-radius: 20px;
+    border-bottom-right-radius: 0;
+    background-color: var(--bleu-fond);
+    color: black;
+    width: 91%;
+}
+
+.convs{
+    display: inline-block;
+}
+
+.poubelle{
+    width: 10%;
+    border-radius: 11px;
+    height: 30px;
+    width: auto;
+    margin-top: 5px;
+}
+.poubelle:hover{
+    background-color: rgba(255, 0, 0, 0.829);
+    border-radius: 11px;
+    cursor: pointer;
+}
+  
+
+.Utilisateur{
+    float: left;
+    text-align: center;
+    box-sizing: border-box;
+    border: 2px solid black;
+    border-radius: 20px;
+    height: 100%;
+    width: 40%;
+    overflow: auto;
+}
+.barreDest{
+    display: relative;
+    margin-right: 5px;
+    background-color: var(--bleu-fond);
+    padding: 12px;
+    border: 2px solid black;
+    border-radius: 30px;
+    color: black;
+    font-size: 16px;
+}
+
+#newConv {
+    font-size: 16px;
+    margin-left: 7px;
+}
+
+.dest{
+    display: inline-block;
+    text-align: center;  
+    font-weight:500 ; 
+    padding: 20px;
+    background-color: var(--bleu-fond);
+    border-radius: 20px;
+    width: 70%;
+    cursor: pointer;
+    margin: 7px;
+}
+
+.dest:hover{
+    opacity: 0.85;
+}
+
+#uneConv {
+    justify-content: center;
+}
