@@ -4,7 +4,7 @@ if (!connect()) {
     die('Erreur de connexion à la base de données');
 }
 
-$_SESSION["idUser"] = 1;
+$_SESSION["idUser"] =1;
 
 function aff($variable) {
     echo '<pre style="color: black;">';
