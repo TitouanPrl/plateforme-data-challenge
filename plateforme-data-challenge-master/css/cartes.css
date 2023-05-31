@@ -5,10 +5,7 @@
     justify-content: center;
     gap: 50px;
     margin-bottom: 300px;
-<<<<<<< HEAD
     z-index: 98;
-=======
->>>>>>> master
 }
 
 .card-container .card:first-child,
@@ -17,18 +14,12 @@
 }
 
 .card-container:hover .card {
-<<<<<<< HEAD
     z-index: 98;
-=======
->>>>>>> master
     cursor: pointer;
     filter: grayscale(0.7);
 }
 .card-container .card {
-<<<<<<< HEAD
     z-index: 98;
-=======
->>>>>>> master
     text-decoration: none;
     margin: 10px;
     width: 15%;

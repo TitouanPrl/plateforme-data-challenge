@@ -108,11 +108,7 @@ require_once 'initVarChallenges.php';
     </div>
 
     <!-- la petite vague là -->
-<<<<<<< HEAD
-    <svg style="z-index:-1;" xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="2000" height="560" preserveAspectRatio="none" viewBox="0 0 2000 560">
-=======
     <svg xmlns="http://www.w3.org/2000/svg" version="1.1" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:svgjs="http://svgjs.com/svgjs" width="2000" height="560" preserveAspectRatio="none" viewBox="0 0 2000 560">
->>>>>>> master
         <g mask="url(&quot;#SvgjsMask1124&quot;)" fill="none">
             <rect width="2000" height="560" x="0" y="0" fill="rgba(231, 253, 255, 1)"></rect>
             <path d="M 0,160 C 100,137.6 300,44.6 500,48 C 700,51.4 800,177.6 1000,177 C 1200,176.4 1300,42.2 1500,45 C 1700,47.8 1900,161.8 2000,191L2000 560L0 560z" fill="rgba(14, 135, 105, 1)"></path>
