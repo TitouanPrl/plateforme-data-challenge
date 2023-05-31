@@ -2,15 +2,15 @@
 <?php 
 
 /* On choisit le header en fonction de la fonction de l'utilisateur */
-if ($_SESSION['infoUser']['fonction'] != "ADMIN") {
+if ($_SESSION['infoUser']['fonction'] == "ADMIN") {
     require '../Integrations/headerAdmin.php'; 
 }
 
-else if ($_SESSION['infoUser']['fonction'] != "GESTION") {
+else if ($_SESSION['infoUser']['fonction'] == "GESTION") {
     require '../Integrations/headerGestion.php'; 
 }
 
-else if ($_SESSION['infoUser']['fonction'] != "USER") {
+else if ($_SESSION['infoUser']['fonction'] == "USER") {
     require '../Integrations/headerEtudiant.php'; 
 }
 
