@@ -19,24 +19,26 @@ connect();
         }
 
         /* Sinon on affiche la liste des challenges dont il est responsable */
-        echo ('<!-- Affichage des challenges dont le gestionnaire est responsable -->
-        <div id="mesChallenges">
+        else {
+            echo ('<!-- Affichage des challenges dont le gestionnaire est responsable -->
+            <div id="mesChallenges">
 
-        <h2 class="titreForm"> Mes Challenges </h2>');
+            <h2 class="titreForm"> Mes Challenges </h2>');
 
-        foreach ($_SESSION['inscriptions'] as $current) {
-            /* On récupère les infos liées à l'événement */
-            $infos = getChallengeByID($current);
+            foreach ($_SESSION['inscriptions'] as $current) {
+                /* On récupère les infos liées à l'événement */
+                $infos = getChallengeByID($current);
 
-            echo ('<a href="equipesEtProjets.php.php?challenge=' . $current . '">
-                      <div class="challenge">
-                          <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
-                          <span class="descript_challenge"> ' . $infos['description'] . ' </span>
-                      </div>
-                    </a>');
+                echo ('<a href="equipesEtProjets.php.php?challenge=' . $current . '">
+                          <div class="challenge">
+                              <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
+                              <span class="descript_challenge"> ' . $infos['description'] . ' </span>
+                          </div>
+                        </a>');
+            }
+
+            echo('</div>');
         }
-
-        echo('</div>');
         ?>
         
     </div>

@@ -118,6 +118,9 @@ if ($type == 'ajout') {
     addQuestion($conn,$idQuestionnaire,$question2);
     addQuestion($conn,$idQuestionnaire,$question3);
     addQuestion($conn,$idQuestionnaire,$question4);
+
+    /* Envoie du lien du questionnaire à tous les capitaines des équipes liées */
+    // NEED FCT QUI ENVOI CA VIA LA MESSAGERIE
 }
 
 
