@@ -16,7 +16,7 @@ connect();
 $idEvent = $_GET['challenge'];
 
 /* Inscription de l'étudiant au challenge dans la BDD */
-inscription($_SESSION['ID'],$idEvent);
+inscription($conn, $_SESSION['ID'],$idEvent);
 
 /* Redirection vers la page détaillant les infos du challenge */
 header('Location:../User/infoChallenge.php?challenge=' . $idEvent);

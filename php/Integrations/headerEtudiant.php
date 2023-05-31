@@ -2,7 +2,7 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) {
+if (!isset($_SESSION["login"])) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
@@ -39,6 +39,7 @@ if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) 
                 <a href="inscriptionChallenge.php">Liste des challenges</a>
                 <a href="equipe.php">Mon équipe</a>
                 <a href="mesChallenges.php">Mes challenges</a>
+                <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <?php
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
                 if (isset($_SESSION['infoTeam'])) {

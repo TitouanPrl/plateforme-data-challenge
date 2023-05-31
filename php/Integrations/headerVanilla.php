@@ -36,7 +36,6 @@ require_once "../../bdd/fonctionsBDD.php";
                 <a href="../General/listeChallenge.php">Informations Challenges</a>
                 <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
                 <a href="../Admin/accueilAdmin.php">Accueil admin</a>
-                <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >

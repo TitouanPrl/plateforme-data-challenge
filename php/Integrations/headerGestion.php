@@ -38,6 +38,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
             <nav id="liens">
                 <a href="modifInfos.php">Mon profil</a>
                 <a href="modifInfos.php">Modifier mes données</a>
+                <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
