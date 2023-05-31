@@ -1,5 +1,20 @@
 
-<?php require '../Integrations/headerVanilla.php'; 
+<?php 
+
+/* On choisit le header en fonction de la fonction de l'utilisateur */
+if ($_SESSION['infoUser']['fonction'] != "ADMIN") {
+    require '../Integrations/headerAdmin.php'; 
+}
+
+else if ($_SESSION['infoUser']['fonction'] != "GESTION") {
+    require '../Integrations/headerGestion.php'; 
+}
+
+else if ($_SESSION['infoUser']['fonction'] != "USER") {
+    require '../Integrations/headerEtudiant.php'; 
+}
+
+
 if (!connect()) {
     die('Erreur de connexion à la base de données');
 }
