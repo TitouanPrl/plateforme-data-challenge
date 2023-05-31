@@ -53,7 +53,7 @@ public class PythonCodeAnalyzer {
         
         String texteExemple = "def fonction1():\n\treturn \"je suis la fonction 1\"\n'''jesuis\nun\ncommentaire\nen\nbloc'''\ndef fonction2():\n\treturn 2";
         System.out.println(texteExemple);
-        String mot = "def";
+        String mot = "re";
         System.out.println("nb occurences de " + mot +  " : " + nbOccurrences(texteExemple, mot));
 
     }

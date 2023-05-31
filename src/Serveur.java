@@ -104,12 +104,9 @@ public class Serveur {
                     return result;
                 } else {
                     // Enlever le "mots=" du corps de la requête
-                    LOGGER.info("requestBody : " + requestBody);
                     requestBody = requestBody.substring(5);
                     // enlever le saut de ligne à la fin de requestBody
-                    LOGGER.info("requestBody : " + requestBody);
                     requestBody = requestBody.substring(0, requestBody.length() - 1);
-                    LOGGER.info("requestBody : " + requestBody);
                     // Corps de requête est une liste de mots
                     List<String> listeMots = PythonCodeAnalyzer.extraireListeMots(requestBody);
 
