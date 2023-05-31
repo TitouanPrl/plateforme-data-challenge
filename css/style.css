@@ -151,6 +151,10 @@ main {
     margin-top: -220px;
 }
 
+footer {
+    position: relative;
+    bottom: 0;
+}
 
 .row{
     width:100%;
