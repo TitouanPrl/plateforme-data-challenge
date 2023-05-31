@@ -2,14 +2,6 @@
 <?php session_start()?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 
-<?php
-    if($_SESSION["type"] != "administrateur"){
-        echo($_SESSION["type"]);
-    }
-    else {
-        echo("Marche pas");
-    }
-?>
 <?php include('./php/bddData.php');?>
 <?php connect()?>
 
@@ -45,6 +37,9 @@ while($i< count($_FILES['userfile'])){
     </table>
     </div>
 <table>
+    <tr>
+        <input type="button" class="ajoutUser" id="plus" value="+" onclick="document.location.href='type.php'";>
+    </tr>
     <!-- Pour chaque catégorie du tableau -->
     <?php
     $Users = getAllUtilisateurs($conn);
@@ -83,12 +78,18 @@ while($i< count($_FILES['userfile'])){
     </div>
 <table>
     <!-- Pour chaque catégorie du tableau -->
+        <tr>
+            <input type="button" class="ajoutDC" id="plus" value="+" onclick="document.location.href='formDC.php'";>
+        </tr>
     <?php
     $kind ='CHALLENGE';
     $DC = getEvenementsByKind($conn,$kind);
+    
     foreach ($DC as $evt) : ?>
         <div>
+        
         <tr class="ligneDc">
+
             <?php
                     $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
                     echo ('<td>'.'<a href="modifDC.php?DC=' . $evt['idEvenement'] . '">
