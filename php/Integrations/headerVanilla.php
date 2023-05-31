@@ -34,7 +34,6 @@ require_once "../../bdd/fonctionsBDD.php";
             <nav id="liens">
                 <a href="../General/listeChallenge.php">Liste Challenges</a>
                 <a href="../Admin/accueilAdmin.php">Accueil admin</a>
-                <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >
