@@ -165,6 +165,15 @@ function getQuestionnairesOnSujet($conn, $idSujet) {   //tous les questionnaires
 
     return $questionnaires;
 }
+
+/* Récupère les infos d'un questionnaire via son ID */
+function getQuestionnairesByID($conn, $idQuestionnaire) {   
+    $sql = "SELECT * FROM Questionnaire WHERE idQuestionnaire = $idQuestionnaire";
+    $questionnaire = request($conn,$sql);
+
+    return $questionnaire;
+}
+
 function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
     $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
     $id = request($conn,$sql);
@@ -255,6 +264,14 @@ function getIDConversationByCorres($conn,$idExp,$idDest) {
 /* Renvoit l'id le plus grand parmi ceux des questionnaires */
 function getMaxIdQuestionnaire($conn) { 
     $sql = "SELECT MAX(idQuestionnaire) FROM Questionnaire";
+    $max = request($conn,$sql);
+
+    return $max;
+}
+
+/* Renvoit le nombre de points d'une équipe */
+function getNbPoints($conn, $idEquipe) { 
+    $sql = "SELECT SUM(notes) FROM Reponse WHERE idEquipe = $idEquipe";
     $max = request($conn,$sql);
 
     return $max;
@@ -355,10 +372,7 @@ function deleteProjet($conn,$idProjet) { //supprimer un projet
     $sql = "DELETE FROM Projet WHERE idProjet = $idProjet";
     send($conn,$sql);
 }
-function deletePodium($conn,$idPodium) { //supprimer un podium
-    $sql = "DELETE FROM Podium WHERE idPodium = $idPodium";
-    send($conn,$sql);
-}
+
 function deleteQuestionnaire($conn,$idQuestionnaire) {
     $sql = "DELETE FROM Questionnaire WHERE idQuestionnaire = $idQuestionnaire";
     send($conn,$sql);
@@ -422,8 +436,16 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function setNote($conn, $idReponse,$note) { // définir la note de la réponse à une question
+function setNote($conn, $idReponse, $note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
+    send($conn,$sql);
+}
+
+/* Mise à jour du podium d'un sujet */
+function modifyPodium($conn, $idSujet, $idEquipe1, $idEquipe2, $idEquipe3) {
+    $sql = "UPDATE Sujet SET idE1 = $idEquipe1 WHERE idSujet = $idSujet;
+    UPDATE Sujet SET idE2 = $idEquipe2 WHERE idSujet = $idSujet;
+    UPDATE Sujet SET idE3 = $idEquipe3 WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
 
