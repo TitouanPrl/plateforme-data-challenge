@@ -472,7 +472,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }}
-function inscription($idUser,$idEvenement) {
+function inscription($conn,$idUser,$idEvenement) {
     try {
         $use = "use SiteProjet";
         $conn->exec($use);
