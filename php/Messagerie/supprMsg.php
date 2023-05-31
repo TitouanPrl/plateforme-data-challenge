@@ -1,13 +1,10 @@
 <?php
-    echo $_POST['id'];
-    $id = $_POST['id'];
+    require_once "../../bdd/fonctionsBDD.php";
+    if (!connect()) {
+        die('Erreur de connexion à la base de données');
+    }
 
-    $data = file_get_contents("./conv/".$_POST["adress"]);
-    $json = json_decode($data);
-    
-    unset($json[$id]);
+    $idMes = $_POST["idMes"];
 
-    $json = json_encode(array_values($json));
-    file_put_contents('./conv/'.$_POST["personne"], $json);
-
+    deleteMessage($conn,$idMes);
 ?>

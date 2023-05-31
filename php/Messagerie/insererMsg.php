@@ -1,20 +1,17 @@
 <?php
+    require_once "../../bdd/fonctionsBDD.php";
+    if (!connect()) {
+        die('Erreur de connexion à la base de données');
+    }
 
-    $data = file_get_contents('./conv/'.$_POST["adresse"]);
-    $json = json_decode($data);
+    
+    $idExpediteur = $_POST['expediteur'];
+    $idDestinataire = $_POST['destinataire'];
+    $contenu = $_POST['contenu'];
 
-    $array = array(
-        'emetteur' => $_POST['emetteur'],
-        'message' => $_POST['message'],
-        'state' => "visible"
-    );
 
-    $json[] = $array;
+    addMessage($conn,$contenu, $idExpediteur, $idDestinataire);
 
-    $json = json_encode($json, JSON_PRETTY_PRINT);
-
-    file_put_contents('./conv/'.$_POST["adresse"], $json);
-
-    echo $_POST['message'];
+    echo $contenu;
 
 ?>

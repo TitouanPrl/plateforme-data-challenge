@@ -1,21 +1,49 @@
 <?php
+    require_once "../../bdd/fonctionsBDD.php";
+    if (!connect()) {
+        die('Erreur de connexion à la base de données');
+    }
 
-if (file_exists('./conv/'.$_POST["adresse"])) {
+    //pour obtenir la discussion entre deux personnes
 
-    $data = file_get_contents('./conv/'.$_POST["personne"]);
-    $json = json_decode($data);
+    $messages = getMessages($conn);
+    $idConv = $_POST["idConv"];
 
-    if(count($json) == 0 ) {
-        echo "NULL";
+    $conv = getConversationById($conn,$idConv);
+
+    //les deux personnes liées à la discussion
+    $idExp = $conv[0]["idExpediteur"];
+    $idDest = $conv[0]["idDestinataire"];
+
+    if(count($messages) == 0 ) { //count obtient le nombre de messages
+        echo "hello";
     } else {
+
         $res = "";
-        foreach ($json as $key => $value) {
-            $res .= json_encode($value, JSON_PRETTY_PRINT) . '|';
+        foreach ($messages as $msg) {
+
+            $tmpDest = $msg['idDestinataire'];
+            $tmpExp = $msg['idExpediteur'];
+
+            //si le message est entre les deux personnes liées à la discussion
+            if (($tmpDest == $idDest)&&($tmpExp == $idExp) || ($tmpDest == $idExp)&&($tmpExp == $idDest)) {
+                $tab = [
+                    [
+                    "idMessage" => $msg["idMessage"],
+                    "contenu" => $msg["contenu"],
+                    "idExpediteur" => $msg["idExpediteur"],
+                    "idDestinataire" => $msg["idDestinataire"]
+                    ]
+                ];      
+                
+                $jsonString = json_encode($tab);           
+                $res .= $jsonString . '|';
+            }
+            
         }
+
         echo rtrim($res, '|');
     }
-} else {
-    echo "NULL";
-}
+
 
 ?>

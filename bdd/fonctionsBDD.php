@@ -6,37 +6,47 @@ require_once('bddData.php');
 $conn;
 
 // CONNEXION / DÉCONNEXION
+
 function connect() {
-    global $conn, $servername, $username, $password, $bddname;
-    $conn = mysqli_connect($servername, $username, $password, $bddname);
-    if ($conn->connect_error) {
+    global $conn, $servername, $username, $password, $dbname;
+
+    try {
+        $conn = new PDO("mysql:host=$servername;dbname=$dbname", $username, $password);
+        $conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+        return true;
+    } catch (PDOException $e) {
+        echo "Erreur : " . $e->getMessage();
         return false;
     }
-    return true;
-}
-function disconnect($conn) {
-    $conn->close();
 }
 
-/*REQUÊTE GÉNÉRALE*/
-function request($conn,$sql) {
-    try {
-        $result = mysqli_query($conn, $sql);
-        while ($ligne = $result->fetch_assoc()) {
-            $tableau[] = $ligne;
-        }
-        return $tableau;
-    } catch (Exception $e) {
-        die('Erreur : '.$e->getMessage());
-    }
+function disconnect($conn) {
+    $conn = null;
 }
-function send($conn,$sql) {
+
+
+/*REQUÊTE GÉNÉRALE*/
+function request($conn, $sql) {
+    $use = "use SiteProjet";
+    $conn->exec($use);
+    $stmt = $conn->prepare($sql);
+    $stmt->execute();
+
+    $rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    return $rows;
+}
+
+
+function send($conn, $sql) {
     try {
-        mysqli_query($conn,$sql);
-    } catch (Exception $e) {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $resultat = $conn->exec($sql);
+
+    } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }
-   
 }
 
 
@@ -50,21 +60,17 @@ function getUtilisateurById($conn,$id) { //récupère toutes les infos d'une per
     return $person;
 }
 function getUtilisateurByFonction($conn,$fonction) { //récupère tous les utilisateurs d'une catégorie
-    $sql = "SELECT * FROM Utilisateur WHERE fonction=$fonction";
+    $sql = "SELECT * FROM Utilisateur WHERE fonction='$fonction'";
     $users = request($conn,$sql);
     return $users;
 }
 function getAllUtilisateurs($conn) { //récupère tous les utilisateurs
-    $etudiants = getUtilisateurByFonction($conn,'USER');
-    $gestion = getUtilisateurByFonction($conn,'GESTION');
-    $admin = getUtilisateurByFonction($conn,'ADMIN');
-    $users = array();
-    $users[] = $etudiants;
-    $users[] = $gestion;
-    $users[] = $admin;
+    $sql = "SELECT * FROM Utilisateur";
+    $users = request($conn,$sql);
 
     return $users;
 }
+
 function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
     $sql = "SELECT * FROM Podium WHERE idSujet=$idSujet";
     $podium = request($conn,$sql);
@@ -173,7 +179,18 @@ function getInscrits($idEvenement) {
 
     return $inscrits;
 }
+function getMessages($conn) {
+    $sql ="SELECT * FROM Messages";
+    $messages = request($conn,$sql);
 
+    return $messages;
+}
+function getConversations($conn) {
+    $sql ="SELECT * FROM Conversation";
+    $conversations = request($conn,$sql);
+
+    return $conversations;
+}
 /* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
 function getInscritsSansEquipe($idEvenement) {  
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
@@ -223,7 +240,18 @@ function getReponsesOnQuestion($conn,$idQuestion) {  //renvoie les réponses de 
 
     return $reponses;
 }
+function getConversationById($conn,$idConv) {
+    $sql = "SELECT * FROM Conversation WHERE idConversation = $idConv";
+    $conversation = request($conn,$sql);
 
+    return $conversation;
+}
+function getIDConversationByCorres($conn,$idExp,$idDest) {
+    $sql = "SELECT idConversation FROM Conversation WHERE (idExpediteur = $idExp AND idDestinataire = $idDest) OR (idExpediteur = $idDest AND idDestinataire = $idExp) LIMIT 1";
+    $id = request($conn,$sql);
+
+    return $id;
+}
 /* Renvoit l'id le plus grand parmi ceux des questionnaires */
 function getMaxIdQuestionnaire($conn) { 
     $sql = "SELECT MAX(idQuestionnaire) FROM Questionnaire";
@@ -237,11 +265,22 @@ function getMaxIdQuestionnaire($conn) {
 
 //AJOUT DE DONNÉES
 function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN')";
-    send($conn,$sql);
+    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,'ADMIN')";
+
+    $use = "use SiteProjet";
+    $conn->exec($use);
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->bindParam(':nom', $nom);
+    $stmt->bindParam(':prenom', $prenom);
+    $stmt->bindParam(':numTel', $numTel);
+    $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':mdp', $mdp);
+
+    $stmt->execute();
 }
-function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION')";
+function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF) {
+    $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,dateF,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF,'GESTION')";
     send($conn,$sql);
 }
 function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
@@ -261,7 +300,23 @@ function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
     send($conn,$sql);
 }
 function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
-    $sql = "INSERT INTO Message (contenu,idExpediteur,idDestinataire) VALUES ($contenu,$idExpediteur,$idDestinataire)";
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Messages (contenu,idExpediteur,idDestinataire) VALUES (:contenu,:idExpediteur,:idDestinataire)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':contenu', $contenu);
+        $stmt->bindParam(':idExpediteur', $idExpediteur);
+        $stmt->bindParam(':idDestinataire', $idDestinataire);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+    
+}
+function addConversation($conn, $idExpediteur, $idDestinataire) {
+    $sql = "INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES ($idExpediteur,$idDestinataire)";
     send($conn,$sql);
 }
 function createEquipe($conn, $idEvenement, $nom, $capitaine) {
@@ -330,6 +385,14 @@ function deleteEquipe($conn,$idEquipe) {
 /* Supprime un membre d'une équipe */
 function deleteMembreEquipe($conn,$idUser) {
     $sql = "UPDATE Utilisateur SET idEquipe = NULL WHERE idUser = $idUser";
+    send($conn,$sql);
+}
+function deleteMessage($conn,$idMessage) {
+    $sql = "DELETE FROM Messages WHERE idMessage = $idMessage";
+    send($conn,$sql);
+}
+function deleteConversation($conn,$idConversation) {
+    $sql = "DELETE FROM Conversation WHERE idConversation = $idConversation";
     send($conn,$sql);
 }
 

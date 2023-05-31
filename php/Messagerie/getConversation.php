@@ -1,17 +1,34 @@
 <?php
+    require_once "../../bdd/fonctionsBDD.php";
+    if (!connect()) {
+        die('Erreur de connexion à la base de données');
+    }
+    
 
-    $data = file_get_contents('conv.json');
-    $json = json_decode($data);
+    //renvoie toutes les conversations 
+    $conversations = getConversations($conn);
 
-    $res = "";
-    foreach ($json as $key => $value) {
-        $res .= json_encode($value, JSON_PRETTY_PRINT) . '|';
+    $res = '['; // Variable pour stocker les résultats concaténés
+    foreach ($conversations as $conv) {
+
+        //on convertit tout en chaînes de caractère pour pouvoir le passer à traver la requête ajax
+        $tableau = [[
+            "idConversation" => $conv["idConversation"],
+            "idExpediteur" => $conv["idExpediteur"],
+            "idDestinataire" => $conv["idDestinataire"]
+        ]];
+          
+        $jsonString = json_encode($tableau);     
+
+        $res .= $jsonString . ',';
     }
 
-    if($res != "") {
-        echo rtrim($res, '|');
+    if($res != '') {
+        $res = rtrim($res,',');
+        $res .= ']';
+        echo $res;
     } else  {
-        echo "Empty";
+        echo array();
     }        
 
 ?>
