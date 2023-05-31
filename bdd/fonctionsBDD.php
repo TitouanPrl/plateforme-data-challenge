@@ -88,7 +88,7 @@ function getSujetByEvenement($conn,$idEvenement) {
 
 /* Récupère l'ID d'un évent en fonction de son nom */
 function getIDByNomEvenement($conn,$nomEvenement) {
-    $sql = "SELECT idEvenement FROM Evenement WHERE libelle=$nomEvenement";
+    $sql = "SELECT idEvenement FROM Evenement WHERE libelle='$nomEvenement'";
     $idEvent = request($conn,$sql);
 
     return $idEvent;
@@ -108,7 +108,7 @@ function getEvenements($conn) { //récupère tous les évenements
 
 /* Récupère tous les challenges d'un certain type */
 function getEvenementsByKind($conn, $kind) {
-    $sql = "SELECT * FROM Evenement WHERE kind = $kind";
+    $sql = "SELECT * FROM Evenement WHERE kind = '$kind'";
     $evenements = request($conn,$sql);
 
     return $evenements;
@@ -175,7 +175,7 @@ function getQuestionnairesByID($conn, $idQuestionnaire) {
 }
 
 function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
-    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
+    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom='$prenom'";
     $id = request($conn,$sql);
 
     return $id;
