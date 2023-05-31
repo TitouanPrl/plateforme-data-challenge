@@ -18,7 +18,7 @@ CREATE TABLE Equipe(
     idEvenement INTEGER,
     nom VARCHAR(64),
     capitaine INTEGER,
-    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement)
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
 CREATE TABLE Utilisateur(
@@ -36,7 +36,7 @@ CREATE TABLE Utilisateur(
     dateF DATETIME,
     idEquipe INTEGER,
     fonction VARCHAR(16),   /* ADMIN/GESTION/USER */
-    FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe)
+    FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade
 );
 
 
@@ -45,8 +45,8 @@ CREATE TABLE Messages (
     contenu VARCHAR(250),
     idExpediteur INTEGER,
     idDestinataire INTEGER,
-    FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser),
-    FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser)
+    FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser) on delete cascade,
+    FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser) on delete cascade
 );
 
 CREATE TABLE Conversation (
@@ -73,12 +73,13 @@ CREATE TABLE Sujet (
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
+/* Gère les liaisons participant-event et gestionnaire-event */
 CREATE TABLE Inscription (
     idUser INTEGER,
     idEvenement INTEGER,
     PRIMARY KEY (idUser,idEvenement),
-    FOREIGN KEY (idUser) REFERENCES Utilisateur (idUser),
-    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement)
+    FOREIGN KEY (idUser) REFERENCES Utilisateur (idUser) on delete cascade,
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
 
@@ -90,8 +91,6 @@ CREATE TABLE Projet (
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
-
-
 
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,

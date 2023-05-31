@@ -2,7 +2,7 @@
 
 //fixation de la barre de navigation pendant le scroll
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -18,5 +18,5 @@ function scrollFunction() {
         document.getElementById("logo").style.width = "90px";
         document.getElementById("logo").style.paddingTop = "10px";
     }
-} 
+}
 
