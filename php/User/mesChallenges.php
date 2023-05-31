@@ -9,6 +9,8 @@ connect();
 <!-- MAIN CONTENT -->
 
 <main>
+    <div class="bordure"></div>
+    
     <div class="corps">
 
         <?php

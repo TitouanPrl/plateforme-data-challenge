@@ -23,16 +23,17 @@ connect();
         if (!isset($_SESSION['infoUser']['idEquipe'])) {
             echo ('<div id="creer_equipe">
             <h2 class="titreForm"> Création d\'une équipe </h2>
-            <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe">
+            <form>
+            <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe" required>
 
-            <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe">
+            <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe" required>
             <datalist id="liste_challenges">');
 
             /* Liste de tous les challenges en cours */
             $listEvents = getEvenements($conn);
 
             foreach ($listEvents as $current) {
-                echo ('<option value="' . $current['libelle'] . '>');
+                echo ('<option value="' . $current['libelle'] . '">');
             }
 
             echo ('</datalist>');
@@ -45,7 +46,8 @@ connect();
             echo ('<p class="titre_input"> Membre 2 </p>
             <input type="text" id="partipant3" list="liste_participants" required>');
 
-            echo ('<button id="creer_equipe" type="button" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+            echo ('<button id="creer_equipe" type="submit" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+            </form>
             </div>');
         }
 
@@ -94,13 +96,16 @@ connect();
         /* On récupère les étudiants inscrits au challenge et n'ayant pas d'équipe */
         $liste_inscrits = getInscritsSansEquipe($conn, $idEvent);
 
-        /* Champ de saisie pour ajouter un membre à l'équipe */
-        echo ('<div id="ajout_membre">
+        /* Champ de saisie pour ajouter un membre à l'équipe */ ?>
+        <div id="ajout_membre">
         <p class="titre_input"> Ajouter un membre </p>
         <input type="text" id="partipant" list="liste_participants" required>
 
-        <datalist id="liste_participants">');
+        <datalist id="liste_participants">
 
+        <?php 
+
+        var_dump($liste_inscrits);
         /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */
         foreach ($liste_inscrits as $current) {
             echo ('<option value="' . $current['prenom'] . ' ' . $current['nom'] . ' name="' . $current['idUser'] . '>');

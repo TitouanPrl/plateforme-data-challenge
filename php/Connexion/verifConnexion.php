@@ -50,7 +50,7 @@ else {
       require_once("initVarSession.php");
 
       /* On redirige vers l'accueil correspondant au type de l'utilisateur */
-      header('Location: ../redirectionAccueil.php?fonction=' . $user['fonction']); 
+      //header('Location: ../redirectionAccueil.php?fonction=' . $user['fonction']); 
 
       exit();
     }
