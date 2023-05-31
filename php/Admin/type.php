@@ -10,7 +10,7 @@
   if(isset($valider)){
     if(!empty($admin) && $admin != ""){
         $_SESSION["type"]=$admin;
-        echo($admin);
+        
     }
     if(!empty('gestionnaire') && $gestionnaire != ""){
         $_SESSION["type"]=$gestionnaire;
