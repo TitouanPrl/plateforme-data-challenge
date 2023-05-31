@@ -2,7 +2,7 @@
 
 //fixation de la barre de navigation pendant le scroll
 
-window.onscroll = function() {scrollFunction()};
+window.onscroll = function () { scrollFunction() };
 
 function scrollFunction() {
     if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
@@ -18,5 +18,22 @@ function scrollFunction() {
         document.getElementById("logo").style.width = "90px";
         document.getElementById("logo").style.paddingTop = "10px";
     }
-} 
+}
+
+
+
+//apparition du logo sous le texte quand on scroll
+window.addEventListener('scroll', function() {
+    var presentation = document.querySelector('.presentation');
+    var logoSlide = document.querySelector('.logo-slide');
+
+    var slideInAt = (window.scrollY + window.innerHeight) - presentation.offsetHeight / 2;
+    var presentationBottom = presentation.offsetTop + presentation.offsetHeight;
+
+    if (slideInAt > presentation.offsetTop && window.scrollY < presentationBottom) {
+        logoSlide.classList.add('active');
+    } else {
+        logoSlide.classList.remove('active');
+    }
+});
 

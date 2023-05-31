@@ -18,6 +18,7 @@ SUJETS : encadré blanc à droite
 /* variables à utiliser de cette manière : var(--bleu) */
 :root {
     --vert: rgb(14,135,105);
+    --vert-trans: rgba(14,135,105,0.8);
     --bleu: rgb(0,187,189);
     --bleu-fond:rgb(231, 253, 255);
     --montagne: "../img/mountain_bg.jpeg";
@@ -67,12 +68,13 @@ header {
 }
 
 /* navigation */
+#tab,
 #liens {
     overflow: hidden;
     display:flex;
     flex-wrap: wrap;
 }
-
+#tab a,
 #liens a {
     color: rgb(92, 92, 92);
     text-align: center;
@@ -81,29 +83,42 @@ header {
     text-decoration: none;
     margin: 20px; 
 }
-  
+#tab a:hover,
 #liens a:hover {
     background-color: var(--bleu);
     color: white;
-    border-radius: 5px;
+    border-radius: 20px;
 }
 
+#tab a {
+    background-color: var(--vert);
+    color: var(--bleu-fond);
+    padding: 40px;
+    font-size: 25px;
+    border-radius: 20px;
+}
 
 
 h1 {
     font-size: 60px;
     font-weight: 700;
     color: white;
+    text-shadow:1px 1px 20px black;
 }
 h2 {
     font-size: 40px;
-    color: white;
     font-weight:100;
+    color: white;
+    text-shadow:1px 1px 20px black;
 }
 
 
 .corps {
-    background-image: url("../img/mountain_bg.jpeg");
+    background-image: url("../img/mountain_bg_desaturee.jpeg");
+    height: 980px;
+    background-repeat: repeat;
+}
+main {
     height: 980px;
 }
 
@@ -113,6 +128,17 @@ h2 {
     display:flex;
     flex-direction: column;
     align-items: center;
+    color: white;
+}
+
+#titre {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 50px;
+    font-weight: bold;
+    text-shadow:1px 1px 20px black;
+    color: var(--bleu-fond);
 }
 
 
@@ -123,6 +149,80 @@ h2 {
     flex-direction: column;
     position:relative;
     margin-top: -220px;
+}
+
+footer {
+    position: relative;
+    bottom: 0;
+}
+
+.row{
+    width:100%;
+    padding:0;
+    margin:0;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    position:relative;
+}
+
+svg {
+    width: 100%;
+}
+
+
+.pageTab {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.copyright {
+    margin:2px;
+    opacity:70%;
+    margin-bottom:10px;
+    color:var(--bleu-fond);
+    font-weight: bold;
+}
+
+.presentation {
+    width: 27%;
+    font-size: 18px;
+    letter-spacing: 1.1px;
+    line-height: 33px;
+    margin-left: 40%;
+    margin-top: 60px;
+    padding: 20px;
+    background-color: var(--bleu-fond);
+    position: relative;
+    color: rgb(94, 94, 94);
+    box-shadow: 0 0 15px 5px var(--bleu-fond);
+}
+
+.logo-slide {
+    position: absolute;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    z-index: -1;
+    margin-top: -627px;
+}
+
+.logo-slide img {
+    position: absolute;
+    top: 42%;
+    left: 52%;
+    transform: translate(-50%, -50%);
+    opacity: 0;
+    transition: opacity 0.8s, transform 1.2s;
+    height: 355px;
+}
+
+.logo-slide.active img {
+    opacity: 1;
+    transform: translate(-50%, -50%) translateX(-100%);
 }
 
 

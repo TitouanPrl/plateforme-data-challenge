@@ -1,0 +1,151 @@
+#deuxForm {
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: row;
+    padding-top: 70px;
+}
+
+#connexion,
+#inscription {
+    text-align: center;
+    padding: 30px;
+    border: none;
+    color: white;
+    float: left;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    height: fit-content;
+    width: fit-content;
+}
+
+#inscriptionDC {
+    width: 40%;
+    text-align: center;
+    padding: 30px;
+    border: none;
+    color: white;
+    float: left;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    height: fit-content;
+    
+}
+#formProjet,
+#formAdmin {
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    text-align: center;
+    color: white;
+    float: left;
+    width: 37%;
+    height: fit-content;
+    padding:30px;
+    margin: auto 30%;
+}
+#formD,
+#formG {
+    text-align: center;
+    padding: 30px;
+    border: none;
+    color: white;
+    float: left;
+    width: 40%;
+    height: fit-content;
+}
+#formfunction {
+    width: 99%;
+    align-self:center ;
+}
+
+#connexion {
+    align-self: center;
+}
+
+#notif {
+    margin-top:50px;
+    margin-left: 37%;
+    padding:5px;
+    position: fixed;
+    background-color: var(--bleu-fond);
+    opacity: 0.8;
+    color: rgb(155, 11, 11);
+    font-weight: bold;
+    border-radius: 10px;
+
+}
+
+
+legend {
+    font-size: 17px;
+    font-weight: bold;
+    padding-bottom: 5px;
+    color:var(--bleu-fond); 
+}
+label {
+    color:var(--bleu);
+    font-size: 17px;
+    font-weight: bold;
+    cursor: pointer;
+    background: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px;
+    margin: 10px;
+    text-align: center;
+    position: relative;
+}
+
+label:hover {
+    cursor: pointer;
+    border: none;
+    opacity: 0.8;
+}
+
+
+fieldset {
+    border: none;
+}
+
+
+input[type="text"],
+input[type="email"],
+input[type="date"],
+input[type="password"],
+input[type="tel"],
+input[type="file"],
+input[type="time"],
+select,
+textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 4px;
+    box-sizing: border-box;
+    margin-bottom: 20px;
+    font-size: 16px;
+    font-family: Arial, sans-serif;
+}
+
+.titreForm {
+    padding-bottom: 20px;
+    font-weight: bold;
+    opacity: 0.8;
+}
+
+input[type="radio"] {
+    display: none;
+}
+
+input[type="radio"]:checked + label {
+    background: var(--bleu-fond);
+    color: black;    
+}
+
+
+
+.boutonsRadio {
+    display:flex;
+    flex-direction: row;
+    padding: 10px;
+    justify-content: center;
+}

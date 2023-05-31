@@ -1,7 +1,33 @@
 <?php require '../Integrations/headerVanilla.php'; ?>
+<div class="bordure"></div>
+<div class="corps">
+  <div class="back-button">
+    <a href="accueilAdmin.php" class="fleche"></a>
+  </div>
+  <main>
+    <article>
+      <!-- création d'un data challenge -->
+      <div style="display:flex; justify-content:center;align-items:center; padding-top:70px; ">
+        <div id="inscriptionDC">
+          <h2> Data challenge</h2>
+            
+          <form action="validInsc.php" method="POST">
+            <div style="display:flex; justify-content:center;align-items:center;">
+              <div id="formG">
+                <fieldset>
+                  <legend>Libellé</legend>
+                  <input type="text" id="libellé" name="libellé" value="<?php echo ($_GET['libellé']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                </fieldset>
 
+                <fieldset>
+                  <legend>Date début</legend>
+                  <input type="date" id="dateDeb" name="dateDebut" value="<?php echo ($_GET['DateDeb']); ?>" required> <br>
+                </fieldset>
 
-<h2>Gestion des utilisateurs</h2>
+                <fieldset>
+                  <legend>Date fin</legend>
+                  <input type="date" id="dateFin" name="dateFin" value="<?php echo ($_GET['DateFin']); ?>" required> <br>
+                </fieldset>
 
 <main>
     <article>
@@ -55,5 +81,7 @@
       </div>
     </article>
   </main>
-
+</div>
 <?php require '../Integrations/footer.php'; ?>
+
+

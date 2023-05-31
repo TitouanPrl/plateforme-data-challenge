@@ -1,6 +1,12 @@
 <?php
 session_start();
-require_once "../../bdd/fonctionsBDD.php";
+
+/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
+if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION")) {
+    header('Location:../Connexion/connexionInscription.php?message=1');
+    exit();
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -13,18 +19,15 @@ require_once "../../bdd/fonctionsBDD.php";
     <title>IA Pau</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/style.css" />
-    <link rel="stylesheet" href="../../css/boutons.css" />
-    <link rel="stylesheet" href="../../css/form.css" />
-    <link rel="stylesheet" href="../../css/messagerie.css" />
-    <link rel="stylesheet" href="../../css/cartes.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
+    <script src="../../script/gestionQuiz.js"></script>
 
 
 </head>
 
 <body>
-    <!-- HEADER UTILISATEUR NON CONNECTÉ-->
+    <!-- HEADER UTILISATEUR CONNECTÉ EN TANT QUE GESTIONNAIRE -->
 
     <header>
         <div id="header" class="">
@@ -33,16 +36,18 @@ require_once "../../bdd/fonctionsBDD.php";
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="../User/inscriptionChallenge.php">Inscription Challenge</a>
-                <a href="../Admin/accueilAdmin.php">Accueil admin</a>
-                <a href="../Messagerie/messagerie.php">Messagerie</a>
+                <a href="modifInfos.php">Mon profil</a>
+                <a href="modifInfos.php">Modifier mes données</a>
             </nav>
 
-            <form action="../Connexion/connexionInscription.php" >
-                <input type="submit" class="boutonDeco" value="Connexion">
+            <form action="../Connexion/deconnexion.php" >
+                <input type="submit" class="boutonDeco" value="Déconnexion">
             </form>
 
         </div>
 
     </header>
+
+        
+
+

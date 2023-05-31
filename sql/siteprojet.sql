@@ -1,7 +1,7 @@
-DROP DATABASE IF EXISTS SiteWeb;
+DROP DATABASE IF EXISTS SiteProjet;
 
-CREATE DATABASE SiteWeb;
-USE SiteWeb;
+CREATE DATABASE SiteProjet;
+USE SiteProjet;
 
 
 CREATE TABLE Evenement (
@@ -40,13 +40,21 @@ CREATE TABLE Utilisateur(
 );
 
 
-CREATE TABLE Message (
+CREATE TABLE Messages (
     idMessage INTEGER PRIMARY KEY auto_increment,
     contenu VARCHAR(250),
     idExpediteur INTEGER,
     idDestinataire INTEGER,
     FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser) on delete cascade,
     FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser) on delete cascade
+);
+
+CREATE TABLE Conversation (
+    idConversation INTEGER PRIMARY KEY auto_increment,
+    idExpediteur INTEGER,
+    idDestinataire INTEGER,
+    FOREIGN KEY (idExpediteur) REFERENCES Utilisateur (idUser),
+    FOREIGN KEY (idDestinataire) REFERENCES Utilisateur (idUser)
 );
 
 CREATE TABLE Sujet (
@@ -65,6 +73,7 @@ CREATE TABLE Sujet (
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
+/* Gère les liaisons participant-event et gestionnaire-event */
 CREATE TABLE Inscription (
     idUser INTEGER,
     idEvenement INTEGER,
@@ -82,8 +91,6 @@ CREATE TABLE Projet (
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
-
-
 
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,
@@ -115,7 +122,6 @@ CREATE TABLE Reponse (
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Archibald","Haddock",0783698488,"hh@gmail.com","1ère année de Master","la mer","Mauléon","love","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Rastapopoulos","Monsieur",0808080808,"rp@gmail.com","1ère année de Master","l'école des méchants","Lyon","alan","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",0202020202,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","bijou","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tintin","tintin",0606060607,"Le petit 20e","tt@gmail.com","milou","ADMIN");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",0606060608,"Laboratoire de Genève","tty@gmail.com","quoi","GESTION");
 
 
@@ -137,7 +143,6 @@ UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=1;
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=2;
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=3;
 
-INSERT INTO Message (contenu, idExpediteur,idDestinataire) VALUES ("arrête d'être méchant >:(",1,2);
 
 
 

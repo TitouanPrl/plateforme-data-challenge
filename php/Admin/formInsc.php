@@ -20,15 +20,15 @@
                 <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
 
-              <fieldset>
-                <legend>Prénom</legend>
-                <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-              </fieldset>
+                  <fieldset>
+                    <legend>Prénom</legend>
+                    <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                  </fieldset>
 
-              <fieldset>
-                <legend>Mail</legend>
-                <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
-              </fieldset>
+                  <fieldset>
+                    <legend>E-mail</legend>
+                    <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
+                  </fieldset>
 
               <fieldset>
                 <legend>Telephone</legend>
@@ -71,11 +71,9 @@
                 <input type="date" id="dateFin" name="dateFin" value="<?php echo ($_GET['dateFin']);?>" > <br>
               </fieldset>
 
+              <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
             </div>
           </div>
-
-          <input type="submit" id="submit" value="Valider">
-
         </form>
       </div>
     </article>

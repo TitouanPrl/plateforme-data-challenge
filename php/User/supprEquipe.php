@@ -12,13 +12,15 @@ if (!isset($_SESSION["login"])) {
 
 connect();
 
-/* On récupère le challenge sélectionné */
-$idEvent = $_GET['challenge'];
+/* On supprime l'équipe */
+deleteEquipe($conn,$_SESSION['infoTeam']['idEquipe']);
 
-/* Inscription de l'étudiant au challenge dans la BDD */
-inscription($_SESSION['ID'],$idEvent);
+/* On met à jour les var de session */
+$_SESSION['teamMembers'] = NULL;
+$_SESSION['infoTeam'] = NULL;
+$_SESSION['capitaine'] = NULL;
 
-/* Redirection vers la page détaillant les infos du challenge */
-header('Location:../User/infoChallenge.php?challenge=' . $idEvent);
+/* Actualisation de la page équipe */
+header('Location:equipe.php');
 
 ?>

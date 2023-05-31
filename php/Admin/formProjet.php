@@ -38,5 +38,6 @@
       </div>
     </article>
   </main>
+</div>
 
 <?php require '../Integrations/footer.php'; ?>

@@ -2,8 +2,8 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"])) {
-    header('Location:../Connexion/connexionInscription.php?error=1');
+if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) {
+    header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
 
@@ -21,12 +21,13 @@ if (!isset($_SESSION["login"])) {
     <link rel="stylesheet" href="../../css/style.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
+    <script src="../../script/gestionEquipe.js"></script>
 
 
 </head>
 
 <body>
-    <!-- HEADER UTILISATEUR CONNECTÉ -->
+    <!-- HEADER UTILISATEUR CONNECTÉ EN TANT QUE PARTICIPANT -->
 
     <header>
         <div id="header" class="">
@@ -35,19 +36,23 @@ if (!isset($_SESSION["login"])) {
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="../Connexion/inscriptionChallenge.php">Inscription Challenge</a>
-                <!-- RAJOUTER LES LIENS NECESSITANT UNE  CONNEXION -->
+                <a href="inscriptionChallenge.php">Liste des challenges</a>
+                <a href="equipe.php">Mon équipe</a>
+                <a href="mesChallenges.php">Mes challenges</a>
+                <?php
+                /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
+                if (isset($_SESSION['infoTeam'])) {
+                    if ($_SESSION['capitaine'] == true) {
+                        echo ('<a href="quiz.php">Quiz</a>');
+                    }
+                }
+                ?>
             </nav>
 
-            <form action="../Connexion/deconnexion.php" >
+            <form action="../Connexion/deconnexion.php">
                 <input type="submit" class="boutonDeco" value="Déconnexion">
             </form>
 
         </div>
 
     </header>
-
-        
-
-
