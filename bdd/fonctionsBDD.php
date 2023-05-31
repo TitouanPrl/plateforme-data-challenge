@@ -265,39 +265,116 @@ function getMaxIdQuestionnaire($conn) {
 
 //AJOUT DE DONNÉES
 function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,'ADMIN')";
+    try {
+        $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,'ADMIN')";
 
-    $use = "use SiteProjet";
-    $conn->exec($use);
+        $use = "use SiteProjet";
+        $conn->exec($use);
 
-    $stmt = $pdo->prepare($sql);
-    $stmt->bindParam(':nom', $nom);
-    $stmt->bindParam(':prenom', $prenom);
-    $stmt->bindParam(':numTel', $numTel);
-    $stmt->bindParam(':email', $email);
-    $stmt->bindParam(':mdp', $mdp);
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':mdp', $mdp);
 
-    $stmt->execute();
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
+
 function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,dateF,fonction) VALUES ($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF,'GESTION')";
-    send($conn,$sql);
+    try {
+        $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,dateF,fonction) VALUES (:nom,:prenom,:entreprise,:numTel,:email,:mdp,:dateD,:dateF,'GESTION')";
+        
+        $use = "use SiteProjet";
+        $conn->exec($use);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':mdp', $mdp);
+        $stmt->bindParam(':entreprise', $entreprise);
+        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':dateF', $dateF);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
+
 function addEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville) {
-    $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER')";
-    send($conn,$sql);
+    try {
+        $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,:nivEtude,:ville,:ecole,'USER')";
+        $use = "use SiteProjet";
+        $conn->exec($use);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':mdp', $mdp);
+        $stmt->bindParam(':nivEtude', $nivEtude);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':ecole', $ecole);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
+
 function createQuestionnaire($conn,$idSujet,$dateD,$dateF) {
-    $sql = "INSERT INTO Questionnaire (idSujet,dateD,dateF) VALUES ($idSujet,$dateD,$dateF)";
-    send($conn,$sql);
+    try {
+        $sql = "INSERT INTO Questionnaire (idSujet,dateD,dateF) VALUES (:idSujet,:dateD,:dateF)";
+        $use = "use SiteProjet";
+        $conn->exec($use);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idSujet', $idSujet);
+        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':dateF', $dateF);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function addQuestion($conn,$idQuestionnaire,$contenu) {
-    $sql = "INSERT INTO Question (contenu,idQuestionnaire) VALUES ($contenu,$idQuestionnaire)";
-    send($conn,$sql);
+    try {
+        $sql = "INSERT INTO Question (contenu,idQuestionnaire) VALUES (:contenu,:idQuestionnaire)";
+        $use = "use SiteProjet";
+        $conn->exec($use);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idQuestionnaire', $idQuestionnaire);
+        $stmt->bindParam(':contenu', $contenu);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function addRéponse($conn,$idQuestion,$idEquipe,$contenu) {
-    $sql = "INSERT INTO Reponse (contenu,idQuestion,idEquipe) VALUES ($contenu,$idQuestion,$idEquipe)";
-    send($conn,$sql);
+    try {
+        $sql = "INSERT INTO Reponse (contenu,idQuestion,idEquipe) VALUES (:contenu,:idQuestion,:idEquipe)";
+        $use = "use SiteProjet";
+        $conn->exec($use);
+
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idQuestion', $idQuestion);
+        $stmt->bindParam(':idEquipe', $idEquipe);
+        $stmt->bindParam(':contenu', $contenu);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     try {
@@ -316,25 +393,81 @@ function addMessage($conn,$contenu, $idExpediteur, $idDestinataire) {
     
 }
 function addConversation($conn, $idExpediteur, $idDestinataire) {
-    $sql = "INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES ($idExpediteur,$idDestinataire)";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Conversation (idExpediteur,idDestinataire) VALUES (:idExpediteur,:idDestinataire)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idExpediteur', $idExpediteur);
+        $stmt->bindParam(':idDestinataire', $idDestinataire);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function createEquipe($conn, $idEvenement, $nom, $capitaine) {
-    $sql = "INSERT INTO Equipe (idEvenement,nom,capitaine) VALUES ($idEvenement,$nom,$capitaine)";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Equipe (idEvenement,nom,capitaine) VALUES (:idEvenement,:nom,:capitaine)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idEvenement', $idEvenement);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':capitaine', $capitaine);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function createEvenement($conn,$libelle,$descrip,$dateD,$dateF) {
-    $sql = "INSERT INTO Evenement (libelle,descrip,dateD,dateF) VALUES ($libelle,$descrip,$dateD,$dateF)";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Evenement (libelle,descrip,dateD,dateF) VALUES (:libelle,:descrip,:dateD,:dateF)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':libelle', $libelle);
+        $stmt->bindParam(':descrip', $descrip);
+        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':dateF', $dateF);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) {
-    $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
-    send($conn,$sql);
-}
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (:idEvenement,:libelle,:descrip,:img,:telGerant,:emailGerant,:lienRessources)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idEvenement', $idEvenement);
+        $stmt->bindParam(':libelle', $libelle);
+        $stmt->bindParam(':descrip', $descrip);
+        $stmt->bindParam(':img', $img);
+        $stmt->bindParam(':telGerant', $telGerant);
+        $stmt->bindParam(':emailGerant', $emailGerant);
+        $stmt->bindParam(':lienRessources', $lienRessources);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }}
 function inscription($idUser,$idEvenement) {
-    $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idUser,$idEvenement)";
-    send($conn,$sql);
-}
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES (:idUser,:idEvenement)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser);
+        $stmt->bindParam(':idEvenement', $idEvenement);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }}
 
 
 
