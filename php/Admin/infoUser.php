@@ -10,7 +10,6 @@ $idUser = $_GET['idUser'];
 
 /* On récupère l'utilisateur associé à cet ID */
 $User = getAllUtilisateurs($conn);
-
 /* On affiche le numéro de l'utilisateur */
 echo('<!-- MAIN CONTENT -->
 

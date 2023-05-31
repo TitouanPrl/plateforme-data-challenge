@@ -1,13 +1,12 @@
 
-let selected;
-    document.getElementById('valider').onclick = function() {
-        var radios = document.getElementsByName('type');
-        for (var radio of radios)
-        {
-            if (radio.checked) {
-                selected = radio.value;
-                var selectedRadio = '<?php echo $variable_php; ?>';
-            }
-        }
+function affiche($type){
+    if($type == "etudiant"){
+       //on cache les fieldset correspondant a gestionnaires
+       document.getElementById('formGest').style.visibility="hidden";
+    }
+    if($type == "gestionnaire"){
+       //si c'est un gestionnaire on cache les fieldset d'étudiant
+       document.getElementById('formEtu').style.visibility="hidden";
+    }
     }
  

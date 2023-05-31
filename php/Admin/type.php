@@ -18,10 +18,7 @@
     if(!empty('etudiant') && $etudiant !=""){
         $_SESSION["type"] = $etudiant;
     }
-    header('location:validInsc.php');
-  }
-  else{
-    echo('Il y a une erreur');
+    header('location:formInsc.php');
   }
   echo($_SESSION["type"]);
 ?>
@@ -39,9 +36,9 @@
                 <legend>
                     Quel type de compte souhaitez vous ajouter ?
                 </legend>
-                    admin : <input type="radio" id="admin" name="admin" value="administrateur"> 
-                    gestionnaire : <input type="radio" id="type" name="gestionnaire" value="gestionnaire">
-                    etudiant :<input type="radio" id="type" name="etudiant" value= "etudiant"><br>
+                    Administrateur : <input type="radio" id="admin" name="admin" value="administrateur"> 
+                    Gestionnaire : <input type="radio" id="type" name="gestionnaire" value="gestionnaire">
+                    Étudiant :<input type="radio" id="type" name="etudiant" value= "etudiant"><br>
                     <input type="submit" id="valider" name="valider" value='valider'>
           </fieldset>
         </div>

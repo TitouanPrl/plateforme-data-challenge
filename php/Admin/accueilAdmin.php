@@ -1,6 +1,6 @@
 
-<?php session_start()?> 
-
+<?php session_start()?>
+<?php connect()?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 
 <?php
@@ -11,7 +11,7 @@
         echo("Marche pas");
     }
 ?>
-<?php include('./php/bdd.php');?>
+<?php include('./php/bddData.php');?>
 
 <body>
 <!-- fonction qui permet de récupérer les fichiers télécharger dans un répertoire -->
@@ -47,8 +47,8 @@ while($i< count($_FILES['userfile'])){
 <table>
     <!-- Pour chaque catégorie du tableau -->
     <?php
-    $User = getAllUtilisateurs($conn);
-     foreach ($User as $User) : ?>
+    $Users = getAllUtilisateurs($conn);
+     foreach ($Users as $User) : ?>
     <!-- Si le titre est celui du GET -->
     <?php if ($User['idUser'] == $_GET['user']) : ?>
         <!-- J'ajoute ma référence à la liste -->
@@ -56,9 +56,8 @@ while($i< count($_FILES['userfile'])){
         
         <tr class="ligne">
             <?php
-            $User =  getAllUtilisateurs($conn);
-            foreach ($User as $User['idUser']) {
-                echo '<td class="user" id="idUser'.$User['nom'].'">'.$User['prenom']. '<br>' . $User['fonction'] .'</td>';
+            foreach ($Users as $User['idUser']) {
+                echo '<td class="user" id="idUser'.$Users['nom'].'">'.$Users['prenom']. '<br>' . $Users['fonction'] .'</td>';
             }
             ?>
             <td>
