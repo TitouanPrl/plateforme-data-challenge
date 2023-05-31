@@ -173,7 +173,7 @@ function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne 
 }
 
 /* Récupère les inscrits à un challenge donné */
-function getInscrits($idEvenement) {
+function getInscrits($conn, $idEvenement) {
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement";
     $inscrits = request($conn,$sql);
 
@@ -192,7 +192,7 @@ function getConversations($conn) {
     return $conversations;
 }
 /* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
-function getInscritsSansEquipe($idEvenement) {  
+function getInscritsSansEquipe($conn, $idEvenement) {  
     $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
     $inscrits = request($conn,$sql);
 
@@ -200,7 +200,7 @@ function getInscritsSansEquipe($idEvenement) {
 }
 
 /* Récupère la liste des challenges auxquels un utilisateur est inscrit */
-function getEventInscrit($idUser) { 
+function getEventInscrit($conn, $idUser) { 
     $sql = "SELECT idEvenement FROM Inscription WHERE idUser=$idUser";
     $events = request($conn,$sql);
 
@@ -208,7 +208,7 @@ function getEventInscrit($idUser) {
 }
 
 /* Récupère les données d'un challenge via son ID */
-function getChallengeByID($idEvenement) { 
+function getChallengeByID($conn, $idEvenement) { 
     $sql = "SELECT * FROM Evenement WHERE idEvenement = $idEvenement";
     $infos = request($conn,$sql);
 
@@ -270,7 +270,7 @@ function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
     $use = "use SiteProjet";
     $conn->exec($use);
 
-    $stmt = $pdo->prepare($sql);
+    $stmt = $conn ->prepare($sql);
     $stmt->bindParam(':nom', $nom);
     $stmt->bindParam(':prenom', $prenom);
     $stmt->bindParam(':numTel', $numTel);
@@ -331,7 +331,7 @@ function createSujet($conn,$idEvenement,$libelle,$descrip,$img,$telGerant,$email
     $sql = "INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources)";
     send($conn,$sql);
 }
-function inscription($idUser,$idEvenement) {
+function inscription($conn, $idUser,$idEvenement) {
     $sql = "INSERT INTO Inscription (idUser,idEvenement) VALUES ($idUser,$idEvenement)";
     send($conn,$sql);
 }
@@ -371,7 +371,7 @@ function deleteReponse($conn,$idReponse) {
     $sql = "DELETE FROM Reponse WHERE idReponse = $idReponse";
     send($conn,$sql);
 }
-function desinscription($idUser,$idEvenement) {
+function desinscription($conn, $idUser,$idEvenement) {
     $sql = "DELETE FROM Inscription WHERE (idUser,idEvenement) = ($idUser,$idEvenement)";
     send($conn,$sql);
 }
@@ -422,7 +422,7 @@ function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGera
     $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
     send($conn,$sql);
 }
-function setNote($idReponse,$note) { // définir la note de la réponse à une question
+function setNote($conn, $idReponse,$note) { // définir la note de la réponse à une question
     $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
     send($conn,$sql);
 }

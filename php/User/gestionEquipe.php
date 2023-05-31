@@ -51,7 +51,7 @@ if(isset($_POST["idUser"])) {
     $idTeamToAdd = getIDEquipeByIDCapitaine($conn, $_SESSION['infoUser']['idUser']);
     $teamToAdd = getEquipe($conn,$idTeamToAdd);
     $infosNewMember = getUtilisateurById($conn,$idNewMember);
-    $liste_inscrits = getInscrits($teamToAdd['idEvenement']);
+    $liste_inscrits = getInscrits($conn, $teamToAdd['idEvenement']);
     $inscrit = false;
 
     /* on vérifie que le membre à ajouter est bien inscrit au projet */
