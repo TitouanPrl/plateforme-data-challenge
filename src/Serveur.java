@@ -32,7 +32,7 @@ public class Serveur {
     private static final int PORT = 8001; // port serveur
     private static final String URL = "/projet/php"; // url de base du service
     // liste des chemins des fichiers envoyés par le client
-    private static List<String> uploadedFiles = new ArrayList<>(); // Liste pour stocker les chemins des fichiers envoyés
+    private static List<String> uploadedFiles = new ArrayList<>(); 
 
     // boucle principale qui lance le serveur sur le port 8001, à l'url test
     public static void main(String[] args) {
@@ -89,7 +89,7 @@ public class Serveur {
                 if (isFileRequest(requestBody)) {
                     // Corps de requête est un fichier
                     String pythonCode = requestBody;
-
+                    LOGGER.info("Fichier reçu : " + pythonCode);
                     // Enregistrer le fichier sur le serveur dans un dossier temporaire
                     String fileName = "py/" + UUID.randomUUID().toString() + ".py";
                     // On enlève l'entête du fichier (ajoutée lors de l'envoi de la requête)
