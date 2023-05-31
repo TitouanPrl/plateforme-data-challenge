@@ -58,6 +58,7 @@ $users = getAllUtilisateurs($conn);
 
                     <input type="button" id="envoi" value="" onclick="message()" hidden>
                     <div class="messages" id="messages">
+                        <h3 style="color:white;" id="currentConv" value=""></h3>
                         <!-- Les messages -->
                         <input type="text" name="barreEnvoie" id="barreEnvoi" value="" placeholder="Envoyer un message...">
                     </div>
