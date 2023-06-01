@@ -371,5 +371,3 @@ xhttp.onreadystatechange = function () {
 
 xhttp.open("POST", "getConversation.php", true);
 xhttp.send();
-
-

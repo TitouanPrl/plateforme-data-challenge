@@ -53,11 +53,11 @@ function createQuiz() {
 
             /* On crée l'élément à ajouter */
             let newQuiz = document.createElement("div");
-            newQuiz.class = "ligne_quiz";
+            newQuiz.setAttribute("class", "ligne_quiz");
 
             /* On crée l'élément à ajouter */
             let lien = document.createElement("a");
-            lien.href = "detailsQuiz.php?quiz=" + ToString(newID);
+            lien.setAttribute("href", "detailsQuiz.php?quiz=" + ToString(newID));
             
             /* On crée les sous éléments à ajouter */
             let actBattle = document.getElementById(nom_challenge);
@@ -66,15 +66,14 @@ function createQuiz() {
             console.log(numQuiz);
 
             let title = document.createElement("span");
-            title.class = "nom_quiz";
-            title.class
+            title.setAttribute("class", "nom_quiz");
             title.innerText = "Questionnaire " + ToString(numQuiz);
 
             let img = document.createElement("img");
-            img.class = "delete_button";
-            img.src = "../../img/croix.png";
-            img.onclick = "supprQuiz()";
-            img.alt = "I am an image";
+            img.setAttribute("class", "delete_button");
+            img.setAttribute("src", "../../img/croix.png");
+            img.setAttribute("onclick", "supprQuiz()");
+            img.setAttribute("alt", "I am an image");
 
             /* On les ajoute à l'élément div */
             lien.appendChild(title);
@@ -86,7 +85,7 @@ function createQuiz() {
             /* On ajoute la div à la liste des quiz et on update la valeur de l'id max */
             if (listeQuiz) {
                 listeQuiz.appendChild(newQuiz);
-                document.getElementById("idMax").value = newID;
+                document.getElementById("idMax").setAttribute("value", newID);
             }
         }
     }

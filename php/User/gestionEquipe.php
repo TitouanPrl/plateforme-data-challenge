@@ -18,36 +18,36 @@ connect();
 * =================================== */
 
 /* On récupère les variables envoyées si elles sont renseignées */
-if(isset($_GET["val1"])) {
-    $nom_prenom = $_GET["val1"];
+if(isset($_POST["val1"])) {
+    $nom_prenom = $_POST["val1"];
 }
 else {
     $nom_prenom = NULL;
 }
 
-if(isset($_GET["idNewMember2"])) {
-    $idNewMember2 = (int)$_GET["idNewMember2"];
+if(isset($_POST["idNewMember2"])) {
+    $idNewMember2 = (int)$_POST["idNewMember2"];
 }
 else {
     $idNewMember2 = NULL;
 }
 
-if(isset($_GET["idNewMember3"])) {
-    $idNewMember3 = (int)$_GET["idNewMember3"];
+if(isset($_POST["idNewMember3"])) {
+    $idNewMember3 = (int)$_POST["idNewMember3"];
 }
 else {
     $idNewMember3 = NULL;
 }
 
-if(isset($_GET["type"])) {
-    $type = $_GET["type"];
+if(isset($_POST["type"])) {
+    $type = $_POST["type"];
 }
 else {
     $type = NULL;
 }
 
-if(isset($_GET["idUser"])) {
-    $idNewMember = (int)$_GET["idUser"];
+if(isset($_POST["idUser"])) {
+    $idNewMember = (int)$_POST["idUser"];
     $idTeamToAdd = getIDEquipeByIDCapitaine($conn, $_SESSION['infoUser']['idUser'])[0]["idEquipe"];
     $teamToAdd = getEquipe($conn,$idTeamToAdd)[0];
     $infosNewMember = getUtilisateurById($conn,$idNewMember)[0];
@@ -63,16 +63,16 @@ if(isset($_GET["idUser"])) {
 }
 
 /* On récupère le nom de l'équipe */
-if(isset($_GET["nomTeam"])) {
-    $nomTeam = $_GET['nomTeam'];
+if(isset($_POST["nomTeam"])) {
+    $nomTeam = $_POST['nomTeam'];
 }
 else {
     $nomTeam = NULL;
 }
 
 /* On récupère l'ID de l'évènement auquel l'équipe s'inscrit */
-if(isset($_GET["challenge"])) {
-    $IDchallenge = (int)getIDByNomEvenement($conn, $_GET['challenge']);
+if(isset($_POST["challenge"])) {
+    $IDchallenge = (int)getIDByNomEvenement($conn, $_POST['challenge']);
 }
 else {
     $IDchallenge = NULL;
