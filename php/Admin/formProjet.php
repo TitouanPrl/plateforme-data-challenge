@@ -43,6 +43,7 @@
                   </div>
                 </div>
 
+
                 <input type="submit" class="boutonForm" value="Envoi" style="align-self:center;margin-top:0px">
 
               </form>
@@ -52,4 +53,3 @@
   </main>
 </div>
 
-<?php require '../Integrations/footer.php'; ?>
