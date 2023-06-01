@@ -23,7 +23,7 @@ echo('<!-- MAIN CONTENT -->
 /* Affichage des sujets disponibles */
 foreach ($tabSujets as $current) {
     echo ('  <!-- SUJETS-->
-        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
+        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '">
              <div class="sujets">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
