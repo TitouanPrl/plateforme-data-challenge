@@ -1,6 +1,6 @@
 
 <?php session_start();
-require '../Integrations/headerVanilla.php'; 
+require '../Integrations/headerAdmin.php'; 
 
 include('./php/bddData.php'); 
 connect()?>

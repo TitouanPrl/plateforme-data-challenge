@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerAdmin.php';  ?>
 <div class="bordure"></div>
 <div class="corps">
   <div class="back-button">
