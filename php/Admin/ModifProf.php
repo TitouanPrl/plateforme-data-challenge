@@ -8,7 +8,14 @@
     $_SESSION["idUser"] = $idUser;
     $_SESSION["modif"] = true;
     ?>
-<main>
+
+
+<div class="bordure"></div>
+<div class="corps">
+  <div class="back-button">
+    <a href="accueilAdmin.php" class="fleche"></a>
+  </div>
+  <main>
     <?php 
     /* On inclut les fonctions de manipulation de la BDD */
     require_once("../../bdd/fonctionsBDD.php");
@@ -17,13 +24,13 @@
     $user=getUtilisateurById($conn,$idUser);
     $type=$user[0]['fonction'];
     ?>
-    <article>
+    <div style="display:flex; justify-content:center;align-items:center;">
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription">
+      <div id="inscription" style="margin-top:80px;">
         <h2>Profil utilisateur</h2>
 
         <form action="VerifForm.php" method="POST">
-          <div id="form">
+          <div style="display:flex; justify-content:center;align-items:center">
             <div id="formG">
               <fieldset>
                 <legend>Nom</legend>
@@ -81,14 +88,16 @@
                 <input type="date" id="dateFin" name="dateFin" value="<?php echo (date('Y-m-d', strtotime($user[0]['dateF'])));?>" > <br>
               </fieldset>
 
-              <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
+              
             </div>
           </div>
+        <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
         </form>
       </div>
-    </article>
-    
+  </div>
+
   </main>
+</div>
 
   <?php
   
