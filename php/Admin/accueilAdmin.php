@@ -54,7 +54,7 @@ while($i< count($_FILES['userfile'])){
                     <tr class="ligne">
                         <td>
 
-                            <a href="#" onclick="supprimerUtilisateur(<?php echo $Users['idUser'];?>)" style="margin-top:8px;display:inline-block;">
+                            <a href="Supp.php?user=<?php echo $current['idUser']; ?>" style="margin-top:8px;display:inline-block;">
                                 <img class="supp" title="Supprimer un utilisateur" id="supp<?php echo $Users['idUser'];?>" src="../../img/croix.png" alt="Supprimer">
                             </a>
                         </td>
@@ -98,7 +98,7 @@ while($i< count($_FILES['userfile'])){
                         <div class="row">
                             <div class="ligneDc">
                                 <div>
-                                    <a href="#" onclick="supprimerEvenement(<?php echo $evt['idEvenement']; ?>)" style="margin-top:5px;display:inline-block;">
+                                    <a href="Supp.php?Event=<?php echo $evt['idEvenement']; ?>" style="margin-top:5px;display:inline-block;">
                                         <img class="supp" title="Supprimer un Data Challenge" id="supp" src="../../img/croix.png" alt="Supprimer">
                                     </a>
                                 </div>
@@ -120,7 +120,7 @@ while($i< count($_FILES['userfile'])){
                                     <div class="row">
                                         <div class="ligneSuj">
                                             <div>
-                                                <a href="#" onclick="supprimerSujet(<?php echo $sp['idSujet']; ?>)" style="margin-top:5px;display:inline-block;padding-right:20px;">
+                                                <a href="Supp.php?Sujet=<?php echo $sp['idSujet']; ?>" style="margin-top:5px;display:inline-block;padding-right:20px;">
                                                     <img class="supp" title="Supprimer un sujet" id="supp" src="../../img/croix.png" alt="Supprimer">
                                                 </a>
                                             </div>
@@ -128,25 +128,28 @@ while($i< count($_FILES['userfile'])){
                                                 <a href="ModifSujet.php?Sujet=<?php echo $sp['idSujet']; ?>">
                                                     <div class="infosSujet">
                                                         <span class="nomSujet"> <?php echo $sp['libelle']; ?> </span>
-                                                        <span class="descriSujet"> <?php echo $sp['descri']; ?> </span>
+                                                        <span class="descriSujet"> <?php echo $sp['descrip']; ?> </span>
                                                     </div>
                                                 </a>
                                             </div>
                                         </div>
                                         <?php
                                         $projet = getProjetsOnSujet($conn, $sp['idSujet']);
-                                        foreach ($projet as $current):$equipe($current); ?>
+                                        foreach ($projet as $current):
+                                        $equipe=getEquipeByProjet($conn,$current['idProjet']);
+                                        $ekip=getEquipe($conn,$equipe[0]['idEquipe']);
+                                        ?>
                                             <div class="ligneProjet">
                                                 <div>
 
-                                                    <a href="#" onclick="supprimerProjet(<?php echo $current['idProjet']; ?>)" style="margin-top:5px;display:inline-block;padding-right:20px;">
+                                                    <a href="Supp.php?Projet=<?php echo $current['idProjet']; ?>" style="margin-top:5px;display:inline-block;padding-right:20px;">
                                                         <img class="supp" title="Supprimer un projet" id="supp" src="../../img/croix.png" alt="Supprimer" style="width:20px;">
                                                     </a>
                                                 </div>
                                                 <div>
                                                     <a href="ModifEquipe.php?Projet=<?php echo $current['idProjet']; ?>">
                                                         <div class="infosProjet">
-                                                            <span class="Idequipe"> Équipe participante : <?php echo $equipe[0]['nom']; ?> </span>
+                                                            <span class="Idequipe"> Équipe : <?php echo $ekip[0]['nom']; ?> </span>
                                                         </div>
                                                     </a>
                                                 </div>
