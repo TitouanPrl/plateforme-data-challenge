@@ -139,6 +139,7 @@ while($i< count($_FILES['userfile'])){
                                         foreach ($projet as $current):$equipe($current); ?>
                                             <div class="ligneProjet">
                                                 <div>
+                                                    
                                                     <a href="#" onclick="supprimerProjet(<?php echo $current['idProjet']; ?>)" style="margin-top:5px;display:inline-block;padding-right:20px;">
                                                         <img class="supp" title="Supprimer un projet" id="supp" src="../../img/croix.png" alt="Supprimer" style="width:20px;">
                                                     </a>
