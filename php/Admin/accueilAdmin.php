@@ -108,6 +108,7 @@ while($i< count($_FILES['userfile'])){
                                             <span class="debut"> <?php echo $evt['dateD']; ?> </span>
                                             <span class="fin"> <?php echo $evt['dateF']; ?> </span>
                                         </div>
+
                                     </a>
                                 </div>
                             </div>
@@ -161,9 +162,6 @@ while($i< count($_FILES['userfile'])){
                 </div>
             </div>
         </section>
-
-
-
         
     </div>
 </div>

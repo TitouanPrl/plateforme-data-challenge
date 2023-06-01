@@ -59,7 +59,7 @@ connect();
                     <br>
                     <input type="submit" class="boutonForm" value="Envoi">
             </fieldset>
-                <div></div>
+                <div>
                 <legend>Ajouter un sujet</legend>
                 <input type="button" class="boutonForm" id="plus" value="+" onclick="document.location.href='formProjet.php'";>
                 </div>
