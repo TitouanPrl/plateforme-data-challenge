@@ -15,7 +15,7 @@
 
             <fieldset>
                 <legend>Description</legend>
-                <textarea id="Description" name="Description" rows="5" cols="40" value ="<?php echo($_GET['Description'])?>">Ajouter un commentaire/sujet enfin ce que vous voulez quoi </textarea>
+                <textarea id="Description" name="Description" rows="5" cols="40" value ="<?php echo($_GET['Description'])?>">Ajouter une Description</textarea>
             </fieldset>
 
             <fieldset>

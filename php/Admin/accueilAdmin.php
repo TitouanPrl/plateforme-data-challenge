@@ -95,7 +95,7 @@
                             </a>'. '</td>
                             <td>
                             <p>
-                                <button class="supp" id="supp"' . $sp['idSujet'] . '">X</button>
+                                <button class="supp" id="supp"' .  $sp['idSujet'] . '">X</button>
                             </p>
                             </td>');
                             
@@ -109,10 +109,11 @@
                                         <div class="infosProjet">
                                             <span class="Idequipe"> Nom equipe : ' . $equipe[0]['nom'] . ' </span>
                                         </div>
-                                        </a>'. '</td>
+                                        </a>'. 
+                                        '</td>
                                         <td>
                                         <p>
-                                            <button class="supp" id="supp"' . $current['idProjet'] . '">X</button>
+                                            <a href="formInsc.php?Projet=' . $current['idProjet'] . '">
                                         </p>
                                         </td>');
                                     ?>
