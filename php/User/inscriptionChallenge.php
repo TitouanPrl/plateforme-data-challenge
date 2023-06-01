@@ -19,6 +19,7 @@ foreach ($_SESSION['Evenements'] as $current) {
             </div>
         </a>'
         );
+    
 }
     
         
