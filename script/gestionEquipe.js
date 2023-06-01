@@ -214,8 +214,8 @@ function supprMemberTeam(nb) {
         if (xhr.readyState == 4 && xhr.status == 200) {
             /* On crée la ligne à ajouter et ses différents éléments */
             var newOption = document.createElement("option");
-            newOption.setAttribute("value", "membre");
-            newOption.setAttribute("name", "idMembre");
+            newOption.setAttribute("value", membre);
+            newOption.setAttribute("dataid", idMembre);
 
             /* S'il y a plus de 3 membres dans l'équipe on supprime le membre */
             if (myTeam.childElementCount > 5) {
