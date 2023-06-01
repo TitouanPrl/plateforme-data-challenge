@@ -2,6 +2,9 @@
 <?php if (isset($_GET['Sujet'])) {
     $idSujet=$_GET['Sujet'];
     }
+    if(isset($_GET['Event'])){
+      $_SESSION['idevt']=$_GET['Event'];
+    }
  ?>
 <div class="bordure"></div>
 <div class="corps">

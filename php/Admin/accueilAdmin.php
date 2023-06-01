@@ -125,7 +125,7 @@ while($i< count($_FILES['userfile'])){
                                                 </a>
                                             </div>
                                             <div>
-                                                <a href="ModifSujet.php?Sujet=<?php echo $sp['idSujet']; ?>">
+                                                <a href="ModifSujet.php?Sujet=<?php echo $sp['idSujet']; ?>&event=<?php echo $evt['idEvenement']; ?>">
                                                     <div class="infosSujet">
                                                         <span class="nomSujet"> <?php echo $sp['libelle']; ?> </span>
                                                         <span class="descriSujet"> <?php echo $sp['descrip']; ?> </span>
