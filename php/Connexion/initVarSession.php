@@ -19,9 +19,6 @@ if (isset($_SESSION['infoUser']['idEquipe'])) {
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
     $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);
 
-    var_dump($_SESSION['teamMembers']);
-    var_dump($_SESSION['infoTeam']);
-
     /* On regarde si le user est capitaine ou non */
     if ($_SESSION['ID'] == $_SESSION['infoTeam']['capitaine']) {
         $_SESSION['capitaine'] = true;
