@@ -7,54 +7,44 @@ connect();
 
 /* Liste de tous les data battle en cours */
 $listEvents = getEvenementsByKind($conn, 'BATTLE');
-
 ?>
 
 <!-- MAIN CONTENT -->
 
 <main>
     <div class="corps">
+    <?php
 
-        <?php
+/* ================================== *
+*            CREATION QUIZ            *
+* =================================== */
 
-        /* ================================== *
-        *            CREATION QUIZ            *
-        * =================================== */
+/* On propose de créer un quiz */ ?>
+<div id="creer_quiz">
+    <h2 class="titreForm"> Création d'un quiz </h2>
 
-        /* On propose de créer un quiz */ ?>
-        <div id="creer_quiz">
-            <h2 class="titreForm"> Création d'un quiz </h2>
+    <p class="titre_input"> Sujet pour lequel vous souhaitez créer un questionnaire </p>
+    
+    <input type="text" id="nom_challenge" list="liste_challenges">
+    <button id="creer_quiz" onclick="createQuiz()">Créer le questionnaire </button>
 
-            <p class="titre_input"> Sujet pour lequel vous souhaitez créer un questionnaire </p>
-            <input type="text" id="nom_challenge" list="liste_challenges">
-            <datalist id="liste_challenges">
+    <p class="titre_input"> Date de début </p>
+    <input type="date" id="date_deb">
 
-                <?php
-                foreach ($listEvents as $current) {
-                    echo ('<option value="' . $current['libelle'] . '>');
-                }
+    <p class="titre_input"> Date de fin </p>
+    <input type="date" id="date_fin">
 
-                echo ('</datalist>');
+    <?php
+    /* Questions */
+    for ($i = 0; $i < 5; $i++) {
+        echo ('<p class="titre_input"> Question ' . $i . '</p>
+    <input type="text" id="question'.$i.'" required>');
+    } ?>
 
-            /* Dates */ ?>
-            <p class="titre_input"> Date de début </p>
-            <input type="date" id="date_deb">
+    
+</div>
 
-            <p class="titre_input"> Date de fin </p>
-            <input type="date" id="date_fin">
-
-            <?php
-            /* Questions */
-            for ($i = 0; $i < 5; $i++) {
-                echo ('<p class="titre_input"> Question ' . $i + 1 . '</p>
-            <input type="text" id="question' . $i . '" required>');
-            } ?>
-
-            <button id="creer_quiz" type="button" onclick="createQuiz()">Créer le questionnaire </button>
-        </div>
-
-
-        <?php
+    <?php
         /* ================================== *
         *                 QUIZ                *
         * =================================== */ ?>
@@ -68,17 +58,19 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
             $i = 0;
             foreach ($listEvents as $currentEvent) {
                 echo ('<div class="case_battle" id="' . $currentEvent['libelle'] . '"
-                <h2 class="titreForm">' . $currentEvent['libelle'] . '</h2>
-                <input type="hidden" id="idMax" value="' . getMaxIdQuestionnaire($conn) . '">');
+                <h2 class="titreForm">' . $currentEvent['libelle'] . '</h2>');
+
 
                 $j = 0;
                 
                 /* On récupère la liste des quiz associés */
-                $listQuiz = getQuestionnairesOnSujet($conn, $currentEvent['idEvenement']);
+                $listeQuiz = getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']);
+                var_dump((int)$currentEvent['idEvenement']);
+                var_dump(getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']));
 
                 foreach ($listeQuiz as $currentQuiz) {
                     echo('<div classe="ligne_quiz>
-                        <a href="detailsQuiz.php?quiz=' . $currentQuiz['idQuestionnaire'] . '">
+                        <a href="detailsQuiz.php?quiz='.$currentQuiz['idQuestionnaire']. '">
                             <span class="nom_quiz" id="' . $j . '> Questionnaire ' . $j . '</span>
                         </a>
                         <img class="delete_button" src="../../img/croix.png" onclick="supprQuiz('. $j .', ' . $currentQuiz['idQuestionnaire'] . ')" alt="I am an image">
@@ -91,7 +83,8 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
             ?>
         </div>
-    </div>
+
+        </div>
 
 </main>
 

@@ -46,6 +46,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
+                <a href="../Gestion/quizList.php">Quiz</a>
 
             <form action="../Connexion/deconnexion.php" >
                 <input type="submit" class="boutonDeco" value="Déconnexion">

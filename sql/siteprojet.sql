@@ -95,10 +95,10 @@ CREATE TABLE Projet (
 
 CREATE TABLE Questionnaire (
     idQuestionnaire INTEGER PRIMARY KEY auto_increment,
-    idSujet INTEGER,
+    idEvenement INTEGER,
     dateD DATETIME,
     dateF DATETIME,
-    FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
+    FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
 
 CREATE TABLE Question (
