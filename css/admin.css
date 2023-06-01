@@ -78,3 +78,9 @@ span {
     font-size: 20px;
     margin-left: 50px;
 }
+
+#gif {
+    height: 150px;
+    width: auto;
+    position: relative;
+}

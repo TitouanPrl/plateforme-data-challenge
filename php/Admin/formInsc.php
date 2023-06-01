@@ -98,11 +98,13 @@
           //on cache les fieldset correspondant a gestionnaires
           document.getElementById('entrep').style.visibility="hidden";
           document.getElementById('dateF').style.visibility="hidden";
+          document.getElementById('gif').style.visibility="hidden";
       }
       if($type == 3){
           //si c'est un gestionnaire on cache les fieldset d'étudiant
           document.getElementById('school').style.visibility="hidden";
           document.getElementById('nivEtu').style.visibility="hidden";
+          document.getElementById('gif').style.visibility="hidden";
       }
       if($type == 1){
         document.getElementById('entrep').style.visibility="hidden";
