@@ -8,6 +8,7 @@ if(!empty($_SESSION["type"] )){
 else{
     $type = "etudiant";
 }
+$modif= $_SESSION["modif"];
 
 ?>
 
@@ -45,11 +46,7 @@ else{
     $tel = erase($_POST['tel']);
     $entreprise = erase ($_POST['entreprise']);
     $dateFin = date('Y-m-d', strtotime(erase($_POST['dateFin'])));
-    $modif= $_POST['modif'];
-    if(!empty($modif)){
-        var_dump($modif);
-        header('location:');
-    }
+  
     
 
 

@@ -6,6 +6,7 @@
  ?>
 <?php 
     $_SESSION["idUser"] = $idUser;
+    $_SESSION["modif"] = true;
     ?>
 <main>
     <?php 
@@ -83,7 +84,6 @@
               <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
             </div>
           </div>
-          <input id="modif" name="modif" type="hidden" value="true">
         </form>
       </div>
     </article>
