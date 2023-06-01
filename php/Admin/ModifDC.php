@@ -31,12 +31,12 @@ connect();
 
               <fieldset>
                 <legend>Date début</legend>
-                <input type="date" id="DateDebut" name="DateDebut" value="<?php echo ($Evenement[0]['DateD']); ?>" required> <br>
+                <input type="date" id="DateDebut" name="DateDebut" value="<?php echo (date('Y-m-d', strtotime($Evenement[0]['dateD']))); ?>" required> <br>
               </fieldset>
 
               <fieldset>
                 <legend>Date fin</legend>
-                <input type="date" id="DateFin" name="DateFin" value="<?php echo ($Evenement[0]['DateF']); ?>" required> <br>
+                <input type="date" id="DateFin" name="DateFin" value="<?php echo (date('Y-m-d', strtotime($Evenement[0]['dateF']))); ?>" required> <br>
               </fieldset>
 
               <fieldset>

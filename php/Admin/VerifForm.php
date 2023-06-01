@@ -43,7 +43,7 @@ else{
     $ville = erase($_POST['ville']);
     $tel = erase($_POST['tel']);
     $entreprise = erase ($_POST['entreprise']);
-    $dateFin = erase($_POST['dateFin']);
+    $dateFin = date('Y-m-d', strtotime(erase($_POST['dateFin'])));
     
 
     /* On vérifie que les var ne sont pas vides */

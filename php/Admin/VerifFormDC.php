@@ -20,11 +20,10 @@
         return $donnees;
 
     }  
-
     /* Définition des variables */
     $libelle = erase($_POST['libelle']);
-    $DateDebut = erase($_POST['DateDebut']);
-    $DateFin = erase($_POST['DateFin']);
+    $DateDebut =date('Y-m-d', strtotime(erase($_POST['DateDebut'])));
+    $DateFin = date('Y-m-d', strtotime(erase($_POST['DateFin'])));
     $heureD = erase($_POST['heureD']);
     $heureF = erase($_POST['heureF']);
     $Commentaires = erase($_POST['Commentaires']);
@@ -64,7 +63,7 @@
                 $i+=1;
             }
             //ajout du Data Challenge dans la Bdd
-            createEvenement($conn,"CHALLENGE",$libelle,$Commentaires,$dateD,$dateF);
+            createEvenement($conn,"CHALLENGE",$libelle,$Commentaires,$DateDebut,$DateFin);
             //redirection à l'accueil admin
             header('Location:accueilAdmin.php');
         }

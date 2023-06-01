@@ -5,7 +5,6 @@
  ?>
 <?php 
     $_SESSION["idUser"] = $idUser;
-    var_dump($_SESSION["idUser"]);
     ?>
 <main>
     <?php 
@@ -77,7 +76,7 @@
 
               <fieldset id='dateF'>
                 <legend>Date de fin du compte</legend>
-                <input type="date" id="dateFin" name="dateFin" value="<?php echo ($user[0]['dateF']);?>" > <br>
+                <input type="date" id="dateFin" name="dateFin" value="<?php echo (date('Y-m-d', strtotime($user[0]['dateF'])));?>" > <br>
               </fieldset>
 
               <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
