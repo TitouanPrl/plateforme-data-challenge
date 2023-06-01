@@ -66,12 +66,10 @@
     
     foreach ($DC as $evt) : ?>
         <div>
-        
         <tr class="ligneDc">
-
             <?php
                     $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
-                    echo ('<td>'.'<a href="modifDC.php?DC=' . $evt['idEvenement'] . '">
+                    echo ('<td>'.'<a href="ModifDC.php?DC=' . $evt['idEvenement'] . '">
                         <div class="infosUser">
                             <span class="nomDC"> ' . $evt['libelle'] . ' </span>
                             <span class="debut"> ' . $evt['dateD'] . ' </span>
@@ -89,10 +87,10 @@
                         <tr class="ligneSuj">
                             <?php 
                             $projet = getProjetsOnSujet($conn,$sp['idSujet']);
-                            echo ('<td>'.'<a href="modifSujet.php?Sujet=' . $sp['idSujet'] . '">
+                            echo ('<td> '.'<a href="modifSujet.php?Sujet=' . $sp['idSujet'] . '">
                             <div class="infosSujet">
                                 <span class="nomSujet"> ' . $sp['libelle'] . ' </span>
-                                <span class="descriSujet"> ' . $sp['descri'] . ' </span>
+                                <span class="descriSujet"> : ' . $sp['descrip'] . ' </span>
                             </div>
                             </a>'. '</td>
                             <td>
@@ -121,6 +119,7 @@
                                 </tr>
                                 </div>
                                 <?php endforeach?>
+                                
                         </tr>
                         </div>
                         <?php endforeach ?>
@@ -128,6 +127,7 @@
                 </div>
             <?php endforeach ?>
             </table>
+
         </table>
 </section>
 
