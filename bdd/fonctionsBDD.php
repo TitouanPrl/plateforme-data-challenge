@@ -344,9 +344,24 @@ function getStatsProjets($conn, $idSujet) {
     return $jsonGlobal;
 }
 
+function getJsonResultat($conn,$idProjet) {
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "SELECT jsonStatistiques FROM Resultat WHERE idProjet = $idProjet";
+        $stmt = $conn->prepare($sql);
+        $stmt->execute();
+        $result = $stmt->fetch();
+        return $result['jsonStatistiques'];
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+}
 
 
-//AJOUT DE DONNÉES
+//////////////////////
+// AJOUT DE DONNÉES //
+//////////////////////
 function addAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp) {
     try {
         $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,ville,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:ville,:mdp,'ADMIN')";
@@ -561,12 +576,24 @@ function addJsonResultat($conn,$idProjet,$jsonStatistiques) {
     try {
         $use = "use SiteProjet";
         $conn->exec($use);
-        $sql = "INSERT INTO Resultat (idProjet,jsonStatistiques) VALUES (:idProjet,:jsonStatistiques)";
-        $stmt = $conn->prepare($sql);
-        $stmt->bindParam(':idProjet', $idProjet);
-        $stmt->bindParam(':jsonResultat', $jsonStatistiques);
+        // s'il n'y a pas de résultat pour ce projet, on l'ajoute
+        if (getJsonResultat($conn,$idProjet) == null) {
+            $sql = "INSERT INTO Resultat (idProjet,jsonStatistiques) VALUES (:idProjet,:jsonStatistiques)";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':idProjet', $idProjet);
+            $stmt->bindParam(':jsonStatistiques', $jsonStatistiques);
 
-        $stmt->execute();
+            $stmt->execute();
+        }
+        // sinon on le modifie 
+        else {
+            $sql = "UPDATE Resultat SET jsonStatistiques = :jsonStatistiques WHERE idProjet = :idProjet";
+            $stmt = $conn->prepare($sql);
+            $stmt->bindParam(':idProjet', $idProjet);
+            $stmt->bindParam(':jsonStatistiques', $jsonStatistiques);
+
+            $stmt->execute();
+        }
     } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }

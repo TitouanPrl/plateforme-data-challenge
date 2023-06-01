@@ -81,17 +81,17 @@ require '../Integrations/headerVanilla.php'; ?>
                     <div id="form">           
                     <fieldset>
                       <legend>Votre nom</legend>
-                      <input type="text" id="nom" name="nom" value="<?php if(isset(($_GET['nom']))) echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                      <input type="text" id="nom" name="nom" value="<?php echo $_GET['nom'] ?? ''; ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                     </fieldset>
 
                     <fieldset>
                       <legend>Votre prénom</legend>
-                      <input type="text" id="prenom" name="prenom" value="<?php if(isset(($_GET['prenom']))) echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                      <input type="text" id="prenom" name="prenom" value="<?php echo $_GET['prenom'] ?? ''; ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                     </fieldset>
 
                     <fieldset>
                       <legend>Votre e-mail</legend>
-                      <input type="email" id="mail" name="mail" value="<?php if(isset(($_GET['mail']))) echo ($_GET['mail']); ?>" required> <br>
+                      <input type="email" id="mail" name="mail" value="<?php echo $_GET['mail'] ?? ''; ?>" required> <br>
                     </fieldset>
 
                     <fieldset>
@@ -105,13 +105,13 @@ require '../Integrations/headerVanilla.php'; ?>
                   <div id="formD">
                    <fieldset>
                       <legend>Votre numéro de téléphone</legend>
-                      <input type="tel" id="tel" name="tel" value="<?php if(isset(($_GET['tel']))) echo ($_GET['tel']); ?>" required patern = "[0-9]+">
+                      <input type="tel" id="tel" name="tel" value="<?php echo $_GET['tel'] ?? ''; ?>" required patern = "[0-9]+">
                     </fieldset>
 
                     <fieldset>
                       <legend>Votre degré d'étude ?</legend>
                       <select name="nivEtude" id="nivEtude" required>
-                        <option value=""> <?php if(isset(($_GET['nivEtude']))) echo ($_GET['nivEtude']); ?></option>
+                        <option value=""> <?php echo $_GET['nivEtude']?? ''; ?></option>
                         <option value="L1">1ère année de Licence</option>
                         <option value="L2">2ème année de Licence</option>
                         <option value="L3">3ème année de Licence</option>
@@ -123,11 +123,11 @@ require '../Integrations/headerVanilla.php'; ?>
                     </fieldset>
                     <fieldset>
                       <legend>Votre école</legend>
-                      <input type="text" id="ecole" name="ecole" value="<?php if(isset(($_GET['ecole']))) echo ($_GET['ecole']); ?>"> <br>
+                      <input type="text" id="ecole" name="ecole" value="<?php echo $_GET['ecole'] ?? ''; ?>"> <br>
                     </fieldset>
                     <fieldset>
                       <legend>Votre ville</legend>
-                      <input type="text" id="ville" name="ville" value="<?php if(isset(($_GET['ville']))) echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                      <input type="text" id="ville" name="ville" value="<?php echo $_GET['ville'] ?? ''; ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                     </fieldset>
 
                   </div>
