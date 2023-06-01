@@ -58,3 +58,18 @@
     font-size: 18px;
     padding: 7px;
 }
+
+
+#easteregg {
+    cursor: pointer;
+}
+
+/* Styles pour l'image */
+.easteregg {
+    position: fixed;
+    height: 100px;
+    width: auto;
+    bottom: 20px;
+    right: -1000px;
+    transition: transform 10s linear;
+}
