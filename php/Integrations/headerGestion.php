@@ -43,7 +43,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
                 <a href="modifInfos.php">Mon profil</a>
                 <a href="modifInfos.php">Modifier mes données</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
-            </nav>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
 
             <form action="../Connexion/deconnexion.php" >
                 <input type="submit" class="boutonDeco" value="Déconnexion">

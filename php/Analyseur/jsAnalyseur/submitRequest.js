@@ -16,7 +16,20 @@ $("#fileForm").submit(function(e) {
 
             // ajouter dans la console le type de data
             console.log(typeof data);
-
+            // extraire les données pertinentes pour le graphique
+            var idEquipe = document.getElementById("idEquipe").value;
+            $.ajax({
+                // URL du script php pour ajouter à la base de données le json
+                url: "php/Analyseur/ajoutAnalyse.php?idEquipe=" + idEquipe,
+                type: "POST",
+                data: {valeur: data}, // données à envoyer au script php
+                success: function(response) {
+                    console.log("json ajouté avec succès à la base de données");
+                },
+                error: function(xhr, status, error) {
+                    console.error("Erreur lors de l'ajout de la valeur : " + error);
+                }
+            });
         },
         error: function(data) {
             console.log(data);

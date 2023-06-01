@@ -1,4 +1,5 @@
-<?php 
+
+<?php
 session_start();
 require '../../bdd/fonctionsBDD.php';
 require '../Connexion/initVarSession.php';
@@ -33,7 +34,7 @@ require '../Connexion/initVarSession.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
-
+    <div id="idEquipe" style="display:none;"><?php echo $_SESSION['infoUser']['idEquipe'] ?></div>
 </head>
 <!-- MAIN CONTENT -->
 
@@ -45,7 +46,7 @@ require '../Connexion/initVarSession.php';
         <input type="file" name="pythonFile">
         <input type="submit" value="Envoyer le fichier">
     </form>
-    <!-- bouton pour afficher les statistiques globales -->
+
 
     <!-- Envoyer une liste de mots -->
     <form id="wordForm" action="http://localhost:8001/projet/php" method="post">

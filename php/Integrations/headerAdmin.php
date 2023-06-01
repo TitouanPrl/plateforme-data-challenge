@@ -44,6 +44,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
                 <a href="gererChallenges.php">Gestion challenges</a>
                 <a href="gererRessources.php">Gestion ressources</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >
