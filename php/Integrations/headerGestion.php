@@ -1,12 +1,12 @@
 <?php
 session_start();
 
-/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
+/* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) 
 if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION")) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
-
+*/
 ?>
 
 <!DOCTYPE html>
@@ -40,8 +40,10 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
+                <a href="../General/listeChallenge.php">Informations Challenges</a>
                 <a href="modifInfos.php">Mon profil</a>
                 <a href="modifInfos.php">Modifier mes données</a>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
             </nav>
 

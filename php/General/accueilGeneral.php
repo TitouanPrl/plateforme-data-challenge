@@ -123,7 +123,7 @@ require_once 'initVarChallenges.php';
     
 
     <div class="card-container">
-        <a href="" class="card">
+        <a href="../General/listeChallenge.php" class="card">
             <img src="../../img/datachallenge.jpg"/>
             <div class="content">
                 <h3>Nos challenges</h3>
@@ -131,16 +131,16 @@ require_once 'initVarChallenges.php';
             </div>
         </a>
     
-        <a href="" class="card" style="margin-bottom:90px">
-            <img src="https://placeimg.com/800/500/animals"/>
+        <a href="../Analyseur/accueilAnalyseur.php" class="card" style="margin-bottom:90px">
+            <img src="../../img/download.jpeg"/>
             <div class="content">
-                <h3>Les classements</h3>
-                <p>Venez découvrir le classements des équipes déjà en compétition ! Suivez en temps réel l'évolution du score des équipe et soyez parmi les premiers à découvrir le classement final !</p>
+                <h3>Analyseur de code</h3>
+                <p>Venez découvrir notre tout nouvel analyseur de code Python ! Découvrez en quelques clics tout le résumé de votre code !</p>
             </div>
         </a>
     
-        <a href="" class="card">
-            <img src="https://placeimg.com/800/500/animals"/>
+        <a href="../Connexion/connexionInscription.php" class="card">
+            <img src="../../img/mail.png"/>
             <div class="content">
                 <h3>Inscription</h3>
                 <p>C'est par ici pour vous inscrire ! N'attendez plus et rejoignez l'aventure avec vos amis pour tenter de remporter les lots à la clé.</p>

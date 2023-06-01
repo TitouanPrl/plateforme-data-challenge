@@ -6,7 +6,7 @@
 <div class="bordure"></div>
 
 
-<div class="corps">
+<div class="corps" style="height:auto;background-attachment: fixed;padding-bottom:300px;">
     <div class="back-button">
       <a href="type.php" class="fleche"></a>
     </div>

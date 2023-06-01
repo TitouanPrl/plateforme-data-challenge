@@ -36,6 +36,7 @@ require_once "../../bdd/fonctionsBDD.php";
             </a>
             <nav id="liens">
                 <a href="../General/listeChallenge.php">Informations Challenges</a>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
             </nav>
 
             <form action="../Connexion/connexionInscription.php" >
