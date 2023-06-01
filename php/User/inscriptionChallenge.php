@@ -1,33 +1,25 @@
-<?php require '../Integrations/headerEtudiant.php';
+<?php require_once '../Integrations/headerEtudiant.php';
 
-
-/* Affichage de l'en-tête*/
 echo ('<!-- MAIN CONTENT -->
 <div class="bordure"></div>
+
 <div class="corps" style="height:auto;background-attachment: fixed;">
-<main style="display:flex;flex-direction:column;align-items:center;padding-top:50px;">
-    <h3 id="liste_event"> Choisissez le challenge auquel vous souhaitez vous inscrire </h3>
-    <div style="display:flex; flex-wrap:wrap;">
+    <main style="display:flex;flex-direction:column;align-items:center;padding-top:50px;">
+        <h2 id="liste_event"> Choisissez un événement auquel participer </h2>
+        <div style="display:flex; flex-wrap:wrap;justify-content:center;margin-top:50px;width:70%;">
 ');
+
 /* Affichage des challenges disponibles */
 foreach ($_SESSION['Evenements'] as $current) {
-    echo ('
-        <a href="gestionInscription.php?challenge=' . $current['idEvenement'] . '">
+
+    echo ('<a href="gestionInscription.php?challenge=' . $current['idEvenement'] . '">
             <div class="challenge">
                 <span class="titre_challenge"> ' . $current['libelle'] . ' </span>
                 <span class="descript_challenge"> ' . $current['descrip'] . ' </span>
             </div>
-        </a>'
-        );
-    
+          </a>');
 }
-    
-        
-echo('
-</div>
-</main>
-</div>');
 
-echo ('<!-- FOOTER -->');
+echo('</main>');
 
-require '../Integrations/footer.php'; ?>
+require_once '../Integrations/footer.php'; ?>
