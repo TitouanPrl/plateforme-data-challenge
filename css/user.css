@@ -1,0 +1,114 @@
+div#creer_equipe {
+    background-color: var(--vert-trans);
+    width: fit-content;
+    border-radius: 20px;
+    padding: 60px;
+}
+
+button#creer_equipe {
+    align-self: center;
+    margin-left: 30%;
+}
+
+#liste_event {
+    font-size: 40px;
+    font-weight: 600;
+}
+
+/* Styles pour la div de challenge */
+.challenge {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 300px;
+    height: 200px;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.3);
+    padding: 20px;
+    margin: 20px;
+}
+  
+/* Styles pour le titre du challenge */
+.titre_challenge {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: var(--bleu-fond);
+    color: var(--vert);
+    padding: 15px;
+    margin-top: -55px;
+    border-radius: 15px;
+}
+  
+/* Styles pour la description du challenge */
+.descript_challenge {
+    font-size: 16px;
+    color: var(--bleu-fond);
+    text-align: center;
+    margin-top: 20px;
+}
+  
+
+
+
+.imgSujet {
+    width: 350px;
+    margin: 0;
+    padding: 0;
+    border-radius: inherit;
+    border-bottom-left-radius: 0;
+    border-bottom-right-radius: 0;
+    margin-top: -45px;
+}
+
+.sujets {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 350px;
+    height: 350px;
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    box-shadow: 0 0 15px 10px rgba(0, 0, 0, 0.3);
+    margin: 20px;
+}
+
+.sujets:hover {
+    scale: 1.02;
+}
+
+
+span {
+    text-decoration: none;
+}
+
+#mesSujets {
+    display:flex;
+    flex-wrap: wrap;
+    width: 70%;
+    justify-content: center;
+    margin-top: 50px    ;
+}
+.libelle_challenge {
+    font-size: 20px;
+    font-weight: bold;
+    margin-bottom: 10px;
+    background-color: rgb(231, 253, 255,0.8);
+    color: var(--vert);
+    padding: 15px;
+    margin-top: -25px;
+    border-radius: 15px;
+}
+.descript_challenge {
+    margin: 10px auto;
+    font-size: 18px;
+}
+
+.sujets p {
+    color: var(--bleu-fond);
+    font-weight: bold;
+    font-size: 18px;
+}

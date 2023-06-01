@@ -23,6 +23,7 @@ if (!isset($_SESSION["login"])) {
     <link rel="stylesheet" href="../../css/form.css" />
     <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="stylesheet" href="../../css/cartes.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
     <script src="../../script/gestionEquipe.js"></script>
@@ -36,14 +37,13 @@ if (!isset($_SESSION["login"])) {
     <header>
         <div id="header" class="">
 
-            <a class="shine" href="../General/accueilGeneral.php">
+            <a class="shine" href="../User/accueilUser.php">
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
-                <a href="inscriptionChallenge.php">Liste des challenges</a>
-                <a href="equipe.php">Mon équipe</a>
-                <a href="mesChallenges.php">Mes challenges</a>
-                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
+                <a href="../User/inscriptionChallenge.php">Liste des challenges</a>
+                <a href="../User/equipe.php">Mon équipe</a>
+                <a href="../User/mesChallenges.php">Mes challenges</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <?php
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
