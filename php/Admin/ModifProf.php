@@ -1,5 +1,5 @@
 <?php session_start()?>
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerAdmin.php'; ?>
 <?php if (isset($_GET['user'])) {
     $idUser=$_GET['user'];
     }

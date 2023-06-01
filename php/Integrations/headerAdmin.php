@@ -1,6 +1,7 @@
 <?php
 session_start();
-
+require_once "../../bdd/fonctionsBDD.php";
+connect();
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
 if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")) {
     header('Location:../Connexion/connexionInscription.php?message=1');
@@ -23,6 +24,8 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
     <link rel="stylesheet" href="../../css/form.css" />
     <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="stylesheet" href="../../css/cartes.css" />
+    <link rel="stylesheet" href="../../css/admin.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
 
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
@@ -36,17 +39,13 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
     <header>
         <div id="header" class="">
 
-            <a class="shine" href="../General/accueilGeneral.php">
+            <a class="shine" href="../Admin/accueilAdmin.php">
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
                 <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="gererUsers.php">Gestion utilisateurs</a>
-                <a href="gererChallenges.php">Gestion challenges</a>
-                <a href="gererRessources.php">Gestion ressources</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
-                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
             </nav>
 
             <form action="../Connexion/deconnexion.php" >

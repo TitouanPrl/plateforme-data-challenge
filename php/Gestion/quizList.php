@@ -11,13 +11,32 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
 <!-- MAIN CONTENT -->
 
-<main>
-    <div class="corps">
-    <?php
+    <div class="bordure"></div>
+    <div class="corps" style="height:1350px;background-attachment: fixed;">
+            <div class="back-button">
+            <a href="accueilGestion.php" class="fleche"></a>
+        </div>
+        <main>
 
-/* ================================== *
-*            CREATION QUIZ            *
-* =================================== */
+        <div id="deux">
+        <?php
+
+        /* ================================== *
+        *            CREATION QUIZ            *
+        * =================================== */
+
+        /* On propose de créer un quiz */ ?>
+        <div id="creer_quiz">
+            <h2 class="titreForm"> Création d'un quiz </h2>
+
+            <p class="titre_input"> Sujet pour lequel vous souhaitez créer un questionnaire </p>
+            <input type="text" id="nom_challenge" list="liste_challenges">
+            <datalist id="liste_challenges">
+
+                <?php
+                foreach ($listEvents as $current) {
+                    echo ('<option value="' . $current['libelle'] . '">');
+                }
 
 /* On propose de créer un quiz */ ?>
 <div id="creer_quiz">
@@ -40,6 +59,15 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
         echo ('<p class="titre_input"> Question ' . $i . '</p>
     <input type="text" id="question'.$i.'" required>');
     } ?>
+            <?php
+            /* Questions */
+            for ($i = 1; $i < 6; $i++) {
+                echo ('<p class="titre_input"> Question ' . $i . '</p>
+            <input type="text" id="question' . $i . '" required>');
+            } ?>
+
+            <button class="boutonForm" style="margin-left:25%;" type="button" onclick="createQuiz()">Créer le questionnaire </button>
+        </div>
 
     
 </div>
@@ -83,8 +111,8 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
             ?>
         </div>
-
         </div>
+    </div>
 
 </main>
 

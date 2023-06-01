@@ -1,4 +1,4 @@
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerAdmin.php';  ?>
 <?php if ((isset($_GET['Equipe']) && (isset($_GET['Projet'])))) {
     $idEquipe=$_GET['Equipe'];
     $idProjet = $_GET['Projet'];

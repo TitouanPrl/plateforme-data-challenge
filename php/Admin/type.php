@@ -1,4 +1,5 @@
 <?php 
+    require '../Integrations/headerAdmin.php'; 
 
     session_start() ;
 
@@ -20,8 +21,6 @@
     header('location:formInsc.php');
     }
 
-
-    require '../Integrations/headerVanilla.php'; 
 ?>
 
 
@@ -55,9 +54,6 @@
     </div>
   </main>
 </div>
-
-
-
 
 <?php require '../Integrations/footer.php'; ?>
 
