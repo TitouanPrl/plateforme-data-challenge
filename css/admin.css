@@ -84,3 +84,7 @@ span {
     width: auto;
     position: relative;
 }
+
+a {
+    text-decoration: none !important;
+}

@@ -53,12 +53,9 @@ while($i< count($_FILES['userfile'])){
                     <!--  -->    
                     <tr class="ligne">
                         <td>
-
-                            
                             <a href="#" onclick="supprimerUtilisateur(<?php echo $Users['idUser'];?>)" style="margin-top:8px;display:inline-block;">
                                 <img class="supp" title="Supprimer un utilisateur" id="supp<?php echo $Users['idUser'];?>" src="../../img/croix.png" alt="Supprimer">
                             </a>
-
                         </td>
                         <?php
                                 echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
