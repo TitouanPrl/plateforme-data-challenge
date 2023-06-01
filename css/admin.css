@@ -1,0 +1,80 @@
+.tab {
+    background-color: var(--vert);
+    padding: 40px;
+    padding-top: 20px;
+    border-radius: 20px;
+    width: 25%;
+    display:flex;
+    flex-direction: column;
+}
+table {
+    border-collapse: collapse;
+}
+
+.th,
+th {
+    font-size: 40px;
+    color: var(--bleu-fond);
+    font-weight: bold;
+}
+.row,
+td {
+    font-size: 23px;
+    color: white;
+    padding: 10px;
+}
+
+.row {
+    display: flex;
+    flex-direction: column;
+}
+
+span {
+    color: white;
+}
+
+.contenu     {
+    border-top: 1px solid white;
+    padding-top: 10px;
+}
+
+
+.fonctionU {
+    color: var(--bleu-fond);
+    font-style: italic;
+    padding-left: 5px;
+}
+.supp {
+    width: 25px;
+    height: auto;
+}
+
+.sujets {
+    background-color: rgb(0,187,189,0.5);
+    border-radius: 5px;
+}
+
+
+.infosDC {
+    margin-left: 30px;
+}
+
+
+.ligneDc{
+    display:flex;
+    flex-direction: row;
+    justify-content: center 
+}
+
+.ligneSuj,
+.ligneProjet {
+    font-style: italic;
+    display:flex;
+    flex-direction: row;
+}
+
+.ligneProjet {
+    font-style:normal;
+    font-size: 20px;
+    margin-left: 50px;
+}
