@@ -21,7 +21,7 @@ $nbReponses = (int) $_POST['nbReponses'];
 
 /* Et on ajoute les réponses dans la BDD */
 for ($i = 0; $i < $nbReponses; $i++) {
-    addRéponse($conn, $_POST['id' . $i], $_SESSION['infoTeam']['idEquipe'], $_POST['reponse' . $i]);
+    addReponse($conn, $_POST['id' . $i], $_SESSION['infoTeam']['idEquipe'], $_POST['reponse' . $i]);
 }
 
 /* On redirige vers l'accueil */

@@ -91,7 +91,7 @@
         );
 
         /* On crée le user dans la BDD */
-        addEtudiant($conn,$nom,$prenom,$tel,$mail,$mdp,$nivEtude,$ecole,$ville);
+        addEtudiant($conn,$nom,$prenom,$tel,$mail,md5($mdp),$nivEtude,$ecole,$ville);
         
         /* On redirige l'utilisateur vers la connexion */
         header('Location:connexionInscription.php?message=4');
