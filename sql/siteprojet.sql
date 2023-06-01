@@ -88,6 +88,7 @@ CREATE TABLE Projet (
     idEquipe INTEGER,
     idSujet INTEGER,
     lienCode VARCHAR(250),
+    jsonstatistic JSON,
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
