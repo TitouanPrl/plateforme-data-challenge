@@ -146,7 +146,7 @@ while($i< count($_FILES['userfile'])){
                                                 <div>
                                                     <a href="modifProj.php?Projet=<?php echo $current['idProjet']; ?>">
                                                         <div class="infosProjet">
-                                                            <span class="Idequipe"> Nom equipe : <?php echo $equipe[0]['nom']; ?> </span>
+                                                            <span class="Idequipe"> Équipe participante : <?php echo $equipe[0]['nom']; ?> </span>
                                                         </div>
                                                     </a>
                                                 </div>
