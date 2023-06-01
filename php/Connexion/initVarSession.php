@@ -17,7 +17,7 @@ $_SESSION['inscriptions'] = getEventInscrit($conn, $_SESSION['ID']);
 /* On récupère les membres de son équipe et ses infos */
 if (isset($_SESSION['infoUser']['idEquipe'])) {
     $_SESSION['teamMembers'] = getEquipeMembers($conn,$_SESSION['infoUser']['idEquipe']);
-    $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe']);
+    $_SESSION['infoTeam'] = getEquipe($conn,$_SESSION['infoUser']['idEquipe'])[0];
 
     /* On regarde si le user est capitaine ou non */
     if ($_SESSION['ID'] == $_SESSION['infoTeam']['capitaine']) {

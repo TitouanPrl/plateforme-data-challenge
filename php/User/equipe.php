@@ -85,7 +85,8 @@ connect();
             <p id="legend"> Une équipe doit avoir entre 3 et 8 membres, si vous êtes capitaine, vous pouvez supprimer un membre en cliquant dessus </p>');
             /* On initialise le compteur pour naviguer dans la classe */
             $i = 0;
-            foreach ($_SESSION['teamMembers'] as $member) {
+            foreach ($_SESSION['teamMembers'] as $memberAct) {
+                $member = $memberAct['idUser'];
                 echo ('<div class="ligne_equipe" id="' . $i . '">');
                 /* Si le user actuel est capitaine, on lui permet de supprimer des membres */
                 if ($_SESSION['capitaine'] == true) {
@@ -96,7 +97,7 @@ connect();
                 if ($member == $_SESSION['infoTeam']['capitaine']) {
                     echo ('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
                 }
-                echo ('<span class="nom_teamMember id="' . $member . '">' . getUtilisateurById($conn, $member)['prenom'] . ' ' . getUtilisateurById($conn, $member)['nom'] . ' </span>  
+                echo ('<span class="nom_teamMember id="' . $member . '">' . getUtilisateurById($conn, $member)[0]['prenom'] . ' ' . getUtilisateurById($conn, $member)[0]['nom'] . ' </span>  
                         </div>');
                 $i++;
             }

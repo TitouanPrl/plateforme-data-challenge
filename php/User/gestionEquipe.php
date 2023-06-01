@@ -121,6 +121,7 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
 
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
+    echo("ENTREE AJOUT");
     $idEquipe = (int)getIDEquipeByIDCapitaine($conn, $idCap)[0];
     addMembreEquipe($conn,$idEquipe,$idNewMember);
 
@@ -135,6 +136,7 @@ else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!i
 
 /* On vérifie que le capitaine a une équipe, que le membre en a une, et qu'il est bien inscrit au challenge */
 else if (($type == 'suppr') && (isset($_SESSION['infoUser']['idEquipe'])) && (isset($infosNewMember['idEquipe'])) && $inscrit) {
+    echo("ENTREE SUPPRESSION");
     deleteMembreEquipe($conn,$idNewMember);
 
     /* On met à jour les membres de l'équipe en session */
