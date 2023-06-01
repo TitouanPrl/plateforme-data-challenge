@@ -34,6 +34,7 @@ $("#wordForm").submit(function(e) {
             console.log(words);
             console.log(data);
             drawHorizontalBarChartWords(data); // dessiner le graphique avec les données reçues
+            // ajouter le json 
         },
         error: function(data) {
             console.log(data);

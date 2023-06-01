@@ -68,7 +68,7 @@ CREATE TABLE Sujet (
     lienRessources VARCHAR(250),
     -- équipes du podium
     idE1 INTEGER DEFAULT NULL,
-    idE2 INTEGER DEFAULT NULL,
+    idE2 INTEGER DEFAULT NULL, 
     idE3 INTEGER DEFAULT NULL,
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
@@ -88,7 +88,7 @@ CREATE TABLE Projet (
     idEquipe INTEGER,
     idSujet INTEGER,
     lienCode VARCHAR(250),
-    jsonResultat JSON,
+    jsonStatistiques JSON,
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
