@@ -18,10 +18,13 @@ $sujet = getSujetByID($conn, $idSujet);
 $podium = getPodiumBySujet($conn, $idSujet);
 
 /* On récupère les différentes équipes du podium */
-$team1 = getEquipe($conn, $podium[0]['idE1']);
+/*$team1 = getEquipe($conn, $podium[0]['idE1']);
 $team2 = getEquipe($conn, $podium[0]['idE2']);
 $team3 = getEquipe($conn, $podium[0]['idE3']);
-
+*/
+$team1 = getEquipe($conn, 1);
+$team2 = getEquipe($conn, 2);
+$team3 = getEquipe($conn, 3);
 
 
 /* On affiche la description du sujet */
