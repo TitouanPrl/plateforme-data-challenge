@@ -46,7 +46,6 @@ if (!isset($_SESSION["login"])) {
                 <a href="../User/mesChallenges.php">Mes challenges</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
-                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <?php
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
                 if (isset($_SESSION['infoTeam'])) {
