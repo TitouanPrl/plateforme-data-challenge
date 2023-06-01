@@ -111,6 +111,18 @@ connect();
             /* Si le user actuel est capitaine, on lui permet de supprimer l'équipe */
             if ($_SESSION['capitaine'] == true) {
                 echo ('<a id="but_suppr_equipe" href="supprEquipe.php">Supprimer l\'équipe</a>');
+                echo (' <form id="linegithub">
+                            <input type="text" id="liengit" name="inputGit" placeholder="https://github.com/TitouanPrl/plateforme-data-challenge">
+                            <button type="submit">Lien Github/Depot</button>
+                        </form>');
+                // ajout du lien github dans la base de données
+                if (isset($_GET['inputGit'])) {
+                    $link = $_GET['inputGit'];
+                    $idTeam = $_SESSION['infoTeam']['idEquipe'];
+                    $sql = "UPDATE Projet SET lienCode = '$link' WHERE idEquipe = '$idTeam'";
+                    $conn->query($sql);
+                }
+
             }        
 
 
