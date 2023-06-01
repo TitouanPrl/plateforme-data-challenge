@@ -160,7 +160,7 @@ function getEquipesByEvenement($conn,$idEvenement) {
 }
 
 function getQuestionnairesOnSujet($conn, $idSujet) {   //tous les questionnaires envoyés pour un sujet
-    $sql = "SELECT * FROM Questionnaire WHERE idSujet = $idSujet";
+    $sql = "SELECT * FROM Questionnaire WHERE idEvenement = $idSujet";
     $questionnaires = request($conn,$sql);
 
     return $questionnaires;

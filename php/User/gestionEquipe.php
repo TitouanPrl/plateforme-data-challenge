@@ -88,9 +88,6 @@ $idCap = (int)$_SESSION['infoUser']['idUser'];
 * =================================== */
 
 echo("ENTREE");
-var_dump(isset($_SESSION['infoUser']['idEquipe']));
-var_dump((!isset($infosNewMember['idEquipe'])));
-var_dump($inscrit);
 
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {

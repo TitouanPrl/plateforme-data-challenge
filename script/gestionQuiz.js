@@ -13,7 +13,7 @@ function getXHR() {
        xhr = false;
     }
     return xhr;
-  }
+}
 
 /* ================================== *
 *            CREATION QUIZ            *
