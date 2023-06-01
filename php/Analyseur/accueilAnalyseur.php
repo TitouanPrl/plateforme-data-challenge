@@ -1,12 +1,14 @@
-<?php require '../Integrations/headerVanilla.php';
-if (!connect()) {
-    die('Erreur de connexion à la base de données');
-}
+<?php 
+// require '../Integrations/headerVanilla.php';
+// if (!connect()) {
+//     die('Erreur de connexion à la base de données');
+// }
 
 /* On initialise les variables de session contenant les informations sur les challenges */
 // require_once 'initVarChallenges.php'
 ?>
 
+<br>
 
 <div class="bordure"></div>
 <div class=corps">
@@ -38,7 +40,7 @@ if (!connect()) {
 
 
     <script src="jsAnalyseur/submitRequest.js"></script>
-    <script src="js/drawCharts.js"></script>
+    <script src="jsAnalyseur/drawCharts.js"></script>
 
     <select id="charSelect">
         <option value="pie">Pie</option>
@@ -48,16 +50,16 @@ if (!connect()) {
 
 
     <!-- Affichage des résultats -->
-    <div id="normalChart">
-        <canvas id="chartContainer" width="300" height:"300" align=center></canvas>
+    <div id="normalChart" align=center style="width:600px;height:100%;">
+        <canvas id="chartContainer"></canvas>
     </div>
-    <div id="barChart" style="display:none;">
-        <canvas id="barChartContainer" width="300" height:"300" align=center></canvas>
+    <div id="barChart" align=center style="width:600px;height:100%;display:none;">
+        <canvas id="barChartContainer"></canvas>
     </div>
-    <div id="wordChart" style="display:none;">
-        <canvas id="wordChartContainer" width="300" height:"300" align=center></canvas>
+    <div id="wordChart" align=center style="width:600px;height:100%;display:none;">
+        <canvas id="wordChartContainer"></canvas>
     </div>
 
-    <script src="js/menuDeroulant.js"></script>
+    <script src="jsAnalyseur/menuDeroulant.js"></script>
 </body>
 </div>
