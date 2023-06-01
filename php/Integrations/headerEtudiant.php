@@ -43,6 +43,7 @@ if (!isset($_SESSION["login"])) {
                 <a href="inscriptionChallenge.php">Liste des challenges</a>
                 <a href="equipe.php">Mon équipe</a>
                 <a href="mesChallenges.php">Mes challenges</a>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <?php
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
