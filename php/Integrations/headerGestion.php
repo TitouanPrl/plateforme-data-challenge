@@ -23,6 +23,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
     <link rel="stylesheet" href="../../css/form.css" />
     <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="stylesheet" href="../../css/cartes.css" />
+    <link rel="stylesheet" href="../../css/gestion.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
     <script src="../../script/gestionQuiz.js"></script>
@@ -36,13 +37,13 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "GESTION
     <header>
         <div id="header" class="">
 
-            <a class="shine" href="../General/accueilGeneral.php">
+            <a class="shine" href="../Gestion/accueilGestion.php">
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
                 <a href="../General/listeChallenge.php">Informations Challenges</a>
-                <a href="modifInfos.php">Mon profil</a>
-                <a href="modifInfos.php">Modifier mes données</a>
+                <a href="mesChallengesGestion.php">Mes sujets</a>
+                <a href="quizList.php">Mes quiz</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
 

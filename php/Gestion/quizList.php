@@ -12,9 +12,14 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
 <!-- MAIN CONTENT -->
 
-<main>
-    <div class="corps">
+    <div class="bordure"></div>
+    <div class="corps" style="height:1350px;background-attachment: fixed;">
+            <div class="back-button">
+            <a href="accueilGestion.php" class="fleche"></a>
+        </div>
+        <main>
 
+        <div id="deux">
         <?php
 
         /* ================================== *
@@ -31,7 +36,7 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
                 <?php
                 foreach ($listEvents as $current) {
-                    echo ('<option value="' . $current['libelle'] . '>');
+                    echo ('<option value="' . $current['libelle'] . '">');
                 }
 
                 echo ('</datalist>');
@@ -45,12 +50,12 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
 
             <?php
             /* Questions */
-            for ($i = 0; $i < 5; $i++) {
-                echo ('<p class="titre_input"> Question ' . $i + 1 . '</p>
+            for ($i = 1; $i < 6; $i++) {
+                echo ('<p class="titre_input"> Question ' . $i . '</p>
             <input type="text" id="question' . $i . '" required>');
             } ?>
 
-            <button id="creer_quiz" type="button" onclick="createQuiz()">Créer le questionnaire </button>
+            <button class="boutonForm" style="margin-left:25%;" type="button" onclick="createQuiz()">Créer le questionnaire </button>
         </div>
 
 
@@ -90,6 +95,7 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
             }
 
             ?>
+        </div>
         </div>
     </div>
 

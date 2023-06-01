@@ -8,8 +8,12 @@ connect();
 
 <!-- MAIN CONTENT -->
 
-<main>
-    <div class="corps">
+<div class="bordure"></div>
+    <div class="corps" style="height:1350px;background-attachment: fixed;">
+        <div class="back-button">
+            <a href="accueilGestion.php" class="fleche"></a>
+        </div>
+        <main style="display:flex;flex-direction:column;">
 
         <?php
         /* Si le gestionnaire n'est lié à aucun challenge, on lui indique */
@@ -21,20 +25,23 @@ connect();
         /* Sinon on affiche la liste des challenges dont il est responsable */
         else {
             echo ('<!-- Affichage des challenges dont le gestionnaire est responsable -->
-            <div id="mesChallenges">
+            <h2 class="titreForm"> Mes Challenges </h2>
+            <div style="display:flex;flex-wrap:wrap;justify-content:center;margin-top:50px;width:70%;">
 
-            <h2 class="titreForm"> Mes Challenges </h2>');
+            ');
 
             foreach ($_SESSION['inscriptions'] as $current) {
                 /* On récupère les infos liées à l'événement */
                 $infos = getChallengeByID($conn, $current);
 
-                echo ('<a href="equipesEtProjets.php.php?challenge=' . $current . '">
-                          <div class="challenge">
-                              <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
-                              <span class="descript_challenge"> ' . $infos['description'] . ' </span>
-                          </div>
-                        </a>');
+                echo ('
+                     <a href="equipesEtProjets.php.php?challenge=' . $current . '">
+                        <div class="challenge">
+                            <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
+                            <span class="descript_challenge"> ' . $infos['description'] . ' </span>
+                        </div>
+                    </a>
+                ');
             }
 
             echo('</div>');

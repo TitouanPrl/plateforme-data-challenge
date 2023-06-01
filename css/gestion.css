@@ -1,0 +1,25 @@
+#creer_quiz,
+#listeQuiz {
+    background-color: var(--vert-trans);
+    margin: 50px;
+    padding: 30px;
+    border-radius: 20px;
+}
+
+#deux {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+#creer_quiz p {
+    font-size: 15px;
+    color: white;
+    margin-left: 20px;
+}
+
+.case_battle {
+    font-size: 20px;
+    color: white;
+}

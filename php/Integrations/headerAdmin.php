@@ -36,7 +36,7 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
     <header>
         <div id="header" class="">
 
-            <a class="shine" href="../General/accueilGeneral.php">
+            <a class="shine" href="../Admin/accueilAdmin.php">
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
