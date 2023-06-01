@@ -281,9 +281,9 @@ function getNbPoints($conn, $idEquipe) {
 
 
 //AJOUT DE DONNÉES
-function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
+function addAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp) {
     try {
-        $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:mdp,'ADMIN')";
+        $sql = "INSERT INTO Utilisateur (nom,prenom,numTel,email,ville,mdp,fonction) VALUES (:nom,:prenom,:numTel,:email,:ville,:mdp,'ADMIN')";
 
         $use = "use SiteProjet";
         $conn->exec($use);
@@ -293,6 +293,7 @@ function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
     $stmt->bindParam(':prenom', $prenom);
     $stmt->bindParam(':numTel', $numTel);
     $stmt->bindParam(':email', $email);
+    $stmt->bindParam(':ville', $ville);
     $stmt->bindParam(':mdp', $mdp);
 
         $stmt->execute();
@@ -301,9 +302,9 @@ function addAdmin($conn,$nom,$prenom,$numTel,$email,$mdp) {
     }
 }
 
-function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$dateF) {
+function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,$dateF) {
     try {
-        $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,mdp,dateD,dateF,fonction) VALUES (:nom,:prenom,:entreprise,:numTel,:email,:mdp,:dateD,:dateF,'GESTION')";
+        $sql = "INSERT INTO Utilisateur (nom,prenom,entreprise,numTel,email,ville,mdp,dateD,dateF,fonction) VALUES (:nom,:prenom,:entreprise,:numTel,:email,:ville,:mdp,:dateD,:dateF,'GESTION')";
         
         $use = "use SiteProjet";
         $conn->exec($use);
@@ -313,6 +314,7 @@ function addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$d
         $stmt->bindParam(':prenom', $prenom);
         $stmt->bindParam(':numTel', $numTel);
         $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':ville', $ville);
         $stmt->bindParam(':mdp', $mdp);
         $stmt->bindParam(':entreprise', $entreprise);
         $stmt->bindParam(':dateD', $dateD);
@@ -546,12 +548,12 @@ function deleteConversation($conn,$idConversation) {
 
 
 //MODIFIER LES DONNÉES
-function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$mdp,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN') WHERE idUser = $idUser";
+function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp,$idUser) {
+    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,ville,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$ville,$mdp,'ADMIN') WHERE idUser = $idUser";
     send($conn,$sql);
 }
-function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
+function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,$idUser) {
+    $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,ville,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
     send($conn,$sql);
 }
 function modifyEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville,$idUser) {

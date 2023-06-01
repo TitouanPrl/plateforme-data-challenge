@@ -1,4 +1,4 @@
-
+<?php session_start() ?>
 <?php
     require_once("../../bdd/fonctionsBDD.php");
 
@@ -20,27 +20,26 @@
         return $donnees;
 
     }  
+
     /* Définition des variables */
     $libelle = erase($_POST['libelle']);
-    $DateDebut =date('Y-m-d', strtotime(erase($_POST['DateDebut'])));
-    $DateFin = date('Y-m-d', strtotime(erase($_POST['DateFin'])));
-    $heureD = erase($_POST['heureD']);
-    $heureF = erase($_POST['heureF']);
-    $Commentaires = erase($_POST['Commentaires']);
+    $telGerant = erase($_POST['telG']);
+    $emailGerant = erase($_POST['mailG']);
+    $idevt = erase($_SESSION['idevt']);
+    $Description = erase($_POST['Description']);
 
      /* On vérifie que les var ne sont pas vides */
      if (empty($libelle)
-     || empty($DateDebut)
-     || empty($DateFin)
-     || empty($heureD)
-     || empty($heureF)) {
+     || empty($telGerant)
+     || empty($emailGerant)
+     || empty($idevt)) {
          global $correct;
         $correct = false;
      }
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
         if ($correct == false) {
-        header('Location:formDC.php?libelle=' . $libelle . '&DateDebut=' . $DateDebut . '&DateFin=' . $DateFin . '&heureD=' . $heureD . '&heureF=' . $heureF . '&Commentaires=' . $Commentaires );
+        header('Location:formProjet.php?libelle=' . $libelle . '&telGerant=' . $telGerant . '&emailGerant=' . $emailGerant . '&idevt=' . $idevt . '&Description=' . $Description );
         exit();
         }
 
@@ -49,7 +48,6 @@
         else{
             $stock = '../../fichierstelecharger/';
             $i=0;
-            echo(count($_FILES['userfile'][1]));
             while($i< count($_FILES['userfile'])){
                 if($_FILES['userfile']['tmp_name'][$i]!=""){
                     if (move_uploaded_file($_FILES['userfile']['tmp_name'][$i], $stock.$_FILES['userfile']['name'][$i]))
@@ -63,7 +61,7 @@
                 $i+=1;
             }
             //ajout du Data Challenge dans la Bdd
-            createEvenement($conn,"CHALLENGE",$libelle,$Commentaires,$DateDebut,$DateFin);
+            createSujet($conn,$idevt,$libelle,$Description,NULL,$telGerant,$emailGerant,NULL);
             //redirection à l'accueil admin
             header('Location:accueilAdmin.php');
         }
