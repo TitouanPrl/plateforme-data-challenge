@@ -7,11 +7,9 @@ connect();
 ?>
 
 <!-- MAIN CONTENT -->
-
-<main>
-    <div class="bordure">
-    </div>
-    <div class="corps">
+<div class="bordure"></div>    
+<div class="corps" style="height:auto;background-attachment: fixed;">
+    <main style="display:flex; justify-content:center;padding-top:40px;">
 
         <?php
 
@@ -21,13 +19,16 @@ connect();
 
         /* Si l'utilisateur n'a pas d'équipe, on affiche les champs et le bouton lui proposant d'en créer une */
         if (!isset($_SESSION['infoUser']['idEquipe'])) {
-            echo ('<div id="creer_equipe">
-            <h2 class="titreForm"> Création d\'une équipe </h2>
-            <form>
-            <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe" required>
+            echo ('
+            <div id="creer_equipe" style="display:flex; justify-content:center;height:fit-content;">
+                <div style="display:flex;flex-direction:column; justify-content:center;align-items:center;">
+                    <h2 class="titreForm"> Création d\'une équipe </h2>
+                    <form>
+                        <input type="text" id="nom_equipe" placeholder="Nom que vous souhaitez donner à votre équipe" required>
 
-            <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe" required>
-            <datalist id="liste_challenges">');
+                        <input type="text" id="nom_challenge" list="liste_challenges" placeholder="Challenge auquel vous souhaitez inscrire votre équipe" required>
+                        <datalist id="liste_challenges">'
+            );
             /* Liste de tous les challenges auxquels l'utilisateur est inscrit */
             $listEvents = getEventInscrit($conn, $_SESSION['ID']);
 
@@ -67,9 +68,12 @@ connect();
             echo ('<p class="titre_input"> Membre 2 </p>
             <input type="text" id="partipant3" list="liste_participants" required>');
 
-            echo ('<button id="creer_equipe" type="submit" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
-            </form>
-            </div>');
+            echo ('
+                    <button id="creer_equipe" class="boutonForm" type="submit" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+                    </form>
+                </div>
+            </div>'
+            );
         }
 
         /* ================================== *
@@ -150,8 +154,7 @@ connect();
         }
 
         ?>
-    </div>
-
-</main>
+    </main>
+</div>
 
 <?php require '../Integrations/footer.php'; ?>

@@ -68,7 +68,7 @@ CREATE TABLE Sujet (
     lienRessources VARCHAR(250),
     -- équipes du podium
     idE1 INTEGER DEFAULT NULL,
-    idE2 INTEGER DEFAULT NULL,
+    idE2 INTEGER DEFAULT NULL, 
     idE3 INTEGER DEFAULT NULL,
     FOREIGN KEY (idEvenement) REFERENCES Evenement (idEvenement) on delete cascade
 );
@@ -88,7 +88,7 @@ CREATE TABLE Projet (
     idEquipe INTEGER,
     idSujet INTEGER,
     lienCode VARCHAR(250),
-    jsonstatistic JSON,
+    jsonStatistiques JSON,
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );
@@ -130,9 +130,9 @@ INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("CHALLENGE","Le lotus bleu","Grand prix de code de Chine");
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("BATTLE","Le sceptre d'Ottokar","Retrouvez le sceptre perdu sur le web");
 
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les requins baleines","Etudier les requins baleins", "../img/mountain_bg.jpeg",0606060606,"rb@gmail.com","https://www.nausicaa.fr/fiches-animaux/requin-baleine/");
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les orques","Étude des orques", "../img/mountain_bg.jpeg",0606060606,"ok@gmail.com","https://www.nationalgeographic.fr/thematique/sujet/animaux/mammiferes/mammiferes-marins/dauphin/orque");
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (2,"Le sceptre","Sa majesté compte sur vous...", "../img/mountain_bg.jpeg",0606060606,"so@gmail.com","https://www.casterman.com/Bande-dessinee/Catalogue/le-sceptre-dottokar/9782203001077");
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les requins baleines","Etudier les requins baleins", "../../img/mountain_bg.jpeg",0606060606,"rb@gmail.com","https://www.nausicaa.fr/fiches-animaux/requin-baleine/");
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les orques","Étude des orques", "../../img/mountain_bg.jpeg",0606060606,"ok@gmail.com","https://www.nationalgeographic.fr/thematique/sujet/animaux/mammiferes/mammiferes-marins/dauphin/orque");
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (2,"Le sceptre","Sa majesté compte sur vous...", "../../img/mountain_bg.jpeg",0606060606,"so@gmail.com","https://www.casterman.com/Bande-dessinee/Catalogue/le-sceptre-dottokar/9782203001077");
 
 INSERT INTO Inscription (idUser,idEvenement) VALUES (1,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (2,1);
