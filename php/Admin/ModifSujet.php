@@ -18,7 +18,7 @@
     ?>
     <div style="display:flex; justify-content:center;align-items:center;padding-top:70px;">
             <div id="inscription">
-              <h2 class="titreForm" style="padding-bottom:0;"> Déposer un projet</h2>
+              <h2 class="titreForm" style="padding-bottom:0;"> Créer un sujet</h2>
 
               <form action="VerifFormSujet.php" method="POST">
                 <div style="display:flex; justify-content:center;align-items:center">
