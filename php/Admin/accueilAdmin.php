@@ -53,12 +53,13 @@ while($i< count($_FILES['userfile'])){
                     <!--  -->    
                     <tr class="ligne">
                         <td>
+
                             <a href="#" onclick="supprimerUtilisateur(<?php echo $Users['idUser'];?>)" style="margin-top:8px;display:inline-block;">
                                 <img class="supp" title="Supprimer un utilisateur" id="supp<?php echo $Users['idUser'];?>" src="../../img/croix.png" alt="Supprimer">
                             </a>
                         </td>
                         <?php
-                                echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
+                                echo ('<td>'.'<a href="ModifProf.php?user=' . $current['idUser'] . '">
                                     <div class="infosUser">
                                         <span class="nomU"> ' . $current['nom'] . ' </span>
                                         <span class="prenomU"> ' . $current['prenom'] . ' </span>
@@ -102,13 +103,12 @@ while($i< count($_FILES['userfile'])){
                                     </a>
                                 </div>
                                 <div>
-                                    <a href="modifDC.php?DC=<?php echo $evt['idEvenement']; ?>">
+                                    <a href="ModifDC.php?DC=<?php echo $evt['idEvenement']; ?>">
                                         <div class="infosDC">
                                             <span class="nomDC"> <?php echo $evt['libelle']; ?> </span>
                                             <span class="debut"> <?php echo $evt['dateD']; ?> </span>
                                             <span class="fin"> <?php echo $evt['dateF']; ?> </span>
                                         </div>
-
                                     </a>
                                 </div>
                             </div>
@@ -125,7 +125,7 @@ while($i< count($_FILES['userfile'])){
                                                 </a>
                                             </div>
                                             <div>
-                                                <a href="modifSujet.php?Sujet=<?php echo $sp['idSujet']; ?>">
+                                                <a href="ModifSujet.php?Sujet=<?php echo $sp['idSujet']; ?>">
                                                     <div class="infosSujet">
                                                         <span class="nomSujet"> <?php echo $sp['libelle']; ?> </span>
                                                         <span class="descriSujet"> <?php echo $sp['descri']; ?> </span>
@@ -136,16 +136,15 @@ while($i< count($_FILES['userfile'])){
 
                                         <?php
                                         $projet = getProjetsOnSujet($conn, $sp['idSujet']);
-
                                         foreach ($projet as $current): ?>
                                             <div class="ligneProjet">
                                                 <div>
                                                     <a href="#" onclick="supprimerProjet(<?php echo $current['idProjet']; ?>)" style="margin-top:5px;display:inline-block;padding-right:20px;">
-                                                        <img class="supp" title="Supprimer un sujet" id="supp" src="../../img/croix.png" alt="Supprimer" style="width:20px;">
+                                                        <img class="supp" title="Supprimer un projet" id="supp" src="../../img/croix.png" alt="Supprimer" style="width:20px;">
                                                     </a>
                                                 </div>
                                                 <div>
-                                                    <a href="modifProj.php?Projet=<?php echo $current['idProjet']; ?>">
+                                                    <a href="ModifEquipe.php?Projet=<?php echo $current['idProjet']; ?>">
                                                         <div class="infosProjet">
                                                             <span class="Idequipe"> Équipe participante : <?php echo $equipe[0]['nom']; ?> </span>
                                                         </div>
