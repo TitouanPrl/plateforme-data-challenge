@@ -1,7 +1,7 @@
 
 
 <footer>
-    <div class="row" style="margin-top:-250px;">
+    <div class="montagnes" style="margin-top:-250px;">
         <div>
           <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep5" viewBox="0 0 1600 200" style="display: block;" data-height="200">
           <polygon class="" style="fill: rgb(14,135,105);" points="1488,134 1304,100 1068,152 909.935,92.044 672,198 364,142 242,32 -4,95 -4,204 1604,204 1604,0 "></polygon> 

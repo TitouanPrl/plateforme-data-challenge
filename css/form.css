@@ -17,7 +17,8 @@
     height: fit-content;
     width: fit-content;
 }
-
+#inscriptionProjet,
+#inscriptionU,
 #inscriptionDC {
     width: 40%;
     text-align: center;
@@ -28,9 +29,9 @@
     background-color: var(--vert-trans);
     border-radius: 20px;
     height: fit-content;
+    margin-top: 80px;
     
 }
-#formProjet,
 #formAdmin {
     background-color: var(--vert-trans);
     border-radius: 20px;
@@ -55,6 +56,13 @@
 #formfunction {
     width: 99%;
     align-self:center ;
+}
+#formType {
+    align-self:center;
+    font-size:20px;
+    margin-top:20px;
+    display:flex;
+    flex-wrap: wrap;
 }
 
 #connexion {
@@ -132,14 +140,6 @@ textarea {
     opacity: 0.8;
 }
 
-input[type="radio"] {
-    display: none;
-}
-
-input[type="radio"]:checked + label {
-    background: var(--bleu-fond);
-    color: black;    
-}
 
 
 
@@ -149,3 +149,16 @@ input[type="radio"]:checked + label {
     padding: 10px;
     justify-content: center;
 }
+
+.choixType {
+    display: inline-block;
+    background-color: var(--bleu-fond); 
+    color: black;
+    padding: 20px;
+    border-radius: 10px;
+    margin: 10px;
+}
+.choixType:hover {
+    opacity: 0.8;
+}
+

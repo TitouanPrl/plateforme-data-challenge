@@ -36,7 +36,7 @@ CREATE TABLE Utilisateur(
     dateF DATETIME,
     idEquipe INTEGER,
     fonction VARCHAR(16),   /* ADMIN/GESTION/USER */
-    FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade
+    FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe)
 );
 
 
