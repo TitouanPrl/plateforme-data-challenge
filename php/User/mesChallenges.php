@@ -10,7 +10,7 @@ connect();
 
 <main>
     <div class="bordure"></div>
-    
+
     <div class="corps">
 
         <?php

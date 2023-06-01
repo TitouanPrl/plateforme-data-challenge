@@ -14,6 +14,7 @@ $tabSujets = getSujetByEvenement($conn, $idEvent);
 echo('<!-- MAIN CONTENT -->
 
 <main>
+<div class="bordure"></div>
 
 <div id="sujets">
 
