@@ -16,7 +16,7 @@ connect();
     $_SESSION['idevt']=$idevt;
  ?>
 <main>
-<form enctype="multipart/form-data" action="ModifDC.php" method="POST">
+<form enctype="multipart/form-data" action="VerifFormDC.php" method="POST">
 <div style="display:flex; justify-content:center;align-items:center;">
       <!-- création d'un data challenge -->
       <div id="inscription">
@@ -51,7 +51,7 @@ connect();
 
             <fieldset>
                 <legend>Commentaires</legend>
-                <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($Evenement[0]['descrip'])?>">Ajouter un commentaire </textarea>
+                <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($Evenement[0]['descrip'])?>"> </textarea>
             </fieldset>
             <fieldset>
                 <legend>Déposer un document</legend>
@@ -61,7 +61,7 @@ connect();
             </fieldset>
                 <div>
                 <legend>Ajouter un sujet</legend>
-                <input type="button" class="boutonForm" id="plus" value="+" onclick="document.location.href='formProjet.php'";>
+                <input type="button" class="boutonForm" id="plus" value="+" onclick="document.location.href='formSujet.php'";>
                 </div>
             </div>
           </div>

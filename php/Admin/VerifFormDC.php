@@ -27,6 +27,8 @@
     $heureD = erase($_POST['heureD']);
     $heureF = erase($_POST['heureF']);
     $Commentaires = erase($_POST['Commentaires']);
+    $event= getEvenements($conn);
+    $modif = false;
 
      /* On vérifie que les var ne sont pas vides */
      if (empty($libelle)
@@ -62,10 +64,22 @@
                 }
                 $i+=1;
             }
-            //ajout du Data Challenge dans la Bdd
+            foreach($event as $evt){
+                if ($evt['libelle'] == $libelle){
+                    $modif= true;
+                    $idevt = $evt['idEvenement'];
+                }
+            }
+            if($modif){
+                modifyEvenement($conn,$idevt,$libelle,$Commentaires,$DateDebut,$DateFin);
+                header('Location:accueilAdmin.php');
+            }
+            else{
+                //ajout du Data Challenge dans la Bdd
             createEvenement($conn,"CHALLENGE",$libelle,$Commentaires,$DateDebut,$DateFin);
             //redirection à l'accueil admin
             header('Location:accueilAdmin.php');
+            }
         }
  
 ?>
