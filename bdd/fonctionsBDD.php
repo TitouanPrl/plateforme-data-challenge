@@ -265,9 +265,8 @@ function getMaxIdQuestionnaire($conn) {
 function getStatsProjets($conn) {
     $sql = "SELECT jsonResultat from Projet WHERE jsonResultat IS NOT NULL";
     $stats = request($conn,$sql);
-    $jsonGlobal = array();
     // Boucler dans stats pour ajouter chaque json dans jsonGlobal
-    /* Un json type a pour forme : 
+    /* Un json type pour chaque projet a pour forme : 
     {
         nbFonctions:2,
         nbLignes:4,
@@ -280,6 +279,16 @@ function getStatsProjets($conn) {
         }
     }
     */
+
+    /* Un json pour les statistiques globales a pour forme :
+    {
+        nbFonctions:10,
+        nbLignes:60,
+        nbLignesMax:8,
+        nbLignesMin:3,
+        nbLignesMoy:5.5,
+    }
+    */
     
     $nbLignesMax = 0;
     $nbLignesMin = PHP_INT_MAX;
@@ -287,6 +296,7 @@ function getStatsProjets($conn) {
     $nbLignesMoy = 0;
     $nbLignes = 0;
     
+    // Calcul des statistiques globales
     foreach ($stats as $stat) {
         $json = json_decode($stat['jsonResultat'],true);
         $nbLignes += $json['nbLignes'];
@@ -300,6 +310,21 @@ function getStatsProjets($conn) {
         }
     }
     $nbLignesMoy = $nbLignesMoy/$nbFonctions;
+
+
+    // création du json résultat pour les statistiques globales
+    $jsonGlobal = array(
+        'nbFonctions' => $nbFonctions,
+        'nbLignes' => $nbLignes,
+        'nbLignesMax' => $nbLignesMax,
+        'nbLignesMin' => $nbLignesMin,
+        'nbLignesMoy' => $nbLignesMoy
+    );
+
+    // conversion en json
+    $jsonGlobal = json_encode($jsonGlobal);
+
+    return $jsonGlobal;
 }
 
 
