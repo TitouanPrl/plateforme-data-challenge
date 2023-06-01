@@ -54,11 +54,9 @@ while($i< count($_FILES['userfile'])){
                     <tr class="ligne">
                         <td>
 
-                            
                             <a href="#" onclick="supprimerUtilisateur(<?php echo $Users['idUser'];?>)" style="margin-top:8px;display:inline-block;">
                                 <img class="supp" title="Supprimer un utilisateur" id="supp<?php echo $Users['idUser'];?>" src="../../img/croix.png" alt="Supprimer">
                             </a>
-
                         </td>
                         <?php
                                 echo ('<td>'.'<a href="ModifProf.php?user=' . $current['idUser'] . '">
@@ -148,7 +146,7 @@ while($i< count($_FILES['userfile'])){
                                                 <div>
                                                     <a href="ModifEquipe.php?Projet=<?php echo $current['idProjet']; ?>">
                                                         <div class="infosProjet">
-                                                            <span class="Idequipe"> Nom equipe : <?php echo $equipe[0]['nom']; ?> </span>
+                                                            <span class="Idequipe"> Équipe participante : <?php echo $equipe[0]['nom']; ?> </span>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -163,9 +161,6 @@ while($i< count($_FILES['userfile'])){
                 </div>
             </div>
         </section>
-
-
-
         
     </div>
 </div>
