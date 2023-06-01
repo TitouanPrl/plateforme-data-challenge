@@ -1,13 +1,14 @@
 <?php require_once '../Integrations/headerVanilla.php'; 
 
-echo('<!-- MAIN CONTENT -->
 
+echo ('<!-- MAIN CONTENT -->
 <div class="bordure"></div>
 
-<main>
-
-    <div id="mesChallenges">
-        <h2 class="titreForm"> Challenges </h2>');
+<div class="corps" style="height:auto;background-attachment: fixed;">
+    <main style="display:flex;flex-direction:column;align-items:center;padding-top:50px;">
+        <h2 id="liste_event"> Challenges et Battles en cours et à venir </h2>
+        <div style="display:flex; flex-wrap:wrap;justify-content:center;margin-top:50px;width:70%;">
+');
 
 /* Affichage des challenges disponibles */
 foreach ($_SESSION['Evenements'] as $current) {

@@ -15,6 +15,10 @@ SUJETS : encadré blanc à droite
     padding: 0;
 }
 
+a {
+    text-decoration: none !important;
+}
+
 /* variables à utiliser de cette manière : var(--bleu) */
 :root {
     --vert: rgb(14,135,105);

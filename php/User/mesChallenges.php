@@ -9,6 +9,8 @@ connect();
 <!-- MAIN CONTENT -->
 
 <main>
+    <div class="bordure"></div>
+
     <div class="corps">
 
         <?php
@@ -24,12 +26,12 @@ connect();
         <h2 class="titreForm"> Mes Challenges </h2>');
         foreach ($_SESSION['inscriptions'] as $current) {
             /* On récupère les infos liées à l'événement */
-            $infos = getChallengeByID($conn, $current);
+            $infos = getChallengeByID($conn, (int)$current["idEvenement"])[0];
 
-            echo ('<a href="infoChallenge.php?challenge=' . $current . '">
+            echo ('<a href="infoChallenge.php?challenge=' . $current["idEvenement"] . '">
                       <div class="challenge">
                           <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
-                          <span class="descript_challenge"> ' . $infos['description'] . ' </span>
+                          <span class="descript_challenge"> ' . $infos['descrip'] . ' </span>
                       </div>
                     </a>');
         }

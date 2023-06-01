@@ -18,6 +18,7 @@ require_once "../../bdd/fonctionsBDD.php";
     <link rel="stylesheet" href="../../css/messagerie.css" />
     <link rel="stylesheet" href="../../css/cartes.css" />
     <link rel="stylesheet" href="../../css/admin.css" />
+    <link rel="stylesheet" href="../../css/user.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
 
