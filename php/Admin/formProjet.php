@@ -16,13 +16,23 @@
                   <div id="formG">
                     <div id="form">           
                       <fieldset>
-                        <legend>Libellé</legend>
-                        <input type="text" id="libellé" name="libellé" value="<?php echo ($_GET['libellé']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                        <legend>Libelle</legend>
+                        <input type="text" id="libelle" name="libelle" value="<?php echo ($_GET['libelle']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
                       </fieldset>
 
                       <fieldset>
-                        <legend>Description</legend>
-                        <textarea id="Description" name="Description" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>">Ajouter un commentaire/sujet enfin ce que vous voulez quoi </textarea>
+                          <legend>Description</legend>
+                          <textarea id="Description" name="Description" rows="5" cols="40" value ="<?php echo($_GET['Description'])?>">Ajouter une Description</textarea>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Tel du gérant</legend>
+                        <input type="tel" id="telG" name="telG" value="<?php echo($_GET['telGerant']); ?>" required>
+                      </fieldset>
+
+                      <fieldset>
+                        <legend>Email du gérant</legend>
+                        <input type="email" id="mailG" name="mailG" value="<?php echo($_GET['emailGerant']); ?>" required>
                       </fieldset>
                     </div>
                   </div>
