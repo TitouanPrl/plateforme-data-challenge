@@ -14,9 +14,7 @@
     require_once("../../bdd/fonctionsBDD.php");
 
     connect();
-    var_dump($idSujet);
     $sujet=getSujetById($conn,$idSujet);
-    var_dump($sujet[0]['descrip']);
     ?>
     <div style="display:flex; justify-content:center;align-items:center;padding-top:70px;">
             <div id="inscription">

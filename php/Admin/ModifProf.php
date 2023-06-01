@@ -6,6 +6,8 @@
  ?>
 <?php 
     $_SESSION["idUser"] = $idUser;
+    $_SESSION["modif"] = true;
+    $_SESSION["idUser"]= $idUser;
     ?>
 
 
@@ -25,7 +27,7 @@
     ?>
     <div style="display:flex; justify-content:center;align-items:center;">
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription" style="margin-top:80px;">
+      <div id="inscription" style="margin-top:40px;">
         <h2>Profil utilisateur</h2>
 
         <form action="VerifForm.php" method="POST">
@@ -58,16 +60,16 @@
               </div>
 
             <div id="formD">
-              <fieldset id="nivEtude">
+              <fieldset id="nivEtu">
                 <legend> Degré d'étude :</legend>
                 <select name="nivEtude" id="nivEtude" >
                   <option value=""> <?php echo ($user[0]['nivEtude']); ?></option>
-                  <option value="1ère année de Licence">1ère année de Licence</option>
-                  <option value="2ème année de Licence">2ème année de Licence</option>
-                  <option value="3ème année de Licence">3ème année de Licence</option>
-                  <option value="1ère année de Master">1ère année de Master</option>
-                  <option value="2ème année de Master">2ème année de Master</option>
-                  <option value="Doctorat">Doctorat</option>
+                  <option value="L1">1ère année de Licence</option>
+                  <option value="L2">2ème année de Licence</option>
+                  <option value="L3">3ème année de Licence</option>
+                  <option value="M1">1ère année de Master</option>
+                  <option value="M2">2ème année de Master</option>
+                  <option value="D">Doctorat</option>
                 </select>
                 <br>
               </fieldset>

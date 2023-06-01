@@ -8,15 +8,26 @@ if(!empty($_SESSION["type"] )){
 else{
     $type = "etudiant";
 }
-
+if(!empty($_SESSION["modif"])){
+    $modif= $_SESSION["modif"];
+}
+else{
+    $modif = false;
+}
+if(!empty($_SESSION["idUser"])){
+    $idUser = $_SESSION["idUser"];
+}
 ?>
-
 
 
 <?php
     require_once("../../bdd/fonctionsBDD.php");
 
     connect();
+    if($modif == true){
+        $tmp = getUtilisateurById($conn,$idUser);
+        $type = $tmp[0]['fonction'];
+    }
   /* Var témoin pour savoir si les données d'inscription de l'utilisateur sont valides ou non */
     $valide = true;
     /* Sécurise la chaine de caractère lue, évite l'injection de code malveillant */
@@ -45,11 +56,9 @@ else{
     $tel = erase($_POST['tel']);
     $entreprise = erase ($_POST['entreprise']);
     $dateFin = date('Y-m-d', strtotime(erase($_POST['dateFin'])));
-    $modif= $_POST['modif'];
-    if(!empty($modif)){
-        var_dump($modif);
-        header('location:');
-    }
+
+
+  
     
 
 
@@ -84,21 +93,29 @@ else{
     }
     patern_tel($tel);
         //on retire les vérifications non nécessaires en fonction du type d'inscription
-    if($type == "administrateur"){
+    if($type == "administrateur" || $type=="ADMIN"){
                 /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
         if ($valide == false) {
             header('Location:formInsc.php?nom=' . $nom . '&prenom=' . $prenom . '&mail=' . $mail . '&tel=' . $tel . '&ville=' . $ville );
             exit();
         }
         else{
-            //ajout du compte admin dans la bdd
-            addAdmin($conn,$nom,$prenom,$tel,$mail,$ville,md5('123'));
-            /* On redirige vers l'accueil avec connexion */
-            header('Location:../Admin/accueilAdmin.php');
+            if($modif == true){
+                modifyAdmin($conn,$nom,$prenom,$tel,$mail,$ville,"admin",$idUser);
+                $_SESSION["modif"]=false;
+                header('Location:../Admin/accueilAdmin.php');
+            }
+            else{
+                 //ajout du compte admin dans la bdd
+                addAdmin($conn,$nom,$prenom,$tel,$mail,$ville,md5('123'));
+                /* On redirige vers l'accueil avec connexion */
+                header('Location:../Admin/accueilAdmin.php');
+            }
+            
         }
     }
 
-    if($type == "gestionnaire"){
+    if($type == "gestionnaire" || $type == "GESTION"){
         if(empty($entreprise) || empty($dateFin)){
             global $valide;
             $valide = false;
@@ -111,13 +128,21 @@ else{
 
         else{
         $dateDebut = date('d-m-y');
-        addGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,md5('123'),$dateDebut,$dateFin);
-        /* On redirige vers l'accueil avec connexion */
-        header('Location:../Admin/accueilAdmin.php');
+            if($modif == true){
+                modifyGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,"Gestion",$dateFin,$idUser);
+                $_SESSION["modif"]=false;
+                header('Location:../Admin/accueilAdmin.php');
+            }
+            else{
+                addGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,md5('123'),$dateDebut,$dateFin);
+                /* On redirige vers l'accueil avec connexion */
+                header('Location:../Admin/accueilAdmin.php');
+            }
+
         }
     }
 
-    if($type =="etudiant"){
+    if($type =="etudiant" || $type == "USER"){
         if(empty($ecole) || empty($nivEtude)){
             global $valide;
             $valide = false;
@@ -129,9 +154,17 @@ else{
         }
 
         else{
-            addEtudiant($conn,$nom,$prenom,$tel,$mail,md5('123'),$nivEtude,$ecole,$ville);
-            /* On redirige vers l'accueil avec connexion */
-            header('Location:../Admin/accueilAdmin.php');
+            if($modif ==true){
+                modifyEtudiant($conn,$nom,$prenom,$tel,$mail,md5('123'),$nivEtude,$ecole,$ville,$idUser);
+                $_SESSION["modif"]=false;
+                header('Location:../Admin/accueilAdmin.php');
+            }
+            else{
+                addEtudiant($conn,$nom,$prenom,$tel,$mail,md5('123'),$nivEtude,$ecole,$ville);
+                /* On redirige vers l'accueil avec connexion */
+                header('Location:../Admin/accueilAdmin.php');
+            }
+            
         }
     }
     header('Location:../Admin/accueilAdmin.php');
