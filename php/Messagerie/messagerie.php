@@ -43,7 +43,7 @@ $users = getAllUtilisateurs($conn);
                 </div>
                 <div class="messagerie" id="messagerie">
                     <div>
-                        <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION["idUser"]; ?>">
+                        <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION['ID']; ?>">
                         <?php ?>
                         <input type="hidden" name="conv" id="conv" value="NULL">
                         <input type="hidden" name="idConv" id="idConv" value="NULL">
