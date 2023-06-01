@@ -1,11 +1,10 @@
 
-
 <?php
     require_once("../../bdd/fonctionsBDD.php");
 
     connect();
   /* Var témoin pour savoir si les données d'inscription de l'utilisateur sont valides ou non */
-    $valide = true;
+    $correct = true;
     /* Sécurise la chaine de caractère lue, évite l'injection de code malveillant */
     function erase($donnees) {
 
@@ -45,26 +44,29 @@
         header('Location:formDC.php?libelle=' . $libelle . '&DateDebut=' . $DateDebut . '&DateFin=' . $DateFin . '&heureD=' . $heureD . '&heureF=' . $heureF . '&Commentaires=' . $Commentaires );
         exit();
         }
+
+        // fonction qui permet de récupérer les fichiers télécharger dans le répertoire fichierstelecharger
+
         else{
-            header('Location:accueiladmin.php');
+            $stock = '../../fichierstelecharger/';
+            $i=0;
+            echo(count($_FILES['userfile'][1]));
+            while($i< count($_FILES['userfile'])){
+                if($_FILES['userfile']['tmp_name'][$i]!=""){
+                    if (move_uploaded_file($_FILES['userfile']['tmp_name'][$i], $stock.$_FILES['userfile']['name'][$i]))
+                    {
+                        echo '<p id="msgfichier"> Le fichier '.$_FILES['userfile']['name'][$i].' a été téléchargé avec succès dans '.$stock.'</p>';
+                    }
+                    else{
+                        echo"Le fichier n'a pas pu être télécharger ";
+                    }
+                }
+                $i+=1;
+            }
+            //ajout du Data Challenge dans la Bdd
+            createEvenement($conn,"CHALLENGE",$libelle,$Commentaires,$dateD,$dateF);
+            //redirection à l'accueil admin
+            header('Location:accueilAdmin.php');
         }
  
-?>
-<!-- fonction qui permet de récupérer les fichiers télécharger dans un répertoire -->
-<?php
-$stock = '../../fichierstelecharger/';
-$i=0;
-echo(count($_FILES['userfile'][1]));
-while($i< count($_FILES['userfile'])){
-    if($_FILES['userfile']['tmp_name'][$i]!=""){
-        if (move_uploaded_file($_FILES['userfile']['tmp_name'][$i], $stock.$_FILES['userfile']['name'][$i]))
-        {
-            echo '<p id="msgfichier"> Le fichier '.$_FILES['userfile']['name'][$i].' a été téléchargé avec succès dans '.$stock.'</p>';
-        }
-        else{
-            echo"Le fichier n'a pas pu être télécharger ";
-        }
-    }
-    $i+=1;
-}
 ?>

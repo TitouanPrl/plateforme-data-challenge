@@ -421,12 +421,13 @@ function createEquipe($conn, $idEvenement, $nom, $capitaine) {
         die('Erreur : '.$e->getMessage());
     }
 }
-function createEvenement($conn,$libelle,$descrip,$dateD,$dateF) {
+function createEvenement($conn,$kind,$libelle,$descrip,$dateD,$dateF) {
     try {
         $use = "use SiteProjet";
         $conn->exec($use);
-        $sql = "INSERT INTO Evenement (libelle,descrip,dateD,dateF) VALUES (:libelle,:descrip,:dateD,:dateF)";
+        $sql = "INSERT INTO Evenement (kind,libelle,descrip,dateD,dateF) VALUES (:kind,:libelle,:descrip,:dateD,:dateF)";
         $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':kind', $kind);
         $stmt->bindParam(':libelle', $libelle);
         $stmt->bindParam(':descrip', $descrip);
         $stmt->bindParam(':dateD', $dateD);
