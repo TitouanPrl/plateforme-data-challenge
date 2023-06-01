@@ -40,9 +40,11 @@ if (!isset($_SESSION["login"]) || ($_SESSION['infoUser']['fonction'] != "ADMIN")
                 <figure><img id="logo" src="../../img/logo_iaPau.png" alt="logo"></figure>
             </a>
             <nav id="liens">
+                <a href="../General/listeChallenge.php">Informations Challenges</a>
                 <a href="gererUsers.php">Gestion utilisateurs</a>
                 <a href="gererChallenges.php">Gestion challenges</a>
                 <a href="gererRessources.php">Gestion ressources</a>
+                <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
                 <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
             </nav>

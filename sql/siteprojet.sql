@@ -126,7 +126,7 @@ INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,foncti
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",0606060608,"Laboratoire de Genève","tty@gmail.com","quoi","GESTION");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Pradal","Titouan",0782778266,"Laboratoire de Genève","pradaltito@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Jappy",0782778266,"Laboratoire de Genève","jg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",0782778266,"Laboratoire de Genève","eg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",0782778266,"Laboratoire de Genève","eg@cy-tech.fr","hello","GESTION");
 
 
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("CHALLENGE","Le lotus bleu","Grand prix de code de Chine");
