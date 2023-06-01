@@ -53,104 +53,9 @@ while($i< count($_FILES['userfile'])){
                     <!--  -->    
                     <tr class="ligne">
                         <td>
-
-    <div>
-    <table id='tabUser'>
-        <!-- On crée le headers du tableau -->
-        <tr>
-            <th> Utilisateurs</th>
-        </tr>       
-    </table>
-    </div>
-<table>
-    <tr>
-        <input type="button" class="ajoutUser" id="plus" value="+" onclick="document.location.href='type.php'";>
-    </tr>
-    <!-- Pour chaque catégorie du tableau -->
-    <?php
-    $Users = getAllUtilisateurs($conn);
-     foreach ($Users as $current) : ?>
-    <!--  -->    
-    <tr class="ligne">
-        <?php
-                echo ('<td>'.'<a href="ModifProf.php?user=' . $current['idUser'] . '">
-                    <div class="infosUser">
-                        <span class="nomU"> ' . $current['nom'] . ' </span>
-                        <span class="prenomU"> ' . $current['prenom'] . ' </span>
-                        <span class="fonctionU"> ' . $current['fonction'] . ' </span>
-                    </div>
-                </a>'. '</td>');
-            ?>
-        <td>
-            
-            <p>
-                <button class="supp" id="supp<?php echo $Users['idUser'];?>">X</button>
-            </p>
-        </td>
-    </tr>
-<?php endforeach ?>
-</table>
-</section>
-
-
-<section>
-    <div>
-    <table id='tabDC'>
-        <!-- On crée le headers du tableau -->
-        <tr>
-            <th> Data Challenge</th>
-        </tr>       
-    </table>
-    </div>
-<table>
-    <!-- Pour chaque catégorie du tableau -->
-        <tr>
-            <input type="button" class="ajoutDC" id="plus" value="+" onclick="document.location.href='formDC.php'";>
-        </tr>
-    <?php
-    $kind ='CHALLENGE';
-    $DC = getEvenementsByKind($conn,$kind);
-    
-    foreach ($DC as $evt) : ?>
-        <div>
-        <tr class="ligneDc">
-            <?php
-                    $sujet = getSujetByEvenement($conn,$evt['idEvenement']);
-                    echo ('<td>'.'<a href="ModifDC.php?DC=' . $evt['idEvenement'] . '">
-                        <div class="infosUser">
-                            <span class="nomDC"> ' . $evt['libelle'] . ' </span>
-                            <span class="debut"> ' . $evt['dateD'] . ' </span>
-                            <span class="fin"> ' . $evt['dateF'] . ' </span>
-                        </div>
-                    </a>'. '</td>
-                    <td>
-                    <p>
-                        <button class="supp" id="supp"' . $evt['idEvenement'] . '">X</button>
-                    </p>
-                    </td>');
-                    
-                    foreach ($sujet as $sp) : ?>
-                        <div>
-                        <tr class="ligneSuj">
-                            <?php 
-                            $projet = getProjetsOnSujet($conn,$sp['idSujet']);
-                            echo ('<td> '.'<a href="modifSujet.php?Sujet=' . $sp['idSujet'] . '">
-                            <div class="infosSujet">
-                                <span class="nomSujet"> ' . $sp['libelle'] . ' </span>
-                                <span class="descriSujet"> : ' . $sp['descrip'] . ' </span>
-                            </div>
-                            </a>'. '</td>
-                            <td>
-                            <p>
-                                <button class="supp" id="supp"' .  $sp['idSujet'] . '">X</button>
-                            </p>
-                            </td>');
-
-                            
                             <a href="#" onclick="supprimerUtilisateur(<?php echo $Users['idUser'];?>)" style="margin-top:8px;display:inline-block;">
                                 <img class="supp" title="Supprimer un utilisateur" id="supp<?php echo $Users['idUser'];?>" src="../../img/croix.png" alt="Supprimer">
                             </a>
-
                         </td>
                         <?php
                                 echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
@@ -242,7 +147,7 @@ while($i< count($_FILES['userfile'])){
                                                 <div>
                                                     <a href="modifProj.php?Projet=<?php echo $current['idProjet']; ?>">
                                                         <div class="infosProjet">
-                                                            <span class="Idequipe"> Nom equipe : <?php echo $equipe[0]['nom']; ?> </span>
+                                                            <span class="Idequipe"> Équipe participante : <?php echo $equipe[0]['nom']; ?> </span>
                                                         </div>
                                                     </a>
                                                 </div>
@@ -257,9 +162,6 @@ while($i< count($_FILES['userfile'])){
                 </div>
             </div>
         </section>
-
-
-
         
     </div>
 </div>
