@@ -14,8 +14,7 @@
         <div style="display:flex;flex-direction:row;">
             <p class="copyright" id="easteregg" onclick="">©</p>
             <p class="copyright">2023. Tous droits réservés.</p>
-        </div>
-        
+        </div>        
         <img class="easteregg" src="../../img/requin.gif">
     </div>
  </footer>
