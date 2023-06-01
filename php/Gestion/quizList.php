@@ -24,19 +24,7 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
         /* ================================== *
         *            CREATION QUIZ            *
         * =================================== */
-
-        /* On propose de créer un quiz */ ?>
-        <div id="creer_quiz">
-            <h2 class="titreForm"> Création d'un quiz </h2>
-
-            <p class="titre_input"> Sujet pour lequel vous souhaitez créer un questionnaire </p>
-            <input type="text" id="nom_challenge" list="liste_challenges">
-            <datalist id="liste_challenges">
-
-                <?php
-                foreach ($listEvents as $current) {
-                    echo ('<option value="' . $current['libelle'] . '">');
-                }
+        
 
 /* On propose de créer un quiz */ ?>
 <div id="creer_quiz">
@@ -45,6 +33,15 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
     <p class="titre_input"> Sujet pour lequel vous souhaitez créer un questionnaire </p>
     
     <input type="text" id="nom_challenge" list="liste_challenges">
+
+    <datalist id="liste_challenges">
+
+                <?php
+                foreach ($listEvents as $current) {
+                    echo ('<option value="' . $current['libelle'] . '">');
+                }
+                echo('</datalist>');?>
+
     <button id="creer_quiz" onclick="createQuiz()">Créer le questionnaire </button>
 
     <p class="titre_input"> Date de début </p>
@@ -67,7 +64,7 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
             } ?>
 
             <button class="boutonForm" style="margin-left:25%;" type="button" onclick="createQuiz()">Créer le questionnaire </button>
-        </div>
+        
 
     
 </div>
@@ -93,16 +90,15 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
                 
                 /* On récupère la liste des quiz associés */
                 $listeQuiz = getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']);
-                var_dump((int)$currentEvent['idEvenement']);
-                var_dump(getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']));
 
                 foreach ($listeQuiz as $currentQuiz) {
                     echo('<div classe="ligne_quiz>
-                        <a href="detailsQuiz.php?quiz='.$currentQuiz['idQuestionnaire']. '">
+                        <a href="detailsQuiz.php?quiz='.(int)$currentQuiz['idQuestionnaire']. '">
                             <span class="nom_quiz" id="' . $j . '> Questionnaire ' . $j . '</span>
                         </a>
                         <img class="delete_button" src="../../img/croix.png" onclick="supprQuiz('. $j .', ' . $currentQuiz['idQuestionnaire'] . ')" alt="I am an image">
                     </div>');
+                    $j++;
                 }
 
                 echo('</div>');
