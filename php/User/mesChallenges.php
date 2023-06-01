@@ -23,18 +23,19 @@ connect();
         /* Sinon on affiche la liste des challenges auxquels il est inscrit */
         echo ('<!-- Affichage des challenges auxquels l\'utilisateur est inscrit -->
         <div id="mesChallenges">
-        <h2 class="titreForm"> Mes Challenges </h2>');
-        foreach ($_SESSION['inscriptions'] as $current) {
-            /* On récupère les infos liées à l'événement */
-            $infos = getChallengeByID($conn, (int)$current["idEvenement"])[0];
+            <h2 class="titreForm"> Mes Challenges </h2>
+            ');
+            foreach ($_SESSION['inscriptions'] as $current) {
+                /* On récupère les infos liées à l'événement */
+                $infos = getChallengeByID($conn, (int)$current["idEvenement"])[0];
 
-            echo ('<a href="infoChallenge.php?challenge=' . $current["idEvenement"] . '">
-                      <div class="challenge">
-                          <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
-                          <span class="descript_challenge"> ' . $infos['descrip'] . ' </span>
-                      </div>
-                    </a>');
-        }
+                echo ('<a href="infoChallenge.php?challenge=' . $current["idEvenement"] . '">
+                        <div class="challenge">
+                            <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
+                            <span class="descript_challenge"> ' . $infos['descrip'] . ' </span>
+                        </div>
+                        </a>');
+            }
 
         echo('</div>');
         ?>
