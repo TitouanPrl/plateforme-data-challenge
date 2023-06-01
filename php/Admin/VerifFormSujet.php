@@ -39,7 +39,7 @@
 
     /* Si les données ne sont pas valides on renvoit le form avec les erreurs à corriger */
         if ($correct == false) {
-        header('Location:formProjet.php?libelle=' . $libelle . '&telGerant=' . $telGerant . '&emailGerant=' . $emailGerant . '&idevt=' . $idevt . '&Description=' . $Description );
+        header('Location:formSujet.php?libelle=' . $libelle . '&telGerant=' . $telGerant . '&emailGerant=' . $emailGerant . '&idevt=' . $idevt . '&Description=' . $Description );
         exit();
         }
 
