@@ -489,7 +489,7 @@ function inscription($conn,$idUser,$idEvenement) {
         die('Erreur : '.$e->getMessage());
     }}
 
-
+//PDPDPDDPPDPDPPDPDPPDPDPPDPDPPDPDPPDPDPPDPDPPDPD
 
 //SUPPRESSION DE DONNÉES
 function deleteUtilisateur($conn,$idUser) { //supprimer un utilisateur
@@ -531,7 +531,6 @@ function deleteEquipe($conn,$idEquipe) {
     $sql = "DELETE FROM Equipe WHERE idEquipe = $idEquipe";
     send($conn,$sql);
     $sql = "UPDATE Utilisateur SET (idEquipe) = (NULL) WHERE idEquipe = $idEquipe";
-    send($conn,$sql);
 }
 
 /* Supprime un membre d'une équipe */
@@ -551,40 +550,143 @@ function deleteConversation($conn,$idConversation) {
 
 //MODIFIER LES DONNÉES
 function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,ville,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$ville,$mdp,'ADMIN') WHERE idUser = $idUser";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Utilisateur SET nom=:nom,prenom=:prenom,numTel=:numTel,email=:email,ville=:ville,mdp=:mdp,fonction='ADMIN' WHERE idUser = :idUser";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':mdp', $mdp);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,ville,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Utilisateur SET nom=:nom,prenom=:prenom,entreprise=:entreprise,numTel=:numTel,email=:email,ville=:ville,mdp=:mdp,dateD=:dateD,fonction='GESTION' WHERE idUser = :idUser";        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':entreprise', $entreprise);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':mdp', $mdp);
+        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':idUser', $idUser);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function modifyEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,mdp,nivEtude,ville,ecole,fonction) = ($nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ville,$ecole,'USER') WHERE idUser = $idUser";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Utilisateur SET nom=:nom,prenom=:prenom,numTel= :numTel,email=:email,mdp=:mdp,nivEtude=:nivEtude,ville=:ville,ecole=:ecole,fonction='USER' WHERE idUser = :idUser";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':nom', $nom);
+        $stmt->bindParam(':prenom', $prenom);
+        $stmt->bindParam(':numTel', $numTel);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':ville', $ville);
+        $stmt->bindParam(':mdp', $mdp);
+        $stmt->bindParam(':nivEtude', $nivEtude);
+        $stmt->bindParam(':ecole', $ecole);
+        $stmt->bindParam(':idUser', $idUser);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 } 
 function addMembreEquipe($conn,$idEquipe,$idUser) {   //ajouter un membre dans l'équipe
-    $sql = "UPDATE Utilisateur SET idEquipe = $idEquipe WHERE idUser = $idUser";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Utilisateur SET idEquipe = :idEquipe WHERE idUser = :idUser";        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idUser', $idUser);
+        $stmt->bindParam(':idEquipe', $idEquipe);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
-function modifyEvenement($conn,$idEvenement,$libelle,$descrip,$dateD,$dateF) {
-    $sql = "UPDATE Evenement SET (libelle,descrip,dateD,dateF) = ($libelle,$descrip,$dateD,$dateF) WHERE idEvenement = $idEvenement";
-    send($conn,$sql);
+function modifyEvenement($conn,$idEvenement,$libelle,$descrip,$dateD,$dateF) { 
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Evenement SET libelle =:libelle,descrip=:descrip ,dateD =:dateD,dateF=:dateF WHERE idEvenement = :idEvenement";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':dateF', $dateF);
+        $stmt->bindParam(':libelle', $libelle);
+        $stmt->bindParam(':descrip', $descrip);
+        $stmt->bindParam(':idEvenement', $idEvenement);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function modifySujet($conn,$idSujet,$idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) {
-    $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = ($idEvenement,$libelle,$descrip,$img,$telGerant,$emailGerant,$lienRessources) WHERE idSujet = $idSujet";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Sujet SET (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) = (:idEvenement,:libelle,:descrip,:img,:telGerant,:emailGerant,:lienRessources) WHERE idSujet = :idSujet";        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idEvenement', $idEvenement);
+        $stmt->bindParam(':libelle', $libelle);
+        $stmt->bindParam(':descrip', $descrip);
+        $stmt->bindParam(':img', $img);
+        $stmt->bindParam(':telGerant', $telGerant);
+        $stmt->bindParam(':emailGerant', $emailGerant);
+        $stmt->bindParam(':idSujet', $idSujet);
+        $stmt->bindParam(':lienRessources', $lienRessources);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 function setNote($conn, $idReponse, $note) { // définir la note de la réponse à une question
-    $sql = "UPDATE Reponse SET note = $note WHERE idReponse = $idReponse";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Reponse SET note = :note WHERE idReponse = :idReponse";        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':note', $note);
+        $stmt->bindParam(':idReponse', $idReponse);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 
 /* Mise à jour du podium d'un sujet */
 function modifyPodium($conn, $idSujet, $idEquipe1, $idEquipe2, $idEquipe3) {
-    $sql = "UPDATE Sujet SET idE1 = $idEquipe1 WHERE idSujet = $idSujet;
-    UPDATE Sujet SET idE2 = $idEquipe2 WHERE idSujet = $idSujet;
-    UPDATE Sujet SET idE3 = $idEquipe3 WHERE idSujet = $idSujet";
-    send($conn,$sql);
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "UPDATE Sujet SET idE1 = :idEquipe1 WHERE idSujet = :idSujet;
+        UPDATE Sujet SET idE2 = :idEquipe2 WHERE idSujet = :idSujet;
+        UPDATE Sujet SET idE3 = :idEquipe3 WHERE idSujet = :idSujet";        
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idSujet', $idSujet);
+        $stmt->bindParam(':idEquipe1', $idEquipe1);
+        $stmt->bindParam(':idEquipe2', $idEquipe2);
+        $stmt->bindParam(':idEquipe3', $idEquipe3);
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
 }
 
 ?>

@@ -136,7 +136,7 @@ while($i< count($_FILES['userfile'])){
 
                                         <?php
                                         $projet = getProjetsOnSujet($conn, $sp['idSujet']);
-                                        foreach ($projet as $current): ?>
+                                        foreach ($projet as $current):$equipe($current); ?>
                                             <div class="ligneProjet">
                                                 <div>
                                                     <a href="#" onclick="supprimerProjet(<?php echo $current['idProjet']; ?>)" style="margin-top:5px;display:inline-block;padding-right:20px;">

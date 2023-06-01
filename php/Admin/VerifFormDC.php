@@ -65,6 +65,7 @@
                 $i+=1;
             }
             foreach($event as $evt){
+                var_dump($evt);
                 if ($evt['libelle'] == $libelle){
                     $modif= true;
                     $idevt = $evt['idEvenement'];
