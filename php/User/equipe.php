@@ -55,7 +55,7 @@ connect();
                     $cur_info_user = $info_user[0];
 
                     if ($cur_info_user['idUser'] != $_SESSION['ID']) {
-                        echo ('<option value="' . $cur_info_user['prenom'] . ' ' . $cur_info_user['nom'] . ' - ' . strtoupper($infoChallenge['libelle']) . '" name="' . $cur_info_user['idUser'] . '">');
+                        echo ('<option value="' . $cur_info_user['prenom'] . ' ' . $cur_info_user['nom'] . ' - ' . strtoupper($infoChallenge['libelle']) . '" dataID="' . $cur_info_user['idUser'] . '">');
                     }
                 }
             }
@@ -89,7 +89,7 @@ connect();
                 $member = $memberAct['idUser'];
                 echo ('<div class="ligne_equipe" id="' . $i . '">');
                 /* Si le user actuel est capitaine, on lui permet de supprimer des membres */
-                if ($_SESSION['capitaine'] == true) {
+                if (($_SESSION['capitaine'] == true) && $member != $_SESSION['infoTeam']['capitaine']) {
                     echo ('<img class="delete_button" src="../../img/croix.png" onclick="supprMemberTeam(' . $i . ')" alt="I am an image">');
                 }
 
@@ -102,12 +102,12 @@ connect();
                 $i++;
             }
 
+            echo ('</div>');
+
             /* Si le user actuel est capitaine, on lui permet de supprimer l'équipe */
             if ($_SESSION['capitaine'] == true) {
                 echo ('<a id="but_suppr_equipe" href="supprEquipe.php">Supprimer l\'équipe</a>');
-            }
-
-            echo ('</div>');
+            }        
 
 
             /* ================================== *
@@ -115,9 +115,7 @@ connect();
             * =================================== */
 
             /* On récupère le challenge auquel l'équipe participe */
-        
-            $idEvent = $_SESSION['infoTeam']['idEvent'];
-        
+            $idEvent = (int)$_SESSION['infoTeam']['idEvenement'];
 
             /* On récupère les étudiants inscrits au challenge et n'ayant pas d'équipe */
             $liste_inscrits = getInscritsSansEquipe($conn, $idEvent);
@@ -125,15 +123,21 @@ connect();
             /* Champ de saisie pour ajouter un membre à l'équipe */ ?>
             <div id="ajout_membre">
             <p class="titre_input"> Ajouter un membre </p>
-            <input type="text" id="partipant" list="liste_participants" required>
+            <input type="text" id="participant" list="liste_participants" required>
 
             <datalist id="liste_participants">
 
             <?php 
 
             /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */
-            foreach ($liste_inscrits as $current) {
-                echo ('<option value="' . $current['prenom'] . ' ' . $current['nom'] . '" name="' . $current['idUser'] . '">');
+            foreach ($liste_inscrits as $currentUser) {
+                /* On récupère les infos du user */
+                $info_user = getUtilisateurById($conn, (int)$currentUser['idUser']);
+                $cur_info_user = $info_user[0];
+
+                if ($cur_info_user['idUser'] != $_SESSION['ID']) {
+                    echo ('<option value="' . $cur_info_user['prenom'] . ' ' . $cur_info_user['nom']. '" dataID="' . $cur_info_user['idUser'] . '">');
+                }
             }
 
             echo ('</datalist>');

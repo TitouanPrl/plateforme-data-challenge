@@ -7,7 +7,6 @@ echo ('<!-- MAIN CONTENT -->
     
     <h3 id="liste_event"> Choisissez le challenge auquel vous souhaitez vous inscrire </h3>');
 
-
 /* Affichage des challenges disponibles */
 foreach ($_SESSION['Evenements'] as $current) {
 

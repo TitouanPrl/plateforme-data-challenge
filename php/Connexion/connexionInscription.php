@@ -58,7 +58,7 @@ require '../Integrations/headerVanilla.php'; ?>
               <div id="form">
                 <fieldset>
                   <legend>Identifiant</legend>
-                  <input type="text" id="login" name="login" required> <br>
+                  <input type="text" id="login" name="login" placeholder="adressemail@gmail.com" required> <br>
                 </fieldset>
                 <fieldset>
                   <legend>Mot de passe</legend>
