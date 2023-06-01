@@ -2,6 +2,8 @@
 
 echo('<!-- MAIN CONTENT -->
 
+<div class="bordure"></div>
+
 <main>
 
     <div id="mesChallenges">

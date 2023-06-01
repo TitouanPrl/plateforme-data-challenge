@@ -2,40 +2,48 @@
 <?php require '../Integrations/headerVanilla.php'; ?>
 <?php $type=$_SESSION["type"]; ?>
 
-<main>
-    <article>
+
+<div class="bordure"></div>
+
+
+<div class="corps">
+    <div class="back-button">
+      <a href="type.php" class="fleche"></a>
+    </div>
+    <div style="display:flex; justify-content:center;align-items:center;">
+
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription">
+      <div id="inscriptionU">
         <h2>Inscription utilisateur</h2>
 
         <form action="VerifForm.php" method="POST">
-          <div id="form">
+          <div style="display:flex; justify-content:center;align-items:center">
             <div id="formG">
               <fieldset>
                 <legend>Nom</legend>
                 <input type="text" id="nom" name="nom" value="<?php echo ($_GET['nom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
 
-                  <fieldset>
-                    <legend>Prénom</legend>
-                    <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
-                  </fieldset>
+              <fieldset>
+                <legend>Prénom</legend>
+                <input type="text" id="prenom" name="prenom" value="<?php echo ($_GET['prenom']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+              </fieldset>
 
-                  <fieldset>
-                    <legend>E-mail</legend>
-                    <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
-                  </fieldset>
+              <fieldset>
+                <legend>E-mail</legend>
+                <input type="email" id="mail" name="mail" value="<?php echo ($_GET['mail']); ?>" required> <br>
+              </fieldset>
 
               <fieldset>
                 <legend>Telephone</legend>
                 <input type="tel" id="tel" name="tel" value="<?php echo($_GET['tel']); ?>" required>
               </fieldset>
             
-            <fieldset>
+              <fieldset>
                 <legend>Ville</legend>
                 <input type="text" id="ville" name="ville" value="<?php echo ($_GET['ville']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
-              </div>
+            </div>
 
             <div id="formD">
               <fieldset id="nivEtu">
@@ -57,6 +65,8 @@
                 <input type="text" id="ecole" name="ecole" value="<?php echo ($_GET['ecole']); ?>"> <br>
               </fieldset>
 
+              <img id="gif" src="../../img/montagne.gif">
+
               <fieldset id='entrep'>
                 <legend>Entreprise</legend>
                 <input type="text" id="entreprise" name="entreprise" value="<?php echo ($_GET['entreprise']); ?>"> <br>
@@ -67,13 +77,14 @@
                 <input type="date" id="dateFin" name="dateFin" value="<?php echo ($_GET['dateFin']);?>" > <br>
               </fieldset>
 
-              <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
+              
             </div>
           </div>
+        <input type="submit" class="boutonForm" style="margin-top:0;" value="Valider" style="align-self:center;">
         </form>
       </div>
-    </article>
-  </main>
+</div>
+</div>
 
   <?php
   
