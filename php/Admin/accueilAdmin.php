@@ -58,7 +58,7 @@ while($i< count($_FILES['userfile'])){
                             </a>
                         </td>
                         <?php
-                                echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
+                                echo ('<td>'.'<a href="ModifProf.php?user=' . $current['idUser'] . '">
                                     <div class="infosUser">
                                         <span class="nomU"> ' . $current['nom'] . ' </span>
                                         <span class="prenomU"> ' . $current['prenom'] . ' </span>

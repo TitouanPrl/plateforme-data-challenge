@@ -1,3 +1,4 @@
+<?php session_start()?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 <?php if (isset($_GET['user'])) {
     $idUser=$_GET['user'];
@@ -6,7 +7,14 @@
 <?php 
     $_SESSION["idUser"] = $idUser;
     ?>
-<main>
+
+
+<div class="bordure"></div>
+<div class="corps">
+  <div class="back-button">
+    <a href="accueilAdmin.php" class="fleche"></a>
+  </div>
+  <main>
     <?php 
     /* On inclut les fonctions de manipulation de la BDD */
     require_once("../../bdd/fonctionsBDD.php");
@@ -15,9 +23,9 @@
     $user=getUtilisateurById($conn,$idUser);
     $type=$user[0]['fonction'];
     ?>
-    <article>
+    <div style="display:flex; justify-content:center;align-items:center;">
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription">
+      <div id="inscription" style="margin-top:60px;">
         <h2>Profil utilisateur</h2>
 
         <form action="VerifForm.php" method="POST">
@@ -84,8 +92,9 @@
           </div>
         </form>
       </div>
-    </article>
+  </div>
   </main>
+</div>
 
   <?php
   

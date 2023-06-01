@@ -30,6 +30,8 @@ $users = getAllUtilisateurs($conn);
                         <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION["idUser"]; ?>">
                         <?php ?>
                         <input type="hidden" name="conv" id="conv" value="NULL">
+                        <input type="hidden" name="idConv" id="idConv" value="NULL">
+
                     </div>
 
                     <div class="Utilisateur" id =Utilisateur>

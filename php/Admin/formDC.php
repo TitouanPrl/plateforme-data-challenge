@@ -1,4 +1,7 @@
 <?php require '../Integrations/headerVanilla.php'; ?>
+
+
+
 <div class="bordure"></div>
 <div class="corps">
   <div class="back-button">
@@ -54,9 +57,9 @@
           </div>
         </form>
       </div>
-    </article>
-  </div>
-</main>
+    </div>
+  </main>
+</div>
 
 
 <?php require '../Integrations/footer.php'; ?>
