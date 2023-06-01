@@ -25,34 +25,6 @@
     </form>
 
 
-    <!-- Menu déroulant -->
-<select id="graphSelect">
-    <option value="pieChart">Pie Chart</option>
-    <option value="barChart">Bar Chart</option>
-    <option value="wordOccurrences">Word Occurrences</option>
-</select>
-
-<script>
-    // Ajouter des events listeners sur le menu déroulant
-    $("#graphSelect").change(function() {
-        // Cacher tous les graphiques
-        $('#chartContainer').hide();
-        $('#barChartContainer').hide();
-        $('#wordChartContainer').hide();
-
-        // Afficher le graphique
-        var selectedGraph = $(this).val();
-        if (selectedGraph === 'pieChart') {
-            $('#chartContainer').show();
-        } else if (selectedGraph === 'barChart') {
-            $('#barChartContainer').show();
-        } else if (selectedGraph === 'wordOccurrences') {
-            $('#wordChartContainer').show();
-        }
-    });
-</script>
-
-
     <script>
         // Envoyer le fichier Python
         $("#fileForm").submit(function(e) {
@@ -98,6 +70,9 @@
         });
 
         function drawChart(data) {
+            // vérifier si le graphique existe déjà, et le supprimer si c'est le cas
+            var ctx = document.getElementById('chartContainer').getContext('2d');
+            if (ctx.chart) ctx.chart.destroy();
             var labels = [];
             var dataPoints = [];
             for (var key in data.Fonctions) {
@@ -105,8 +80,8 @@
                 dataPoints.push(data.Fonctions[key]);
             }
 
-            var ctx = document.getElementById('chartContainer').getContext('2d');
-            var chart = new Chart(ctx, {
+            // var ctx = document.getElementById('chartContainer').getContext('2d');
+            ctx.chart = new Chart(ctx, {
                 type: 'pie',
                 data: {
                     labels: labels,
@@ -133,20 +108,15 @@
                     }]
                 }
             });
-            // Gérer l'événement de clic sur le bouton d'affichage/masquage du graphique en secteurs
-            // $("#togglePieChartBtn").click(function() {
-            //     var pieChartContainer = $("#pieChartContainer");
-            //     if (pieChartContainer.is(":visible")) {
-            //         pieChartContainer.hide();
-            //         $(this).text("Afficher le graphique en secteurs");
-            //     } else {
-            //         pieChartContainer.show();
-            //         $(this).text("Masquer le graphique en secteurs");
-            //     }
-            // });
+
         }
 
         function drawBarChart(data) {
+            // vérifier si le graphique existe déjà, et le supprimer si c'est le cas
+            var ctx = document.getElementById('barChartContainer').getContext('2d');
+            if (ctx.chart) ctx.chart.destroy();
+
+
             var labels = [];
             var dataPoints = [];
             var totalLines = 0;
@@ -157,8 +127,8 @@
                 totalLines += data.Fonctions[key];
             }
 
-            var ctx = document.getElementById('barChartContainer').getContext('2d');
-            var chart = new Chart(ctx, {
+            // var ctx = document.getElementById('barChartContainer').getContext('2d');
+            ctx.chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
@@ -189,17 +159,6 @@
                     }
                 }
             });
-            // Gérer l'événement de clic sur le bouton d'affichage/masquage du graphique en barres
-            // $("#toggleBarChartBtn").click(function() {
-            //     var barChartContainer = $("#barChartContainer");
-            //     if (barChartContainer.is(":visible")) {
-            //         barChartContainer.hide();
-            //         $(this).text("Afficher le graphique en barres");
-            //     } else {
-            //         barChartContainer.show();
-            //         $(this).text("Masquer le graphique en barres");
-            //     }
-            // });
         }
 
 
@@ -208,10 +167,15 @@
         le json utilisé est sous la forme {mot: nombre d'occurrences; mot2: nombre d'occurrences; ...}
         */
         function drawHorizontalBarChartWords(data) {
+            // vérifier si le graphique existe déjà, et le supprimer si c'est le cas
+            var ctx = document.getElementById('wordChartContainer').getContext('2d');
+            if (ctx.chart) ctx.chart.destroy();
+
+
             var labels = [];
             var dataPoints = [];
 
-            // Transform data into array for sorting.
+            // Transformer les données en un array de la forme  [{word: mot, count: nombre d'occurrences}, ...]
             var dataArray = [];
             for (var key in data) {
                 dataArray.push({
@@ -220,22 +184,20 @@
                 });
             }
 
-            // Sort array in descending order of 'count'.
+            // Trier l'array par ordre décroissant de count (nombre d'occurrences)
             dataArray.sort(function(a, b) {
                 return b.count - a.count;
             });
 
-            // Extract sorted labels and data points.
+            // Extraire les données triées dans deux arrays séparés
             dataArray.forEach(function(item) {
                 labels.push(item.word);
                 dataPoints.push(item.count);
             });
 
-            // Prepare the context for drawing the chart.
-            var ctx = document.getElementById('wordChartContainer').getContext('2d');
 
-            // Create the chart.
-            var chart = new Chart(ctx, {
+            // Créer le graphique 
+            ctx.chart = new Chart(ctx, {
                 type: 'bar',
                 data: {
                     labels: labels,
@@ -259,10 +221,37 @@
         }
     </script>
 
+<select id="charSelect">
+    <option value="pie">Pie</option>
+    <option value="bar">Bar</option>
+    <option value="horizontalBar">Occurrences des mots</option>
+</select>
+
+
     <!-- Afficher le résultat -->
-<canvas id="chartContainer" style="width:70%; height:300px;" align=center></canvas>
+<div id="normalChart">
+    <canvas id="chartContainer" width="300" height:"300" align=center></canvas>
+</div>
+<div id="barChart" style="display:none;">
+    <canvas id="barChartContainer" width="300" height:"300" align=center></canvas>
+</div>
+<div id="wordChart" style="display:none;">
+    <canvas id="wordChartContainer" width="300" height:"300" align=center></canvas>
+</div>
 
-<canvas id="barChartContainer" style="width:70%; height:300px;" align=center></canvas>
+<script>
+    // Gestion du menu déroulant pour sélectionner les graphiques
+    $("#charSelect").change(function() {
+        var selectedChart = $(this).val();
+        $("#normalChart, #barChart, #wordChart").hide();
 
-<canvas style="width:70%; height:300px;" align=center id="wordChartContainer"></canvas>
+        if (selectedChart == "pie") {
+            $("#normalChart").show();
+        } else if (selectedChart == "bar") {
+            $("#barChart").show();
+        } else if (selectedChart == "horizontalBar") {
+            $("#wordChart").show();
+        }
+    })
+</script>
 </body>
