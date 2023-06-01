@@ -1,0 +1,15 @@
+div#creer_equipe {
+    background-color: var(--vert-trans);
+    width: fit-content;
+    border-radius: 20px;
+    padding: 60px;
+}
+
+button#creer_equipe {
+    align-self: center;
+    margin-left: 30%;
+}
+
+.challenge {
+    background-color: var(--vert-trans);
+}
