@@ -1,4 +1,5 @@
 <?php 
+session_start();
 // require '../Integrations/headerVanilla.php';
 // if (!connect()) {
 //     die('Erreur de connexion à la base de données');
@@ -8,7 +9,14 @@
 // require_once 'initVarChallenges.php'
 ?>
 
-<br>
+<br><br><br><br><br><br><br>
+
+
+
+<h1 id="ajouteAnalyse">id de l'équipe de l'utilisateur : <?php echo $_SESSION['userInfo']['idEquipe'] ?></h1>
+<?php
+
+?>
 
 <div class="bordure"></div>
 <div class=corps">
@@ -16,7 +24,7 @@
     <title>Page PHP</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.0.7"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1"></script>
 </head>
 <!-- MAIN CONTENT -->
 
@@ -28,8 +36,7 @@
         <input type="file" name="pythonFile">
         <input type="submit" value="Envoyer le fichier">
     </form>
-
-    <hr>
+    <!-- bouton pour afficher les statistiques globales -->
 
     <!-- Envoyer une liste de mots -->
     <form id="wordForm" action="http://localhost:8001/projet/php" method="post">
@@ -55,6 +62,7 @@
     </div>
     <div id="barChart" align=center style="width:600px;height:100%;display:none;">
         <canvas id="barChartContainer"></canvas>
+        <div id="legendContainer"></div>
     </div>
     <div id="wordChart" align=center style="width:600px;height:100%;display:none;">
         <canvas id="wordChartContainer"></canvas>

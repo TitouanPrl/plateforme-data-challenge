@@ -261,9 +261,9 @@ function getMaxIdQuestionnaire($conn) {
 }
 
 
-/* Renvoie toutes les statistiques des projets sous un format json */
-function getStatsProjets($conn) {
-    $sql = "SELECT jsonResultat from Projet WHERE jsonResultat IS NOT NULL";
+/* Renvoie toutes les statistiques des projets d'un sujet (lequel est géré par et accessible par un gestionnaire (et les administrateurs évidemment)) sous un format json */
+function getStatsProjets($conn, $idSujet) {
+    $sql = "SELECT jsonResultat from Projet WHERE jsonResultat IS NOT NULL AND idSujet = $idSujet";
     $stats = request($conn,$sql);
     // Boucler dans stats pour ajouter chaque json dans jsonGlobal
     /* Un json type pour chaque projet a pour forme : 
@@ -301,7 +301,7 @@ function getStatsProjets($conn) {
         $json = json_decode($stat['jsonResultat'],true);
         $nbLignes += $json['nbLignes'];
         $nbFonctions += $json['nbFonctions'];
-        $nbLignesMoy += $nbFonctions*$json['nbLignesMoy'];
+        $nbLignesMoy += $nbLignes;
         if ($json['nbLignesMax'] > $nbLignesMax) {
             $nbLignesMax = $json['nbLignesMax'];
         }
@@ -534,6 +534,23 @@ function inscription($idUser,$idEvenement) {
     } catch (PDOException $e) {
         die('Erreur : '.$e->getMessage());
     }}
+
+
+// fonction qui permet d'ajouter un jsonrésultat à un projet 
+function addJsonResultat($conn,$idProjet,$jsonStatistiques) {
+    try {
+        $use = "use SiteProjet";
+        $conn->exec($use);
+        $sql = "INSERT INTO Resultat (idProjet,jsonStatistiques) VALUES (:idProjet,:jsonStatistiques)";
+        $stmt = $conn->prepare($sql);
+        $stmt->bindParam(':idProjet', $idProjet);
+        $stmt->bindParam(':jsonResultat', $jsonStatistiques);
+
+        $stmt->execute();
+    } catch (PDOException $e) {
+        die('Erreur : '.$e->getMessage());
+    }
+}
 
 
 
