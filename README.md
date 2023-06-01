@@ -3,7 +3,8 @@
 ### Table des matières
 1. [Lancer le serveur PHP](#lancer-le-serveur-php)
 2. [Lancer le serveur HTTP](#lancer-le-serveur-http)
-3. [Initialiser la BDD](#initialiser-la-bdd)] 
+3. [Initialiser la BDD](#initialiser-la-bdd)
+4. [Ouvrir le site](#ouvrir-le-site)
 
 
 #### Lancer le serveur PHP
@@ -37,5 +38,31 @@ Pour générer la javadoc (pour l'ouvrir, ouvrir le fichier index.html dans le d
 Pour créer la BDD et l'initialiser :
 ```sh
 "sudo mysql" dans le dossier sql, puis entrez votre mot de passe
+"source siteprojet.sql;" 
+```
+Pour pouvoir utiliser la BDD sur le site :
+```sh
+Changer les identifiants de connexion dans le fichier bddData.php dans le dossier bdd
+```
+
+#### Ouvrir le site
+***
+```
+"localhost:8002/php/redirectionAccueil.php" dans votre navigateur
+```
+
+
+#### Crédits
+***
+---
+Auteur :
+    -CORNEC Dorian <cornecdori@cy-tech.fr>
+    -DEPRETER Remi <depreterre@cy-tech.fr>
+    -GALLOY Clémentine <galloyclem@cy-tech.fr>
+    -LALLINEC Naiwann <lallinecna@cy-tech.fr>
+    -PRADAL Titouan <pradaltito@cy-tech.fr>
+
+
+
 
 
