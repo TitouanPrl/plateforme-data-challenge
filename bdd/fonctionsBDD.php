@@ -72,7 +72,7 @@ function getAllUtilisateurs($conn) { //récupère tous les utilisateurs
 }
 
 function getPodiumBySujet($conn, $idSujet) { //récupère le podium d'un sujet
-    $sql = "SELECT * FROM Podium WHERE idSujet=$idSujet";
+    $sql = "SELECT idE1,idE2,idE3 FROM Sujet WHERE idSujet=$idSujet";
     $podium = request($conn,$sql);
 
     return $podium;

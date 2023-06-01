@@ -12,22 +12,32 @@ $idEvent = $_GET['challenge'];
 $tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
-
-<main>
 <div class="bordure"></div>
+<div class="corps" style="height:auto;background-attachment: fixed;">
+    <div class="back-button">
+        <a href="inscriptionChallenge.php" class="fleche"></a>
+    </div>    
+    <main style="display:flex;flex-direction:column;align-items:center;padding-top:50px;">
+        <h2 id="liste_event"> Choisissez un sujet pour ce Challenge </h2>
+        <div style="display:flex; flex-wrap:wrap;justify-content:center;margin-top:50px;width:70%;">
 
-<div id="sujets">
-
-<h2 class="titreForm"> Sujets </h2>');
+');
 
 /* Affichage des sujets disponibles */
 foreach ($tabSujets as $current) {
     echo ('  <!-- SUJETS-->
         <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '">
-             <div class="sujets">
-                 <h3>' . $current['libelle'] . '</h3>
-             </div>
-        </a>');
+            <div class="sujets">
+                <img class="imgSujet" src="' . $current['img'] . '" >
+                <span class="libelle_challenge"> ' . $current['libelle'] . ' </span>
+                <span class="descript_challenge"> ' . $current['descrip'] . ' </span>
+                <p> Contact : </p>
+                <span class="telGerant_challenge"> ' . $current['telGerant'] . ' </span>
+                <span class="emailGerant_challenge"> ' . $current['emailGerant'] . ' </span>
+            </div>
+        </a>
+        
+        ');
 }
 
 echo('</div>');

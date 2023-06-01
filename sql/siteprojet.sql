@@ -140,6 +140,8 @@ INSERT INTO Inscription (idUser,idEvenement) VALUES (3,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (1,2);
 
 INSERT INTO Equipe (nom,capitaine) VALUES ("les loulous",1);
+INSERT INTO Equipe (nom,capitaine) VALUES ("les winner",2);
+INSERT INTO Equipe (nom,capitaine) VALUES ("croak",3);
 
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=1;
 
