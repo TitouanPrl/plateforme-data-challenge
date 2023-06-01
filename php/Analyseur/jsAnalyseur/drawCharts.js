@@ -9,7 +9,7 @@ function drawPieChart(data) {
         dataPoints.push(data.Fonctions[key]);
     }
 
-    // var ctx = document.getElementById('chartContainer').getContext('2d');
+    // création du nouveau graphique
     ctx.chart = new Chart(ctx, {
         type: 'pie',
         data: {
@@ -56,7 +56,7 @@ function drawBarChart(data) {
         totalLines += data.Fonctions[key];
     }
 
-    // var ctx = document.getElementById('barChartContainer').getContext('2d');
+    // création du nouveau graphique avec les options
     ctx.chart = new Chart(ctx, {
         type: 'bar',
         data: {

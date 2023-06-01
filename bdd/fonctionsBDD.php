@@ -252,7 +252,7 @@ function getIDConversationByCorres($conn,$idExp,$idDest) {
 
     return $id;
 }
-/* Renvoit l'id le plus grand parmi ceux des questionnaires */
+/* Renvoie l'id le plus grand parmi ceux des questionnaires */
 function getMaxIdQuestionnaire($conn) { 
     $sql = "SELECT MAX(idQuestionnaire) FROM Questionnaire";
     $max = request($conn,$sql);
@@ -260,6 +260,47 @@ function getMaxIdQuestionnaire($conn) {
     return $max;
 }
 
+
+/* Renvoie toutes les statistiques des projets sous un format json */
+function getStatsProjets($conn) {
+    $sql = "SELECT jsonResultat from Projet WHERE jsonResultat IS NOT NULL";
+    $stats = request($conn,$sql);
+    $jsonGlobal = array();
+    // Boucler dans stats pour ajouter chaque json dans jsonGlobal
+    /* Un json type a pour forme : 
+    {
+        nbFonctions:2,
+        nbLignes:4,
+        nbLignesMax:3,
+        nbLignesMin:1,
+        nbLignesMoy:2,
+        Fonctions : {
+            nomFonction1: 3,
+            nomFOnction2: 1
+        }
+    }
+    */
+    
+    $nbLignesMax = 0;
+    $nbLignesMin = PHP_INT_MAX;
+    $nbFonctions = 0;
+    $nbLignesMoy = 0;
+    $nbLignes = 0;
+    
+    foreach ($stats as $stat) {
+        $json = json_decode($stat['jsonResultat'],true);
+        $nbLignes += $json['nbLignes'];
+        $nbFonctions += $json['nbFonctions'];
+        $nbLignesMoy += $nbFonctions*$json['nbLignesMoy'];
+        if ($json['nbLignesMax'] > $nbLignesMax) {
+            $nbLignesMax = $json['nbLignesMax'];
+        }
+        if ($json['nbLignesMin'] < $nbLignesMin) {
+            $nbLignesMin = $json['nbLignesMin'];
+        }
+    }
+    $nbLignesMoy = $nbLignesMoy/$nbFonctions;
+}
 
 
 
