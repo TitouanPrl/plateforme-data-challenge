@@ -3,7 +3,10 @@
     $idUser=$_GET['user'];
     }
  ?>
-
+<?php 
+    $_SESSION["idUser"] = $idUser;
+    var_dump($_SESSION["idUser"]);
+    ?>
 <main>
     <?php 
     /* On inclut les fonctions de manipulation de la BDD */
@@ -18,7 +21,7 @@
       <div id="inscription">
         <h2>Profil utilisateur</h2>
 
-        <form  method="POST">
+        <form action="VerifForm.php" method="POST">
           <div id="form">
             <div id="formG">
               <fieldset>

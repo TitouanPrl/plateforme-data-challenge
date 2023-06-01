@@ -548,12 +548,12 @@ function deleteConversation($conn,$idConversation) {
 
 
 //MODIFIER LES DONNÉES
-function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$mdp,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$mdp,'ADMIN') WHERE idUser = $idUser";
+function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp,$idUser) {
+    $sql = "UPDATE Utilisateur SET (nom,prenom,numTel,email,ville,mdp,fonction) = ($nom,$prenom,,$numTel,$email,$ville,$mdp,'ADMIN') WHERE idUser = $idUser";
     send($conn,$sql);
 }
-function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,$idUser) {
-    $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
+function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,$idUser) {
+    $sql = "UPDATE Utilisateur SET (nom,prenom,entreprise,numTel,email,ville,mdp,dateD,fonction)=($nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,'GESTION') WHERE idUser = $idUser";
     send($conn,$sql);
 }
 function modifyEtudiant($conn,$nom,$prenom,$numTel,$email,$mdp,$nivEtude,$ecole,$ville,$idUser) {
