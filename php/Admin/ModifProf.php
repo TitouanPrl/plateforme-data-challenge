@@ -1,3 +1,4 @@
+<?php session_start()?>
 <?php require '../Integrations/headerVanilla.php'; ?>
 <?php if (isset($_GET['user'])) {
     $idUser=$_GET['user'];
@@ -50,16 +51,16 @@
               </div>
 
             <div id="formD">
-              <fieldset id="nivEtu">
+              <fieldset id="nivEtude">
                 <legend> Degré d'étude :</legend>
                 <select name="nivEtude" id="nivEtude" >
                   <option value=""> <?php echo ($user[0]['nivEtude']); ?></option>
-                  <option value="L1">1ère année de Licence</option>
-                  <option value="L2">2ème année de Licence</option>
-                  <option value="L3">3ème année de Licence</option>
-                  <option value="M1">1ère année de Master</option>
-                  <option value="M2">2ème année de Master</option>
-                  <option value="D">Doctorat</option>
+                  <option value="1ère année de Licence">1ère année de Licence</option>
+                  <option value="2ème année de Licence">2ème année de Licence</option>
+                  <option value="3ème année de Licence">3ème année de Licence</option>
+                  <option value="1ère année de Master">1ère année de Master</option>
+                  <option value="2ème année de Master">2ème année de Master</option>
+                  <option value="Doctorat">Doctorat</option>
                 </select>
                 <br>
               </fieldset>
@@ -82,9 +83,11 @@
               <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
             </div>
           </div>
+          <input id="modif" name="modif" type="hidden" value="true">
         </form>
       </div>
     </article>
+    
   </main>
 
   <?php
