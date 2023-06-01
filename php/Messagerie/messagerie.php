@@ -1,10 +1,28 @@
 
-<?php require '../Integrations/headerVanilla.php'; 
+<?php 
+
+session_start();
+
+
+/* On choisit le header en fonction de la fonction de l'utilisateur */
+if ($_SESSION['infoUser']["fonction"] == "ADMIN") {
+    require '../Integrations/headerAdmin.php'; 
+}
+
+else if ($_SESSION['infoUser']['fonction'] == "GESTION") {
+    require '../Integrations/headerGestion.php'; 
+}
+
+else if ($_SESSION['infoUser']['fonction'] == "USER") {
+    require '../Integrations/headerEtudiant.php'; 
+}
+
+require_once "../../bdd/fonctionsBDD.php";
 if (!connect()) {
     die('Erreur de connexion à la base de données');
 }
 
-$_SESSION["idUser"] =1;
+$_SESSION["idUser"] = 1;
 
 function aff($variable) {
     echo '<pre style="color: black;">';
@@ -30,6 +48,8 @@ $users = getAllUtilisateurs($conn);
                         <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION["idUser"]; ?>">
                         <?php ?>
                         <input type="hidden" name="conv" id="conv" value="NULL">
+                        <input type="hidden" name="idConv" id="idConv" value="NULL">
+
                     </div>
 
                     <div class="Utilisateur" id =Utilisateur>
@@ -58,6 +78,7 @@ $users = getAllUtilisateurs($conn);
 
                     <input type="button" id="envoi" value="" onclick="message()" hidden>
                     <div class="messages" id="messages">
+                        <h3 style="color:white;" id="currentConv" value=""></h3>
                         <!-- Les messages -->
                         <input type="text" name="barreEnvoie" id="barreEnvoi" value="" placeholder="Envoyer un message...">
                     </div>

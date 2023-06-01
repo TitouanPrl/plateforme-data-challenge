@@ -1,16 +1,16 @@
 <?php 
 
 /* On redirige vers la page d'accueil correspondant au type de l'utilisateur */
-switch ($_GET['type']) {
-    case 'admin':
+switch ($_GET['fonction']) {
+    case 'ADMIN':
         header('Location: Admin/accueilAdmin.php');
       break;
 
-    case 'gestion':
+    case 'GESTION':
         header('Location: Gestion/accueilGestion.php');
       break;
 
-    case 'user':
+    case 'USER':
         header('Location: User/accueilUser.php');
       break;
 

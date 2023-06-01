@@ -1,33 +1,50 @@
+function getXHR() {
+    var xhr = null;
+    if (window.XMLHttpRequest)
+       xhr = new XMLHttpRequest();
+    else if (window.ActiveXObject) {
+         try {
+           xhr = new ActiveXObject("Msxml2.XMLHTTP");
+         } catch (e) {
+           xhr = new ActiveXObject("Microsoft.XMLHTTP");
+         }
+    } else {
+       alert("Votre navigateur ne supporte pas AJAX");
+       xhr = false;
+    }
+    return xhr;
+  }
+
 
 /* ================================== *
 *           CREATION EQUIPE           *
 * =================================== */
 
 function CreateTeam(nom_prenom_cap) {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
     /* On récupère le nom de l'équipe et celui du challenge */
-    var nomTeam = document.getElementById("nom_equipe").innerText;
-    var challenge = document.getElementById("nom_challenge").innerText;
+    let nomTeam = document.getElementById("nom_equipe").innerText;
+    let challenge = document.getElementById("nom_challenge").innerText;
 
     /* Var deuxième user */
-    var membre2 = document.getElementById("participant2").value;
-    var idMembre2 = document.getElementById("participant2").name;
+    let membre2 = document.getElementById("participant2").value;
+    let idMembre2 = document.getElementById("participant2").dataID;
 
     /* Var troisième user */
-    var membre3 = document.getElementById("participant3").value;
-    var idMembre3 = document.getElementById("participant3").name;
+    let membre3 = document.getElementById("participant3").value;
+    let idMembre3 = document.getElementById("participant3").dataID;
 
     console.log(nomTeam);
     console.log(challenge);
+
+    let myTeam = document.getElementById("monEquipe");
+    let formEquipe = document.getElementById("creer_equipe");
 
     xhr.onreadystatechange = function () {
 
         /* On ajoute le capitaine à l'équipe dans l'affichage et on cache le form de création d'équipe */
         if (xhr.readyState == 4 && xhr.status == 200) {
-            let myTeam = document.getElementById("monEquipe");
-            let formEquipe = document.getElementById("creer_equipe");
-
             /* === On crée les lignes à ajouter et leurs différents éléments === */
             /* === CAPITAINE === */
             let newLine1 = document.createElement("div");
@@ -103,34 +120,41 @@ function CreateTeam(nom_prenom_cap) {
 * =================================== */
 
 function addMemberTeam() {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
-    var membre = document.getElementById("participant").value;
-    var idMembre = document.getElementById("participant").name;
+    let membre = document.getElementById("participant").value;
+    let idMembre = document.getElementById("participant").dataID;
 
     console.log(membre);
     console.log(idMembre);
 
+    let myTeam = document.getElementById("monEquipe");
+    let listInscrits = document.getElementById("liste_participants");
+    let memberToDelete = document.getElementsByName(idMembre);
+
+    console.log(myTeam);
+    console.log(listInscrits);
+    console.log(memberToDelete);
+
+    /* === On crée la ligne à ajouter et ses différents éléments === */
+    let newLine = document.createElement("div");
+    newLine.class = "ligne_equipe";
+    
+    /* On récupère le compteur du nb d'équipiers */
+    compteur = parseInt(myTeam.lastChild.id);
+    newLine.id = compteur + 1;
+    newLine.onclick = "supprMemberTeam(" + compteur + 1 + ")"
+
+    /* Nom Prénom */
+    let nom = document.createElement("span");
+    nom.class = "nom_teamMember";
+    nom.id = idMembre;
+    nom.innerText = membre;
+
+
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var myTeam = document.getElementById("monEquipe");
-            let listInscrits = document.getElementById("liste_participants");
-            let memberToDelete = document.getElementsByName(idMembre);
-
-            /* === On crée la ligne à ajouter et ses différents éléments === */
-            let newLine = document.createElement("div");
-            newLine.class = "ligne_equipe";
-            /* On récupère le compteur du nb d'équipiers */
-            compteur = parseInt(myTeam.lastChild.id);
-            newLine.id = compteur + 1;
-            newLine.onclick = "supprMemberTeam(" + compteur + 1 + ")"
-
-            /* Nom Prénom */
-            let nom = document.createElement("span");
-            nom.class = "nom_teamMember";
-            nom.id = idMembre;
-            nom.innerText = membre;
 
             /* On insère les éléments dans la ligne */
             newLine.appendChild(nom);
@@ -167,21 +191,22 @@ function addMemberTeam() {
 * =================================== */
 
 function supprMemberTeam(nb) {
-    var xhr = getXHR();
+    let xhr = getXHR();
 
-    var membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
-    var idMembre = document.getElementsByClassName("nom_teamMember")[nb].id;
+    let membre = document.getElementsByClassName("nom_teamMember")[nb].innerText;
+    let idMembre = document.getElementsByClassName("nom_teamMember")[nb].id;
 
     console.log(membre);
     console.log(idMembre);
 
+    let myTeam = document.getElementById("monEquipe");
+    let listInscrits = document.getElementById("liste_participants");
+    let memberToDelete = document.getElementsByClassName("ligne_equipe")[nb];
+
+
     xhr.onreadystatechange = function () {
 
         if (xhr.readyState == 4 && xhr.status == 200) {
-            var myTeam = document.getElementById("monEquipe");
-            let listInscrits = document.getElementById("liste_participants");
-            let memberToDelete = document.getElementsByClassName("ligne_equipe")[nb];
-
             /* On crée la ligne à ajouter et ses différents éléments */
             let newOption = document.createElement("option");
             newOption.value = membre;

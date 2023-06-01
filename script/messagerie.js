@@ -111,7 +111,7 @@ function nouvelleConv() {
                         let node = document.createElement("div");
                         let textnode = document.createTextNode(ajout);
                         node.appendChild(textnode);
-
+                        console.log(idConv);
                         //quand on séléctionnera la conv en cliquant
                         node.setAttribute("onclick", "afficheConv('"+idConv+"')");
                         node.setAttribute("id", idConv);
@@ -205,9 +205,11 @@ function afficheConv(idConv) {
 
     async function asynNomPrenom() {
         try {
+
             //on récupère la variable depuis la promesse
             let corresp = await convTOids(idConv);
             let expediteur = document.getElementById('expediteur').value;
+            document.getElementById('idConv').value = idConv;
             corresp = corresp.split('|');  //de la forme [id1,id2] depuis l'id de la conversation
 
             // on définit le destinataire dans 'conv'
@@ -303,7 +305,8 @@ function del(that) {
 
     xhttp.onreadystatechange = function () {
         if(this.readyState == 4 && this.status == 200){
-            afficheConv(document.getElementById('conv').value);
+            let idConv = document.getElementById('idConv').value;
+            afficheConv(idConv);
         }
     }
 

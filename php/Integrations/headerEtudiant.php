@@ -2,7 +2,7 @@
 session_start();
 
 /* On vérifie qu'un mdp a bien été rentré (évite qu'on dodge la page de connexion) */
-if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) {
+if (!isset($_SESSION["login"])) {
     header('Location:../Connexion/connexionInscription.php?message=1');
     exit();
 }
@@ -19,6 +19,10 @@ if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) 
     <title>IA Pau</title>
     <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Sonsie+One" rel="stylesheet" />
     <link rel="stylesheet" href="../../css/style.css" />
+    <link rel="stylesheet" href="../../css/boutons.css" />
+    <link rel="stylesheet" href="../../css/form.css" />
+    <link rel="stylesheet" href="../../css/messagerie.css" />
+    <link rel="stylesheet" href="../../css/cartes.css" />
     <link rel="shortcut icon" type="image/png" href="../../img/logo_iaPau.png">
     <script src="../../script/script.js"></script>
     <script src="../../script/gestionEquipe.js"></script>
@@ -40,6 +44,7 @@ if (!isset($_SESSION["login"]) ||($_SESSION['infoUser']['fonction'] != "USER")) 
                 <a href="equipe.php">Mon équipe</a>
                 <a href="mesChallenges.php">Mes challenges</a>
                 <a href="../Analyseur/accueilAnalyseur.php">Analyseur de code</a>
+                <a href="../Messagerie/messagerie.php">Messagerie</a>
                 <?php
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
                 if (isset($_SESSION['infoTeam'])) {

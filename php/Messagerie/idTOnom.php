@@ -12,7 +12,7 @@
     $id = $_POST["id"];
 
     $nomPrenom = getUtilisateurById($conn,$id);
-    $nomPrenom = $nomPrenom[0]["prenom"] . " " . $nomPrenom[0]["nom"];  // de la forme "nom prenom"
+    $nomPrenom = $nomPrenom[0]["nom"] . " " . $nomPrenom[0]["prenom"];  // de la forme "nom prenom"
 
     echo $nomPrenom;
 

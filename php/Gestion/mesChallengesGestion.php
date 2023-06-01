@@ -27,7 +27,7 @@ connect();
 
             foreach ($_SESSION['inscriptions'] as $current) {
                 /* On récupère les infos liées à l'événement */
-                $infos = getChallengeByID($current);
+                $infos = getChallengeByID($conn, $current);
 
                 echo ('<a href="equipesEtProjets.php.php?challenge=' . $current . '">
                           <div class="challenge">

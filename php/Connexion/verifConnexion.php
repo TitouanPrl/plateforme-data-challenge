@@ -47,10 +47,10 @@ else {
       $_SESSION['ID'] = $user['idUser'];
 
       /* On initialise les variables de session contenant les données de l'utilisateur */
-      require_once("initVarSessions.php");
+      require_once("initVarSession.php");
 
       /* On redirige vers l'accueil correspondant au type de l'utilisateur */
-      header('Location: ../redirectionAccueil.php?type=' . $user['type']); 
+      header('Location: ../redirectionAccueil.php?fonction=' . $user['fonction']); 
 
       exit();
     }

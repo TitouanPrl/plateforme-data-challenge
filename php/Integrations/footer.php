@@ -1,7 +1,7 @@
 
 
 <footer>
-    <div class="row" style="margin-top:-250px;">
+    <div class="montagnes" style="margin-top:-250px;">
         <div>
           <svg id="" preserveAspectRatio="xMidYMax meet" class="svg-separator sep5" viewBox="0 0 1600 200" style="display: block;" data-height="200">
           <polygon class="" style="fill: rgb(14,135,105);" points="1488,134 1304,100 1068,152 909.935,92.044 672,198 364,142 242,32 -4,95 -4,204 1604,204 1604,0 "></polygon> 
@@ -11,6 +11,28 @@
         </div>
     </div>
     <div style="display:flex; flex-direction:column; align-items:center; background-color:var(--vert);height:150px;justify-content:flex-end;">
-        <p class="copyright">©2023. Tous droits réservés.</p>
+        <div style="display:flex;flex-direction:row;">
+            <p class="copyright" id="easteregg" onclick="">©</p>
+            <p class="copyright">2023. Tous droits réservés.</p>
+        </div>        
+        <img class="easteregg" src="../../img/requin.gif">
     </div>
  </footer>
+
+ <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        const texte = document.querySelector('#easteregg');
+        const image = document.querySelector('.easteregg');
+
+        // Au clic sur le texte, on affiche l'image et démarrer l'animation
+        texte.addEventListener('click', function() {
+            image.style.transform = 'translateX(-1900vw)';
+            
+            // Attendre 2 secondes avant de masquer l'image
+            setTimeout(function() {
+                image.style.display = 'none';
+                image.style.transform = 'translateX(0)';
+            }, 1000);
+        });
+    });
+</script>
