@@ -1,4 +1,5 @@
-<?php 
+
+<?php
 session_start();
 
 require '../../bdd/fonctionsBDD.php';
@@ -16,7 +17,9 @@ require '../Integrations/headerVanilla.php';
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
     <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+
     <link rel="stylesheet" href="../../css/analyseur.css" />
+
 
 </head>
 
@@ -50,6 +53,7 @@ require '../Integrations/headerVanilla.php';
         </select>
         <script src="jsAnalyseur/menuDeroulant.js"></script>
     </div>
+
 
     <!-- Affichage des résultats -->
     <div id="affichageRes">

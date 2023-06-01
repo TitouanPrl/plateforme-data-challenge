@@ -1,7 +1,7 @@
 <?php
 $servername = 'localhost';
-$username = 'chat';
-$password = 'hello';
+$username = 'user';
+$password = '1234567aA*';
 $bddname = 'SiteProjet';
 
 ?> 
