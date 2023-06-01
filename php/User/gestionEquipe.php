@@ -48,7 +48,7 @@ else {
 
 if(isset($_GET["idUser"])) {
     $idNewMember = (int)$_GET["idUser"];
-    $idTeamToAdd = getIDEquipeByIDCapitaine($conn, $_SESSION['infoUser']['idUser'])[0];
+    $idTeamToAdd = getIDEquipeByIDCapitaine($conn, $_SESSION['infoUser']['idUser'])[0]["idEquipe"];
     $teamToAdd = getEquipe($conn,$idTeamToAdd)[0];
     $infosNewMember = getUtilisateurById($conn,$idNewMember)[0];
     $liste_inscrits = getInscrits($conn, $teamToAdd['idEvenement']);
@@ -56,7 +56,7 @@ if(isset($_GET["idUser"])) {
 
     /* on vérifie que le membre à ajouter est bien inscrit au projet */
     foreach($liste_inscrits as $current) {
-        if($idUser == $current) {
+        if($idNewMember == (int)$current["idUser"]) {
             $inscrit = true;
         }
     }
@@ -88,10 +88,9 @@ $idCap = (int)$_SESSION['infoUser']['idUser'];
 * =================================== */
 
 echo("ENTREE");
-var_dump($_SESSION['infoUser']['idEquipe']);
-var_dump($idCap);
-
-var_dump((int)getIDEquipeByIDCapitaine($conn, $idCap)[0]["idEquipe"]);
+var_dump(isset($_SESSION['infoUser']['idEquipe']));
+var_dump((!isset($infosNewMember['idEquipe'])));
+var_dump($inscrit);
 
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
@@ -122,7 +121,7 @@ if (($type == 'ajout') && (!isset($_SESSION['infoUser']['idEquipe']))) {
 /* On vérifie que le capitaine a une équipe, et que le membre n'en a pas mais qu'il est bien inscrit au challenge */
 else if (($type == 'ajout') && (isset($_SESSION['infoUser']['idEquipe'])) && (!isset($infosNewMember['idEquipe'])) && $inscrit) {
     echo("ENTREE AJOUT");
-    $idEquipe = (int)getIDEquipeByIDCapitaine($conn, $idCap)[0];
+    $idEquipe = (int)getIDEquipeByIDCapitaine($conn, $idCap)[0]["idEquipe"];
     addMembreEquipe($conn,$idEquipe,$idNewMember);
 
     /* On met à jour les membres de l'équipe en session */
