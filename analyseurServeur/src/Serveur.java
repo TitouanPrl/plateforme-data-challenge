@@ -12,8 +12,6 @@ import java.net.InetSocketAddress;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.List;
 import java.util.Map;
-// import java.util.ArrayList;
-// import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
@@ -28,8 +26,8 @@ public class Serveur {
     private static final Logger LOGGER = Logger.getLogger( Serveur.class.getName() );
     private static final String SERVEUR = "localhost"; // url de base du service
     private static final int PORT = 8001; // port serveur
-    private static final String URL = "/analyse-de-code"; // url de base du service
-    // liste des chemins des fichiers envoyés par le client
+    private static final String URL = "/projet/php"; // url de base du service
+    // Dernier code envoyé par le client
     private static String dernierCode; 
 
     // boucle principale qui lance le serveur sur le port 8001, à l'url test

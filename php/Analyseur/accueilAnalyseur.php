@@ -11,6 +11,7 @@ require '../Connexion/initVarSession.php';
 // require_once 'initVarChallenges.php'
 ?>
 
+
 <br><br><br><br><br><br><br>
 
 
@@ -28,10 +29,11 @@ require '../Connexion/initVarSession.php';
 <div class="bordure"></div>
 <div class=corps">
 <head>
-    <title>Page PHP</title>
+    <title>Analyse de code</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@3.7.1"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@1.1.0"></script>
+
 </head>
 <!-- MAIN CONTENT -->
 
@@ -39,19 +41,18 @@ require '../Connexion/initVarSession.php';
 <body>
 
     <!-- Envoyer le fichier Python -->
-    <form id="fileForm" action="http://localhost:8001/analyse-de-code" method="post" enctype="multipart/form-data">
+    <form id="fileForm" action="http://localhost:8001/projet/php" method="post">
         <input type="file" name="pythonFile">
         <input type="submit" value="Envoyer le fichier">
     </form>
     <!-- bouton pour afficher les statistiques globales -->
 
     <!-- Envoyer une liste de mots -->
-    <form id="wordForm" action="http://localhost:8001/analyse-de-code" method="post">
+    <form id="wordForm" action="http://localhost:8001/projet/php" method="post">
         <label for="wordsInput" style="font-size:small;">Liste de mots (séparés par des virgules et sans espace après les virgules). Attention la case est prise en compte.</label><br>
         <input type="text" id="wordsInput" name="mots"><br>
         <input type="submit" value="Envoyer la liste de mots">
     </form>
-
 
     <script src="jsAnalyseur/submitRequest.js"></script>
     <script src="jsAnalyseur/drawCharts.js"></script>
@@ -60,8 +61,9 @@ require '../Connexion/initVarSession.php';
         <option value="pie">Pie</option>
         <option value="bar">Bar</option>
         <option value="horizontalBar">Occurrences des mots</option>
-        <!-- faire en sorte de ne pas enregistrer les demandes précédentes
+        <!-- faire en sorte de ne pas enregistrer les demandes précédentes -->
     </select>
+    <script src="jsAnalyseur/menuDeroulant.js"></script>
 
 
     <!-- Affichage des résultats -->
@@ -76,6 +78,10 @@ require '../Connexion/initVarSession.php';
         <canvas id="wordChartContainer"></canvas>
     </div>
 
-    <script src="jsAnalyseur/menuDeroulant.js"></script>
+    
 </body>
+
+
+
+
 </div>
