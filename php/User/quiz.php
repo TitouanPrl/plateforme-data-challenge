@@ -16,6 +16,8 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
 <!-- MAIN CONTENT -->
 
 <main>
+    <div class="bordure"></div>
+    
     <div class="corps">
 
         <?php
