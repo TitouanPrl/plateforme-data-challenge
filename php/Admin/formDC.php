@@ -1,4 +1,7 @@
 <?php require '../Integrations/headerVanilla.php'; ?>
+
+
+
 <div class="bordure"></div>
 <div class="corps">
   <div class="back-button">
@@ -41,7 +44,7 @@
             <div id="formD">
               <fieldset>
                   <legend>Commentaires</legend>
-                  <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>">Ajouter un commentaire </textarea>
+                  <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>"> </textarea>
               </fieldset>
               <fieldset>
                   <legend>Déposer un document</legend>
@@ -54,9 +57,9 @@
           </div>
         </form>
       </div>
-    </article>
-  </div>
-</main>
+    </div>
+  </main>
+</div>
 
 
 <?php require '../Integrations/footer.php'; ?>
