@@ -42,8 +42,6 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
                 }
                 echo('</datalist>');?>
 
-    <button id="creer_quiz" onclick="createQuiz()">Créer le questionnaire </button>
-
     <p class="titre_input"> Date de début </p>
     <input type="date" id="date_deb">
 
@@ -56,14 +54,9 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
         echo ('<p class="titre_input"> Question ' . $i . '</p>
     <input type="text" id="question'.$i.'" required>');
     } ?>
-            <?php
-            /* Questions */
-            for ($i = 1; $i < 6; $i++) {
-                echo ('<p class="titre_input"> Question ' . $i . '</p>
-            <input type="text" id="question' . $i . '" required>');
-            } ?>
 
-            <button class="boutonForm" style="margin-left:25%;" type="button" onclick="createQuiz()">Créer le questionnaire </button>
+<button class="boutonForm" style="margin-left:25%;" type="button" onclick="createQuiz()">Créer le questionnaire </button>
+    
         
 
     
@@ -92,9 +85,10 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
                 $listeQuiz = getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']);
 
                 foreach ($listeQuiz as $currentQuiz) {
+                    var_dump((int)$currentQuiz['idQuestionnaire']);
                     echo('<div classe="ligne_quiz>
                         <a href="detailsQuiz.php?quiz='.(int)$currentQuiz['idQuestionnaire']. '">
-                            <span class="nom_quiz" id="' . $j . '> Questionnaire ' . $j . '</span>
+                            <span class="nom_quiz" id="' . $j . '"> Questionnaire ' . $j . '</span>
                         </a>
                         <img class="delete_button" src="../../img/croix.png" onclick="supprQuiz('. $j .', ' . $currentQuiz['idQuestionnaire'] . ')" alt="I am an image">
                     </div>');

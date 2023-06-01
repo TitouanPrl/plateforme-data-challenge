@@ -21,6 +21,7 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
     <div class="corps">
 
         <?php
+            
             $quiz = getQuestionnairesOnSujet($conn, $_SESSION['infoTeam']['idEvenement']);
 
             /* Si aucun quiz n'est en ligne on l'indique */
