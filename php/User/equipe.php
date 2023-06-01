@@ -101,7 +101,7 @@ connect();
                 if ($member == $_SESSION['infoTeam']['capitaine']) {
                     echo ('<img id="logo_crown" src="../../img/logo_crown.png" alt="logo">');
                 }
-                echo ('<span class="nom_teamMember id="' . $member . '">' . getUtilisateurById($conn, $member)[0]['prenom'] . ' ' . getUtilisateurById($conn, $member)[0]['nom'] . ' </span>  
+                echo ('<span class="nom_teamMember" id="' . $member . '">' . getUtilisateurById($conn, $member)[0]['prenom'] . ' ' . getUtilisateurById($conn, $member)[0]['nom'] . ' </span>  
                         </div>');
                 $i++;
             }

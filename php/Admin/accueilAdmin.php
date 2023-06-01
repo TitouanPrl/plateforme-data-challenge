@@ -112,7 +112,7 @@ while($i< count($_FILES['userfile'])){
                                     </a>
                                 </div>
                             </div>
-                            <div class="sujets">
+                            <div class="sujetsAdm">
                                 <?php
                                 $sujet = getSujetByEvenement($conn, $evt['idEvenement']);
 

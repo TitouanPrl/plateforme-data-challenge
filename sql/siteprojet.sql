@@ -125,6 +125,8 @@ INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,foncti
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",0202020202,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","bijou","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",0606060608,"Laboratoire de Genève","tty@gmail.com","quoi","GESTION");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Pradal","Titouan",0782778266,"Laboratoire de Genève","pradaltito@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Jappy",0782778266,"Laboratoire de Genève","jg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",0782778266,"Laboratoire de Genève","eg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
 
 
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("CHALLENGE","Le lotus bleu","Grand prix de code de Chine");
@@ -138,8 +140,12 @@ INSERT INTO Inscription (idUser,idEvenement) VALUES (1,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (2,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (3,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (1,2);
+INSERT INTO Inscription (idUser,idEvenement) VALUES (5,2);
+INSERT INTO Inscription (idUser,idEvenement) VALUES (6,2);
 
 INSERT INTO Equipe (nom,capitaine) VALUES ("les loulous",1);
+INSERT INTO Equipe (nom,capitaine) VALUES ("les winner",2);
+INSERT INTO Equipe (nom,capitaine) VALUES ("croak",3);
 
 UPDATE Utilisateur SET idEquipe = 1 WHERE idUser=1;
 
