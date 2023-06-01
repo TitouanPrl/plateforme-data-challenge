@@ -1,4 +1,4 @@
-// Envoyer le fichier Python
+// Fichier Python
 $("#fileForm").submit(function(e) {
     e.preventDefault();
     var formData = new FormData(this);
@@ -14,6 +14,9 @@ $("#fileForm").submit(function(e) {
             drawPieChart(data); // dessiner le graphique avec les données reçues
             drawBarChart(data); // dessiner le graphique avec les données reçues
 
+            // ajouter dans la console le type de data
+            console.log(typeof data);
+
         },
         error: function(data) {
             console.log(data);
@@ -21,7 +24,7 @@ $("#fileForm").submit(function(e) {
     });
 });
 
-// Envoyer la liste de mots
+// Liste de mots
 $("#wordForm").submit(function(e) {
     e.preventDefault();
     // enlever le dernier caractère de la liste de mots (qui est un saut de ligne inutile qui fait tout boguer)

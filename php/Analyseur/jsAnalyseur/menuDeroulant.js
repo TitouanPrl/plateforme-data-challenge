@@ -1,5 +1,5 @@
 // Gestion du menu déroulant pour sélectionner les graphiques
-$("#charSelect").change(function() {
+$("#chartSelect").change(function() {
     // valeur du menu déroulant
     var selectedChart = $(this).val();
     // cacher tous les graphiques
