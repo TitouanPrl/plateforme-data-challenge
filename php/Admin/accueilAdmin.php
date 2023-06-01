@@ -5,27 +5,6 @@
 <?php include('./php/bddData.php');?>
 <?php connect()?>
 
-<body>
-<!-- fonction qui permet de récupérer les fichiers télécharger dans un répertoire -->
-<?php
-$stock = '../../fichierstelecharger/';
-$i=0;
-while($i< count($_FILES['userfile'])){
-    if($_FILES['userfile']['tmp_name'][$i]!=""){
-        if (move_uploaded_file($_FILES['userfile']['tmp_name'][$i], $stock.$_FILES['userfile']['name'][$i]))
-        {
-            echo '<p id="msgfichier"> Le fichier '.$_FILES['userfile']['name'][$i].' a été téléchargé avec succès dans '.$stock.'</p>';
-        }
-        else{
-            echo"Le fichier n'a pas pu être télécharger ";
-        }
-    }
-    $i+=1;
-}
-?>
-
-</body>
-
 <section class="tab" id="tabUser">
 
     <div>
@@ -47,7 +26,7 @@ while($i< count($_FILES['userfile'])){
     <!--  -->    
     <tr class="ligne">
         <?php
-                echo ('<td>'.'<a href="modif.php?user=' . $current['idUser'] . '">
+                echo ('<td>'.'<a href="ModifProf.php?user=' . $current['idUser'] . '">
                     <div class="infosUser">
                         <span class="nomU"> ' . $current['nom'] . ' </span>
                         <span class="prenomU"> ' . $current['prenom'] . ' </span>
@@ -150,8 +129,7 @@ while($i< count($_FILES['userfile'])){
             <?php endforeach ?>
             </table>
         </table>
-
-        </section>
+</section>
 
 
 

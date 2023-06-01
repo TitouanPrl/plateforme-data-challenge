@@ -21,7 +21,7 @@
 
             <fieldset>
                 <legend>Déposer un document</legend>
-                <form method="post" enctype="multipart/form-data" action="accueilAdmin.php">
+                <form method="post" enctype="multipart/form-data" action="VerifFormDC.php">
                   <p>
                     Fichier 1 : <input type="file" name="userfile[]"><br>
                     Fichier 2 : <input type="file" name="userfile[]"><br>

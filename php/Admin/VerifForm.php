@@ -85,7 +85,7 @@ else{
         }
         else{
             //ajout du compte admin dans la bdd
-            addAdmin($conn,$nom,$prenom,$numTel,$email,md5('123'));
+            addAdmin($conn,$nom,$prenom,$tel,$mail,$ville,md5('123'));
             /* On redirige vers l'accueil avec connexion */
             header('Location:../Admin/accueilAdmin.php');
         }
@@ -104,7 +104,7 @@ else{
 
         else{
         $dateDebut = date('d-m-y');
-        addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,md5('123'),$dateDebut,$dateFin);
+        addGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,md5('123'),$dateDebut,$dateFin);
         /* On redirige vers l'accueil avec connexion */
         header('Location:../Admin/accueilAdmin.php');
         }
@@ -122,7 +122,7 @@ else{
         }
 
         else{
-            addEtudiant($conn,$nom,$prenom,$numTel,$email,md5('123'),$nivEtude,$ecole,$ville);
+            addEtudiant($conn,$nom,$prenom,$tel,$mail,md5('123'),$nivEtude,$ecole,$ville);
             /* On redirige vers l'accueil avec connexion */
             header('Location:../Admin/accueilAdmin.php');
         }
