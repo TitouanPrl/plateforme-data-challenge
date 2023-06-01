@@ -1,4 +1,5 @@
 <?php 
+    require '../Integrations/headerAdmin.php'; 
 
     session_start() ;
 
@@ -55,9 +56,6 @@
     </div>
   </main>
 </div>
-
-
-
 
 <?php require '../Integrations/footer.php'; ?>
 

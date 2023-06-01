@@ -1,4 +1,4 @@
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerAdmin.php';  ?>
 
 <div class="bordure"></div>
 <div class="corps">

@@ -1,4 +1,4 @@
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php require '../Integrations/headerAdmin.php'; ?>
 <?php if (isset($_GET['Sujet'])) {
     $idSujet=$_GET['Sujet'];
     }
