@@ -13,14 +13,18 @@ function getXHR() {
        xhr = false;
     }
     return xhr;
-  }
+}
 
 
 /* ================================== *
 *           CREATION EQUIPE           *
 * =================================== */
+function yes() {
+    console.log("OUI BORDEL");
+}
 
-function CreateTeam(nom_prenom_cap) {
+function createTeam(nom_prenom_cap) {
+    console.log("CREATION EQUIPE");
     var xhr = getXHR();
 
     /* On récupère le nom de l'équipe et celui du challenge */
@@ -41,70 +45,70 @@ function CreateTeam(nom_prenom_cap) {
     var myTeam = document.getElementById("monEquipe");
     var formEquipe = document.getElementById("creer_equipe");
 
-    //xhr.onreadystatechange = function () {
-//
-    //    /* On ajoute le capitaine à l'équipe dans l'affichage et on cache le form de création d'équipe */
-    //    if (xhr.readyState == 4 && xhr.status == 200) {
-    //        /* === On crée les lignes à ajouter et leurs différents éléments === */
-    //        /* === CAPITAINE === */
-    //        var newLine1 = document.createElement("div");
-    //        newLine1.class = "ligne_equipe";
-    //        newLine1.id = 0;
-//
-    //        /* Image de la couronne */
-    //        var crown = document.createElement("img");
-    //        crown.id = "logo_crown";
-    //        crown.src = "../../img/logo_crown.png";
-    //        crown.alt = "logo";
-//
-    //        /* Nom Prénom */
-    //        var nom1 = document.createElement("span");
-    //        nom1.class = "nom_teamMember";
-    //        nom1.innerText = nom_prenom_cap;
-//
-    //        /* On insère les éléments dans la ligne */
-    //        newLine1.appendChild(crown);
-    //        newLine1.appendChild(nom1);
-//
-//
-    //        /* === MEMBRE 2 === */
-    //        var newLine2 = document.createElement("div");
-    //        newLine2.id = 1;
-    //        newLine2.onclick = "supprMemberTeam(1)"
-//
-    //        /* Nom Prénom */
-    //        var nom2 = document.createElement("span");
-    //        nom2.class = "nom_teamMember";
-    //        nom2.id = idMembre2;
-    //        nom2.innerText = membre2;
-//
-    //        /* On insère les éléments dans la ligne */
-    //        newLine2.appendChild(nom2);
-//
-//
-    //        /* === MEMBRE 3 === */
-    //        var newLine3 = document.createElement("div");
-    //        newLine3.id = 2;
-    //        newLine3.onclick = "supprMemberTeam(2)"
-//
-    //        /* Nom Prénom */
-    //        var nom3 = document.createElement("span");
-    //        nom3.setAttribute("class", "nom_teamMember");
-    //        nom3.setAttribute("id", "idMembre3");
-    //        nom3.setAttribute("innerText", "membre3");
-//
-    //        /* On insère les éléments dans la ligne */
-    //        newLine3.appendChild(nom3);
-//
-    //        /* On ajoute la ligne à l'équipe et on cache la ligne de création d'équipe */
-    //        if (myTeam) {
-    //            myTeam.appendChild(newLine1);
-    //            myTeam.appendChild(newLine2);
-    //            myTeam.appendChild(newLine3);
-    //            formEquipe.style.visibility = "hidden";
-    //        }
-    //    }
-    //}
+    xhr.onreadystatechange = function () {
+
+        /* On ajoute le capitaine à l'équipe dans l'affichage et on cache le form de création d'équipe */
+        if (xhr.readyState == 4 && xhr.status == 200) {
+            /* === On crée les lignes à ajouter et leurs différents éléments === */
+            /* === CAPITAINE === */
+            var newLine1 = document.createElement("div");
+            newLine1.class = "ligne_equipe";
+            newLine1.id = 0;
+
+            /* Image de la couronne */
+            var crown = document.createElement("img");
+            crown.id = "logo_crown";
+            crown.src = "../../img/logo_crown.png";
+            crown.alt = "logo";
+
+            /* Nom Prénom */
+            var nom1 = document.createElement("span");
+            nom1.class = "nom_teamMember";
+            nom1.innerText = nom_prenom_cap;
+
+            /* On insère les éléments dans la ligne */
+            newLine1.appendChild(crown);
+            newLine1.appendChild(nom1);
+
+
+            /* === MEMBRE 2 === */
+            var newLine2 = document.createElement("div");
+            newLine2.id = 1;
+            newLine2.onclick = "supprMemberTeam(1)"
+
+            /* Nom Prénom */
+            var nom2 = document.createElement("span");
+            nom2.class = "nom_teamMember";
+            nom2.id = idMembre2;
+            nom2.innerText = membre2;
+
+            /* On insère les éléments dans la ligne */
+            newLine2.appendChild(nom2);
+
+
+            /* === MEMBRE 3 === */
+            var newLine3 = document.createElement("div");
+            newLine3.id = 2;
+            newLine3.onclick = "supprMemberTeam(2)"
+
+            /* Nom Prénom */
+            var nom3 = document.createElement("span");
+            nom3.setAttribute("class", "nom_teamMember");
+            nom3.setAttribute("id", "idMembre3");
+            nom3.setAttribute("innerText", "membre3");
+
+            /* On insère les éléments dans la ligne */
+            newLine3.appendChild(nom3);
+
+            /* On ajoute la ligne à l'équipe et on cache la ligne de création d'équipe */
+            if (myTeam) {
+                myTeam.appendChild(newLine1);
+                myTeam.appendChild(newLine2);
+                myTeam.appendChild(newLine3);
+                formEquipe.style.visibility = "hidden";
+            }
+        }
+    }
 
     /* UPDATE DES VARS SESSIONS ET DE LA BDD */
     xhr.open("POST", "gestionEquipe.php", true);

@@ -67,13 +67,14 @@ connect();
             /* Troisième membre (après le capitaine) */
             echo ('<p class="titre_input"> Membre 2 </p>
             <input type="text" id="partipant3" list="liste_participants" required>');
+            
+            $nom_prenom = $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'];
 
             echo ('
-                    <button id="creer_equipe" class="boutonForm" type="submit" onclick="createTeam(' . $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'] . ')">Créer une équipe</button>
+                    <button type="submit" id="creer_equipe" class="boutonForm" onclick="createTeam(' . $nom_prenom . ')">Créer une équipe</button>
                     </form>
                 </div>
-            </div>'
-            );
+            </div>');
         }
 
         /* ================================== *

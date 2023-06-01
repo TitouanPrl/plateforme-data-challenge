@@ -49,7 +49,7 @@ if (!isset($_SESSION["login"])) {
                 /* Si l'utilisateur est le capitaine, on affiche le lien du QCM */
                 if (isset($_SESSION['infoTeam'])) {
                     if ($_SESSION['capitaine'] == true) {
-                        echo ('<a href="quiz.php">Quiz</a>');
+                        echo ('<a href="../User/quiz.php">Quiz</a>');
                     }
                 }
                 ?>
