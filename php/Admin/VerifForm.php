@@ -129,7 +129,7 @@ if(!empty($_SESSION["idUser"])){
         else{
         $dateDebut = date('d-m-y');
             if($modif == true){
-                modifyGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,"Gestion",$dateDebut,$idUser);
+                modifyGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,"Gestion",$dateFin,$idUser);
                 $_SESSION["modif"]=false;
                 header('Location:../Admin/accueilAdmin.php');
             }

@@ -674,11 +674,11 @@ function modifyAdmin($conn,$nom,$prenom,$numTel,$email,$ville,$mdp,$idUser) {
         die('Erreur : '.$e->getMessage());
     }
 }
-function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateD,$idUser) {
+function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp,$dateF,$idUser) {
     try {
         $use = "use SiteProjet";
         $conn->exec($use);
-        $sql = "UPDATE Utilisateur SET nom=:nom,prenom=:prenom,entreprise=:entreprise,numTel=:numTel,email=:email,ville=:ville,mdp=:mdp,dateD=:dateD,fonction='GESTION' WHERE idUser = :idUser";        
+        $sql = "UPDATE Utilisateur SET nom=:nom,prenom=:prenom,entreprise=:entreprise,numTel=:numTel,email=:email,ville=:ville,mdp=:mdp,dateF=:dateF,fonction='GESTION' WHERE idUser = :idUser";        
         $stmt = $conn->prepare($sql);
         $stmt->bindParam(':nom', $nom);
         $stmt->bindParam(':prenom', $prenom);
@@ -687,7 +687,7 @@ function modifyGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,$ville,$mdp
         $stmt->bindParam(':email', $email);
         $stmt->bindParam(':ville', $ville);
         $stmt->bindParam(':mdp', $mdp);
-        $stmt->bindParam(':dateD', $dateD);
+        $stmt->bindParam(':dateF', $dateF);
         $stmt->bindParam(':idUser', $idUser);
 
         $stmt->execute();
