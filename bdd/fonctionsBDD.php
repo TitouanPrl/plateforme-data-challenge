@@ -88,7 +88,7 @@ function getSujetByEvenement($conn,$idEvenement) {
 
 /* Récupère l'ID d'un évent en fonction de son nom */
 function getIDByNomEvenement($conn,$nomEvenement) {
-    $sql = "SELECT idEvenement FROM Evenement WHERE libelle=$nomEvenement";
+    $sql = "SELECT idEvenement FROM Evenement WHERE libelle='$nomEvenement'";
     $idEvent = request($conn,$sql);
 
     return $idEvent;
@@ -175,7 +175,7 @@ function getQuestionnairesByID($conn, $idQuestionnaire) {
 }
 
 function getIdByNomPrenom($conn,$nom,$prenom) {   //renvoie l'id d'une personne depuis son nom/prénom
-    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom=$prenom";
+    $sql = "SELECT idUser FROM Utilisateur WHERE nom=$nom, prenom='$prenom'";
     $id = request($conn,$sql);
 
     return $id;
@@ -202,13 +202,13 @@ function getConversations($conn) {
 }
 /* Renvoie la liste des personnes inscrites à un challenge et n'ayant pas d'équipe */
 function getInscritsSansEquipe($conn, $idEvenement) {  
-    $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser = (SELECT idUser FROM Utilisateur WHERE idEquipe = NULL)";
+    $sql = "SELECT idUser FROM Inscription WHERE idEvenement=$idEvenement AND idUser IN (SELECT idUser FROM Utilisateur WHERE idEquipe IS NULL)";
     $inscrits = request($conn,$sql);
 
     return $inscrits;
 }
 
-/* Récupère la liste des challenges auxquels un utilisateur est inscrit */
+/* Récupère la liste des id des challenges auxquels un utilisateur est inscrit */
 function getEventInscrit($conn, $idUser) { 
     $sql = "SELECT idEvenement FROM Inscription WHERE idUser=$idUser";
     $events = request($conn,$sql);

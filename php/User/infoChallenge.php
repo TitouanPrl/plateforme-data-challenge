@@ -14,6 +14,7 @@ $tabSujets = getSujetByEvenement($conn, $idEvent);
 echo('<!-- MAIN CONTENT -->
 
 <main>
+<div class="bordure"></div>
 
 <div id="sujets">
 
@@ -22,7 +23,7 @@ echo('<!-- MAIN CONTENT -->
 /* Affichage des sujets disponibles */
 foreach ($tabSujets as $current) {
     echo ('  <!-- SUJETS-->
-        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
+        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '">
              <div class="sujets">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
