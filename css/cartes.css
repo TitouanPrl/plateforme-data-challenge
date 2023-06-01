@@ -5,6 +5,7 @@
     justify-content: center;
     gap: 50px;
     margin-bottom: 300px;
+    z-index: 98;
 }
 
 .card-container .card:first-child,
@@ -13,10 +14,12 @@
 }
 
 .card-container:hover .card {
+    z-index: 98;
     cursor: pointer;
     filter: grayscale(0.7);
 }
 .card-container .card {
+    z-index: 98;
     text-decoration: none;
     margin: 10px;
     width: 15%;
@@ -54,4 +57,19 @@
     color: white;
     font-size: 18px;
     padding: 7px;
+}
+
+
+#easteregg {
+    cursor: pointer;
+}
+
+/* Styles pour l'image */
+.easteregg {
+    position: fixed;
+    height: 100px;
+    width: auto;
+    bottom: 20px;
+    right: -1000px;
+    transition: transform 10s linear;
 }

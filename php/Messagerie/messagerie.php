@@ -48,6 +48,8 @@ $users = getAllUtilisateurs($conn);
                         <input type="hidden" name="expediteur" id="expediteur" value="<?php echo $_SESSION["idUser"]; ?>">
                         <?php ?>
                         <input type="hidden" name="conv" id="conv" value="NULL">
+                        <input type="hidden" name="idConv" id="idConv" value="NULL">
+
                     </div>
 
                     <div class="Utilisateur" id =Utilisateur>
@@ -76,6 +78,7 @@ $users = getAllUtilisateurs($conn);
 
                     <input type="button" id="envoi" value="" onclick="message()" hidden>
                     <div class="messages" id="messages">
+                        <h3 style="color:white;" id="currentConv" value=""></h3>
                         <!-- Les messages -->
                         <input type="text" name="barreEnvoie" id="barreEnvoi" value="" placeholder="Envoyer un message...">
                     </div>

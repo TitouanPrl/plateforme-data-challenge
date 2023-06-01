@@ -8,13 +8,16 @@ if(!empty($_SESSION["type"] )){
 else{
     $type = "etudiant";
 }
+
 ?>
+
+
 
 <?php
     require_once("../../bdd/fonctionsBDD.php");
 
     connect();
-  /* Var témoin pour savoir si les données sont valides ou non */
+  /* Var témoin pour savoir si les données d'inscription de l'utilisateur sont valides ou non */
     $valide = true;
     /* Sécurise la chaine de caractère lue, évite l'injection de code malveillant */
     function erase($donnees) {
@@ -41,8 +44,14 @@ else{
     $ville = erase($_POST['ville']);
     $tel = erase($_POST['tel']);
     $entreprise = erase ($_POST['entreprise']);
-    $dateFin = erase($_POST['dateFin']);
+    $dateFin = date('Y-m-d', strtotime(erase($_POST['dateFin'])));
+    $modif= $_POST['modif'];
+    if(!empty($modif)){
+        var_dump($modif);
+        header('location:');
+    }
     
+
 
     /* On vérifie que les var ne sont pas vides */
     if (empty($nom)
@@ -82,9 +91,8 @@ else{
             exit();
         }
         else{
-    
-            // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
-            addAdmin($conn,$nom,$prenom,$numTel,$email,md5('123'));
+            //ajout du compte admin dans la bdd
+            addAdmin($conn,$nom,$prenom,$tel,$mail,$ville,md5('123'));
             /* On redirige vers l'accueil avec connexion */
             header('Location:../Admin/accueilAdmin.php');
         }
@@ -103,7 +111,7 @@ else{
 
         else{
         $dateDebut = date('d-m-y');
-        addGestion($conn,$nom,$prenom,$entreprise,$numTel,$email,md5('123'),$dateDebut,$dateFin);
+        addGestion($conn,$nom,$prenom,$entreprise,$tel,$mail,$ville,md5('123'),$dateDebut,$dateFin);
         /* On redirige vers l'accueil avec connexion */
         header('Location:../Admin/accueilAdmin.php');
         }
@@ -121,7 +129,7 @@ else{
         }
 
         else{
-            addEtudiant($conn,$nom,$prenom,$numTel,$email,md5('123'),$nivEtude,$ecole,$ville);
+            addEtudiant($conn,$nom,$prenom,$tel,$mail,md5('123'),$nivEtude,$ecole,$ville);
             /* On redirige vers l'accueil avec connexion */
             header('Location:../Admin/accueilAdmin.php');
         }

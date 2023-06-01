@@ -9,8 +9,8 @@ CREATE TABLE Evenement (
     kind VARCHAR(30), /* CHALLENGE OU BATTLE */
     libelle VARCHAR(30),
     descrip VARCHAR(1024),
-    dateD DATETIME,
-    dateF DATETIME
+    dateD DATE,
+    dateF DATE
 );
 
 CREATE TABLE Equipe(
@@ -32,8 +32,8 @@ CREATE TABLE Utilisateur(
     ecole VARCHAR(64),
     ville VARCHAR(64),
     mdp VARCHAR(256),
-    dateD DATETIME,
-    dateF DATETIME,
+    dateD DATE,
+    dateF DATE,
     idEquipe INTEGER,
     fonction VARCHAR(16),   /* ADMIN/GESTION/USER */
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe)
@@ -88,6 +88,7 @@ CREATE TABLE Projet (
     idEquipe INTEGER,
     idSujet INTEGER,
     lienCode VARCHAR(250),
+    jsonstatistic JSON,
     FOREIGN KEY (idEquipe) REFERENCES Equipe (idEquipe) on delete cascade,
     FOREIGN KEY (idSujet) REFERENCES Sujet (idSujet) on delete cascade
 );

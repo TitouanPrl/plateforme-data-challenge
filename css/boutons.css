@@ -1,4 +1,6 @@
 .boutonForm,
+.ajoutUser,
+.ajoutDC,
 .boutonDeco {
     font-size: 20px;
     padding: 10px;
@@ -12,10 +14,21 @@
     align-self: center;
 }
 .boutonForm:hover,
+.ajoutUser:hover,
+.ajoutDC:hover,
 .boutonDeco:hover {
     scale: 101%;
     opacity: 0.9;
 } 
+
+.ajoutUser,
+.ajoutDC {
+	margin-top: 0;
+	width: 15%;
+	align-self: flex-end;
+	margin-bottom: 30px;
+	float:right;
+}
 
 .boutonDeco {
     margin-right: 80px;

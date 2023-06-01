@@ -1,13 +1,12 @@
-<?php session_start() ?>
-<?php require '../Integrations/headerVanilla.php'; ?>
+<?php 
 
+    session_start() ;
 
-<?php
-  $admin = $_POST['admin'];
-  $gestionnaire = $_POST['gestionnaire'];
-  $etudiant = $_POST['etudiant'];
-  $valider= $_POST['valider'];
-  if(isset($valider)){
+    $admin = $_POST['admin'];
+    $gestionnaire = $_POST['gestionnaire'];
+    $etudiant = $_POST['etudiant'];
+    $valider= $_POST['valider'];
+    if(isset($valider)){
     if(!empty($admin) && $admin != ""){
         $_SESSION["type"]=$admin;
         
@@ -19,28 +18,49 @@
         $_SESSION["type"] = $etudiant;
     }
     header('location:formInsc.php');
-  }
-  echo($_SESSION["type"]);
+    }
+
+
+    require '../Integrations/headerVanilla.php'; 
 ?>
-<h2>Gestion des utilisateurs</h2>
 
-<main>
-    <article>
+
+
+
+<div class="bordure"></div>
+<div class="corps">
+  <div class="back-button">
+    <a href="accueilAdmin.php" class="fleche"></a>
+  </div>
+  <main>
+    <div style="display:flex; justify-content:center;align-items:center;">
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription">
-        <h2>Inscription utilisateur</h2>
+        <div id="inscriptionU">
+            <h2 class="titreForm">Inscription utilisateur</h2>
 
-        <form method="POST">
-        <div id="formfunction">
-            <fieldset>
-                <legend>
-                    Quel type de compte souhaitez vous ajouter ?
-                </legend>
-                    Administrateur : <input type="radio" id="admin" name="admin" value="administrateur"> 
-                    Gestionnaire : <input type="radio" id="type" name="gestionnaire" value="gestionnaire">
-                    Étudiant :<input type="radio" id="type" name="etudiant" value= "etudiant"><br>
-                    <input type="submit" id="valider" name="valider" value='valider'>
-          </fieldset>
+            <form method="POST">
+                <div id="formfunction">
+                    <fieldset>
+                        <legend>
+                            Quel type de compte souhaitez-vous ajouter ?
+                        </legend>
+                        <div class="choixType">Administrateur  <input type="radio" id="admin" name="admin" value="administrateur"> </div>
+                        <div class="choixType">Gestionnaire  <input type="radio" id="gestionnaire" name="gestionnaire" value="gestionnaire"></div>
+                        <div class="choixType">Étudiant  <input type="radio" id="etudiant" name="etudiant" value= "etudiant"></div><br>
+                        <input type="submit" class="boutonForm" id="valider" name="valider" value='Valider'>
+                </fieldset>
+                </div>
+            </form>
         </div>
-</main>
+    </div>
+  </main>
+</div>
+
+
+
+
+<?php require '../Integrations/footer.php'; ?>
+
+
+
 
