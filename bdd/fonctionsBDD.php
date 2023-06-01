@@ -570,7 +570,10 @@ function inscription($conn,$idUser,$idEvenement) {
         die('Erreur : '.$e->getMessage());
     }}
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> 1cc9d218eba1e45bd8f5e07f39dd1e1f7328a415
 // fonction qui permet d'ajouter un jsonrésultat à un projet 
 function addJsonResultat($conn,$idProjet,$jsonStatistiques) {
     try {
@@ -599,8 +602,11 @@ function addJsonResultat($conn,$idProjet,$jsonStatistiques) {
     }
 }
 
+<<<<<<< HEAD
 
 
+=======
+>>>>>>> 1cc9d218eba1e45bd8f5e07f39dd1e1f7328a415
 //SUPPRESSION DE DONNÉES
 function deleteUtilisateur($conn,$idUser) { //supprimer un utilisateur
     $sql = "DELETE FROM Utilisateur WHERE idUser = $idUser";
