@@ -1,5 +1,4 @@
 <?php session_start() ?>
-<?php require '../Integrations/headerVanilla.php'; ?>
 
 
 <?php

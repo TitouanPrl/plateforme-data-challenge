@@ -7,7 +7,6 @@ connect();
 
 /* On récupère l'ID de l'utilisateur sélectionné */
 $idUser = $_GET['idUser'];
-
 /* On récupère l'utilisateur associé à cet ID */
 $User = getAllUtilisateurs($conn);
 /* On affiche le numéro de l'utilisateur */

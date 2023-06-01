@@ -10,11 +10,13 @@ else{
 }
 ?>
 
+
+
 <?php
     require_once("../../bdd/fonctionsBDD.php");
 
     connect();
-  /* Var témoin pour savoir si les données sont valides ou non */
+  /* Var témoin pour savoir si les données d'inscription de l'utilisateur sont valides ou non */
     $valide = true;
     /* Sécurise la chaine de caractère lue, évite l'injection de code malveillant */
     function erase($donnees) {
@@ -82,8 +84,7 @@ else{
             exit();
         }
         else{
-    
-            // AJOUTER LA FCT POUR AJOUTER UN USER DANS LA BDD
+            //ajout du compte admin dans la bdd
             addAdmin($conn,$nom,$prenom,$numTel,$email,md5('123'));
             /* On redirige vers l'accueil avec connexion */
             header('Location:../Admin/accueilAdmin.php');
