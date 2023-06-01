@@ -14,8 +14,8 @@ import java.nio.file.Paths;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.List;
 import java.util.Map;
-import java.util.ArrayList;
-import java.util.UUID;
+// import java.util.ArrayList;
+// import java.util.UUID;
 import java.util.concurrent.Executors;
 import java.util.logging.Logger;
 
@@ -32,7 +32,7 @@ public class Serveur {
     private static final int PORT = 8001; // port serveur
     private static final String URL = "/projet/php"; // url de base du service
     // liste des chemins des fichiers envoyés par le client
-    private static List<String> uploadedFiles = new ArrayList<>(); 
+    private static String dernierCode; 
 
     // boucle principale qui lance le serveur sur le port 8001, à l'url test
     public static void main(String[] args) {
@@ -89,14 +89,10 @@ public class Serveur {
                 if (isFileRequest(requestBody)) {
                     // Corps de requête est un fichier
                     String pythonCode = requestBody;
-                    LOGGER.info("Fichier reçu : " + pythonCode);
-                    // Enregistrer le fichier sur le serveur dans un dossier temporaire
-                    String fileName = "py/" + UUID.randomUUID().toString() + ".py";
-                    // On enlève l'entête du fichier (ajoutée lors de l'envoi de la requête)
-                    Files.write(Paths.get(fileName), pythonCode.getBytes());
+                    // LOGGER.info("Fichier reçu : " + pythonCode);
+                    // Enregistrement du fichier reçu dans le String dernierCode
+                    dernierCode = pythonCode;
                     
-                    // Ajouter le chemin du fichier à la liste des fichiers envoyés 
-                    uploadedFiles.add(fileName);
 
                     // Traiter le fichier python envoyé par le client et envoyer la réponse au client
                     String result = PythonCodeAnalyzer.analyzePythonCode(pythonCode);
@@ -111,15 +107,16 @@ public class Serveur {
                     List<String> listeMots = PythonCodeAnalyzer.extraireListeMots(requestBody);
 
                     // Vérifier si un fichier a été envoyé  précédemment
-                    if (uploadedFiles.isEmpty()) {
-                        return "Aucun fichier n'a été envoyé précédemment";
+                    if (dernierCode == null) {
+                        LOGGER.warning("Aucun fichier n'a été envoyé précédemment");
+                        return null;
                     }
 
                     // Récupérer le dernier fichier envoyé
-                    String dernierFichierEnvoye = uploadedFiles.get(uploadedFiles.size() - 1);
+                    String contenu = dernierCode;
 
                     // Lire le contenu du fichier
-                    String contenu = new String(Files.readAllBytes(Paths.get(dernierFichierEnvoye)));
+                    // String contenu = new String(Files.readAllBytes(Paths.get(dernierFichierEnvoye)));
 
                     // compter les occurrences des mots dans le contenu du fichier
                     Map<String, Integer> occurrences = PythonCodeAnalyzer.occurrencesMots(contenu, listeMots);

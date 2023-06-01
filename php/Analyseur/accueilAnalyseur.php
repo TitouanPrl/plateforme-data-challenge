@@ -1,8 +1,3 @@
-<?php require '../Integrations/headerVanilla.php';
-
-/* On initialise les variables de session contenant les informations sur les challenges */
-require_once '../General/accueilGeneral.php';
-?>
 <head>
     <title>Page PHP</title>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -11,15 +6,6 @@ require_once '../General/accueilGeneral.php';
 </head>
 <!-- MAIN CONTENT -->
 
-<div class="bordure">
-</div>
-<div class="corps">
-    <main>
-        <div id="titres">
-            <h1>
-        </div>
-    </main>
-</div>
 
 <body>
 
@@ -254,7 +240,7 @@ require_once '../General/accueilGeneral.php';
                 data: {
                     labels: labels,
                     datasets: [{
-                        label: 'Occurrences of words',
+                        label: 'Occurrence des mots',
                         data: dataPoints,
                         backgroundColor: 'rgba(75, 192, 192, 0.7)',
                         borderColor: 'rgba(75, 192, 192, 1)',
@@ -277,7 +263,6 @@ require_once '../General/accueilGeneral.php';
 <canvas id="chartContainer" style="width:70%; height:300px;" align=center></canvas>
 
 <canvas id="barChartContainer" style="width:70%; height:300px;" align=center></canvas>
-
 
 <canvas style="width:70%; height:300px;" align=center id="wordChartContainer"></canvas>
 </body>
