@@ -44,7 +44,7 @@
             <div id="formD">
               <fieldset>
                   <legend>Commentaires</legend>
-                  <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>">Ajouter un commentaire </textarea>
+                  <textarea id="Commentaires" name="Commentaires" rows="5" cols="40" value ="<?php echo($_GET['Commentaires'])?>"> </textarea>
               </fieldset>
               <fieldset>
                   <legend>Déposer un document</legend>

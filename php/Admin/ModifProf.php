@@ -25,11 +25,11 @@
     ?>
     <div style="display:flex; justify-content:center;align-items:center;">
       <!-- INSCRIPTION D'un utilisateur -->
-      <div id="inscription" style="margin-top:60px;">
+      <div id="inscription" style="margin-top:80px;">
         <h2>Profil utilisateur</h2>
 
         <form action="VerifForm.php" method="POST">
-          <div id="form">
+          <div style="display:flex; justify-content:center;align-items:center">
             <div id="formG">
               <fieldset>
                 <legend>Nom</legend>
@@ -87,9 +87,10 @@
                 <input type="date" id="dateFin" name="dateFin" value="<?php echo (date('Y-m-d', strtotime($user[0]['dateF'])));?>" > <br>
               </fieldset>
 
-              <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
+              
             </div>
           </div>
+        <input type="submit" class="boutonForm" value="Valider" style="align-self:center;">
         </form>
       </div>
   </div>

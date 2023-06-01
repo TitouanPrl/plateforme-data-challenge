@@ -28,8 +28,8 @@ while($i< count($_FILES['userfile'])){
 
 </body>
 
-<div class="corps">
-    <div style="display:flex;flex-wrap:wrap;justify-content:space-evenly;align-items:center;padding-top:100px;">
+<div class="corps" style="height:auto;background-attachment: fixed;">
+    <div style="display:flex;flex-direction:row;justify-content:space-evenly;align-items:center;padding-top:100px;padding-bottom:300px;">
 
         <section class="tab" id="tabUser">
 
