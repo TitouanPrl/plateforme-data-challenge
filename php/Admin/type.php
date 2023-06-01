@@ -21,8 +21,6 @@
     header('location:formInsc.php');
     }
 
-
-    require '../Integrations/headerVanilla.php'; 
 ?>
 
 
