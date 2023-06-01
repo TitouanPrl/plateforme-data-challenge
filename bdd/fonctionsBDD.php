@@ -530,6 +530,8 @@ function desinscription($conn, $idUser,$idEvenement) {
 function deleteEquipe($conn,$idEquipe) {
     $sql = "DELETE FROM Equipe WHERE idEquipe = $idEquipe";
     send($conn,$sql);
+    $sql = "UPDATE Utilisateur SET (idEquipe) = (NULL) WHERE idEquipe = $idEquipe";
+    send($conn,$sql);
 }
 
 /* Supprime un membre d'une équipe */
