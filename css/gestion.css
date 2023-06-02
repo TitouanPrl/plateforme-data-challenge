@@ -71,3 +71,9 @@
     border-radius: 20px;
     margin: 20px;
  }
+
+ .delete_button {
+    width: 25px;
+    height: auto;
+ }
+
