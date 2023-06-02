@@ -131,36 +131,38 @@ connect();
             *           AJOUT D'UN MEMBRE         *
             * =================================== */
 
-            /* On récupère le challenge auquel l'équipe participe */
-            $idEvent = (int)$_SESSION['infoTeam']['idEvenement'];
-
-            /* On récupère les étudiants inscrits au challenge et n'ayant pas d'équipe */
-            $liste_inscrits = getInscritsSansEquipe($conn, $idEvent);
-
-            /* Champ de saisie pour ajouter un membre à l'équipe */ ?>
-            <div id="ajout_membre">
-            <p class="titre_input"> Ajouter un membre </p>
-            <input type="text" id="participant" list="liste_participants" required>
-
-            <datalist id="liste_participants">
-
-            <?php 
-
-            /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */
-            foreach ($liste_inscrits as $currentUser) {
-                /* On récupère les infos du user */
-                $info_user = getUtilisateurById($conn, (int)$currentUser['idUser']);
-                $cur_info_user = $info_user[0];
-
-                if ($cur_info_user['idUser'] != $_SESSION['ID']) {
-                    echo ('<option value="' . $cur_info_user['prenom'] . ' ' . $cur_info_user['nom']. '" dataID="' . $cur_info_user['idUser'] . '">');
-                }
-            }
-
-            echo ('</datalist>');
-
             /* Si le user actuel est capitaine, on lui permet d'ajouter des membres */
             if ($_SESSION['capitaine'] == true) {
+                
+                /* On récupère le challenge auquel l'équipe participe */
+                $idEvent = (int)$_SESSION['infoTeam']['idEvenement'];
+                
+                /* On récupère les étudiants inscrits au challenge et n'ayant pas d'équipe */
+                $liste_inscrits = getInscritsSansEquipe($conn, $idEvent);
+                
+                /* Champ de saisie pour ajouter un membre à l'équipe */ ?>
+                <div id="ajout_membre">
+                <p class="titre_input"> Ajouter un membre </p>
+                <input type="text" id="participant" list="liste_participants" required>
+                
+                <datalist id="liste_participants">
+                
+                <?php 
+    
+                /* Liste de tous les inscrits au challenge qui n'ont pas d'équipe */
+                foreach ($liste_inscrits as $currentUser) {
+                    /* On récupère les infos du user */
+                    $info_user = getUtilisateurById($conn, (int)$currentUser['idUser']);
+                    $cur_info_user = $info_user[0];
+                
+                    if ($cur_info_user['idUser'] != $_SESSION['ID']) {
+                        echo ('<option value="' . $cur_info_user['prenom'] . ' ' . $cur_info_user['nom']. '" dataID="' . $cur_info_user['idUser'] . '">');
+                    }
+                }
+            
+                echo ('</datalist>');
+            
+                
                 echo ('<button type="button" id="but_add_member" onclick="addMemberTeam();">Ajouter à l\'équipe</button>');
             }
             echo ('</div>');

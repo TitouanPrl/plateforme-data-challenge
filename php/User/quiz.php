@@ -22,11 +22,11 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
 
         <?php
             
-            $quiz = getQuestionnairesOnSujet($conn, $_SESSION['infoTeam']['idEvenement']);
+            $quiz = getQuestionnairesOnSujet($conn, (int)$_SESSION['infoTeam']['idEvenement']);
 
             /* Si aucun quiz n'est en ligne on l'indique */
-            if (!isset($quiz)) {
-                echo ('Il n\'y a pas de quiz disponible pour l\'instant !');
+            if (!isset($quiz) || $quiz == NULL) {
+                echo ("<p id='notif'>Il n'y a pas de quiz disponible pour l'instant !</p>");
             }
             else {
                 /* On récupère la date actuelle */
