@@ -26,8 +26,8 @@ function createQuiz() {
     var IDchallenge = document.getElementById("nom_challenge").value;
 
     /* On récupère les dates de début et de fin */
-    var debut = document.getElementById("dateDeb").value;
-    var fin = document.getElementById("dateFin").value;
+    var debut = document.getElementById("date_deb").value;
+    var fin = document.getElementById("date_fin").value;
 
     /* On récupère l'id du dernier questionnaire créé et on crée celui du nouvel élément */
     var lastID = document.getElementById("idMax").value;
