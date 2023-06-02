@@ -21,8 +21,14 @@ $tabSujets = getSujetByEvenement($conn, $idEvent);
 
 echo('<!-- MAIN CONTENT -->
 
-<main>
-<div id="equipes">
+<div class="bordure"></div>
+    <div class="corps" style="height:1050px;background-attachment: fixed;">
+        <div class="back-button">
+            <a href="accueilGestion.php" class="fleche"></a>
+        </div>
+
+        <main id="mesChallengesGestion" >
+        <div id="equipes">
 
         <h2 class="titreForm"> Equipes inscrites </h2>');
 
@@ -48,7 +54,7 @@ echo('<div id="sujets">
 foreach ($tabSujets as $current) {
     echo ('  <!-- SUJETS-->
         <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
-             <div class="sujets">
+             <div class="sujets" style="color:var(--bleu-fond);text-align:center;">
                  <h3>' . $current['libelle'] . '</h3>
              </div>
         </a>');
