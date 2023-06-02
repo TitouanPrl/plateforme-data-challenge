@@ -165,8 +165,8 @@ function addMemberTeam() {
         if (xhr.readyState == 4 && xhr.status == 200) {
 
             /* On insère les éléments dans la ligne */
-            newLine.appendChild(nom);
             newLine.appendChild(img);
+            newLine.appendChild(nom);            
 
             /* S'il y a moins de 8 membres dans l'équipe on ajoute le nouveau membre */
             if (myTeam.childElementCount < 10) {
