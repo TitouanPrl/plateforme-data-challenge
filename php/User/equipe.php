@@ -40,7 +40,7 @@ connect();
             echo ('</datalist>');
 
             /* Deuxième membre (après le capitaine) */
-            echo ('<p class="titre_input"> Membre 1 </p>
+            echo ('<p class="titre_input" style="color:var(--bleu-fond) !important;"> Membre 1 </p>
             <input type="text" id="partipant2" list="liste_participants" required>');
 
             /* Liste des utilisateurs inscrits aux mêmes challenge que le user qui crée l'équipe */
@@ -65,7 +65,7 @@ connect();
 
 
             /* Troisième membre (après le capitaine) */
-            echo ('<p class="titre_input"> Membre 2 </p>
+            echo ('<p class="titre_input" style="color:var(--bleu-fond) !important;"> Membre 2 </p>
             <input type="text" id="partipant3" list="liste_participants" required>');
             
             $nom_prenom = $_SESSION['infoUser']['prenom'] . ' ' . $_SESSION['infoUser']['nom'];
