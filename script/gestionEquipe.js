@@ -132,7 +132,7 @@ function addMemberTeam() {
     console.log(membre);
     console.log(idMembre);
 
-    var myTeam = document.getElementById("monEquipe");
+    var myTeam = document.getElementById("listeEquipe");
     var listInscrits = document.getElementById("liste_participants");
     var memberToDelete = document.getElementsByName(idMembre);
 
@@ -169,7 +169,7 @@ function addMemberTeam() {
             newLine.appendChild(nom);            
 
             /* S'il y a moins de 8 membres dans l'équipe on ajoute le nouveau membre */
-            if (myTeam.childElementCount < 10) {
+            if (myTeam.childElementCount < 8) {
 
                 /* On ajoute le membre à l'équipe */
                 if (myTeam) {
@@ -186,7 +186,7 @@ function addMemberTeam() {
     /* UPDATE DES VARS SESSIONS ET DE LA BDD */
 
     /* S'il y a moins de 8 membres dans l'équipe on effectue les modifications */
-    if (myTeam.childElementCount < 10) {
+    if (myTeam.childElementCount < 8) {
         xhr.open("POST", "gestionEquipe.php", true);
         xhr.setRequestHeader('Content-Type',
             'application/x-www-form-urlencoded;charset=utf-8');
@@ -208,9 +208,13 @@ function supprMemberTeam(nb) {
     console.log(membre);
     console.log(idMembre);
 
-    var myTeam = document.getElementById("monEquipe");
+    var myTeam = document.getElementById("listeEquipe");
     var listInscrits = document.getElementById("liste_participants");
     var memberToDelete = document.getElementsByClassName("ligne_equipe")[nb];
+
+    console.log(memberToDelete);
+    console.log(myTeam.childElementCount);
+
 
 
     xhr.onreadystatechange = function () {
@@ -222,7 +226,7 @@ function supprMemberTeam(nb) {
             newOption.setAttribute("dataid", idMembre);
 
             /* S'il y a plus de 3 membres dans l'équipe on supprime le membre */
-            if (myTeam.childElementCount > 5) {
+            if (myTeam.childElementCount > 3) {
 
                 /* On met le membre dans la liste des participants disponibles */
                 if (listInscrits) {
@@ -240,7 +244,7 @@ function supprMemberTeam(nb) {
     /* UPDATE DES VARS SESSIONS ET DE LA BDD */
 
     /* S'il y a plus de 3 membres dans l'équipe on effectue les modificationss */
-    if (myTeam.childElementCount > 5) {
+    if (myTeam.childElementCount > 3) {
         xhr.open("POST", "gestionEquipe.php", true);
         xhr.setRequestHeader('Content-Type',
             'application/x-www-form-urlencoded;charset=utf-8');
