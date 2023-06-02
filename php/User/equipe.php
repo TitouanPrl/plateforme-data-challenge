@@ -9,7 +9,7 @@ connect();
 <!-- MAIN CONTENT -->
 <div class="bordure"></div>    
 <div class="corps" style="height:auto;background-attachment: fixed;">
-    <main style="display:flex; justify-content:center;padding-top:40px;">
+    <main id="pageEquipe">
 
         <?php
 
@@ -86,9 +86,10 @@ connect();
             /* Affichage des membres de l'équipe */
             echo ('<!-- Affichage des membres de son équipe -->
             <div id="monEquipe">
-            <h2 class="titreForm"> Mon équipe </h2>
+            <h2 class="titreForm" style="margin-left:40%;"> Mon équipe </h2>
             <p id="legend"> Une équipe doit avoir entre 3 et 8 membres, si vous êtes capitaine, vous pouvez supprimer un membre en cliquant dessus </p>');
             /* On initialise le compteur pour naviguer dans la classe */
+            echo('<div id="listeEquipe">');
             $i = 0;
             foreach ($_SESSION['teamMembers'] as $memberAct) {
                 $member = $memberAct['idUser'];
@@ -107,14 +108,17 @@ connect();
                 $i++;
             }
 
-            echo ('</div>');
+            echo ('</div>
+            <div id="modifEquipe">
+            ');
 
             /* Si le user actuel est capitaine, on lui permet de supprimer l'équipe */
             if ($_SESSION['capitaine'] == true) {
-                echo ('<a id="but_suppr_equipe" href="supprEquipe.php">Supprimer l\'équipe</a>');
+                echo ('<a class="boutonForm" style="background-color:red;" href="supprEquipe.php">Supprimer l\'équipe</a>');
                 echo (' <form id="linegithub">
+                            <p class="titre_input"> Ajouter un membre </p>
                             <input type="text" id="liengit" name="inputGit" placeholder="https://github.com/TitouanPrl/plateforme-data-challenge">
-                            <button type="submit">Lien Github/Depot</button>
+                            <button class="boutonForm" type="submit">Lien Github/Depot</button>
                         </form>');
                 // ajout du lien github dans la base de données
                 if (isset($_GET['inputGit'])) {
@@ -126,7 +130,7 @@ connect();
 
             }        
 
-
+            
             /* ================================== *
             *           AJOUT D'UN MEMBRE         *
             * =================================== */
@@ -163,9 +167,10 @@ connect();
                 echo ('</datalist>');
             
                 
-                echo ('<button type="button" id="but_add_member" onclick="addMemberTeam();">Ajouter à l\'équipe</button>');
+                echo ('<button type="button" id="but_add_member" class="boutonForm" onclick="addMemberTeam();">Ajouter à l\'équipe</button>');
             }
             echo ('</div>');
+            echo('</div>');
         }
 
         ?>

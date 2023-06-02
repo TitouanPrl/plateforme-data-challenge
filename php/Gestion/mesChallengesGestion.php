@@ -35,7 +35,7 @@ connect();
                 $infos = getChallengeByID($conn, (int)$current["idEvenement"])[0];
 
                 echo ('
-                     <a href="equipesEtProjets.php.php?challenge=' . $current . '">
+                     <a href="equipesEtProjets.php?challenge=' . (int)$current["idEvenement"] . '">
                         <div class="challenge">
                             <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
                             <span class="descript_challenge"> ' . $infos['description'] . ' </span>
