@@ -34,9 +34,8 @@ echo('<!-- MAIN CONTENT -->
 
 /* Affichage des équipes inscrites au challenge */
 foreach ($tabEquipes as $current) {
-
     echo ('  <!-- EQUIPES -->
-        <span class="ligne_equipe">' . $current['nom'] . '</span>');
+        <span class="ligne_equipe">' . getEquipe($conn,$current['idEquipe'])[0]['nom'] . '</span>');
 }
 
 echo('</div>');;
@@ -53,7 +52,7 @@ echo('<div id="sujets">
 /* Affichage des sujets associés au challenge */
 foreach ($tabSujets as $current) {
     echo ('  <!-- SUJETS-->
-        <a href="ressourcesSujet.php?sujet=' . $current['idSujet'] . '
+        <a href="../User/ressourcesSujet.php?sujet=' . $current['idSujet'] . '"
              <div class="sujets" style="color:var(--bleu-fond);text-align:center;">
                  <h3>' . $current['libelle'] . '</h3>
              </div>

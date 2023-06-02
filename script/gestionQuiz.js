@@ -107,6 +107,8 @@ function supprQuiz(nb, id) {
     var xhr = getXHR();
 
     var questionnaire = document.getElementsByClassName("ligne_quiz")[nb];
+    
+    console.log(questionnaire);
 
     xhr.onreadystatechange = function () {
 
