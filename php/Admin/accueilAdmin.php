@@ -92,7 +92,7 @@ while($i< count($_FILES['userfile'])){
                 <div class="contenu">
                     <?php
                     $kind = 'CHALLENGE';
-                    $DC = getEvenementsByKind($conn, $kind);
+                    $DC = getEvenements($conn);
 
                     foreach ($DC as $evt) : ?>
                         <div class="row">
