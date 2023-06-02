@@ -38,7 +38,7 @@ connect();
                      <a href="equipesEtProjets.php?challenge=' . (int)$current["idEvenement"] . '">
                         <div class="challenge">
                             <span class="titre_challenge"> ' . $infos['libelle'] . ' </span>
-                            <span class="descript_challenge"> ' . $infos['description'] . ' </span>
+                            <span class="descript_challenge"> ' . $infos['descrip'] . ' </span>
                         </div>
                     </a>
                 ');
