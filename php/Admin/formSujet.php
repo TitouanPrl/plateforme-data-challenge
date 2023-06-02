@@ -17,7 +17,7 @@
                     <div id="form">           
                       <fieldset>
                         <legend>Libelle</legend>
-                        <input type="text" id="libelle" name="libelle" value="<?php echo ($_GET['libelle']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                        <input type="text" id="libelle" name="libelle" value="<?php echo ($_GET['libelle']); ?>" required> <br>
                       </fieldset>
 
                       <fieldset>
