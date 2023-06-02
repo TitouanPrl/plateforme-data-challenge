@@ -13,7 +13,7 @@ connect();
         <div class="back-button">
             <a href="accueilGestion.php" class="fleche"></a>
         </div>
-        <main style="display:flex;flex-direction:column;">
+        <main id="mesChallengesGestion" >
 
         <?php
         /* Si le gestionnaire n'est lié à aucun challenge, on lui indique */

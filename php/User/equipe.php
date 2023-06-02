@@ -86,7 +86,7 @@ connect();
             /* Affichage des membres de l'équipe */
             echo ('<!-- Affichage des membres de son équipe -->
             <div id="monEquipe">
-            <h2 class="titreForm" style="margin-left:40%;"> Mon équipe </h2>
+            <h2 class="titreForm" > Mon équipe </h2>
             <p id="legend"> Une équipe doit avoir entre 3 et 8 membres, si vous êtes capitaine, vous pouvez supprimer un membre en cliquant dessus </p>');
             /* On initialise le compteur pour naviguer dans la classe */
             echo('<div id="listeEquipe">');
@@ -109,6 +109,7 @@ connect();
             }
 
             echo ('</div>
+            </div>
             <div id="modifEquipe">
             ');
 
@@ -116,7 +117,7 @@ connect();
             if ($_SESSION['capitaine'] == true) {
                 echo ('<a class="boutonForm" style="background-color:red;" href="supprEquipe.php">Supprimer l\'équipe</a>');
                 echo (' <form id="linegithub">
-                            <p class="titre_input"> Ajouter un membre </p>
+                            <p class="titre_input"> Deposer un code </p>
                             <input type="text" id="liengit" name="inputGit" placeholder="https://github.com/TitouanPrl/plateforme-data-challenge">
                             <button class="boutonForm" type="submit">Lien Github/Depot</button>
                         </form>');
@@ -170,7 +171,6 @@ connect();
                 echo ('<button type="button" id="but_add_member" class="boutonForm" onclick="addMemberTeam();">Ajouter à l\'équipe</button>');
             }
             echo ('</div>');
-            echo('</div>');
         }
 
         ?>
