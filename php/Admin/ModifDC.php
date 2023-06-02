@@ -26,7 +26,7 @@ connect();
             <div id="formG">
               <fieldset>
                 <legend>Libellé</legend>
-                <input type="text" id="libelle" name="libelle" value="<?php echo ($Evenement[0]['libelle']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
+                <input type="text" id="libelle" name="libelle" value="<?php echo ($Evenement[0]['libelle']); ?>" required> <br>
               </fieldset>
 
               <fieldset>
