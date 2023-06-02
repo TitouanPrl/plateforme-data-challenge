@@ -165,5 +165,8 @@ UPDATE Utilisateur SET idEquipe = 2 WHERE idUser=6;
 INSERT INTO Questionnaire (idEvenement) VALUES (1);
 INSERT INTO Questionnaire (idEvenement) VALUES (2);
 
+INSERT INTO Question (idQuestionnaire, contenu) VALUES (1,"De quel couleur est le sceptre doré ?");
+INSERT INTO Question (idQuestionnaire, contenu) VALUES (1,"Qui a volé le sceptre ?");
+
 INSERT INTO Projet (idEquipe, idSujet) VALUES (2, 3);
 

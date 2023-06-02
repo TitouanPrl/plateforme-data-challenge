@@ -44,7 +44,7 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
                             <h2 class="titreForm"> Questionnaire </h2>
               
                             <form action="envoiReponses.php" method="POST">
-                              <div style="display:flex; justify-content:center;align-items:center">');
+                              <div style="display:flex; justify-content:center;align-items:center;flex-direction:column;">');
 
                         $i = 0;
 
