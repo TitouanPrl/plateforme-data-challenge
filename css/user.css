@@ -127,3 +127,76 @@ span {
     align-items: center;
     padding-top: 50px;
 }
+
+
+#logo_crown,
+.delete_button {
+    height: 25px;
+    width: auto;
+    margin-right: 20px;
+    margin-top: 10px;
+    display: inline-block;
+}
+
+
+
+#modifEquipe,
+#monEquipe {
+    background-color: var(--vert-trans);
+    border-radius: 20px;
+    padding: 30px;
+    margin-top: 50px;
+    justify-content: center;
+
+}
+
+#modifEquipe {
+    background-color: var(--bleu-fond);
+}
+
+
+#pageEquipe {
+    display:flex;
+    flex-direction:column;
+    padding-top:40px;
+    align-items: center;
+    margin-right: 0;
+    padding-bottom: 200px;
+}
+
+#monEquipe p,
+#monEquipe span {
+    color: var(--bleu-fond);
+    font-size: 20px;
+}
+
+#listeEquipe {
+    display:flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 20px;
+}
+
+#modifEquipe .boutonForm {
+    margin-left: 40%;
+}
+
+#linegithub {
+    margin: 60px 0;
+}
+
+#linegithub .boutonForm {
+    margin-top: 0;
+}
+
+#but_add_member {
+    margin-top:0;
+}
+
+
+.titre_input {
+    color: var(--vert) !important;
+    margin-left: 40%;
+    font-size: 20px !important;
+    font-weight: 600;
+}
