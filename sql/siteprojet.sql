@@ -124,12 +124,12 @@ INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,foncti
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Rastapopoulos","Monsieur",7827782665,"rp@gmail.com","1ère année de Master","l'école des méchants","Lyon","ab4f63f9ac65152575886860dde480a1","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",7827782665,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","ab4f63f9ac65152575886860dde480a1","USER");
 INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",7827782665,"Laboratoire de Genève","gestion@gmail.com","ab4f63f9ac65152575886860dde480a1","GESTION");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Pradal","Titouan",7827782665,"Laboratoire de Genève","pradaltito@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Depreter","Rémi",7827782665,"Laboratoire de Genève","remi@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Clémentine",7827782665,"Laboratoire de Genève","clementine@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Jappy",7827782665,"Laboratoire de Genève","jg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",7827782665,"Laboratoire de Genève","admin@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","ADMIN");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Lallinec","Naiwann",7827782665,"Laboratoire de Genève","naiwann@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Pradal","Titouan",7827782665,"pradaltito@cy-tech.fr","1ère année de Master","Cy-tech","Bordeaux","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Depreter","Rémi",7827782665,"remi@cy-tech.fr","1ère année de Master","Cy-tech","Bordeaux","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Galloy","Clémentine",7827782665,"clementine@cy-tech.fr","1ère année de Master","Cy-tech","Bordeaux","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Galloy","Jappy",7827782665,"jg@cy-tech.fr","1ère année de Master","Cy-tech","Bordeaux","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,mdp,fonction) VALUES ("Galloy","Elvis",7827782665,"admin@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","ADMIN");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Lallinec","Naiwann",7827782665,"naiwann@cy-tech.fr","1ère année de Master","Cy-tech","Bordeaux","ab4f63f9ac65152575886860dde480a1","USER");
 
 
 
