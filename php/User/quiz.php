@@ -35,7 +35,7 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
                 /* On cherche le questionnaire en cours à l'instant t */
                 foreach ($quiz as $actQuiz) {
                     /* Une fois trouvé, on récupère ses questions */
-                    if ((date_diff($actQuiz['dateD'], $dateAct) < 0) && (date_diff($actQuiz['dateF'], $dateAct) > 0)) {
+                    //if ((date_diff($actQuiz['dateD'], $dateAct) < 0) && (date_diff($actQuiz['dateF'], $dateAct) > 0)) {
                         $questionsQuiz = getQuestionsOnQuestionnaire($conn,$actQuiz['idQuestionnaire']);
 
                         echo('<!-- QUESTIONNAIRE -->
@@ -71,7 +71,7 @@ if (!isset($_SESSION['infoTeam']) || ($_SESSION['capitaine'] == false)) {
                     }
                 }
                 
-            }
+            //}
         ?>
     </div>
 
