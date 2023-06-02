@@ -117,7 +117,7 @@ connect();
             if ($_SESSION['capitaine'] == true) {
                 echo ('<a class="boutonForm" style="background-color:red;" href="supprEquipe.php">Supprimer l\'équipe</a>');
                 echo (' <form id="linegithub">
-                            <p class="titre_input"> Ajouter un membre </p>
+                            <p class="titre_input"> Deposer un code </p>
                             <input type="text" id="liengit" name="inputGit" placeholder="https://github.com/TitouanPrl/plateforme-data-challenge">
                             <button class="boutonForm" type="submit">Lien Github/Depot</button>
                         </form>');
