@@ -85,7 +85,7 @@ $listEvents = getEvenementsByKind($conn, 'BATTLE');
                 $listeQuiz = getQuestionnairesOnSujet($conn, (int)$currentEvent['idEvenement']);
 
                 foreach ($listeQuiz as $currentQuiz) {
-                    echo('<div classe="ligne_quiz>
+                    echo('<div classe="ligne_quiz">
                         <a href="detailsQuiz.php?quiz='.(int)$currentQuiz['idQuestionnaire']. '">
                             <span class="nom_quiz" id="' . $j . '"> Questionnaire ' . $j . '</span>
                         </a>
