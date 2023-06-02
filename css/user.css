@@ -147,6 +147,8 @@ span {
     padding: 30px;
     margin-top: 50px;
     justify-content: center;
+    width: 60%;
+    text-align: center;
 
 }
 
@@ -177,9 +179,7 @@ span {
     margin-top: 20px;
 }
 
-#modifEquipe .boutonForm {
-    margin-left: 40%;
-}
+
 
 #linegithub {
     margin: 60px 0;
@@ -196,7 +196,6 @@ span {
 
 .titre_input {
     color: var(--vert) !important;
-    margin-left: 40%;
     font-size: 20px !important;
     font-weight: 600;
 }
