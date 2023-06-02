@@ -1,5 +1,5 @@
 <?php session_start() ?>
-<?php require '../Integrations/headerAdmin.php';  ?>
+<?php require '../Integrations/headerVanilla.php'; ?>
 <div class="bordure"></div>
 <div class="corps">
   <div class="back-button">
@@ -26,7 +26,7 @@ connect();
             <div id="formG">
               <fieldset>
                 <legend>Libellé</legend>
-                <input type="text" id="libelle" name="libelle" value="<?php echo ($Evenement[0]['libelle']); ?>" required> <br>
+                <input type="text" id="libelle" name="libelle" value="<?php echo ($Evenement[0]['libelle']); ?>" required pattern="[A-Z][A-Za-z]+"> <br>
               </fieldset>
 
               <fieldset>
