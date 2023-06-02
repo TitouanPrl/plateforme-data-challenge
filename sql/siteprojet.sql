@@ -120,25 +120,25 @@ CREATE TABLE Reponse (
 
 
 
-INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Archibald","Haddock",0782778266,"hh@gmail.com","1ère année de Master","la mer","Mauléon","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Rastapopoulos","Monsieur",0782778266,"rp@gmail.com","1ère année de Master","l'école des méchants","Lyon","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",0782778266,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",0782778266,"Laboratoire de Genève","gestion@gmail.com","ab4f63f9ac65152575886860dde480a1","GESTION");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Pradal","Titouan",0782778266,"Laboratoire de Genève","pradaltito@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Depreter","Rémi",0782778266,"Laboratoire de Genève","remi@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Clémentine",0782778266,"Laboratoire de Genève","clementine@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Jappy",0782778266,"Laboratoire de Genève","jg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",0782778266,"Laboratoire de Genève","admin@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","ADMIN");
-INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Lallinec","Naiwann",0782778266,"Laboratoire de Genève","naiwann@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Archibald","Haddock",7827782665,"hh@gmail.com","1ère année de Master","la mer","Mauléon","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Rastapopoulos","Monsieur",7827782665,"rp@gmail.com","1ère année de Master","l'école des méchants","Lyon","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,email,nivEtude,ecole,ville,mdp,fonction) VALUES ("Castafiore","Bianca",7827782665,"bc@gmail.com","1ère année de Master","Conservatoire","Barcelone","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Tournesol","Tryphon",7827782665,"Laboratoire de Genève","gestion@gmail.com","ab4f63f9ac65152575886860dde480a1","GESTION");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Pradal","Titouan",7827782665,"Laboratoire de Genève","pradaltito@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Depreter","Rémi",7827782665,"Laboratoire de Genève","remi@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Clémentine",7827782665,"Laboratoire de Genève","clementine@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Jappy",7827782665,"Laboratoire de Genève","jg@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Galloy","Elvis",7827782665,"Laboratoire de Genève","admin@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","ADMIN");
+INSERT INTO Utilisateur (nom,prenom,numTel,entreprise,email,mdp,fonction) VALUES ("Lallinec","Naiwann",7827782665,"Laboratoire de Genève","naiwann@cy-tech.fr","ab4f63f9ac65152575886860dde480a1","USER");
 
 
 
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("CHALLENGE","Le lotus bleu","Grand prix de code de Chine");
 INSERT INTO Evenement (kind,libelle,descrip) VALUES ("BATTLE","Le sceptre d'Ottokar","Retrouvez le sceptre perdu sur le web");
 
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les requins baleines","Etudier les requins baleins", "../../img/mountain_bg.jpeg",0606060606,"rb@gmail.com","https://www.nausicaa.fr/fiches-animaux/requin-baleine/");
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les orques","Étude des orques", "../../img/mountain_bg.jpeg",0606060606,"ok@gmail.com","https://www.nationalgeographic.fr/thematique/sujet/animaux/mammiferes/mammiferes-marins/dauphin/orque");
-INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources,idE1,idE2) VALUES (2,"Le sceptre","Sa majesté compte sur vous...", "../../img/mountain_bg.jpeg",0606060606,"so@gmail.com","https://www.casterman.com/Bande-dessinee/Catalogue/le-sceptre-dottokar/9782203001077",1,2);
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les requins baleines","Etudier les requins baleins", "../../img/mountain_bg.jpeg",7827782665,"rb@gmail.com","https://www.nausicaa.fr/fiches-animaux/requin-baleine/");
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources) VALUES (1,"Les orques","Étude des orques", "../../img/mountain_bg.jpeg",7827782665,"ok@gmail.com","https://www.nationalgeographic.fr/thematique/sujet/animaux/mammiferes/mammiferes-marins/dauphin/orque");
+INSERT INTO Sujet (idEvenement,libelle,descrip,img,telGerant,emailGerant,lienRessources,idE1,idE2) VALUES (2,"Le sceptre","Sa majesté compte sur vous...", "../../img/mountain_bg.jpeg",7827782665,"so@gmail.com","https://www.casterman.com/Bande-dessinee/Catalogue/le-sceptre-dottokar/9782203001077",1,2);
 
 INSERT INTO Inscription (idUser,idEvenement) VALUES (1,1);
 INSERT INTO Inscription (idUser,idEvenement) VALUES (2,2);
