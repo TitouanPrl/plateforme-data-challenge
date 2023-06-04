@@ -48,7 +48,7 @@ Changer les identifiants de connexion dans le fichier bddData.php dans le dossie
 #### Ouvrir le site
 ***
 ```
-"localhost:8002/php/accueilGeneral.php" dans votre navigateur
+"localhost:8002/php/General/accueilGeneral.php" dans votre navigateur
 ```
 
 
